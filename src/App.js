@@ -1,24 +1,27 @@
-import logo from './logo.svg';
-import './App.css';
+import { Routes,Route } from "react-router-dom";
+import Login from './login';
+import Person from "./person";
+import MarriageRegistry from "./marriage-registry";
+import Family from "./family";
+import FamilyIndividual from "./family-individual";
+
+
+import Example from './pieChart';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Routes>
+        <Route path="/" element={<Login />} exact />
+        <Route path="/login" element={<Login />} exact />
+        <Route path="/person" element={<Person />} exact />
+        <Route path="/marriage-registry" element={<MarriageRegistry />} exact />
+        <Route path="/family" element={<Family />} exact />
+        <Route path="/family-individual" element={<FamilyIndividual />} exact />
+
+        <Route path="/pie-chart" element={<Example />} exact />
+      </Routes>
+    </>
   );
 }
 

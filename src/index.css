@@ -1,13 +1,678 @@
-body {
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Vujahday+Script&display=swap");
+* {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  border: 0;
+  box-sizing: border-box;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  overflow-x: hidden;
 }
+
+.div1 {
+  display: flex;
+  width: 40%;
+  height: 100%;
+  background-color: #fff;
+  align-items: center;
+  justify-content: center;
+}
+
+.forms {
+  display: flex;
+  flex-direction: column;
+}
+
+.forms label {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding-left: 20px;
+  color: black;
+}
+
+.forms input {
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  padding-left: 20px;
+}
+
+.forms input:focus {
+  border: 2px solid #6c63f0;
+}
+
+#uid,
+#password {
+  width: 350px;
+  height: 40px;
+  border: 2px solid #d9d9d9;
+  border-radius: 5px;
+}
+
+.password-text {
+  margin-top: 30px;
+}
+
+.login-btn {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  text-align: center;
+  color: white;
+  background-color: #6c63f0;
+  border-radius: 2px;
+  width: 350px;
+  margin-top: 40px;
+  padding: 10px 0 10px 0;
+  transition: 0.2s ease-in-out;
+  transition-property: background, color;
+}
+
+.login-btn:hover {
+  background-color: #d9d9d9;
+  color: black;
+}
+
+.forgot-password {
+  text-decoration: none;
+  font-size: 16px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  color: #989898;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.forgot-password:hover {
+  color: #6c63f0;
+}
+
+.div2 {
+  width: 60%;
+  height: 100%;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.div2 svg {
+  position: absolute;
+  top: 0;
+  left: 40%;
+  margin-top: 30px;
+  margin-left: 30px;
+}
+
+.div2 h1 {
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+  font-size: 60px;
+  color: #fff;
+  text-align: center;
+  line-height: 95%;
+}
+
+.div2 h2 {
+  font-family: "Vujahday Script", cursive;
+  color: #fff;
+  font-size: 60px;
+  transform: rotate(-5deg);
+  font-weight: 400;
+}
+
+/* Family Section */
+
+.container-family {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.nav-div {
+  width: 100%;
+  height: 120px;
+  /* position: fixed; */
+  background-color: black;
+}
+
+nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.logo-div {
+  width: 20%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .logo-div h1{
+    font-family: 'Josefin Sans';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 24px;
+    color: #fff;
+} */
+
+.navigations {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  padding-right: 300px;
+}
+
+.navigations a {
+  text-decoration: none;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  color: #fff;
+  transition: 0.2s ease-in-out;
+}
+
+.navigations a:hover {
+  color: #6c63f0;
+}
+
+.title-div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 50px;
+  padding: 0 70px;
+}
+
+.title-div h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  color: #111111;
+}
+
+hr {
+  border: 2px solid #eaeaea;
+  margin-bottom: 30px;
+}
+
+.family-master {
+  width: 70%;
+}
+
+.search-div {
+  width: 25%;
+}
+.search-div svg {
+  position: relative;
+  right: 25px;
+}
+
+.search-div input {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  padding-left: 10px;
+  width: 80%;
+  outline: none;
+}
+.search-div input:focus {
+  border-bottom: 2px solid #f1743c;
+}
+
+.container-family br {
+  border: 20px black;
+  rotate: 180deg;
+  margin-top: 10px;
+}
+
+.family-details-div {
+  width: 100%;
+  display: flex;
+  margin-left: 90px;
+  margin-bottom: 50px;
+}
+
+.family-entries {
+  width: 60%;
+  display: flex;
+}
+
+.family-photo {
+  width: 40%;
+}
+
+.inner-div-1 {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.inner-div-1 h1,
+.inner-div-2 h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.inner-div-1 h2,
+.inner-div-2 h2 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+}
+
+.inner-div-2 {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.address-div,
+.ward-div,
+.pincode-div {
+  margin-top: 30px;
+}
+
+.upload-btn {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.upload-btn h1 {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.upload-btn svg {
+  margin-left: 10px;
+}
+
+.photo-container img {
+  border-radius: 10px;
+  height: 200px;
+}
+
+.famili-members-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0px 70px;
+}
+
+.heading-div {
+  display: flex;
+  width: 100%;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 500;
+  font-size: 20px;
+  padding: 2px 15px;
+  border-bottom: 3px solid #eaeaea;
+}
+
+.name-div {
+  width: 20%;
+}
+
+.dob-div {
+  width: 13%;
+}
+
+.phone-div {
+  width: 17%;
+}
+
+.baptism-div {
+  width: 13%;
+}
+
+.marriage-div {
+  width: 13%;
+}
+
+.death-div {
+  width: 13%;
+}
+
+.relation-div {
+  width: 11%;
+}
+
+.member-details-div {
+  display: flex;
+  width: 100%;
+  padding: 15px 15px;
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  border-bottom: 3px solid #eaeaea;
+  transition: 0.2s ease-in-out;
+}
+
+.member-details-div:hover {
+  border-bottom: 3px solid #6c63f0;
+  cursor: pointer;
+}
+
+.description-div,
+.donation-div {
+  margin-left: 20px;
+}
+
+.desc-heading,
+.donation-heading {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 36px;
+  margin-top: 40px;
+}
+
+.desc-content,
+.donation-content {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-align: justify;
+}
+
+.donation-content {
+  margin-bottom: 50px;
+}
+
+/* Person Page */
+
+.person-head {
+  width: 40%;
+}
+
+.registries-nav-div {
+  width: 55%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.registries-nav-div a {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+  transition: 0.2s ease-in-out;
+}
+
+.registries-nav-div a:hover {
+  border-bottom: 3px solid #f1743c;
+}
+
+.menu-div {
+  width: 5%;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.members-entries-div {
+  display: flex;
+  width: 100%;
+  margin: 0px 50px;
+}
+
+.details-heading-div {
+  display: flex;
+  flex-direction: column;
+  width: 60%;
+}
+
+.details-heading-div div {
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 20px;
+}
+
+.heading-name,
+.heading-dob,
+.heading-phone,
+.heading-baptism,
+.heading-marriage,
+.heading-death {
+  width: 30%;
+  font-weight: 500;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.person-name,
+.person-dob,
+.person-phone,
+.person-baptism,
+.person-marriage,
+.person-death {
+  width: 70%;
+  font-weight: 400;
+  padding-bottom: 10px;
+}
+
+.name-person-div,
+.dob-person-div,
+.phone-person-div,
+.baptism-person-div,
+.marriage-person-div,
+.death-person-div {
+  display: flex;
+  width: 100%;
+  margin-top: 20px;
+  border-bottom: 3px solid #eaeaea;
+}
+
+.person-photo-div {
+  display: flex;
+  width: 40%;
+  align-items: center;
+  justify-content: center;
+}
+
+.desc-div {
+  margin: 20px 70px;
+}
+
+.desc-heading {
+  margin-bottom: 20px;
+}
+
+.blank-space {
+  margin-right: 70px;
+}
+
+/* Marriage Registry */
+
+.bridegroom-head {
+  font-family: "Poppins";
+  font-style: normal;
+  font-weight: 600;
+  font-size: 20px;
+  border-bottom: 3px solid #f1743c;
+  margin: 10px 0px;
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+
+.registry-div {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+}
+
+.registry-details-heading-div div {
+  font-family: "Poppins";
+  font-style: normal;
+  font-size: 20px;
+}
+
+.registry-details-heading-div {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.registry-photo-div {
+  display: flex;
+  width: 40%;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.bride {
+  margin-top: 50px;
+}
+
+.marriage-photo {
+  scale: 80%;
+}
+
+.upload-icon {
+  margin-left: 50px;
+}
+
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
+@import url('https://fonts.googleapis.com/css2?family=Vujahday+Script&display=swap');
+body{
+  margin: 0;
+}
+.container {
+  height: 100vh;
+  width: 100vw;
+}
+div {
+  display: flex;
+}
+.login-container {
+  height: 100vh;
+  width: 40vw;
+}
+.login {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 20vw;
+  height: 50vh;
+  color: black;
+  display: block;
+}
+input,
+a {
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+input {
+  border-radius: 8px;
+  width: 250px;
+  height: 30px;
+  outline: none;
+  border: 2px solid #d9d9d9;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+input:focus {
+  border-color: #6c63f0;
+}
+.login-btn {
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  width: 250px;
+  background-color: #6c63f0;
+  color: white;
+  border: 1px solid #6c63f0;
+}
+h6 {
+  margin-left: 40px;
+  margin-bottom: 5px;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+a {
+  display: block;
+  text-align: center;
+  margin-top: 10px;
+  width: 250px;
+  text-decoration: none;
+  color: #989898;
+  font-family: 'Poppins';
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+}
+.caption-container {
+  background-color: black;
+  height: 100vh;
+  width: 60vw;
+}
+.caption{
+  margin: auto;
+  display: block;
+  width: 500px;
+  height: 500px;
+}
+h1{
+  color: white;
+  display:flex;
+  align-items: center;
+  justify-content: center; 
+}
+.text{
+  font-family: 'Poppins';
+font-style: normal;
+font-weight: 300;
+font-size: 64px;
+line-height: 96px;
+
+text-align: center;
+text-transform: uppercase;
+}
+.second-text{
+  font-family: 'Vujahday Script';
+font-style: normal;
+font-weight: 400;
+font-size: 64px;
+line-height: 87px;
+transform: rotate(-10deg);
+}
+  .App {
+  font-family: sans-serif;
+  text-align: center;
+} */
