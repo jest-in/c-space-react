@@ -1,18 +1,45 @@
-import Logo from './Assets/logo';
+import Logo from "./Assets/logo";
+import axios from "axios";
 
 function Login() {
+  const data = {
+    loginId: "123456",
+    password: "pass12345",
+  };
+  function authentication() {
+    fetch("http://localhost:5000/api/v1/users/login", {
+      method: "POST",
+      mode:'no-cors',
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response));
+
+    // axios
+    //   .post(
+    //     "http://localhost:5000/api/v1/users/login",
+    //     { loginId: "123456", password: "pass12345" },
+    //     { withCredentials: true }
+    //   )
+    //   .then((res) => {
+    //     console.log(res.data);
+    //   });
+  }
   return (
     <>
       <div className="container">
         <div className="div1">
           <div className="forms">
-            <label for="uid">User id</label>
+            <label htmlFor="uid">User id</label>
             <input type="text" name="uid" id="uid" />
-            <label className="password-text" for="password">
+            <label className="password-text" htmlFor="password">
               Password
             </label>
             <input type="password" name="password" id="password" />
-            <a href="#" className="login-btn">
+            <a href="#" className="login-btn" onClick={() => authentication()}>
               Log in
             </a>
             <a href="/forgot-password" className="forgot-password">
@@ -21,7 +48,7 @@ function Login() {
           </div>
         </div>
         <div className="div2">
-          <Logo/>
+          <Logo />
           <h1>GOD WANTS</h1>
           <h1>YOU TO KNOW</h1>
           <h2>that its handled</h2>

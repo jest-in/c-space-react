@@ -1,160 +1,388 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Vujahday+Script&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Vujahday+Script&display=swap');
 * {
-  margin: 0;
-  border: 0;
-  box-sizing: border-box;
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+:root {
+    --color-primary: #6c63f0;
+    --color-secondary: #ffffff;
+    --color-3: #eaeaea;
+
+    --text-primary: #111111;
+    --hover-underline: #f1743c;
 }
 
 .container {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  overflow-x: hidden;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    overflow-x: hidden;
 }
 
+/*Login Page*/
+/*--------------------------------------------------------*/
+
 .div1 {
-  display: flex;
-  width: 40%;
-  height: 100%;
-  background-color: #fff;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    width: 40%;
+    height: 100%;
+    background-color: var();
+    align-items: center;
+    justify-content: center;
 }
 
 .forms {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .forms label {
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  padding-left: 20px;
-  color: black;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 20px;
+    color: var(--text-primary);
 }
 
 .forms input {
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  padding-left: 20px;
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 20px;
 }
 
 .forms input:focus {
-  border: 2px solid #6c63f0;
+    border: 2px solid var(--color-primary);
 }
 
 #uid,
 #password {
-  width: 350px;
-  height: 40px;
-  border: 2px solid #d9d9d9;
-  border-radius: 5px;
+    width: 350px;
+    height: 40px;
+    border: 2px solid var(--color-3);
+    border-radius: 5px;
 }
 
 .password-text {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .login-btn {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  text-align: center;
-  color: white;
-  background-color: #6c63f0;
-  border-radius: 2px;
-  width: 350px;
-  margin-top: 40px;
-  padding: 10px 0 10px 0;
-  transition: 0.2s ease-in-out;
-  transition-property: background, color;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    border-radius: 2px;
+    width: 350px;
+    margin-top: 40px;
+    padding: 10px 0 10px 0;
+    transition: 0.2s ease-in-out;
+    transition-property: background, color;
 }
 
 .login-btn:hover {
-  background-color: #d9d9d9;
-  color: black;
+    background-color: var(--color-3);
+    color: #111;
 }
 
 .forgot-password {
-  text-decoration: none;
-  font-size: 16px;
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  color: #989898;
-  text-align: center;
-  margin-top: 30px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 600;
+    color: #989898;
+    text-align: center;
+    margin-top: 30px;
 }
 
 .forgot-password:hover {
-  color: #6c63f0;
+    color: var(--color-primary);
 }
 
 .div2 {
-  width: 60%;
-  height: 100%;
-  background-color: black;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    width: 60%;
+    height: 100%;
+    background-color: var(--text-primary);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
-.div2 svg {
-  position: absolute;
-  top: 0;
-  left: 40%;
-  margin-top: 30px;
-  margin-left: 30px;
+.logo-login {
+    position: absolute;
+    top: 0;
+    left: 40%;
+    margin-top: 30px;
+    margin-left: 30px;
 }
 
 .div2 h1 {
-  font-family: "Poppins", sans-serif;
-  font-weight: 600;
-  font-size: 60px;
-  color: #fff;
-  text-align: center;
-  line-height: 95%;
+    font-weight: 600;
+    font-size: 60px;
+    color: var(--color-secondary);
+    text-align: center;
+    line-height: 95%;
 }
 
 .div2 h2 {
-  font-family: "Vujahday Script", cursive;
-  color: #fff;
-  font-size: 60px;
-  transform: rotate(-5deg);
-  font-weight: 400;
+    font-family: 'Vujahday Script', cursive;
+    color: var(--color-secondary);
+    font-size: 60px;
+    rotate: -5deg;
+    font-weight: 400;
 }
 
-/* Family Section */
+/*End of Login Section*/
+/*--------------------------------------------------------*/
+
+/* Individual Family Section */
+/*--------------------------------------------------------*/
+
+.graph-div {
+    width: 100%;
+    height: 500px;
+    background-color: var(--text-primary);
+}
+
+.secondary-nav-div {
+    display: flex;
+    width: 100%;
+}
+
+.secondary-nav-subdiv1 {
+    width: 40%;
+    height: 500px;
+    overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.secondary-nav-subdiv2 {
+    width: 60%;
+    height: 500px;
+    background-color: var(--color-primary);
+    overflow: scroll;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+}
+
+.sub1-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-left: 80px;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-secondary);
+}
+
+.sub1-heading {
+    width: 20%;
+}
+
+.sub1-heading h1 {
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.filter-area {
+    display: flex;
+    width: 100%;
+    padding: 5px 80px;
+}
+
+.filters-head {
+    display: flex;
+    background-color: var(--color-3);
+    border-radius: 5px;
+    width: 100%;
+    padding: 2px 10px;
+}
+
+.filters-head img {
+    margin-left: 10px;
+    padding: 2px;
+}
+
+.add-filter {
+    background-color: var(--color-3);
+    border-radius: 5px;
+    margin-left: 5px;
+    padding: 2px 10px;
+}
+
+.families-search-div {
+    width: 60%;
+}
+
+.families-search-div img {
+    position: relative;
+    right: 25px;
+}
+
+.families-search-div input {
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 10px;
+    width: 80%;
+    outline: none;
+    border-bottom: 2px solid var(--color-3);
+}
+
+.families-search-div input:focus {
+    border-bottom: 2px solid var(--hover-underline);
+}
+
+.filter-div {
+    width: 5%;
+}
+
+.sub-entries h1 {
+    font-weight: 400;
+    font-size: 20px;
+    border-bottom: 2px solid var(--color-3);
+    padding-left: 10px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 70px;
+    margin-right: 20px;
+    transition: 0.2s ease-in-out;
+}
+
+.sub-entries h1:hover {
+    border-bottom: 2px solid var(--color-primary);
+    cursor: pointer;
+}
+
+.sub2-head {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 20px;
+    padding-left: 40px;
+    margin-bottom: 3.5px;
+}
+
+.sub2-heading {
+    width: 70%;
+}
+
+.sub2-heading h1 {
+    font-weight: 600;
+    font-size: 20px;
+    color: var(--color-secondary);
+}
+
+.view-detail-div {
+    display: flex;
+    width: 30%;
+    justify-content: flex-end;
+    padding-right: 50px;
+    cursor: pointer;
+}
+
+.view-detail-div h1 {
+    color: var(--color-secondary);
+    font-size: 16px;
+}
+
+.sub-div2-content {
+    width: 100%;
+}
+
+.sub2-content-head {
+    display: flex;
+    width: 100%;
+    padding: 10px 50px;
+    position: sticky;
+    top: 0;
+    background-color: var(--color-primary);
+}
+
+.sub2-name-div {
+    width: 40%;
+}
+
+.sub2-dob-div {
+    width: 30%;
+}
+
+.sub2-phone-div {
+    width: 30%;
+}
+
+.sub2-content-head h1 {
+    font-weight: 500;
+    color: var(--color-secondary);
+}
+
+.sub2-content {
+    display: flex;
+    width: 100%;
+    padding: 10px 50px;
+}
+
+.sub2-content:hover {
+    background-color: #7c74f5;
+    cursor: pointer;
+}
+
+.sub2-content h1 {
+    font-weight: 400;
+    color: var(--color-secondary);
+}
+
+.families-container {
+    width: 100vw;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Individual Family Section */
 
 .container-family {
-  width: 100vw;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    overflow-x: hidden;
+}
+
+.families-container hr {
+    border: 1px solid var(--color-3);
 }
 
 .nav-div {
-  width: 100%;
-  height: 120px;
-  /* position: fixed; */
-  background-color: black;
+    width: 100%;
+    height: 120px;
+    /* position: fixed; */
+    background-color: var(--text-primary);
 }
 
 nav {
-  width: 100%;
-  height: 100%;
-  display: flex;
+    width: 100%;
+    height: 100%;
+    display: flex;
 }
 
 .logo-div {
-  width: 20%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 /* .logo-div h1{
@@ -166,291 +394,359 @@ nav {
 } */
 
 .navigations {
-  width: 80%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  padding-right: 300px;
+    width: 80%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    padding-right: 300px;
 }
 
 .navigations a {
-  text-decoration: none;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 18px;
-  color: #fff;
-  transition: 0.2s ease-in-out;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--color-secondary);
+    transition: 0.2s ease-in-out;
+    text-decoration: none;
 }
 
 .navigations a:hover {
-  color: #6c63f0;
+    color: var(--color-primary);
 }
 
 .title-div {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 50px;
-  padding: 0 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50px;
+    padding: 0 70px;
+}
+
+.add-title-div {
+    justify-content: flex-start;
+    margin-left: 20px;
 }
 
 .title-div h1 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  color: #111111;
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--text-primary);
 }
 
 hr {
-  border: 2px solid #eaeaea;
-  margin-bottom: 30px;
+    border: 2px solid var(--color-3);
+    margin-bottom: 30px;
 }
 
 .family-master {
-  width: 70%;
+    width: 70%;
+}
+
+.family-name {
+    width: 100%;
 }
 
 .search-div {
-  width: 25%;
+    width: 25%;
 }
-.search-div svg {
-  position: relative;
-  right: 25px;
+.search-div img {
+    position: relative;
+    right: 25px;
 }
 
 .search-div input {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  padding-left: 10px;
-  width: 80%;
-  outline: none;
+    font-weight: 400;
+    font-size: 20px;
+    padding-left: 10px;
+    width: 80%;
+    outline: none;
 }
 .search-div input:focus {
-  border-bottom: 2px solid #f1743c;
+    border-bottom: 2px solid var(--hover-underline);
 }
 
 .container-family br {
-  border: 20px black;
-  rotate: 180deg;
-  margin-top: 10px;
+    border: 20px var(--text-primary);
+    rotate: 180deg;
+    margin-top: 10px;
 }
 
 .family-details-div {
-  width: 100%;
-  display: flex;
-  margin-left: 90px;
-  margin-bottom: 50px;
+    width: 100%;
+    display: flex;
+    margin-left: 90px;
+    margin-bottom: 50px;
 }
 
 .family-entries {
-  width: 60%;
-  display: flex;
+    width: 60%;
+    display: flex;
 }
 
 .family-photo {
-  width: 40%;
+    width: 40%;
 }
 
 .inner-div-1 {
-  width: 70%;
-  display: flex;
-  flex-direction: column;
+    width: 70%;
+    display: flex;
+    flex-direction: column;
 }
 
 .inner-div-1 h1,
 .inner-div-2 h1 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+    font-weight: 500;
+    font-size: 20px;
 }
 
 .inner-div-1 h2,
 .inner-div-2 h2 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
+    font-weight: 400;
+    font-size: 20px;
+}
+
+.house-name-input {
+    outline: none;
+    width: 300px;
+    border: 2px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 5px 10px;
+}
+
+.address-input {
+    outline: none;
+    width: 300px;
+    border: 2px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 5px 10px;
+    resize: none;
+}
+
+.house-name-input:focus,
+.address-input:focus,
+.house-no-input:focus {
+    border: 2px solid var(--color-primary);
+}
+
+.house-no-input {
+    outline: none;
+    width: 200px;
+    border: 2px solid #d9d9d9;
+    border-radius: 10px;
+    padding: 5px 10px;
 }
 
 .inner-div-2 {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
+    width: 30%;
+    display: flex;
+    flex-direction: column;
 }
 
 .address-div,
 .ward-div,
 .pincode-div {
-  margin-top: 30px;
+    margin-top: 30px;
 }
 
 .upload-btn {
-  display: flex;
-  margin-bottom: 10px;
+    display: flex;
+    margin-bottom: 10px;
 }
 
 .upload-btn h1 {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
+    font-weight: 500;
+    font-size: 20px;
 }
 
-.upload-btn svg {
-  margin-left: 10px;
+.upload-btn img {
+    margin-left: 10px;
 }
 
 .photo-container img {
-  border-radius: 10px;
-  height: 200px;
+    border-radius: 10px;
+    height: 200px;
 }
 
 .famili-members-div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 0px 70px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 0px 70px;
 }
 
 .heading-div {
-  display: flex;
-  width: 100%;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 500;
-  font-size: 20px;
-  padding: 2px 15px;
-  border-bottom: 3px solid #eaeaea;
+    display: flex;
+    width: 100%;
+    font-weight: 500;
+    font-size: 20px;
+    padding: 2px 15px;
+    border-bottom: 3px solid var(--color-3);
 }
 
 .name-div {
-  width: 20%;
+    width: 20%;
 }
 
 .dob-div {
-  width: 13%;
+    width: 13%;
 }
 
 .phone-div {
-  width: 17%;
+    width: 17%;
 }
 
 .baptism-div {
-  width: 13%;
+    width: 13%;
 }
 
 .marriage-div {
-  width: 13%;
+    width: 13%;
 }
 
 .death-div {
-  width: 13%;
+    width: 13%;
 }
 
 .relation-div {
-  width: 11%;
+    width: 11%;
 }
 
 .member-details-div {
-  display: flex;
-  width: 100%;
-  padding: 15px 15px;
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  border-bottom: 3px solid #eaeaea;
-  transition: 0.2s ease-in-out;
+    display: flex;
+    width: 100%;
+    padding: 15px 15px;
+    font-weight: 400;
+    font-size: 20px;
+    border-bottom: 3px solid var(--color-3);
+    transition: 0.2s ease-in-out;
 }
 
 .member-details-div:hover {
-  border-bottom: 3px solid #6c63f0;
-  cursor: pointer;
+    border-bottom: 3px solid var(--color-primary);
+    cursor: pointer;
 }
 
 .description-div,
 .donation-div {
-  margin-left: 20px;
+    margin-left: 20px;
 }
 
 .desc-heading,
 .donation-heading {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 36px;
-  margin-top: 40px;
+    font-weight: 600;
+    font-size: 36px;
+    margin-top: 40px;
 }
 
 .desc-content,
 .donation-content {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  text-align: justify;
+    font-weight: 400;
+    font-size: 20px;
+    text-align: justify;
+}
+
+.desc-content input {
+    margin-bottom: 50px;
+    outline: none;
+    border: 2px solid #d9d9d9;
+    border-radius: 12px;
+    width: 100%;
+    padding: 20px 20px;
+}
+
+.desc-content input:focus {
+    border: 2px solid var(--color-primary);
 }
 
 .donation-content {
-  margin-bottom: 50px;
+    margin-bottom: 50px;
+}
+
+.submit-btn-div {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    margin-right: 100px;
+}
+
+.submit-btn-div a {
+    color: #fff;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    font-weight: 600;
+    text-decoration: none;
+    padding: 5px 20px;
+    transition: 0.2s ease-in-out;
+    margin-bottom: 100px;
+}
+
+.submit-btn-div a:hover {
+    background-color: #d9d9d9;
+    color: var(--text-primary);
 }
 
 /* Person Page */
 
 .person-head {
-  width: 40%;
+    width: 30%;
+}
+
+.sign-up-div {
+    width: 10%;
+}
+
+.sign-up-div h2 {
+    font-weight: 600;
+    color: #4c43cd;
+    transition: 0.2s ease-in-out;
+}
+
+.sign-up-div h2:hover {
+    color: #b7b7b7;
+    cursor: pointer;
 }
 
 .registries-nav-div {
-  width: 55%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+    width: 55%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .registries-nav-div a {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  text-decoration: none;
-  color: black;
-  transition: 0.2s ease-in-out;
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: 0.2s ease-in-out;
 }
 
 .registries-nav-div a:hover {
-  border-bottom: 3px solid #f1743c;
+    border-bottom: 3px solid var(--hover-underline);
 }
 
 .menu-div {
-  width: 5%;
-  display: flex;
-  align-items: flex-end;
-  justify-content: flex-end;
+    width: 5%;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 
 .members-entries-div {
-  display: flex;
-  width: 100%;
-  margin: 0px 50px;
+    display: flex;
+    width: 100%;
+    margin: 0px 50px;
 }
 
 .details-heading-div {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
+    display: flex;
+    flex-direction: column;
+    width: 60%;
 }
 
 .details-heading-div div {
-  font-family: "Poppins";
-  font-style: normal;
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .heading-name,
@@ -459,10 +755,10 @@ hr {
 .heading-baptism,
 .heading-marriage,
 .heading-death {
-  width: 30%;
-  font-weight: 500;
-  padding-bottom: 10px;
-  padding-left: 20px;
+    width: 30%;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-left: 20px;
 }
 
 .person-name,
@@ -471,9 +767,9 @@ hr {
 .person-baptism,
 .person-marriage,
 .person-death {
-  width: 70%;
-  font-weight: 400;
-  padding-bottom: 10px;
+    width: 70%;
+    font-weight: 400;
+    padding-bottom: 10px;
 }
 
 .name-person-div,
@@ -482,197 +778,554 @@ hr {
 .baptism-person-div,
 .marriage-person-div,
 .death-person-div {
-  display: flex;
-  width: 100%;
-  margin-top: 20px;
-  border-bottom: 3px solid #eaeaea;
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+    border-bottom: 3px solid var(--color-3);
 }
 
 .person-photo-div {
-  display: flex;
-  width: 40%;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    width: 40%;
+    align-items: center;
+    justify-content: center;
 }
 
 .desc-div {
-  margin: 20px 70px;
+    margin: 20px 70px;
 }
 
 .desc-heading {
-  margin-bottom: 20px;
+    margin-bottom: 20px;
 }
 
 .blank-space {
-  margin-right: 70px;
+    margin-right: 70px;
+}
+
+.role-div {
+    display: flex;
+    flex-direction: column;
+    padding: 40px 70px;
+    transition: 0.5s ease-in-out;
+}
+
+.role-entries {
+    display: flex;
+}
+
+.role-entries h1 {
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--text-primary);
+}
+
+.role-entries input {
+    width: 300px;
+    border-radius: 10px;
+    padding: 1px 10px;
+    border: 2px solid var(--color-3);
+    margin-left: 100px;
+}
+
+.role-entries input:focus {
+    order: 2px solid var(--color-primary);
+}
+
+.role-entries img {
+    position: relative;
+    right: 80px;
+    scale: 20%;
+}
+
+.role-submit {
+    width: 8%;
+}
+
+.role-submit a {
+    text-decoration: none;
+}
+
+.role-submit a h1 {
+    text-align: center;
+    font-weight: 500;
+    color: #dceef3;
+    background-color: var(--color-primary);
+    border-radius: 10px;
+    padding: 5px 0;
+    margin-top: 20px;
 }
 
 /* Marriage Registry */
 
 .bridegroom-head {
-  font-family: "Poppins";
-  font-style: normal;
-  font-weight: 600;
-  font-size: 20px;
-  border-bottom: 3px solid #f1743c;
-  margin: 10px 0px;
-  padding-bottom: 10px;
-  padding-left: 20px;
+    font-weight: 600;
+    font-size: 20px;
+    border-bottom: 3px solid var(--hover-underline);
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    padding-left: 20px;
 }
 
 .registry-div {
-  width: 60%;
-  display: flex;
-  flex-direction: column;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
 }
 
 .registry-details-heading-div div {
-  font-family: "Poppins";
-  font-style: normal;
-  font-size: 20px;
+    font-size: 20px;
 }
 
 .registry-details-heading-div {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.registry-details-heading-div input {
+    width: 250px;
+    border: 2px solid #d9d9d9;
+    border-radius: 10px;
+    outline: none;
+    padding: 5px 10px;
+    font-weight: 500;
+}
+
+.registry-details-heading-div input:focus {
+    border: 2px solid var(--color-primary);
 }
 
 .registry-photo-div {
-  display: flex;
-  width: 40%;
-  flex-direction: column;
-  align-items: flex-start;
+    display: flex;
+    width: 40%;
+    flex-direction: column;
+    align-items: flex-start;
 }
 
 .bride {
-  margin-top: 50px;
+    margin-top: 50px;
 }
 
 .marriage-photo {
-  scale: 80%;
+    scale: 80%;
 }
 
 .upload-icon {
-  margin-left: 50px;
+    margin-left: 50px;
 }
 
-/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); 
-@import url('https://fonts.googleapis.com/css2?family=Vujahday+Script&display=swap');
-body{
-  margin: 0;
-}
-.container {
-  height: 100vh;
-  width: 100vw;
-}
-div {
-  display: flex;
-}
-.login-container {
-  height: 100vh;
-  width: 40vw;
-}
-.login {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 20vw;
-  height: 50vh;
-  color: black;
-  display: block;
-}
-input,
-a {
-  margin-left: auto;
-  margin-right: auto;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-input {
-  border-radius: 8px;
-  width: 250px;
-  height: 30px;
-  outline: none;
-  border: 2px solid #d9d9d9;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-}
-input:focus {
-  border-color: #6c63f0;
-}
-.login-btn {
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 30px;
-  width: 250px;
-  background-color: #6c63f0;
-  color: white;
-  border: 1px solid #6c63f0;
-}
-h6 {
-  margin-left: 40px;
-  margin-bottom: 5px;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-}
-a {
-  display: block;
-  text-align: center;
-  margin-top: 10px;
-  width: 250px;
-  text-decoration: none;
-  color: #989898;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 600;
-  font-size: 16px;
-  line-height: 24px;
-}
-.caption-container {
-  background-color: black;
-  height: 100vh;
-  width: 60vw;
-}
-.caption{
-  margin: auto;
-  display: block;
-  width: 500px;
-  height: 500px;
-}
-h1{
-  color: white;
-  display:flex;
-  align-items: center;
-  justify-content: center; 
-}
-.text{
-  font-family: 'Poppins';
-font-style: normal;
-font-weight: 300;
-font-size: 64px;
-line-height: 96px;
+/* Family Relation */
 
-text-align: center;
-text-transform: uppercase;
+.relation-entry-div-heading,
+.relation-entry-div {
+    width: 100%;
+    display: flex;
+    /* margin: 0 10px; */
+    border-bottom: 2px solid var(--color-3);
+    /* padding-bottom: 15px;
+    padding-top: 15px; */
+    padding: 15px 70px;
 }
-.second-text{
-  font-family: 'Vujahday Script';
-font-style: normal;
-font-weight: 400;
-font-size: 64px;
-line-height: 87px;
-transform: rotate(-10deg);
+
+.relation-entry-div {
+    transition: 0.2s ease-in-out;
 }
-  .App {
-  font-family: sans-serif;
-  text-align: center;
-} */
+
+.relation-entry-div:hover {
+    border-bottom: 2px solid var(--color-primary);
+    cursor: pointer;
+}
+
+.relation-entry-div-heading div {
+    font-weight: 500;
+}
+
+.sno-div {
+    width: 15%;
+}
+
+.person1-div {
+    width: 22.5%;
+}
+
+.person2-div {
+    width: 22.5%;
+}
+
+.relationtype-div {
+    width: 20%;
+    display: flex;
+}
+
+.reversereation-div {
+    width: 20%;
+    display: flex;
+}
+
+.relation-type {
+    width: 65%;
+}
+
+.drop-icon {
+    width: 35%;
+}
+
+.select-head-div {
+    display: flex;
+    width: 50%;
+    margin-left: 70px;
+    margin-top: 70px;
+}
+
+.select-head-text {
+    width: 50%;
+}
+
+.select-head-area {
+    width: 50%;
+}
+
+.select-head-area input {
+    width: 200px;
+    outline: none;
+    border-bottom: 2px solid var(--color-3);
+}
+
+.select-head-area input:focus {
+    border-bottom: 2px solid var(--hover-underline);
+}
+
+.select-dropdown-icon {
+    position: relative;
+    right: 20px;
+}
+
+.save-btn-div {
+    width: 100%;
+    display: flex;
+    padding: 50px 200px;
+    justify-content: flex-end;
+}
+
+.save-btn-div a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-secondary);
+    background: var(--color-primary);
+    padding: 5px 50px;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.save-btn-div a:hover {
+    color: var(--text-primary);
+    background-color: var(--color-3);
+}
+
+.dropdown-popup {
+    /* position: relative; */
+    width: 350px;
+    height: 340px;
+    top: 30px;
+    right: 160px;
+    z-index: 1000;
+    background: var(--color-secondary);
+    box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.25);
+    border-radius: 8px;
+    /* display: block; */
+    padding: 10px 0;
+}
+
+.dropdown-popup ul {
+    margin: 0 10px;
+    padding: 0;
+    display: block;
+}
+
+.dropdown-popup li {
+    font-size: 16px;
+    padding: 5px 0;
+    transition: 0.2s ease-in-out;
+    list-style: none;
+}
+
+.dropdown-popup li:hover {
+    color: var(--color-primary);
+}
+
+.relationtype-div .drop .add-member-details-div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1-div,
+.row2-div {
+    width: 100%;
+    display: flex;
+    margin-bottom: 50px;
+    padding-left: 90px;
+    padding-right: 90px;
+}
+
+.first-name-div,
+.last-name-div,
+.dateofbirth-div,
+.contact-no-div {
+    width: 25%;
+    display: flex;
+    flex-direction: column;
+}
+
+.row1-div h1,
+.row2-div h1 {
+    font-weight: 500;
+}
+
+.row1-div input,
+.row2-div input {
+    width: 300px;
+}
+
+.gender-div {
+    width: 25%;
+}
+
+.radio-div {
+    width: 100%;
+    display: flex;
+}
+
+.radio1 {
+    width: 50%;
+    display: flex;
+}
+
+.radio2 {
+    width: 50%;
+    display: flex;
+}
+
+.add-section-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.sub-menu1-div {
+    display: none;
+    left: 400px;
+    position: absolute;
+    top: 75px;
+    background-color: #333333;
+    width: 750px;
+    height: 300px;
+    z-index: 2000;
+}
+
+.sub-menu1-div li {
+    color: var(--color-secondary);
+    list-style: none;
+    margin: 20px 10px;
+    font-size: 18px;
+    transition: 0.2s ease-in-out;
+}
+
+.sub-menu1-div li:hover {
+    color: var(--color-primary);
+}
+
+.registry-nav:hover {
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+.registry-nav:hover .sub-menu1-div {
+    display: block;
+}
+
+/* Transactions */
+
+.transactions {
+    margin-top: 30px;
+}
+
+.led-slno {
+    width: 5%;
+}
+
+.led-name {
+    width: 30%;
+}
+
+.led-under {
+    width: 20%;
+}
+
+.led-no-tra {
+    width: 20%;
+}
+
+.led-total {
+    width: 15%;
+}
+
+.led-type {
+    width: 15%;
+}
+
+.heading-div div {
+    font-weight: 500;
+}
+
+.create-led-btn-div {
+    display: flex;
+    width: 100%;
+    align-items: flex-end;
+    justify-content: flex-end;
+    padding: 10px 0px;
+}
+
+.create-led-btn {
+    text-decoration: none;
+    background: var(--color-primary);
+    color: var(--color-secondary);
+    margin: 50px 80px;
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.create-led-btn h1 {
+    font-weight: 600;
+}
+
+.create-led-btn:hover {
+    background-color: #d9d9d9;
+    color: var(--text-primary);
+}
+
+/* Ledger Individual */
+
+.led-indi-slno {
+    width: 10%;
+}
+
+.led-indi-date {
+    width: 15%;
+}
+
+.led-indi-narration {
+    width: 50%;
+}
+
+.led-indi-vno {
+    width: 15%;
+}
+
+.led-indi-amt {
+    width: 15%;
+}
+
+.led-indi-mode {
+    width: 10%;
+}
+
+/* Forgot Password */
+
+.forgot-head-div {
+    width: 100%;
+    display: flex;
+    margin: 20px 70px;
+}
+
+.forgot-head h1 {
+    font-weight: 600;
+    font-size: 36px;
+}
+
+.otp-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.otp-forms {
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+}
+
+.otp-forms input {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 20px;
+}
+
+.otp-forms label {
+    font-size: 16px;
+    font-weight: 600;
+    padding-left: 5px;
+    color: var(--text-primary);
+}
+
+#userid,
+#otp {
+    width: 350px;
+    height: 40px;
+    border: 2px solid #d9d9d9;
+    border-radius: 5px;
+    margin-top: 5px;
+}
+
+#otp-label {
+    margin-top: 30px;
+}
+
+.otp-forms input:focus {
+    border: 2px solid var(--color-primary);
+}
+
+#otp-btn-proceed {
+    background-color: var(--color-primary);
+    color: #fff;
+    font-weight: 600;
+    font-size: 16px;
+    border-radius: 10px;
+    padding: 10px 0;
+    margin-top: 40px;
+    transition: 0.2s ease-in-out;
+}
+
+#otp-btn-proceed:hover {
+    cursor: pointer;
+    background-color: var(--color-3);
+    color: var(--text-primary);
+}
+
+.hidden {
+    display: none;
+}
+
+.grp-slno {
+    width: 10%;
+}
+
+.grp-name {
+    width: 25%;
+}
+
+.grp-nature {
+    width: 25%;
+}
+
+.grp-notrans {
+    width: 25%;
+}
+
+.grp-total {
+    width: 15%;
+}
