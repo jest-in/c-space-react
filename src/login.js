@@ -9,7 +9,7 @@ function Login() {
   function authentication() {
     fetch("http://localhost:5000/api/v1/users/login", {
       method: "POST",
-      mode:'no-cors',
+      credentials:'include',
       headers: {
         "Content-Type": "application/json",
       },
