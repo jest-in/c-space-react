@@ -49,7 +49,7 @@ function Login() {
         </div>
         <div className="div2">
           <Logo />
-          <h1>GOD WANTS</h1>
+          <h1>GOD WANT</h1>
           <h1>YOU TO KNOW</h1>
           <h2>that its handled</h2>
         </div>
