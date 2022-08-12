@@ -19,7 +19,7 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Login />} exact />
-        <Route path="/login" element={<Login />} exact />
+        <Route path="https://c-space-react.netlify.app/login" element={<Login />} exact />
         <Route path="/person" element={<Person />} exact />
         <Route path="/marriage-registry" element={<MarriageRegistry />} exact />
         <Route path="/family" element={<Family />} exact />
