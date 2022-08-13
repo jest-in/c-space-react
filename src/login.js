@@ -39,7 +39,7 @@ function Login() {
               Password
             </label>
             <input type="password" name="password" id="password" />
-            <a href="#" className="login-btn" onClick={() => authentication()}>
+            <a href="/family" className="login-btn">
               Log in
             </a>
             <a href="/forgot-password" className="forgot-password">
@@ -48,8 +48,10 @@ function Login() {
           </div>
         </div>
         <div className="div2">
-          <Logo />
-          <h1>GOD WANT</h1>
+          <div className="logo-login">
+            <Logo />
+          </div>
+          <h1>GOD WANTS</h1>
           <h1>YOU TO KNOW</h1>
           <h2>that its handled</h2>
         </div>
@@ -59,3 +61,4 @@ function Login() {
 }
 
 export default Login;
+// onClick={() => authentication()}
