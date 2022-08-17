@@ -14,12 +14,15 @@ import Groups from "./Transactions/groups";
 import LedgerIndividual from "./Transactions/ledger-individual";
 import Ledgers from "./Transactions/ledgers";
 import Voucher from "./Transactions/voucher";
+import VerifyCertificate from "./Landing Page/verify-certificate";
+import Index from "./Landing Page/indexPage";
+import Sponsors from "./sponsors";
 
 function App() {
   return (
     <>
       <Routes>
-        <Route path="/" element={<Login />} exact />
+        <Route path="/" element={<Index />} exact />
         <Route path="/login" element={<Login />} exact />
         <Route path="/person" element={<Person />} exact />
         <Route path="/marriage-registry" element={<MarriageRegistry />} exact />
@@ -34,6 +37,9 @@ function App() {
         <Route path="/ledger-individual" element={<LedgerIndividual />} exact />
         <Route path="/ledgers" element={<Ledgers />} exact />
         <Route path="/voucher" element={<Voucher />} exact />
+        <Route path="/verify-certificate" element={<VerifyCertificate />} exact />
+        <Route path="/index" element={<Index />} exact />
+        <Route path="/sponsors" element={<Sponsors />} exact />
       </Routes>
     </>
   );
