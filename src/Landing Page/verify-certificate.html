@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>C-Space | Verify Certificate</title>
+        <link rel="shortcut icon" href="/Favicon.svg" type="image/x-icon" />
+        <link rel="stylesheet" href="/style.css" />
+    </head>
+    <body class="forgot-password-body">
+        <div class="container-forgot-password verify-container">
+            <header>
+                <div class="nav-div">
+                    <img class="forgot-logo" src="/logo.svg" alt="Logo" />
+                </div>
+            </header>
+
+            <div class="forgot-head-div">
+                <div class="forgot-head">
+                    <h1>Verify Certificate</h1>
+                </div>
+                <hr />
+            </div>
+            <div class="verify-content-div">
+                <div class="otp-div verify-token-entry">
+                    <div class="otp-forms">
+                        <label for="uid">Enter Token</label>
+                        <textarea
+                            name="token"
+                            id="token"
+                            cols="30"
+                            rows="10"
+                        ></textarea>
+                        <input
+                            type="button"
+                            value="Proceed"
+                            id="otp-btn-proceed"
+                        />
+                    </div>
+                </div>
+
+                <div class="otp-div new-pswrd-div verify-success-entries">
+                    <div class="otp-forms password-forms">
+                        <label for="uid">Issued To</label>
+                        <input type="text" id="userid" readonly />
+                        <label for="otp" id="otp-label">Issued On</label>
+                        <input type="text" id="otp" readonly />
+                        <label for="otp" id="otp-label">Issued For</label>
+                        <input type="text" id="otp" readonly />
+                    </div>
+                </div>
+            </div>
+            <div class="verify-status-div">
+                <h1 class="verify-valid">Signature Verified</h1>
+                <h1 class="verify-invalid">Invalid Certificate</h1>
+            </div>
+        </div>
+    </body>
+</html>

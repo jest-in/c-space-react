@@ -13,6 +13,7 @@ import Example from './pieChart';
 import Groups from "./Transactions/groups";
 import LedgerIndividual from "./Transactions/ledger-individual";
 import Ledgers from "./Transactions/ledgers";
+import Voucher from "./Transactions/voucher";
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
         <Route path="/groups" element={<Groups />} exact />
         <Route path="/ledger-individual" element={<LedgerIndividual />} exact />
         <Route path="/ledgers" element={<Ledgers />} exact />
+        <Route path="/voucher" element={<Voucher />} exact />
       </Routes>
     </>
   );

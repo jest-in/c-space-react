@@ -227,7 +227,7 @@ html::-webkit-scrollbar-thumb {
     padding: 2px 10px;
 }
 
-.filters-head img {
+.filters-head div {
     margin-left: 10px;
     padding: 2px;
 }
