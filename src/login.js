@@ -39,9 +39,7 @@ function Login() {
               Password
             </label>
             <input type="password" name="password" id="password" />
-            <a href="/family" className="login-btn">
-              Log in
-            </a>
+            <input type='submit' value='Log-In' className="login-btn" onClick={()=>authentication()}/>
             <a href="/forgot-password" className="forgot-password">
               Forgot Password?
             </a>

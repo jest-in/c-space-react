@@ -38,7 +38,7 @@ export default function Family() {
   },[])
 
   //function for requesting individual family details
-  function FamilyDetails(id,index){
+  function FamilyDetails(index){
     setFamilyName(families[index].familyName);
     setFamily(families[index].members);
     id=families[index]._id;
@@ -108,7 +108,7 @@ export default function Family() {
                   <div
                     className="sub-entries"
                     key={family._id}
-                    onClick={() => FamilyDetails(family._id, index)}
+                    onClick={() => FamilyDetails(index)}
                   >
                     <h1>{family.familyName}</h1>
                   </div>
@@ -117,35 +117,36 @@ export default function Family() {
             </div>
           </div>
           <div className="secondary-nav-subdiv2">
-            <div className="sub2-head">
-              <div className="sub2-heading">
-                <h1>{familyName}</h1>
-              </div>
-              <div
-                className="view-detail-div"
-                onClick={() => {
-                  console.log("clicked");
-                  navigate("/family-individual");
-                }}
-              >
-                <h1>View in detail</h1>
-                <Arrow />
-              </div>
-            </div>
-            <hr />
             <div className="sub-div2-content">
-              {!family ? (
-                <div className="sub2-content-head">
-                  <div className="sub2-name-div">
-                    <h1>Name</h1>
+              {familyName ? (
+                <>
+                  <div className="sub2-head">
+                    <div className="sub2-heading">
+                      <h1>{familyName}</h1>
+                    </div>
+                    <div
+                      className="view-detail-div"
+                      onClick={() => {
+                        navigate("/family-individual");
+                      }}
+                    >
+                      <h1>View in detail</h1>
+                      <Arrow />
+                    </div>
                   </div>
-                  <div className="sub2-dob-div">
-                    <h1>Date of Birth</h1>
+                  <hr />
+                  <div className="sub2-content-head">
+                    <div className="sub2-name-div">
+                      <h1>Name</h1>
+                    </div>
+                    <div className="sub2-dob-div">
+                      <h1>Date of Birth</h1>
+                    </div>
+                    <div className="sub2-phone-div">
+                      <h1>Phone number</h1>
+                    </div>
                   </div>
-                  <div className="sub2-phone-div">
-                    <h1>Phone number</h1>
-                  </div>
-                </div>
+                </>
               ) : (
                 <div className="sub2-content-head">
                   <div className="sub2-dob-div">
@@ -178,4 +179,4 @@ export default function Family() {
 }
 
 // created to use while viewing in detail about individual family
-export {id};
+export {id,url};
