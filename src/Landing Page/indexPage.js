@@ -1,10 +1,16 @@
 import React from "react";
 import LogoIndex1 from "../Assets/LogoIndex";
 import PriestVector from '../Assets/PriestVector';
+import HeroPatterns from '../Assets/HeroPatterns';
+import AboutusPatterns from '../Assets/AboutusPatterns';
+import PriestPatterns from '../Assets/PriestPatterns';
+import ContactusPatterns from '../Assets/ContactusPatterns';
+import AnnounceVector from '../Assets/AnnounceVector';
+import AnnouncementPatterns from '../Assets/AnnouncementPatterns';
 
 export default function IndexPage() {
   return (
-    <div className="index-container">
+    <div className="index-container index-page">
       <div className="index-nav-div">
         <nav>
           <div className="index-logo-div">
@@ -72,7 +78,7 @@ export default function IndexPage() {
           <a href="#about-us">Explore</a>
         </div>
         <div className="hero-patterns">
-          <img src="/hero-patterns.svg" alt />
+          <HeroPatterns />
         </div>
       </section>
       <section id="about-us" className="about-us">
@@ -96,11 +102,11 @@ export default function IndexPage() {
             </h1>
           </div>
           <div className="aboutus-div2">
-            <img src="/church-img.png" alt />
+            <img src={require("../Assets/church-img.png")} />
           </div>
         </div>
         <div className="aboutus-patterns">
-          <img src="/aboutus-patterns.svg" alt />
+          <AboutusPatterns />
         </div>
         <div className="priest-div">
           <div className="priest-data-div">
@@ -125,7 +131,7 @@ export default function IndexPage() {
           <div className="priest-sub2" />
         </div>
         <div className="priest-patterns">
-          <img src="/priest-patterns.svg" alt />
+          <PriestPatterns />
         </div>
       </section>
       <section id="contact-us" className="contact-us">
@@ -174,7 +180,7 @@ export default function IndexPage() {
           />
         </div>
         <div className="contactus-patterns">
-          <img src="/contactus-patterns.svg" />
+          <ContactusPatterns />
         </div>
       </section>
       <section className="announcement" id="announcement">
@@ -231,15 +237,15 @@ export default function IndexPage() {
               </div>
             </div>
             <div className="load-more-btn-div">
-              <a href>Load More</a>
+              <a href="#">Load More</a>
             </div>
           </div>
           <div className="announce-img-div">
-            <img src="/announce-vector.svg" alt />
+            <AnnounceVector />
           </div>
         </div>
         <div className="announcement-patterns">
-          <img src="/announcement-patterns.svg" alt />
+          <AnnouncementPatterns />
         </div>
       </section>
       <footer>
@@ -248,7 +254,6 @@ export default function IndexPage() {
             <h1>Address</h1>
             <h2>
               Gandibagilu P.O. Belthanagdy Taluk, D.K Dist, Karnataka State
-              {"{"}" "{"}"}
               <br />
               Pin : 574 228
             </h2>
@@ -268,7 +273,7 @@ export default function IndexPage() {
             <br />
             <a href="#contact-us">Contact Us</a>
             <br />
-            <a href>Announcements</a>
+            <a href='#'>Announcements</a>
           </div>
         </div>
         <hr />

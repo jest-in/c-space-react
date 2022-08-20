@@ -630,6 +630,17 @@ hr {
     font-size: 20px;
 }
 
+.house-name-div, .address-div{
+    display: flex;
+    flex-direction: column;
+}
+
+.add-family-error{
+    font-size: 12px;
+    color: red;
+    font-weight: 500;
+}
+
 .house-name-input {
     outline: none;
     width: 300px;
@@ -647,6 +658,11 @@ hr {
     resize: none;
 }
 
+.houseno-div, .ward-div, .pincode-div{
+    display: flex;
+    flex-direction: column;
+}
+
 .house-name-input:focus,
 .address-input:focus,
 .house-no-input:focus {
@@ -655,7 +671,7 @@ hr {
 
 .house-no-input {
     outline: none;
-    width: 200px;
+    width: 250px;
     border: 2px solid #d9d9d9;
     border-radius: 10px;
     padding: 5px 10px;
@@ -665,6 +681,7 @@ hr {
     width: 30%;
     display: flex;
     flex-direction: column;
+    margin-right: 100px;
 }
 
 .address-div,
@@ -690,6 +707,25 @@ hr {
 .photo-container img {
     border-radius: 10px;
     height: 200px;
+}
+
+.create-family-btn-div{
+    display: flex;
+    margin-left: 100px;
+}
+
+.create-family-btn-div a{
+    text-decoration: none;
+    font-weight: 500;
+    color: var(--color-secondary);
+    background-color: var(--color-primary);
+    padding: 5px 20px;
+    border-radius: 10px;
+    transition: 0.2s ease-in-out;
+}
+
+.create-family-btn-div a:hover{
+    background-color: #332C9B;
 }
 
 .famili-members-div {
@@ -918,8 +954,6 @@ hr {
 
 .person-photo-div a {
     text-decoration: none;
-    color: var(--color-secondary);
-    background-color: var(--color-primary);
     font-weight: 600;
     border-radius: 10px;
     padding: 5px 20px;
@@ -1336,7 +1370,7 @@ hr {
 
 .first-name-div,
 .last-name-div,
-.dateofbirth-div,
+.email-div,
 .contact-no-div {
     width: 25%;
     display: flex;
@@ -1360,16 +1394,24 @@ hr {
 .radio-div {
     width: 100%;
     display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+}
+
+.radio-div input{
+    scale: 60%;
 }
 
 .radio1 {
-    width: 50%;
+    width: 25%;
     display: flex;
+    
 }
 
 .radio2 {
-    width: 50%;
+    width: 30%;
     display: flex;
+    margin-left: 20px;
 }
 
 .add-section-div {
@@ -1378,7 +1420,12 @@ hr {
     align-items: center;
     justify-content: center;
     margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.add-family-submit-btn{
     margin-bottom: 80px;
+    align-items: center;
 }
 
 .sub-menu1-div {
