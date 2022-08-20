@@ -9,7 +9,7 @@ export default function Icon_Menu() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M0 1L26 1M0 6H26M0 11H26" stroke="black" strokeWidth="2" />
+      <path d="M0 1L26 1M0 6H26M0 11H26" stroke="black" strokewidth="2" />
     </svg>
   );
 }

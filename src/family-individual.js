@@ -233,3 +233,6 @@ export default function FamilyIndividual() {
     </div>
   );
 }
+
+// created to use while viewing in person details (person.js)
+export {personId};

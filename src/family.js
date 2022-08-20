@@ -1,47 +1,60 @@
-import React from 'react'
-import { useState,useEffect } from 'react'
+import React from "react";
+import { useState, useEffect } from "react";
 
-import {useNavigate} from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
-import Arrow from './Assets/Arrow'
-import Icon_Add from './Assets/Icon_Add'
-import Icon_Close from './Assets/Icon_Close'
-import Icon_Filter from './Assets/Icon_Filter'
-import Icon_Menu from './Assets/Icon_Menu'
-import Icon_Search from './Assets/Icon_Search'
-import Logo from './Assets/logo'
+import Arrow from "./Assets/Arrow";
+import Icon_Add from "./Assets/Icon_Add";
+import Icon_Close from "./Assets/Icon_Close";
+import Icon_Filter from "./Assets/Icon_Filter";
+import Icon_Menu from "./Assets/Icon_Menu";
+import Icon_Search from "./Assets/Icon_Search";
+import Logo from "./Assets/logo";
 
-import axios from "axios"
+import axios from "axios";
+import Icon_AddWhite from "./Assets/Icon_AddWhite";
 
-const url="http://localhost:5000/api/v1/family";
+const url = "http://localhost:5000/api/v1/family";
 
-let id='';
+let id = "";
 
 export default function Family() {
   //For dynamic updation of families data
   const [families, setFamilies] = useState([]);
 
   // Family-Name
-  const [familyName,setFamilyName]=useState('');
+  const [familyName, setFamilyName] = useState("");
 
   // For dynamic updation of individual family details
-  const [family,setFamily]=useState([]);
+  const [family, setFamily] = useState([]);
 
-  useEffect(()=>{
+  useEffect(() => {
     //Requesting families data (GET)
     axios.get(url).then((res) => {
       setFamilies(res.data.data);
       setFamilyName(res.data.data[0].familyName);
-      setFamily(res.data.data[0].members);
+
       id = res.data.data[0]._id;
+
+      getRequest(id);
     });
-  },[])
+  }, []);
 
   //function for requesting individual family details
-  function FamilyDetails(index){
+  function FamilyDetails(index) {
+    id = families[index]._id;
+
     setFamilyName(families[index].familyName);
-    setFamily(families[index].members);
-    id=families[index]._id;
+
+    getRequest(id);
+  }
+
+  // Get request with family id
+  function getRequest(id){
+        axios.get(`${url}/${id}`).then((res) => {
+          const result = res.data.data;
+          setFamily(result.members);
+        });
   }
 
   // Navigation
@@ -62,7 +75,13 @@ export default function Family() {
                   Registries
                   <div className="sub-menu1-div">
                     <ul>
-                      <li>Family Registry</li>
+                      <div className="sub-menu-registries-div">
+                        <li>Family Registry</li>
+                        <li onClick={() => navigate("/add-family")}>
+                          <Icon_AddWhite />
+                          Add Family
+                        </li>
+                      </div>
                       <li>Engagement Registry</li>
                       <li>Marriage Registry</li>
                       <li>Death Reigistry</li>
@@ -155,17 +174,23 @@ export default function Family() {
                 </div>
               )}
               {family.map((person, index) => {
-                const { name, dob, phoneNumber } = person;
+                const { firstName, lastName, dob, phoneNumber } = person;
+
+                // converting dob to a date string
+                let dofb = new Date(dob);
+                const dobString = dofb.toDateString();
                 return (
                   <div className="sub2-content" key={index}>
                     <div className="sub2-name-div">
-                      <h1>{name}</h1>
+                      <h1>
+                        {firstName} {lastName}
+                      </h1>
                     </div>
                     <div className="sub2-dob-div">
-                      <h1>{dob}</h1>
+                      <h1>{dobString ? dobString : "-"}</h1>
                     </div>
                     <div className="sub2-phone-div">
-                      <h1>{phoneNumber}</h1>
+                      <h1>{phoneNumber ? phoneNumber : "-"}</h1>
                     </div>
                   </div>
                 );
@@ -179,4 +204,4 @@ export default function Family() {
 }
 
 // created to use while viewing in detail about individual family
-export {id,url};
+export { id, url };
