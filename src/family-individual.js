@@ -11,10 +11,17 @@ import { useNavigate } from "react-router-dom";
 
 import { id,url } from "./family";
 import Icon_Close from "./Assets/Icon_Close";
+import Icon_AddWhite from "./Assets/Icon_AddWhite";
+import Icon_Search from "./Assets/Icon_Search";
+import Icon_Filter from "./Assets/Icon_Filter";
+import IconUpload from "./Assets/Icon-Upload";
 
 let personId;
+let familyId;
 
 export default function FamilyIndividual() {
+
+  const navigate = useNavigate();
 
   // Family
   const [family,setFamily]=useState([]);
@@ -29,24 +36,29 @@ export default function FamilyIndividual() {
   const [detailSection,setDetailSection]=useState('hidden');
 
   useEffect(()=>{
+    familyId=id;
+    console.log(familyId);
     axios.get(`${url}/${id}`).then((res) => {
+      console.log(res.data.data);
       const result = res.data.data;
 
       // If result is null then detail section should be hidden
-      if (result._id) setDetailSection("");
+      if (result._id){
+        setDetailSection("");
+      }
+      else
+        navigate("/family");
 
       setFamily(result);
-      console.log(result);
 
       // Only display if members array contains atleast 1 element
       if(result.members.length>0)
       setmembersSection("famili-members-div ");
 
       setMembers(result.members);
+
     })
   },[]);
-
-  const navigate=useNavigate();
 
   return (
     <div className="container-family">
@@ -54,7 +66,7 @@ export default function FamilyIndividual() {
         <div className="nav-div">
           <nav>
             <div className="logo-div">
-              <Logo />;
+              <Logo />
             </div>
             <div className="navigations">
               <a href="#">Overview</a>
@@ -62,7 +74,13 @@ export default function FamilyIndividual() {
                 Registries
                 <div className="sub-menu1-div">
                   <ul>
-                    <li>Family Registry</li>
+                    <div className="sub-menu-registries-div">
+                      <li>Family Registry</li>
+                      <li>
+                        <Icon_AddWhite />
+                        Add Family
+                      </li>
+                    </div>
                     <li>Engagement Registry</li>
                     <li>Marriage Registry</li>
                     <li>Death Reigistry</li>
@@ -76,18 +94,22 @@ export default function FamilyIndividual() {
         </div>
       </header>
       <main className={detailSection}>
-        {" "}
-        {/*details section */}
         <div className="title-div">
-          <div className="family-master">
+          <div className="family-master family-individual-master">
             <h1>{family.familyName}</h1>
+          </div>
+          <div className="family-individual-nav">
+            <a href="#">Add Member</a>
+            <a href="#">Edit</a>
+            <a href="#">Send Message</a>
+            <a href="#">Proposed Changes</a>
           </div>
           <div className="search-div">
             <input type="text" name="search-name" placeholder="Search" />
-            <SearchIcon />
+            <Icon_Search />
           </div>
           <div className="filter-div">
-            <FilterIcon />
+            <Icon_Filter />
           </div>
         </div>
         <hr />
@@ -96,42 +118,39 @@ export default function FamilyIndividual() {
             <div className="inner-div-1">
               <div className="house-name-div">
                 <h1>House name</h1>
-                <h2>Kazhuthadiyil</h2>
+                <h2>{family.houseName?family.houseName:'-'}</h2>
               </div>
               <div className="address-div">
                 <h1>Address</h1>
-                <h2>{family.address}</h2>
+                <h2>{family.address?family.address:'-'}</h2>
               </div>
             </div>
             <div className="inner-div-2">
               <div className="houseno-div">
                 <h1>House No</h1>
-                <h2>{family.houseNum}</h2>
+                <h2>{family.houseNum?family.houseNum:'-'}</h2>
               </div>
               <div className="ward-div">
                 <h1>Ward No</h1>
-                <h2>{family.wardNum}</h2>
+                <h2>{family.wardNum?family.wardNum:'-'}</h2>
               </div>
               <div className="pincode-div">
                 <h1>Pincode</h1>
-                <h2>{family.pin}</h2>
+                <h2>{family.pincode?family.pincode:'-'}</h2>
               </div>
             </div>
           </div>
           <div className="family-photo">
             <div className="upload-btn">
               <h1>Family photo</h1>
-              <UploadIcon />
+              <IconUpload />
             </div>
             <div className="photo-container">
               <img src={require("./Assets/family-photo.png")} />
             </div>
-            <div className="family-send-message-btn">
-              <a href="#">Send Message</a>
-            </div>
           </div>
         </div>
-        <div className={membersSection}>  {/*hide this if no members */}
+        <div className={membersSection}>
           <div className="heading-div">
             <div className="name-div">Name</div>
             <div className="dob-div">Date of birth</div>
@@ -144,7 +163,8 @@ export default function FamilyIndividual() {
           {members.map((member, index) => {
             const {
               id,
-              name,
+              firstName,
+              lastName,
               dob,
               phoneNumber,
               baptism,
@@ -152,18 +172,29 @@ export default function FamilyIndividual() {
               death,
               relation,
             } = member;
+            console.log(id);
+            const dobString=dob?dob.split('T')[0]:'-';
+            const baptismString =baptism?baptism.split("T")[0]:'-';
+            const marriageString=marriage?marriage.split('T')[0]:'-';
+            const deathString = death?death.split("T")[0]:'-';
             return (
-              <div className="member-details-div" onClick={()=>{
-                personId = id;
-                navigate('/person');
-              }}>
-                <div className="name-div">{name}</div>
-                <div className="dob-div">{dob}</div>
-                <div className="phone-div">{phoneNumber}</div>
-                <div className="baptism-div">{baptism}</div>
-                <div className="marriage-div">{marriage}</div>
-                <div className="death-div">{death}</div>
-                <div className="relation-div">{relation}</div>
+              <div
+                className="member-details-div"
+                key={index}
+                onClick={() => {
+                  personId = id;
+                  navigate("/person");
+                }}
+              >
+                <div className="name-div">
+                  {firstName} {lastName}
+                </div>
+                <div className="dob-div">{dobString}</div>
+                <div className="phone-div">{phoneNumber?phoneNumber:'-'}</div>
+                <div className="baptism-div">{baptismString}</div>
+                <div className="marriage-div">{marriageString}</div>
+                <div className="death-div">{deathString}</div>
+                <div className="relation-div">{relation?relation:'-'}</div>
               </div>
             );
           })}
@@ -201,7 +232,7 @@ export default function FamilyIndividual() {
         <div className="message-popup-bg hidden">
           <div className="message-popup">
             <div className="message-close-icon-div">
-              <Icon_Close className="message-close-icon" />
+              <Icon_Close/>
             </div>
             <div className="message-popup-head">
               <h1>Compose Message</h1>
@@ -219,7 +250,7 @@ export default function FamilyIndividual() {
               />
             </div>
             <div className="message-send-button">
-              <a href="#">
+              <a href='#'>
                 Send
               </a>
               <h1>Sent Successfully</h1>

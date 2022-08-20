@@ -25,11 +25,6 @@ export default function AddFamily() {
   //   });
 
   // Testing block later will be removed
-    axios
-      .get("http://localhost:5000/api/v1/family")
-      .then((res) => {
-        console.log(res.data);
-      });
   return (
     <div className="container-family">
       <header>
