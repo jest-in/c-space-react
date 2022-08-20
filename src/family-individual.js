@@ -2,19 +2,17 @@ import React from "react";
 import { useState,useEffect } from "react";
 
 import Logo from "./Assets/logo";
-import SearchIcon from "./Assets/Icon_Search";
-import FilterIcon from "./Assets/Icon_Filter";
-import UploadIcon from './Assets/Icon-Upload';
-
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-
-import { id,url } from "./family";
 import Icon_Close from "./Assets/Icon_Close";
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Icon_Search from "./Assets/Icon_Search";
 import Icon_Filter from "./Assets/Icon_Filter";
 import IconUpload from "./Assets/Icon-Upload";
+
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+import { id,url } from "./family";
+
 
 let personId;
 let familyId;
@@ -37,7 +35,11 @@ export default function FamilyIndividual() {
 
   useEffect(()=>{
     familyId=id;
-    console.log(familyId);
+
+    // If family id is null then go to family.js page
+    if(!familyId)
+    navigate('/family');
+    
     axios.get(`${url}/${id}`).then((res) => {
       console.log(res.data.data);
       const result = res.data.data;
