@@ -315,6 +315,11 @@ html::-webkit-scrollbar-thumb {
     justify-content: flex-end;
     padding-right: 50px;
     cursor: pointer;
+    align-items: center;
+}
+
+.view-detail-div svg{
+    margin-left: 5px;
 }
 
 .view-detail-div h1 {
@@ -1808,6 +1813,7 @@ section {
 
 .hero-div2 {
     width: 40%;
+    height: 600px;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -1865,10 +1871,6 @@ section {
 
 .hero-announce-div h2 {
     padding: 10px 30px;
-}
-
-.priest-vector-div {
-    width: 380px;
 }
 
 .explore-btn-div {
@@ -2037,7 +2039,7 @@ section {
     box-shadow: 5px 5px 50px 15px rgba(0, 0, 0, 0.25);
     border-radius: 13px;
     transform: translate(-50%, -50%);
-    top: 255%;
+    top: 273%;
     left: 50%;
     display: flex;
     z-index: 20;
