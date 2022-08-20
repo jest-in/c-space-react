@@ -15,6 +15,7 @@ import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Icon_Search from "./Assets/Icon_Search";
 import Icon_Filter from "./Assets/Icon_Filter";
 import IconUpload from "./Assets/Icon-Upload";
+import Icon_Menu from "./Assets/Icon_Menu";
 
 let personId;
 let familyId;
@@ -109,7 +110,7 @@ export default function FamilyIndividual() {
             <Icon_Search />
           </div>
           <div className="filter-div">
-            <Icon_Filter />
+            <Icon_Menu />
           </div>
         </div>
         <hr />

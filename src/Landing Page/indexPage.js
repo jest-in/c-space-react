@@ -30,7 +30,7 @@ export default function IndexPage() {
             </a>
           </div>
           <div className="index-login-btn-div">
-            <a href="/login.html">Log in</a>
+            <a href="/login">Log in</a>
           </div>
         </nav>
       </div>
