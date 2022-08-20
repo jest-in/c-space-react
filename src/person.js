@@ -19,7 +19,6 @@ const Person = () => {
   const [detailSection,setDetailSection]=useState('hidden');
 
   useEffect(()=>{
-    console.log(personId);
     // If person id is null
     if(!personId)
     navigate('/family-individual');
@@ -27,16 +26,15 @@ const Person = () => {
     axios
       .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
       .then((res) => {
-        console.log(res.data.person);
         const result = res.data.person;
-        console.log(res.data.status);
+
         if(res.data.status==='success')
         {
           setPersonDetails(result);
           setDetailSection('');
         }
-        // else
-        // navigate('/family-individual');
+        else
+        navigate('/family-individual');
       });
   },[])
 
