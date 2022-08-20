@@ -3,8 +3,8 @@ import React from "react";
 const PriestVector = (props) => {
   return (
     <svg
-      height="697"
-      width="455"
+      height="582.117"
+      width="380"
       fill="none"
       viewBox="0 0 455 697"
       xmlns="http://www.w3.org/2000/svg"

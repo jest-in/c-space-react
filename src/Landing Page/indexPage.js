@@ -1,5 +1,5 @@
 import React from "react";
-import LogoIndex1 from "../Assets/LogoIndex1";
+import LogoIndex1 from "../Assets/LogoIndex";
 import PriestVector from '../Assets/PriestVector';
 import HeroPatterns from '../Assets/HeroPatterns';
 import AboutusPatterns from '../Assets/AboutusPatterns';
