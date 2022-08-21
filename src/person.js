@@ -7,6 +7,8 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Icon_Add from './Assets/Icon_Add';
+import Icon_AddWhite from "./Assets/Icon_AddWhite";
 
 const Person = () => {
 
@@ -48,9 +50,32 @@ const Person = () => {
             </div>
             <div className="navigations">
               <a href="#">Overview</a>
-              <a href="#">Registries</a>
-              <a href="#">Sunday School</a>
-              <a href="#">Pious Associations</a>
+              <a className="registry-nav" href="#">Registries
+              <div class="sub-menu1-div">
+                                    <ul>
+                                        <div class="sub-menu-registries-div">
+                                            <li>Family Registry</li>
+                                            <li>
+                                                <Icon_AddWhite />
+                                                Add Family
+                                            </li>
+                                        </div>
+                                        <li>Engagement Registry</li>
+                                        <li>Marriage Registry</li>
+                                        
+                                        <li>Death Reigistry</li>
+                                    </ul>
+                                </div></a>
+              <a href="#">Transactions</a>
+              <a class="announcement-nav" href="#"
+                                >Announcements
+                                <div class="sub-menu2-div">
+                                    <ul>
+                                        <li>Add Announcement</li>
+                                        <li>View Announcements</li>
+                                    </ul>
+                                </div>
+                            </a>
             </div>
           </nav>
         </div>
@@ -107,11 +132,15 @@ const Person = () => {
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
             />
+            <a href="">Sign up</a>
+            <a href="">Edit</a>
+            <a href="">Send Message</a>
+            <a href="">Proposed Changes</a>
           </div>
         </div>
 
         <div className="desc-div">
-          <div className="desc-heading">Description/Remarks</div>
+          <div className="desc-heading person-desc-heading">Description/Remarks</div>
           <div className="desc-content">
             <span className="blank-space"></span>
             Contrary to popular belief, Lorem Ipsum is not simply random text.

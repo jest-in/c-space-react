@@ -91,7 +91,15 @@ export default function FamilyIndividual() {
                 </div>
               </a>
               <a href="#">Transactions</a>
-              <a href="#">Pious Associations</a>
+              <a class="announcement-nav" href="#"
+                                >Announcements
+                                <div class="sub-menu2-div">
+                                    <ul>
+                                        <li>Add Announcement</li>
+                                        <li>View Announcements</li>
+                                    </ul>
+                                </div>
+                            </a>
             </div>
           </nav>
         </div>

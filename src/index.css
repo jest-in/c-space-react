@@ -799,6 +799,10 @@ hr {
     margin-top: 40px;
 }
 
+.person-desc-heading{
+    margin-top: 0;
+}
+
 .desc-content,
 .donation-content {
     font-weight: 400;
@@ -849,7 +853,7 @@ hr {
 /* Person Page */
 
 .person-head {
-    width: 30%;
+    width: 40%;
 }
 
 .sign-up-div {
@@ -954,17 +958,14 @@ hr {
 
 .person-photo-div a {
     text-decoration: none;
+    margin-top: 2px;
     font-weight: 600;
-    border-radius: 10px;
-    padding: 5px 20px;
-    margin-top: 20px;
     transition: 0.2s ease-in-out;
+    color: var(--color-primary);
 }
 
 .person-photo-div a:hover {
-    background-color: var(--color-3);
-    color: var(--text-primary);
-    padding: 5px 50px;
+    color: #332c9b;
 }
 
 .desc-div {
@@ -2500,3 +2501,168 @@ footer h1 {
 
 /*Verify Certificate Page End
 ----------------------------------------------------------------*/
+
+/*Announcements Page Start
+----------------------------------------------------------------*/
+
+.announce-title-div {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    padding: 0 70px;
+}
+
+.announce-title-div h1 {
+    font-weight: 600;
+    font-size: 36px;
+    color: var(--text-primary);
+}
+
+.announce-slno {
+    width: 10%;
+}
+
+.announce-subject {
+    width: 70%;
+    padding-right: 50px;
+}
+
+.announce-date {
+    width: 15%;
+}
+
+.announce-icons {
+    width: 5%;
+    height: 100px;
+    display: none;
+    transition: 0.2s ease-in-out;
+}
+
+.announce-icons img {
+    padding: 5px;
+    transition: 0.2s ease-in-out;
+}
+
+.announce-icons img:hover {
+    box-shadow: 0px 4px 28px rgba(0, 0, 0, 0.25);
+}
+
+.member-details-div:hover .announce-icons {
+    display: block;
+}
+
+.announcement-list-div {
+    margin-bottom: 100px;
+}
+
+.sub-menu2-div {
+    display: none;
+    left: 800px;
+    position: absolute;
+    top: 75px;
+    background-color: var(--text-primary);
+    width: 500px;
+    height: 200px;
+    z-index: 2000;
+    border: 3px solid #6c63f0;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-right: 50px;
+}
+
+.sub-menu2-div li {
+    color: var(--color-secondary);
+    list-style: none;
+    margin: 20px 10px;
+    font-size: 18px;
+    transition: 0.2s ease-in-out;
+}
+
+.sub-menu2-div li:hover {
+    font-weight: 700;
+    border-bottom: 2px solid #dceef3;
+}
+
+.announcement-nav:hover {
+    border-bottom: 3px solid var(--color-secondary);
+}
+
+.announcement-nav:hover .sub-menu2-div {
+    display: block;
+}
+
+.compose-announcement-div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.announce-input {
+    width: 580px;
+}
+
+.add-announce-content-div h1 {
+    font-weight: 500;
+}
+
+.compose-announce-sub1 {
+    margin-right: 50px;
+    display: flex;
+    flex-direction: column;
+}
+
+.compose-announce-sub2 {
+    margin-left: 50px;
+}
+
+.add-announce-div {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 50px;
+}
+
+.announce-type-entry-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.announce-type-entry-div h1 {
+    font-weight: 500;
+    margin-bottom: 5px;
+}
+
+.announce-type-entry-div select {
+    cursor: pointer;
+    background: none;
+    font-size: 20px;
+    width: 200px;
+}
+
+.add-announce-content-div {
+    display: flex;
+    flex-direction: column;
+}
+
+.publish-btn-div {
+    width: 100%;
+    display: flex;
+    padding: 50px 200px;
+    align-items: center;
+    justify-content: center;
+}
+
+.publish-btn-div a {
+    text-decoration: none;
+    font-weight: 600;
+    color: var(--color-secondary);
+    background: var(--color-primary);
+    padding: 5px 50px;
+    border-radius: 3px;
+    transition: 0.2s ease-in-out;
+}
+
+.publish-btn-div a:hover {
+    background-color: #332c9b;
+}
