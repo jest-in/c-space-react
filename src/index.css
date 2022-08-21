@@ -1772,7 +1772,7 @@ hr {
 ----------------------------------------------------------------*/
 
 .index-page {
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
 }
 
 section {
@@ -2041,7 +2041,7 @@ section {
     scale: 90%;
 }
 
-.aboutus-patterns img {
+.aboutus-patterns svg {
     position: absolute;
     top: 950px;
     left: 400px;
@@ -2132,7 +2132,7 @@ section {
     margin-bottom: 20px;
 }
 
-.priest-patterns img {
+.priest-patterns svg {
     position: absolute;
     top: 190%;
     left: 1%;
@@ -2311,7 +2311,7 @@ section {
 .announcement-content {
     font-weight: 700;
     color: var(--text-primary);
-}
+    }
 
 .announce-daytime-div {
     display: flex;
