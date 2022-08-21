@@ -3,8 +3,8 @@ import React from "react";
 const AnnounceVector = (props) => {
   return (
     <svg
-      height="501"
-      width="607"
+      height="546.3"
+      width="450.9"
       fill="none"
       viewBox="0 0 607 501"
       xmlns="http://www.w3.org/2000/svg"
