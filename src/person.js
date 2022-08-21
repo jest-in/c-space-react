@@ -6,8 +6,11 @@ import { useEffect } from 'react';
 
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Person = () => {
+
+  const navigate=useNavigate();
 
   // Personal details
   const [personDetails,setPersonDetails]=useState({});
@@ -16,16 +19,22 @@ const Person = () => {
   const [detailSection,setDetailSection]=useState('hidden');
 
   useEffect(()=>{
+    // If person id is null
+    if(!personId)
+    navigate('/family-individual');
+
     axios
       .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
       .then((res) => {
-        console.log(res.data.data);
-        const result=res.data.data;
+        const result = res.data.person;
+
         if(res.data.status==='success')
         {
           setPersonDetails(result);
           setDetailSection('');
         }
+        else
+        navigate('/family-individual');
       });
   },[])
 
@@ -49,7 +58,9 @@ const Person = () => {
       <main className={detailSection}>
         <div className="title-div">
           <div className="person-head">
-            <h1>{`${personDetails.firstName} ${personDetails.lastName}`}</h1>
+            <h1>
+              {personDetails.firstName} {personDetails.lastName}
+            </h1>
           </div>
           <div className="registries-nav-div">
             <a href="#">Baptism Registry</a>
@@ -66,27 +77,29 @@ const Person = () => {
           <div className="details-heading-div">
             <div className="name-person-div">
               <div className="heading-name">Name</div>
-              <div className="person-name">{`${personDetails.firstName} ${personDetails.lastName}`}</div>
+              <div className="person-name">
+                {personDetails.firstName} {personDetails.lastName}
+              </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">Date of birth</div>
-              <div className="person-dob">{personDetails.dob}</div>
+              <div className="person-dob">{personDetails.dob?personDetails.dob.split('T')[0]:'-'}</div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Phone number</div>
-              <div className="person-phone">{personDetails.phoneNumber}</div>
+              <div className="person-phone">{personDetails.phoneNumber?personDetails.phoneNumber:'-'}</div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Baptism</div>
-              <div className="person-baptism">{personDetails.baptism}</div>
+              <div className="person-baptism">{personDetails.baptism?personDetails.baptism.split('T')[0]:'-'}</div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Marriage</div>
-              <div className="person-marriage">{personDetails.marriage}</div>
+              <div className="person-marriage">{personDetails.marriage?personDetails.marriage.split('T')[0]:'-'}</div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Death</div>
-              <div className="person-death">{personDetails.death}</div>
+              <div className="person-death">{personDetails.death?personDetails.death.split('T')[0]:'-'}</div>
             </div>
           </div>
           <div className="person-photo-div">
