@@ -714,7 +714,7 @@ hr {
     margin-left: 100px;
 }
 
-.create-family-btn-div a{
+.create-family-btn-div button{
     text-decoration: none;
     font-weight: 500;
     color: var(--color-secondary);
@@ -1772,9 +1772,9 @@ hr {
 /*Index Page Start
 ----------------------------------------------------------------*/
 
-.index-page {
-    /* overflow-x: hidden; */
-}
+/* .index-page {
+    overflow-x: hidden;
+} */
 
 section {
     width: 100vw;
