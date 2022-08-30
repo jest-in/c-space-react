@@ -418,7 +418,7 @@ export default function AddFamily() {
                       <input
                         id="male"
                         name="gender"
-                        value="male"
+                        value="M"
                         type="radio"
                         onChange={(event) => handleMember(event, index)}
                       />
@@ -428,7 +428,7 @@ export default function AddFamily() {
                       <input
                         id="female"
                         name="gender"
-                        value="female"
+                        value="F"
                         type="radio"
                         onChange={(event) => handleMember(event, index)}
                       />
