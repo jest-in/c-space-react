@@ -83,7 +83,7 @@ export default function AddFamily() {
     // Storing values to the data object
     data[name] = value;
 
-    console.log(data);
+    // console.log(data);
     checkInputs(name, value);
   }
 
@@ -152,7 +152,7 @@ export default function AddFamily() {
   function submitButton() {
     let error = false;
     for (let i = 0; i < members.length; i++) {
-      if (Object.keys(members[i]).length !== 5) {
+      if (Object.keys(members[i]).length !== 4) {
         error = true;
         break;
       }
@@ -380,7 +380,7 @@ export default function AddFamily() {
                   <input
                     className="house-no-input"
                     type="text"
-                    name="phoneNum"
+                    name="phoneNumber"
                     onChange={(event) => handleMember(event, index)}
                   />
                   <label
@@ -398,7 +398,7 @@ export default function AddFamily() {
                     className="house-no-input"
                     type="text"
                     name="email"
-                    onChange={(event) => handleMember(event, index)}
+                    // onChange={(event) => handleMember(event, index)}
                   />
                   <label
                     className={`add-family-error ${
