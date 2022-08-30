@@ -87,22 +87,6 @@ export default function AddFamily() {
     checkInputs(name, value);
   }
 
-  //   const data = {
-  //     familyName: "yada",
-  //     address: "somewhere",
-  //     houseNum: "23",
-  //     wardNum: "4",
-  //     parishId: "ch1",
-  //     pin: "574228",
-  //   };
-  // axios
-  //   .post("http://localhost:5000/api/v1/family", data, {
-  //     withCredentials: true,
-  //   })
-  //   .then((res) => {
-  //     console.log(res.data);
-  //   });
-
   // For Member section
 
   // Member data array
@@ -176,16 +160,17 @@ export default function AddFamily() {
     if (!error) {
       const data = {
         familyId: familyId,
-        wardNo: wardNo,
+        wardNo: wardNo.toString(),
         persons: members,
       };
+      console.log(data);
       axios
         .post("http://localhost:5000/api/v1/persons/add", data, {
           withCredentials: true,
         })
         .then((res) => {
-          console.log(res.data);
-          if (res.data.status === "success") navigate("/add-family");
+          if (res.data.status === "success")
+            navigate('/add-family-relation');
         });
     }
   }
@@ -488,3 +473,5 @@ export default function AddFamily() {
     </div>
   );
 }
+
+export {familyId};

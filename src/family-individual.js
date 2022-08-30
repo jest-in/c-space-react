@@ -91,9 +91,9 @@ export default function FamilyIndividual() {
                 </div>
               </a>
               <a href="#">Transactions</a>
-              <a class="announcement-nav" href="#"
+              <a className="announcement-nav" href="#"
                                 >Announcements
-                                <div class="sub-menu2-div">
+                                <div className="sub-menu2-div">
                                     <ul>
                                         <li>Add Announcement</li>
                                         <li>View Announcements</li>
@@ -174,8 +174,7 @@ export default function FamilyIndividual() {
           {members.map((member, index) => {
             const {
               id,
-              firstName,
-              lastName,
+              name,
               dob,
               phoneNumber,
               baptism,
@@ -198,7 +197,7 @@ export default function FamilyIndividual() {
                 }}
               >
                 <div className="name-div">
-                  {firstName} {lastName}
+                  {name?name:'-'}
                 </div>
                 <div className="dob-div">{dobString}</div>
                 <div className="phone-div">{phoneNumber?phoneNumber:'-'}</div>

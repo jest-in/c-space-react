@@ -1,25 +1,37 @@
 import React from 'react'
+import { useEffect } from 'react';
 import UploadIcon from './Assets/Icon-Upload'
-import FilterIcon from "./Assets/Icon_Filter";
+import Icon_Menu from "./Assets/Icon_Menu";
+import Navigation from './navigation';
+
+import axios from "axios";
+import {useNavigate} from 'react-router-dom'
+
+import {personId} from './person'
 
 function MarriageRegistry() {
+
+  const navigate=useNavigate();
+
+  useEffect(()=>{
+
+    const personId="62fdd46b74dae9ae3839d8b5";
+    // get request
+    if(personId)
+    axios
+      .get(
+        `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`
+      )
+      .then((res)=>{
+        console.log(res.data);
+      });
+      else
+      navigate(-1)
+  },[])
+
   return (
     <div className="container-family">
-      <header>
-        <div className="nav-div">
-          <nav>
-            <div className="logo-div">
-              <img src="/logo.svg" alt="Logo" />
-            </div>
-            <div className="navigations">
-              <a href="#">Overview</a>
-              <a href="#">Registries</a>
-              <a href="#">Sunday School</a>
-              <a href="#">Pious Associations</a>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <Navigation/>
       <div className="title-div">
         <div className="person-head">
           <h1>Jestin George</h1>
@@ -31,7 +43,7 @@ function MarriageRegistry() {
           <a href="#">Death Registry</a>
         </div>
         <div className="menu-div">
-          <FilterIcon/>
+          <Icon_Menu/>
         </div>
       </div>
       <hr />

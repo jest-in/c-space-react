@@ -9,7 +9,7 @@ export default function IconDrop() {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M1 1L8 8M6.58579 8L13.5858 1" stroke="black" stroke-width="2" />
+      <path d="M1 1L8 8M6.58579 8L13.5858 1" stroke="black" strokeWidth="2" />
     </svg>
   );
 }

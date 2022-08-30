@@ -174,7 +174,7 @@ export default function Family() {
                 </div>
               )}
               {family.map((person, index) => {
-                const { firstName, lastName, dob, phoneNumber } = person;
+                const { name, dob, phoneNumber } = person;
 
                 // converting dob to a date string
                 let dofb = new Date(dob);
@@ -183,7 +183,7 @@ export default function Family() {
                   <div className="sub2-content" key={index}>
                     <div className="sub2-name-div">
                       <h1>
-                        {firstName} {lastName}
+                        {name?name:'-'}
                       </h1>
                     </div>
                     <div className="sub2-dob-div">

@@ -50,32 +50,33 @@ const Person = () => {
             </div>
             <div className="navigations">
               <a href="#">Overview</a>
-              <a className="registry-nav" href="#">Registries
-              <div class="sub-menu1-div">
-                                    <ul>
-                                        <div class="sub-menu-registries-div">
-                                            <li>Family Registry</li>
-                                            <li>
-                                                <Icon_AddWhite />
-                                                Add Family
-                                            </li>
-                                        </div>
-                                        <li>Engagement Registry</li>
-                                        <li>Marriage Registry</li>
-                                        
-                                        <li>Death Reigistry</li>
-                                    </ul>
-                                </div></a>
+              <a className="registry-nav" href="#">
+                Registries
+                <div className="sub-menu1-div">
+                  <ul>
+                    <div className="sub-menu-registries-div">
+                      <li>Family Registry</li>
+                      <li>
+                        <Icon_AddWhite />
+                        Add Family
+                      </li>
+                    </div>
+                    <li>Engagement Registry</li>
+                    <li>Marriage Registry</li>
+                    <li>Death Reigistry</li>
+                  </ul>
+                </div>
+              </a>
               <a href="#">Transactions</a>
-              <a class="announcement-nav" href="#"
-                                >Announcements
-                                <div class="sub-menu2-div">
-                                    <ul>
-                                        <li>Add Announcement</li>
-                                        <li>View Announcements</li>
-                                    </ul>
-                                </div>
-                            </a>
+              <a className="announcement-nav" href="#">
+                Announcements
+                <div className="sub-menu2-div">
+                  <ul>
+                    <li>Add Announcement</li>
+                    <li>View Announcements</li>
+                  </ul>
+                </div>
+              </a>
             </div>
           </nav>
         </div>
@@ -83,14 +84,12 @@ const Person = () => {
       <main className={detailSection}>
         <div className="title-div">
           <div className="person-head">
-            <h1>
-              {personDetails.firstName} {personDetails.lastName}
-            </h1>
+            <h1>{personDetails.name ? personDetails.name : "-"}</h1>
           </div>
           <div className="registries-nav-div">
             <a href="#">Baptism Registry</a>
             <a href="#">Engagement Registry</a>
-            <a href="#">Marriage Registry</a>
+            <a href="/marriage-registry">Marriage Registry</a>
             <a href="#">Death Registry</a>
           </div>
           <div className="menu-div">
@@ -103,28 +102,42 @@ const Person = () => {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                {personDetails.firstName} {personDetails.lastName}
+                {personDetails.name ? personDetails.name : "-"}
               </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">Date of birth</div>
-              <div className="person-dob">{personDetails.dob?personDetails.dob.split('T')[0]:'-'}</div>
+              <div className="person-dob">
+                {personDetails.dob ? personDetails.dob.split("T")[0] : "-"}
+              </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Phone number</div>
-              <div className="person-phone">{personDetails.phoneNumber?personDetails.phoneNumber:'-'}</div>
+              <div className="person-phone">
+                {personDetails.phoneNumber ? personDetails.phoneNumber : "-"}
+              </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Baptism</div>
-              <div className="person-baptism">{personDetails.baptism?personDetails.baptism.split('T')[0]:'-'}</div>
+              <div className="person-baptism">
+                {personDetails.baptism
+                  ? personDetails.baptism.split("T")[0]
+                  : "-"}
+              </div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Marriage</div>
-              <div className="person-marriage">{personDetails.marriage?personDetails.marriage.split('T')[0]:'-'}</div>
+              <div className="person-marriage">
+                {personDetails.marriage
+                  ? personDetails.marriage.split("T")[0]
+                  : "-"}
+              </div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Death</div>
-              <div className="person-death">{personDetails.death?personDetails.death.split('T')[0]:'-'}</div>
+              <div className="person-death">
+                {personDetails.death ? personDetails.death.split("T")[0] : "-"}
+              </div>
             </div>
           </div>
           <div className="person-photo-div">
@@ -140,7 +153,9 @@ const Person = () => {
         </div>
 
         <div className="desc-div">
-          <div className="desc-heading person-desc-heading">Description/Remarks</div>
+          <div className="desc-heading person-desc-heading">
+            Description/Remarks
+          </div>
           <div className="desc-content">
             <span className="blank-space"></span>
             Contrary to popular belief, Lorem Ipsum is not simply random text.
@@ -159,3 +174,4 @@ const Person = () => {
 }
 
 export default Person;
+export {personId};
