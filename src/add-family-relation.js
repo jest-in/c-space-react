@@ -24,7 +24,9 @@ export default function AddFamilyRelation() {
 
     useEffect(()=>{
         axios.get(`http://localhost:5000/api/v1/family/${familyId}`).then((res)=>{
-            console.log(res.data);
+            console.log("FAM Id : " , familyId)
+            console.log("FAM INFO : ",res);
+            console.log("FAM INFO DATA : ",res.data);
             const result=res.data.data;
             if(res.data.success){
                 setFamilyName(result.familyName);

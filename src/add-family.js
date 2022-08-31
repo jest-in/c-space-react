@@ -169,8 +169,12 @@ export default function AddFamily() {
           withCredentials: true,
         })
         .then((res) => {
+          console.log("RES : ",res)
           if (res.data.status === "success")
-            navigate('/add-family-relation');
+          setTimeout(nav, 2000);
+          function nav(){
+            navigate('/add-family-relation')
+          }
         });
     }
   }
