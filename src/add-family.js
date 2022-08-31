@@ -125,7 +125,7 @@ export default function AddFamily() {
         else list[index]["baptismNameError"] = "";
         return list;
       });
-    else if (name === "phoneNum")
+    else if (name === "phoneNumber")
       setMembersError((prev) => {
         let list = [...prev];
         if (value) list[index]["phoneNumError"] = "hidden";
@@ -152,7 +152,7 @@ export default function AddFamily() {
   function submitButton() {
     let error = false;
     for (let i = 0; i < members.length; i++) {
-      if (Object.keys(members[i]).length !== 4) {
+      if (Object.keys(members[i]).length !== 5) {
         error = true;
         break;
       }
@@ -398,7 +398,7 @@ export default function AddFamily() {
                     className="house-no-input"
                     type="text"
                     name="email"
-                    // onChange={(event) => handleMember(event, index)}
+                    onChange={(event) => handleMember(event, index)}
                   />
                   <label
                     className={`add-family-error ${
