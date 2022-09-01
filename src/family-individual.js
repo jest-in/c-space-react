@@ -129,7 +129,7 @@ export default function FamilyIndividual() {
             <div className="inner-div-1">
               <div className="house-name-div">
                 <h1>House name</h1>
-                <h2>{family.houseName?family.houseName:'-'}</h2>
+                <h2>{family.familyName?family.familyName:'-'}</h2>
               </div>
               <div className="address-div">
                 <h1>Address</h1>
