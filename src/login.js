@@ -1,32 +1,38 @@
 import Logo from "./Assets/logo";
 import axios from "axios";
 
+import {useNavigate} from 'react-router-dom'
+
 function Login() {
+const navigate=useNavigate();
+
   const data = {
     loginId: "123456",
     password: "pass12345",
   };
   function authentication() {
-    fetch("http://localhost:5000/api/v1/users/login", {
-      method: "POST",
-      credentials:'include',
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
-      .then((response) => console.log(response));
+    // fetch("http://localhost:5000/api/v1/users/login", {
+    //   method: "POST",
+    //   credentials:'include',
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then((response) => response.json())
+    //   .then((response) => console.log(response));
 
-    // axios
-    //   .post(
-    //     "http://localhost:5000/api/v1/users/login",
-    //     { loginId: "123456", password: "pass12345" },
-    //     { withCredentials: true }
-    //   )
-    //   .then((res) => {
-    //     console.log(res.data);
-    //   });
+    axios
+      .post(
+        "http://localhost:5000/api/v1/users/login",
+        { loginId: "123456", password: "pass12345" },
+        { withCredentials: true }
+      )
+      .then((res) => {
+        console.log(res.data);
+        if(res.data.status==='success')
+        navigate('/family');
+      });
   }
   return (
     <>
