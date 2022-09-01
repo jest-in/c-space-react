@@ -17,6 +17,7 @@ import Voucher from "./Transactions/voucher";
 import VerifyCertificate from "./Landing Page/verify-certificate";
 import Index from "./Landing Page/indexPage";
 import Sponsors from "./sponsors";
+import BaptismRegistryAdd from "./Registries/baptism-registry-add";
 
 function App() {
   return (
@@ -40,6 +41,7 @@ function App() {
         <Route path="/verify-certificate" element={<VerifyCertificate />} exact />
         <Route path="/index" element={<Index />} exact />
         <Route path="/sponsors" element={<Sponsors />} exact />
+        <Route path="/baptism-registry-add" element={<BaptismRegistryAdd />} exact />
       </Routes>
     </>
   );
