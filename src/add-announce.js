@@ -6,35 +6,58 @@ import axios from 'axios';
 
 export default function AddAnnounce() {
 
+  // Select tag value
+  const [selectValue,setSelectValue]=useState('')
+
+    // Required field errors
+    const [textAreaError,setTextAreaError]=useState('hidden');
+    const [typeError, setTypeError] = useState("hidden");
+
     // Announcement state
     const [announcement,setAnnouncement]=useState('');
 
     // Input saver
     function announcementDetailsSaver(event){
-        console.log('Inputed value:',event.target.value);
-        setAnnouncement(event.target.value);
+        const {value,name}=event.target;
+        console.log('Inputed value:',value);
+        if(name==='announce'&&value==='')
+        setTextAreaError('')
+        else
+        if (name === "announce" && value !== ""){
+          setTextAreaError('hidden');
+          setAnnouncement(value);
+        }
+        if (name === "announce-type"&&value!=='nothing'){
+          setTypeError('hidden')
+        }
+        if (name === "announce-type") setSelectValue(value);
     }
 
     // Publish button handler
     function publishButton(){
+
+      if(!selectValue)
+      setTypeError('');
         // code block
-        if(announcement){
+        if(announcement&&selectValue){
           const data = {
             announcement: announcement,
+            visibility:selectValue,
           };
+          console.log('Post Data:',data);
           axios
             .post("http://localhost:5000/api/v1/announce", data, {
               withCredentials: true,
             })
             .then((res) => {
-              console.log(res.data.status);
+              if(res.data.status==='success')
+              window.location.reload(false);
             });
         }
     }
 
   return (
     <div className="container-family">
-      <title>C-Space</title>
   <Navigation/>
   <div className="announce-title-div">
     <div className="family-master">

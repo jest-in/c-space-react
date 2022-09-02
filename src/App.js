@@ -14,8 +14,8 @@ import Groups from "./Transactions/groups";
 import LedgerIndividual from "./Transactions/ledger-individual";
 import Ledgers from "./Transactions/ledgers";
 import Voucher from "./Transactions/voucher";
-import VerifyCertificate from "./Landing Page/verify-certificate";
-import Index from "./Landing Page/indexPage";
+import VerifyCertificate from "./LandingPage/verify-certificate";
+import Index from "./LandingPage/indexPage";
 import Sponsors from "./sponsors";
 import BaptismRegistryAdd from './Registries/baptism-registry-add';
 import BaptismRegistry from './Registries/baptism-registry';
@@ -48,8 +48,6 @@ function App() {
         <Route path="/all-announce" element={<AllAnnounce />} exact />
         <Route path="/add-announce" element={<AddAnnounce />} exact />
         <Route path="/add-baptism-registry" element={<BaptismRegistryAdd />} exact />
-        <Route path="/baptism-registry" element={<BaptismRegistry />} exact />
-        <Route path="/baptism-registry-all" element={<BaptismRegistryAll />} exact />
       </Routes>
     </>
   );

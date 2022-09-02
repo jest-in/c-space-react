@@ -834,7 +834,7 @@ hr {
     margin-right: 100px;
 }
 
-.submit-btn-div a {
+.submit-btn-div button {
     color: #fff;
     background-color: var(--color-primary);
     border-radius: 10px;
@@ -845,7 +845,7 @@ hr {
     margin-bottom: 100px;
 }
 
-.submit-btn-div a:hover {
+.submit-btn-div button:hover {
     background-color: #d9d9d9;
     color: var(--text-primary);
 }
@@ -1345,7 +1345,7 @@ hr {
     justify-content: flex-end;
 }
 
-.save-btn-div a {
+.save-btn-div button {
     text-decoration: none;
     font-weight: 600;
     color: var(--color-secondary);
@@ -1355,7 +1355,7 @@ hr {
     transition: 0.2s ease-in-out;
 }
 
-.save-btn-div a:hover {
+.save-btn-div button:hover {
     color: var(--text-primary);
     background-color: var(--color-3);
 }
@@ -2659,7 +2659,7 @@ footer h1 {
     justify-content: center;
 }
 
-.publish-btn-div a {
+.publish-btn-div button {
     text-decoration: none;
     font-weight: 600;
     color: var(--color-secondary);
@@ -2669,6 +2669,6 @@ footer h1 {
     transition: 0.2s ease-in-out;
 }
 
-.publish-btn-div a:hover {
+.publish-btn-div button:hover {
     background-color: #332c9b;
 }
