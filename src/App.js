@@ -45,7 +45,7 @@ function App() {
         <Route path="/sponsors" element={<Sponsors />} exact />
         <Route path="/all-announce" element={<AllAnnounce />} exact />
         <Route path="/add-announce" element={<AddAnnounce />} exact />
-        <Route path="/add-baptism-registry" element={<BaptismRegistryAdd />} exact />
+        <Route path="/baptism-registry-add" element={<BaptismRegistryAdd />} exact />
       </Routes>
     </>
   );
