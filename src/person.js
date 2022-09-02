@@ -87,10 +87,14 @@ const Person = () => {
             <h1>{personDetails.name ? personDetails.name : "-"}</h1>
           </div>
           <div className="registries-nav-div">
-            <a href="#">Baptism Registry</a>
-            <a href="#">Engagement Registry</a>
-            <a href="/marriage-registry">Marriage Registry</a>
-            <a href="#">Death Registry</a>
+            <button onClick={()=>{
+              if (!personDetails.baptism) {
+                navigate('/baptism-registry-add')
+              }
+            }}>Baptism Registry</button>
+            <button>Engagement Registry</button>
+            <button>Marriage Registry</button>
+            <button>Death Registry</button>
           </div>
           <div className="menu-div">
             <IconMenu />

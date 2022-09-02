@@ -878,7 +878,7 @@ hr {
     justify-content: space-between;
 }
 
-.registries-nav-div a {
+.registries-nav-div button {
     font-weight: 400;
     font-size: 20px;
     text-decoration: none;
@@ -886,7 +886,7 @@ hr {
     transition: 0.2s ease-in-out;
 }
 
-.registries-nav-div a:hover {
+.registries-nav-div button:hover {
     border-bottom: 3px solid var(--hover-underline);
 }
 
