@@ -6,7 +6,7 @@ import Icon_Close from "./Assets/Icon_Close";
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Icon_Search from "./Assets/Icon_Search";
 import Icon_Filter from "./Assets/Icon_Filter";
-import IconUpload from "./Assets/Icon-Upload";
+import IconUpload from "./Assets/Icon_Upload";
 import Icon_Menu from "./Assets/Icon_Menu";
 
 import axios from "axios";
@@ -128,7 +128,7 @@ export default function FamilyIndividual() {
           <div className="family-entries">
             <div className="inner-div-1">
               <div className="house-name-div">
-                <h1>House name</h1>
+                <h1>Family name</h1>
                 <h2>{family.familyName?family.familyName:'-'}</h2>
               </div>
               <div className="address-div">
@@ -147,7 +147,7 @@ export default function FamilyIndividual() {
               </div>
               <div className="pincode-div">
                 <h1>Pincode</h1>
-                <h2>{family.pincode?family.pincode:'-'}</h2>
+                <h2>{family.pin?family.pin:'-'}</h2>
               </div>
             </div>
           </div>

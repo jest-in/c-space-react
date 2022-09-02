@@ -18,6 +18,15 @@ import VerifyCertificate from "./LandingPage/verify-certificate";
 import Index from "./LandingPage/indexPage";
 import Sponsors from "./sponsors";
 import BaptismRegistryAdd from './Registries/baptism-registry-add';
+import BaptismRegistry from './Registries/baptism-registry';
+import BaptismRegistryAll from './Registries/baptism-registry-all';
+import DeathRegistry from './Registries/death-registry';
+import DeathRegistryAdd from './Registries/death-registry-add';
+import DeathRegistryAll from './Registries/death-registry-all';
+import EngagementRegistry from './Registries/engagement-registry';
+import EngagementRegistryAdd from './Registries/engagement-registry-add';
+import EngagementRegistryAll from './Registries/engagement-registry-all';
+import MarriageRegistryAll from './Registries/marriage-registry-all';
 import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
 
@@ -46,6 +55,15 @@ function App() {
         <Route path="/all-announce" element={<AllAnnounce />} exact />
         <Route path="/add-announce" element={<AddAnnounce />} exact />
         <Route path="/baptism-registry-add" element={<BaptismRegistryAdd />} exact />
+        <Route path="/baptism-registry-all" element={<BaptismRegistryAll />} exact />
+        <Route path="/baptism-registry" element={<BaptismRegistry />} exact />
+        <Route path="/death-registry" element={<DeathRegistry />} exact />
+        <Route path="/death-registry-add" element={<DeathRegistryAdd />} exact />
+        <Route path="/death-registry-all" element={<DeathRegistryAll />} exact />
+        <Route path="/engagement-registry" element={<EngagementRegistry />} exact />
+        <Route path="/engagement-registry-add" element={<EngagementRegistryAdd />} exact />
+        <Route path="/engagement-registry-all" element={<EngagementRegistryAll />} exact />
+        <Route path="/marriage-registry-all" element={<MarriageRegistryAll />} exact />
       </Routes>
     </>
   );

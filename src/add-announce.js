@@ -58,71 +58,42 @@ export default function AddAnnounce() {
 
   return (
     <div className="container-family">
-      <Navigation />
-      <div className="announce-title-div">
-        <div className="family-master">
-          <h1>Add Announcement</h1>
+  <Navigation/>
+  <div className="announce-title-div">
+    <div className="family-master">
+      <h1>Add Announcement</h1>
+    </div>
+  </div>
+  <hr />
+  <div className="compose-announcement-div">
+    <div className="add-announce-div">
+      <div className="compose-announce-sub1">
+        <div className="add-announce-content-div">
+          <h1>Compose Announcement</h1>
+          <textarea className="address-input announce-input" cols={13} rows={8} autofocus defaultValue={""} onChange={(event)=>announcementDetailsSaver(event)} />
+          <label className="add-family-error" htmlFor="error">
+            This field is required
+          </label>
         </div>
       </div>
-      <hr />
-      <div className="compose-announcement-div">
-        <div className="add-announce-div">
-          <div className="compose-announce-sub1">
-            <div className="add-announce-content-div">
-              <h1>Compose Announcement</h1>
-              <textarea
-                onBlur={(event) => {
-                  if (event.target.value === "") setTextAreaError("");
-                }}
-                name="announce"
-                className="address-input announce-input"
-                cols={13}
-                rows={8}
-                autoFocus
-                defaultValue={""}
-                onChange={(event) => announcementDetailsSaver(event)}
-              />
-              <label
-                className={`add-family-error ${
-                  textAreaError ? textAreaError : ""
-                }`}
-                htmlFor="error"
-              >
-                This field is required
-              </label>
-            </div>
-          </div>
-          <div className="compose-announce-sub2">
-            <div className="announce-type-entry-div">
-              <h1>Select Type</h1>
-              <select
-                onBlur={(event) => {
-                  if (event.target.value === "nothing") setTypeError("");
-                }}
-                value={selectValue ? selectValue : "nothing"}
-                name="announce-type"
-                id="announce-type"
-                onChange={(event) => announcementDetailsSaver(event)}
-              >
-                <option className={selectValue ? "hidden" : ""} value="nothing">
-                  Nothing
-                </option>
-                <option value="private">Private</option>
-                <option value="public">Public</option>
-              </select>
-              <label
-                className={`add-family-error ${typeError ? typeError : ""}`}
-                htmlFor="error"
-              >
-                This field is required
-              </label>
-            </div>
-          </div>
+      <div className="compose-announce-sub2">
+        <div className="announce-type-entry-div">
+          <h1>Select Type</h1>
+          <select name="announce-type" id="announce-type">
+            <option value="private">Private</option>
+            <option value="public">Public</option>
+          </select>
+          <label className="add-family-error" htmlFor="error">
+            This field is required
+          </label>
         </div>
-      </div>
-      <div className="publish-btn-div">
-        <button onClick={() => publishButton()}>Publish</button>
       </div>
     </div>
+  </div>
+  <div className="publish-btn-div">
+    <button onClick={()=>publishButton()}>Publish</button>
+  </div>
+</div>
+
   );
 }

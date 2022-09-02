@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import Logo from "./Assets/logo";
-import IconUpload from "./Assets/Icon-Upload";
+import IconUpload from "./Assets/Icon_Upload";
 import AddSection from "./Assets/add-section";
 import axios from "axios";
 import { useState } from "react";

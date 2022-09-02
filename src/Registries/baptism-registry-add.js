@@ -1,4 +1,5 @@
 import React from 'react'
+<<<<<<< HEAD
 import { useEffect } from 'react';
 import Navigation from '../navigation';
 import axios from "axios";
@@ -7,9 +8,15 @@ import {personId} from '../person';
 export default function BaptismRegistryadd() {
   // Post request url https://cspace-api.herokuapp.com/api/v1/registry/baptism-registry/630cb03a30059d4540ea2584
 
+=======
+import Icon_Menu from '../Assets/Icon_Menu'
+import IconUpload from '../Assets/Icon_Upload'
+import Navigation from '../navigation'
+>>>>>>> 66d1a17a6f54c491851bc4ab2c3a3c836b163471
 
   return (
     <div className="container-family">
+<<<<<<< HEAD
       <Navigation />
       <div className="title-div">
         <div className="person-head">
@@ -173,6 +180,32 @@ export default function BaptismRegistryadd() {
                 </label>
               </div>
             </div>
+=======
+  <Navigation/>
+  <div className="title-div">
+    <div className="person-head">
+      <h1>Jackson</h1>
+    </div>
+    <div className="registries-nav-div">
+      <a href="#">Baptism Registry</a>
+      <a href="#">Engagement Registry</a>
+      <a href="#">Marriage Registry</a>
+      <a href="#">Death Registry</a>
+    </div>
+    <div className="menu-div">
+      <Icon_Menu/>
+    </div>
+  </div>
+  <hr />
+  <div className="members-entries-div">
+    <div className="registry-div">
+      <div className="registry-details-heading-div">
+        <div className="name-person-div">
+          <div className="heading-name">Baptism Name</div>
+          <div className="person-name">
+            <input type="text" name="Name" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+>>>>>>> 66d1a17a6f54c491851bc4ab2c3a3c836b163471
           </div>
         </div>
         <div className="registry-photo-div">
@@ -194,5 +227,29 @@ export default function BaptismRegistryadd() {
         </div>
       </div>
     </div>
+<<<<<<< HEAD
   );
+=======
+    <div className="registry-photo-div">
+      <IconUpload/>
+      <img
+            className="marriage-photo"
+            src={require("../Assets/marriage.png")}
+            alt="marriage pic"
+          />
+    </div>
+  </div>
+  <div className="desc-div">
+    <div className="desc-heading">Description/Remarks</div>
+    <div className="desc-content">
+      <input type="text" name="Description" />
+    </div>
+    <div className="submit-btn-div">
+      <a href>Submit</a>
+    </div>
+  </div>
+</div>
+
+  )
+>>>>>>> 66d1a17a6f54c491851bc4ab2c3a3c836b163471
 }
