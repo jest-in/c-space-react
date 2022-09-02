@@ -14,8 +14,8 @@ import Groups from "./Transactions/groups";
 import LedgerIndividual from "./Transactions/ledger-individual";
 import Ledgers from "./Transactions/ledgers";
 import Voucher from "./Transactions/voucher";
-import VerifyCertificate from "./Landing Page/verify-certificate";
-import Index from "./Landing Page/indexPage";
+import VerifyCertificate from "./LandingPage/verify-certificate";
+import Index from "./LandingPage/indexPage";
 import Sponsors from "./sponsors";
 import BaptismRegistryAdd from './Registries/baptism-registry-add';
 import AllAnnounce from './all-announce'
