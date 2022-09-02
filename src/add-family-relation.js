@@ -5,6 +5,7 @@ import { familyId } from './add-family';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 // Counter
 let count=0;
@@ -40,6 +41,9 @@ let count=0;
     }
 
 export default function AddFamilyRelation() {
+
+  // Navigation
+  const navigate=useNavigate();
 
   // Son,Daughter,Brothers,Sisters
   const [son,setSon]=useState([]);
@@ -290,7 +294,8 @@ export default function AddFamilyRelation() {
         if(arrayOfRelatives.length===relatives.length){
           // Checks whether everyone is mapped with their relatives
           count++;
-          if (count > members.length + 1) return;
+          if (count > members.length + 1)
+          navigate('/add-family');
 
           let data={}
           if(relationsData.father)
