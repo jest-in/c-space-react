@@ -34,6 +34,7 @@ export default function AddAnnounce() {
 
   return (
     <div className="container-family">
+      <title>C-Space</title>
   <Navigation/>
   <div className="announce-title-div">
     <div className="family-master">

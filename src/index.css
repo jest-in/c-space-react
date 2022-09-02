@@ -552,7 +552,7 @@ hr {
 .search-div {
     width: 25%;
 }
-.search-div img {
+.search-div svg {
     position: relative;
     right: 25px;
 }
@@ -918,12 +918,16 @@ hr {
 .heading-phone,
 .heading-baptism,
 .heading-marriage,
-.heading-death {
+.heading-death,
+.heading-ward,
+.heading-address,
+.heading-sacraments {
     width: 30%;
     font-weight: 500;
     padding-bottom: 10px;
     padding-left: 20px;
 }
+
 
 .person-name,
 .person-dob,
@@ -941,7 +945,9 @@ hr {
 .phone-person-div,
 .baptism-person-div,
 .marriage-person-div,
-.death-person-div {
+.death-person-div,
+.death-person-ward-div,
+.death-person-address-div {
     display: flex;
     width: 100%;
     margin-top: 20px;

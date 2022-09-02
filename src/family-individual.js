@@ -128,7 +128,7 @@ export default function FamilyIndividual() {
           <div className="family-entries">
             <div className="inner-div-1">
               <div className="house-name-div">
-                <h1>House name</h1>
+                <h1>Family name</h1>
                 <h2>{family.familyName?family.familyName:'-'}</h2>
               </div>
               <div className="address-div">
@@ -147,7 +147,7 @@ export default function FamilyIndividual() {
               </div>
               <div className="pincode-div">
                 <h1>Pincode</h1>
-                <h2>{family.pincode?family.pincode:'-'}</h2>
+                <h2>{family.pin?family.pin:'-'}</h2>
               </div>
             </div>
           </div>

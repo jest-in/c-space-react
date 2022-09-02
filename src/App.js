@@ -18,6 +18,8 @@ import VerifyCertificate from "./Landing Page/verify-certificate";
 import Index from "./Landing Page/indexPage";
 import Sponsors from "./sponsors";
 import BaptismRegistryAdd from './Registries/baptism-registry-add';
+import BaptismRegistry from './Registries/baptism-registry';
+import BaptismRegistryAll from './Registries/baptism-registry-all';
 import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
 
@@ -46,6 +48,8 @@ function App() {
         <Route path="/all-announce" element={<AllAnnounce />} exact />
         <Route path="/add-announce" element={<AddAnnounce />} exact />
         <Route path="/add-baptism-registry" element={<BaptismRegistryAdd />} exact />
+        <Route path="/baptism-registry" element={<BaptismRegistry />} exact />
+        <Route path="/baptism-registry-all" element={<BaptismRegistryAll />} exact />
       </Routes>
     </>
   );
