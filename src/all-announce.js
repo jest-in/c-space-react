@@ -40,13 +40,13 @@ export default function AllAnnounce() {
           <div className="announce-date">Date</div>
           <div className="announce-icons" />
         </div>
-        {announcements.map((announcement, index) => {
-          const { details, date } = announcement;
+        {announcements.map((announcementData, index) => {
+          const { announcement, date } = announcementData;
           return (
             <div className="member-details-div" key={index}>
               <div className="announce-slno">{index + 1}</div>
-              <div className="announce-subject">{details}</div>
-              <div className="announce-date">{date ? date : "-"}</div>
+              <div className="announce-subject">{announcement}</div>
+              <div className="announce-date">{date?date.split('T')[0]:'-'}</div>
               <div className="announce-icons">
                 {/* <DeleteIcon />  */}
                 <br />

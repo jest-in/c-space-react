@@ -20,12 +20,12 @@ export default function AddAnnounce() {
     function announcementDetailsSaver(event){
         const {value,name}=event.target;
         console.log('Inputed value:',value);
-        setAnnouncement(value);
         if(name==='announce'&&value==='')
         setTextAreaError('')
         else
         if (name === "announce" && value !== ""){
           setTextAreaError('hidden');
+          setAnnouncement(value);
         }
         if (name === "announce-type"&&value!=='nothing'){
           setTypeError('hidden')
@@ -50,7 +50,8 @@ export default function AddAnnounce() {
               withCredentials: true,
             })
             .then((res) => {
-              console.log(res.data.status);
+              if(res.data.status==='success')
+              window.location.reload(false);
             });
         }
     }
