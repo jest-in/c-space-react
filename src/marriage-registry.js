@@ -1,6 +1,6 @@
 import React from 'react'
 import { useEffect } from 'react';
-import UploadIcon from './Assets/Icon-Upload'
+import UploadIcon from './Assets/Icon_Upload'
 import Icon_Menu from "./Assets/Icon_Menu";
 import Navigation from './navigation';
 

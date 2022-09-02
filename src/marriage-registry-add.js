@@ -1,7 +1,7 @@
 import React from 'react'
 import Icon_Menu from './Assets/Icon_Menu'
 import Logo from './Assets/logo'
-import Icon_Upload from './Assets/Icon-Upload'
+import Icon_Upload from './Assets/Icon_Upload'
 
 export default function MarriageRegistryAdd() {
   return (

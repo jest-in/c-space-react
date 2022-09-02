@@ -6,7 +6,7 @@ import Icon_Close from "./Assets/Icon_Close";
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Icon_Search from "./Assets/Icon_Search";
 import Icon_Filter from "./Assets/Icon_Filter";
-import IconUpload from "./Assets/Icon-Upload";
+import IconUpload from "./Assets/Icon_Upload";
 import Icon_Menu from "./Assets/Icon_Menu";
 
 import axios from "axios";

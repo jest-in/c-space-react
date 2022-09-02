@@ -834,7 +834,7 @@ hr {
     margin-right: 100px;
 }
 
-.submit-btn-div button {
+.submit-btn-div button{
     color: #fff;
     background-color: var(--color-primary);
     border-radius: 10px;
@@ -849,6 +849,8 @@ hr {
     background-color: #d9d9d9;
     color: var(--text-primary);
 }
+
+
 
 /* Person Page */
 
@@ -928,16 +930,53 @@ hr {
     padding-left: 20px;
 }
 
+.heading-sacraments {
+    display: flex;
+    flex-direction: column;
+}
+
+.heading-viatium,
+.heading-confession,
+.heading-anointing {
+    width: 30%;
+    font-weight: 500;
+    padding-bottom: 10px;
+    padding-left: 40px;
+}
 
 .person-name,
 .person-dob,
 .person-phone,
 .person-baptism,
 .person-marriage,
-.person-death {
+.person-death,
+.person-death-ward,
+.person-death-address {
     width: 70%;
     font-weight: 400;
     padding-bottom: 10px;
+}
+
+.person-death-ward-anointing {
+    width: 70%;
+    font-weight: 400;
+    padding-bottom: 10px;
+    display: flex;
+}
+
+.person-death-ward-anointing input {
+    scale: 50%;
+}
+
+.radio-sacraments-1 {
+    display: flex;
+    width: 10%;
+}
+
+.radio-sacraments-2 {
+    display: flex;
+    width: 10%;
+    margin-left: 20px;
 }
 
 .name-person-div,
@@ -952,6 +991,23 @@ hr {
     width: 100%;
     margin-top: 20px;
     border-bottom: 3px solid var(--color-3);
+}
+
+.death-person-ward-div-sacraments {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.anointing-div {
+    border-bottom: 3px solid var(--color-3);
+}
+
+.death-person-sacraments-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 20px;
 }
 
 .person-photo-div {
@@ -1210,7 +1266,7 @@ hr {
     scale: 80%;
 }
 
-.upload-icon {
+.registry-photo-div svg{
     margin-left: 50px;
 }
 

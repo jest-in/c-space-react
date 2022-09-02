@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-import DeleteIcon from './Assets/DeleteIcon';
-import EditIcon from './Assets/EditIcon';
+// import DeleteIcon from './Assets/DeleteIcon';
+// import EditIcon from './Assets/EditIcon';
 import Navigation from './navigation';
 
 import axios from 'axios';
@@ -50,7 +50,7 @@ export default function AllAnnounce() {
               <div className="announce-icons">
                 {/* <DeleteIcon />  */}
                 <br />
-                <EditIcon />
+                {/* <EditIcon /> */}
               </div>
             </div>
           );

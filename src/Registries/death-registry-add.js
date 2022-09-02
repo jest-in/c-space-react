@@ -1,9 +1,9 @@
 import React from 'react'
 import Icon_Menu from '../Assets/Icon_Menu'
-import IconUpload from '../Assets/Icon_Upload'
+import Icon_Upload from '../Assets/Icon_Upload'
 import Navigation from '../navigation'
 
-export default function BaptismRegistryAdd() {
+export default function DeathRegistryAdd() {
   return (
     <div className="container-family">
   <Navigation/>
@@ -26,13 +26,6 @@ export default function BaptismRegistryAdd() {
     <div className="registry-div">
       <div className="registry-details-heading-div">
         <div className="name-person-div">
-          <div className="heading-name">Baptism Name</div>
-          <div className="person-name">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="name-person-div">
           <div className="heading-name">Name</div>
           <div className="person-name">
             <input type="text" name="Name" />
@@ -40,8 +33,15 @@ export default function BaptismRegistryAdd() {
           </div>
         </div>
         <div className="dob-person-div">
-          <div className="heading-dob">Family name</div>
+          <div className="heading-dob">House name</div>
           <div className="person-dob">
+            <input type="text" name="Name" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="phone-person-div">
+          <div className="heading-phone">Age</div>
+          <div className="person-phone">
             <input type="text" name="Name" />
             <label className="add-family-error" htmlFor="error">This field is required</label>
           </div>
@@ -68,7 +68,7 @@ export default function BaptismRegistryAdd() {
           </div>
         </div>
         <div className="death-person-ward-div">
-          <div className="heading-ward">Birth Place</div>
+          <div className="heading-ward">Ward</div>
           <div className="person-death-ward">
             <input type="text" name="Name" />
             <label className="add-family-error" htmlFor="error">This field is required</label>
@@ -82,51 +82,72 @@ export default function BaptismRegistryAdd() {
           </div>
         </div>
         <div className="death-person-ward-div">
-          <div className="heading-ward">Date of Birth</div>
+          <div className="heading-ward">Sickness</div>
+          <div className="person-death-ward">
+            <input type="text" name="Name" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="death-person-sacraments-div">
+          <div className="heading-sacraments">
+            Sacraments Received
+          </div>
+        </div>
+        <div className="death-person-ward-div-sacraments">
+          <div className="heading-confession">Confession</div>
+          <div className="person-death-ward-anointing">
+            <div className="radio-sacraments-1">
+              <input id="confession-yes" name="confession" type="radio" />
+              <label htmlFor="confession-yes">Yes</label>
+            </div>
+            <div className="radio-sacraments-2">
+              <input id="confession-no" name="confession" type="radio" />
+              <label htmlFor="confession-no">No</label>
+            </div>
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="death-person-ward-div-sacraments">
+          <div className="heading-viatium">Viatium</div>
+          <div className="person-death-ward-anointing">
+            <div className="radio-sacraments-1">
+              <input id="viatium-yes" name="viatium" type="radio" />
+              <label htmlFor="viatium-yes">Yes</label>
+            </div>
+            <div className="radio-sacraments-2">
+              <input id="viatium-no" name="viatium" type="radio" />
+              <label htmlFor="viatium-no">No</label>
+            </div>
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="death-person-ward-div-sacraments anointing-div">
+          <div className="heading-anointing">
+            Anointing of sick
+          </div>
+          <div className="person-death-ward-anointing">
+            <div className="radio-sacraments-1">
+              <input id="anointing-yes" name="anointing" type="radio" />
+              <label htmlFor="anointing-yes">Yes</label>
+            </div>
+            <div className="radio-sacraments-2">
+              <input id="anointing-no" name="anointing" type="radio" />
+              <label htmlFor="anointing-no">No</label>
+            </div>
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="death-person-ward-div">
+          <div className="heading-ward">Date of Death</div>
           <div className="person-death-ward">
             <input type="date" name="Name" placeholder="DD-MM-YYYY" />
             <label className="add-family-error" htmlFor="error">This field is required</label>
           </div>
         </div>
         <div className="death-person-ward-div">
-          <div className="heading-ward">Date of Baptism</div>
+          <div className="heading-ward">Date of Burial</div>
           <div className="person-death-ward">
             <input type="date" name="Name" placeholder="DD-MM-YYYY" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Name of Godfather</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Name of Godmother</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Parish of Godfather</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Parish of Godmother</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Name of Minister</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
             <label className="add-family-error" htmlFor="error">This field is required</label>
           </div>
         </div>
@@ -140,7 +161,7 @@ export default function BaptismRegistryAdd() {
       </div>
     </div>
     <div className="registry-photo-div">
-      <IconUpload/>
+      <Icon_Upload/>
       <img className="marriage-photo" src="/marriage.png" alt="image/marriage" />
     </div>
   </div>
