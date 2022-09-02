@@ -36,7 +36,7 @@ export default function AddFamily() {
 
   // Mandatory fields handling function
   function checkInputs(name, value) {
-    console.log(name, value);
+    // console.log(name, value);
     if (name === "familyName") {
       value ? setHouseNameError("hidden") : setHouseNameError("");
     } else if (name === "houseNum") {
@@ -62,7 +62,7 @@ export default function AddFamily() {
             withCredentials: true,
           })
           .then((res) => {
-            console.log(res.data);
+            // console.log(res.data);
             if (res.data.status === "success") {
               const { _id, wardNum } = res.data.data;
               familyId = _id;
@@ -169,7 +169,7 @@ export default function AddFamily() {
           withCredentials: true,
         })
         .then((res) => {
-          console.log("RES : ",res)
+          // console.log("RES : ",res)
           if (res.data.status === "success")
           setTimeout(nav, 2000);
           function nav(){
