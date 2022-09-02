@@ -91,6 +91,7 @@ const Person = () => {
               if (!personDetails.baptism) {
                 navigate('/baptism-registry-add')
               }
+              else navigate('/baptism-registry');
             }}>Baptism Registry</button>
             <button>Engagement Registry</button>
             <button>Marriage Registry</button>

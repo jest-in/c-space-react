@@ -18,13 +18,15 @@ let requestTemplate = {
   place: "",
   dob: "",
   doBaptism: "",
-  godFatherName:'',
-  godFatherParish:'',
-  godMotherName:'',
-  godMotherParish:'',
   minister: "",
   parishPriest: "",
 };
+let godFather={
+
+}
+let godMother={
+
+}
 
 export default function BaptismRegistryadd() {
   const navigate = useNavigate();
@@ -73,8 +75,9 @@ export default function BaptismRegistryadd() {
         const result = res.data.person;
 
         if (res.data.status === "success") {
-          // If father and mother of the person present
-          // if(result.father)
+          // If father,mother details of the person present in database
+          // if(result.father) and if(result.mother)
+          // Get request
 
           setPersonData(result);
         } else navigate("/person");
@@ -180,12 +183,28 @@ export default function BaptismRegistryadd() {
     if (name === "remarks" && !value) {
       return;
     }
+    if(name==='godFatherName'){
+      console.log('GodFatherName');
+      godFather['name']=value;
+      return
+    }
+    if (name === "godFatherParish"){
+      godFather["parish"] = value;
+      console.log(godFather);
+      return
+    } 
+    if (name === "godMotherName"){
+      godMother["name"] = value;
+      return
+    }
+    if (name === "godMotherParish"){
+      godMother["parish"] = value;
+      return
+    } 
     requestTemplate[name] = value;
   }
 
   function submitButton() {
-    // console.log("Request Template:", requestTemplate);
-
     // If data from database has value but requestTemplate has no value
     if (!requestTemplate.familyName && familyName) {
       requestTemplate.familyName=familyName;
@@ -237,19 +256,20 @@ export default function BaptismRegistryadd() {
       error = true;
       setDoBaptismError('');
     }
-    if (!requestTemplate.godFatherName) {
+    if (!godFather.name) {
       error = true;
       setGodFatherNameError("");
     }
-    if (!requestTemplate.godFatherParish) {
+    if (!godFather.parish) {
       error = true;
       setGodFatherParishError('');
     }
-    if (!requestTemplate.godMotherName) {
+    if (!godMother.name) {
+      console.log(godMother);
       error = true;
       setGodMotherNameError("");
     }
-    if (!requestTemplate.godMotherParish) {
+    if (!godMother.parish) {
       error = true;
       setGodMotherParishError("");
     }
@@ -265,6 +285,8 @@ export default function BaptismRegistryadd() {
     // If no error
     if(!error){
       setSubmitButtonHide('hidden');
+      requestTemplate['godFather']=godFather;
+      requestTemplate['godMother']=godMother;
       console.log('Correct data:',requestTemplate);
       axios
         .post(
@@ -280,6 +302,7 @@ export default function BaptismRegistryadd() {
             console.log("success");
             navigate(-1);
           }
+          else setSubmitButtonHide('');
         });
     }
   }
@@ -574,7 +597,7 @@ export default function BaptismRegistryadd() {
           />
         </div>
         <div className="submit-btn-div">
-          <button onClick={() => submitButton()}>Submit</button>
+          <button className={submitButtonHide} onClick={() => submitButton()}>Submit</button>
         </div>
       </div>
     </div>
