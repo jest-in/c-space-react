@@ -162,7 +162,11 @@ export default function DeathRegistryAdd() {
     </div>
     <div className="registry-photo-div">
       <Icon_Upload/>
-      <img className="marriage-photo" src="/marriage.png" alt="image/marriage" />
+      <img
+            className="marriage-photo"
+            src={require("../Assets/marriage.png")}
+            alt="marriage pic"
+          />
     </div>
   </div>
   <div className="desc-div">

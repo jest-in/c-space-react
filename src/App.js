@@ -26,6 +26,7 @@ import DeathRegistryAll from './Registries/death-registry-all';
 import EngagementRegistry from './Registries/engagement-registry';
 import EngagementRegistryAdd from './Registries/engagement-registry-add';
 import EngagementRegistryAll from './Registries/engagement-registry-all';
+import MarriageRegistryAll from './Registries/marriage-registry-all';
 import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
 
@@ -62,6 +63,7 @@ function App() {
         <Route path="/engagement-registry" element={<EngagementRegistry />} exact />
         <Route path="/engagement-registry-add" element={<EngagementRegistryAdd />} exact />
         <Route path="/engagement-registry-all" element={<EngagementRegistryAll />} exact />
+        <Route path="/marriage-registry-all" element={<MarriageRegistryAll />} exact />
       </Routes>
     </>
   );
