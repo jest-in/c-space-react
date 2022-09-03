@@ -27,6 +27,7 @@ let godFather={
 let godMother={
 
 }
+let remarks='';
 
 export default function BaptismRegistryadd() {
   const navigate = useNavigate();
@@ -180,7 +181,8 @@ export default function BaptismRegistryadd() {
       }
     } 
     // If remarks have null value
-    if (name === "remarks" && !value) {
+    if (name === "remarks") {
+      remarks=value;
       return;
     }
     if(name==='godFatherName'){
@@ -204,7 +206,8 @@ export default function BaptismRegistryadd() {
     requestTemplate[name] = value;
   }
 
-  function submitButton() {
+  function submitButton() {      console.log("Correct data:", requestTemplate);
+
     // If data from database has value but requestTemplate has no value
     if (!requestTemplate.familyName && familyName) {
       requestTemplate.familyName=familyName;
@@ -265,7 +268,6 @@ export default function BaptismRegistryadd() {
       setGodFatherParishError('');
     }
     if (!godMother.name) {
-      console.log(godMother);
       error = true;
       setGodMotherNameError("");
     }
@@ -287,6 +289,8 @@ export default function BaptismRegistryadd() {
       setSubmitButtonHide('hidden');
       requestTemplate['godFather']=godFather;
       requestTemplate['godMother']=godMother;
+      if(remarks)
+      requestTemplate['remarks']=remarks;
       console.log('Correct data:',requestTemplate);
       axios
         .post(
@@ -388,7 +392,7 @@ export default function BaptismRegistryadd() {
                   onChange={(event) => inputsHandler(event)}
                 />
                 <label
-                  className={`add-family-error ${fatherNameError  }`}
+                  className={`add-family-error ${fatherNameError}`}
                   htmlFor="error"
                 >
                   This field is required
@@ -427,7 +431,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="place"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${placeError}`}
@@ -453,7 +457,10 @@ export default function BaptismRegistryadd() {
                   type="date"
                   name="dob"
                   placeholder="DD-MM-YYYY"
-                  onBlur={(event) => inputsHandler(event)}
+                  onBlur={(event) => {
+                    if (!event.target.value) inputsHandler(event);
+                  }}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${dobError}`}
@@ -470,7 +477,10 @@ export default function BaptismRegistryadd() {
                   type="date"
                   name="doBaptism"
                   placeholder="DD-MM-YYYY"
-                  onBlur={(event) => inputsHandler(event)}
+                  onBlur={(event) => {
+                    if (!event.target.value) inputsHandler(event);
+                  }}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${doBaptismError}`}
@@ -486,7 +496,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="godFatherName"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${godFatherNameError}`}
@@ -502,7 +512,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="godMotherName"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${godMotherNameError}`}
@@ -518,7 +528,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="godFatherParish"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${godFatherParishError}`}
@@ -534,7 +544,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="godMotherParish"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${godMotherParishError}`}
@@ -550,7 +560,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="minister"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${ministerError}`}
@@ -566,7 +576,7 @@ export default function BaptismRegistryadd() {
                 <input
                   type="text"
                   name="parishPriest"
-                  onBlur={(event) => inputsHandler(event)}
+                  onChange={(event) => inputsHandler(event)}
                 />
                 <label
                   className={`add-family-error ${parishPriestError}`}
@@ -593,11 +603,13 @@ export default function BaptismRegistryadd() {
           <input
             type="text"
             name="remarks"
-            onBlur={(event) => inputsHandler(event)}
+            onChange={(event) => inputsHandler(event)}
           />
         </div>
         <div className="submit-btn-div">
-          <button className={submitButtonHide} onClick={() => submitButton()}>Submit</button>
+          <button className={submitButtonHide} onClick={() => submitButton()}>
+            Submit
+          </button>
         </div>
       </div>
     </div>
