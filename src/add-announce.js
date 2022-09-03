@@ -10,14 +10,14 @@ export default function AddAnnounce() {
   const navigate=useNavigate();
 
   // Select tag value
-  const [selectValue,setSelectValue]=useState(editVisibility?editAnnouncement.visibility:'')
+  const [selectValue,setSelectValue]=useState(editVisibility?editVisibility:'')
 
     // Required field errors
     const [textAreaError,setTextAreaError]=useState('hidden');
     const [typeError, setTypeError] = useState("hidden");
 
     // Announcement state
-    const [announcement,setAnnouncement]=useState(editVisibility?editVisibility:'');
+    const [announcement,setAnnouncement]=useState(editAnnouncement?editAnnouncement:'');
 
     // Input saver
     function announcementDetailsSaver(event){
