@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useState } from 'react';
-// import DeleteIcon from './Assets/DeleteIcon';
-// import EditIcon from './Assets/EditIcon';
+import DeleteIcon from './Assets/DeleteIcon';
+import EditIcon from './Assets/EditIcon';
 import Navigation from './navigation';
 
 import axios from 'axios';
@@ -48,9 +48,9 @@ export default function AllAnnounce() {
               <div className="announce-subject">{announcement}</div>
               <div className="announce-date">{date?date.split('T')[0]:'-'}</div>
               <div className="announce-icons">
-                {/* <DeleteIcon />  */}
+                <DeleteIcon /> 
                 <br />
-                {/* <EditIcon /> */}
+                <EditIcon />
               </div>
             </div>
           );
