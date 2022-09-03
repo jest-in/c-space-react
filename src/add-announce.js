@@ -20,31 +20,29 @@ export default function AddAnnounce() {
     function announcementDetailsSaver(event){
         const {value,name}=event.target;
         console.log('Inputed value:',value);
-        if(name==='announce'&&value==='')
-        setTextAreaError('')
-        else
-        if (name === "announce" && value !== ""){
-          setTextAreaError('hidden');
+        if (name === "announce"){
           setAnnouncement(value);
+          if(value)
+          setTextAreaError("hidden");
+          else setTextAreaError("");
+          return
         }
-        if (name === "announce-type"&&value!=='nothing'){
-          setTypeError('hidden')
+        if(name === "announce-type"){
+          if(value!=='nothing'){
+            setSelectValue(value);
+            setTypeError('hidden')
+          }
+          else setTypeError('');
         }
-        if (name === "announce-type") setSelectValue(value);
     }
 
     // Publish button handler
     function publishButton(){
-
-      if(!selectValue)
-      setTypeError('');
-        // code block
         if(announcement&&selectValue){
           const data = {
             announcement: announcement,
             visibility:selectValue,
           };
-          console.log('Post Data:',data);
           axios
             .post("http://localhost:5000/api/v1/announce", data, {
               withCredentials: true,
@@ -58,42 +56,65 @@ export default function AddAnnounce() {
 
   return (
     <div className="container-family">
-  <Navigation/>
-  <div className="announce-title-div">
-    <div className="family-master">
-      <h1>Add Announcement</h1>
-    </div>
-  </div>
-  <hr />
-  <div className="compose-announcement-div">
-    <div className="add-announce-div">
-      <div className="compose-announce-sub1">
-        <div className="add-announce-content-div">
-          <h1>Compose Announcement</h1>
-          <textarea className="address-input announce-input" cols={13} rows={8} autofocus defaultValue={""} onChange={(event)=>announcementDetailsSaver(event)} />
-          <label className="add-family-error" htmlFor="error">
-            This field is required
-          </label>
+      <Navigation />
+      <div className="announce-title-div">
+        <div className="family-master">
+          <h1>Add Announcement</h1>
         </div>
       </div>
-      <div className="compose-announce-sub2">
-        <div className="announce-type-entry-div">
-          <h1>Select Type</h1>
-          <select name="announce-type" id="announce-type">
-            <option value="private">Private</option>
-            <option value="public">Public</option>
-          </select>
-          <label className="add-family-error" htmlFor="error">
-            This field is required
-          </label>
+      <hr />
+      <div className="compose-announcement-div">
+        <div className="add-announce-div">
+          <div className="compose-announce-sub1">
+            <div className="add-announce-content-div">
+              <h1>Compose Announcement</h1>
+              <textarea
+                className="address-input announce-input"
+                cols={13}
+                rows={8}
+                autoFocus
+                value={announcement}
+                name="announce"
+                onBlur={(event) => announcementDetailsSaver(event)}
+                onChange={(event) => announcementDetailsSaver(event)}
+              />
+              <label
+                className={`add-family-error ${textAreaError}`}
+                htmlFor="error"
+              >
+                This field is required
+              </label>
+            </div>
+          </div>
+          <div className="compose-announce-sub2">
+            <div className="announce-type-entry-div">
+              <h1>Select Type</h1>
+              <select
+                name="announce-type"
+                id="announce-type"
+                value={selectValue ? selectValue : "nothing"}
+                onChange={(event) => announcementDetailsSaver(event)}
+                onBlur={(event) => announcementDetailsSaver(event)}
+              >
+                <option className={typeError ? "hidden" : ""} value="nothing">
+                  nothing selected
+                </option>
+                <option value="private">Private</option>
+                <option value="public">Public</option>
+              </select>
+              <label
+                className={`add-family-error ${typeError}`}
+                htmlFor="error"
+              >
+                This field is required
+              </label>
+            </div>
+          </div>
         </div>
       </div>
+      <div className="publish-btn-div">
+        <button onClick={() => publishButton()}>Publish</button>
+      </div>
     </div>
-  </div>
-  <div className="publish-btn-div">
-    <button onClick={()=>publishButton()}>Publish</button>
-  </div>
-</div>
-
   );
 }
