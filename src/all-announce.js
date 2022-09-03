@@ -5,8 +5,13 @@ import EditIcon from './Assets/EditIcon';
 import Navigation from './navigation';
 
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
+
+let editAnnouncement,editId,editVisibility;
 
 export default function AllAnnounce() {
+
+  const navigate=useNavigate();
 
   // Announcements
   const [announcements,setAnnouncements]=useState([]);
@@ -19,6 +24,21 @@ export default function AllAnnounce() {
       }
     });
   },[])
+
+  function deleteHandler(index){
+    const deletingAnnouncement=announcements[index].id;
+    axios.delete(`http://localhost:5000/api/v1/announce/${deletingAnnouncement}`).then((res)=>{
+      if(res.data.status==='success')
+      setAnnouncements((prev) => prev.filter((announcement, prevIndex)=>prevIndex!==index));
+    });
+  }
+
+  function editHandler(announcement){
+    editAnnouncement=announcement.announcement;
+    editId=announcement.id;
+    editVisibility=announcement.visibility;
+    navigate('/add-announce');
+  }
 
   return (
     <div className="container-family">
@@ -48,9 +68,9 @@ export default function AllAnnounce() {
               <div className="announce-subject">{announcement}</div>
               <div className="announce-date">{date?date.split('T')[0]:'-'}</div>
               <div className="announce-icons">
-                <DeleteIcon /> 
+                <DeleteIcon onClick={()=>deleteHandler(index)} /> 
                 <br />
-                <EditIcon />
+                <EditIcon onClick={()=>editHandler(announcementData)} />
               </div>
             </div>
           );
@@ -59,3 +79,5 @@ export default function AllAnnounce() {
     </div>
   );
 }
+
+export {editAnnouncement,editId,editVisibility};

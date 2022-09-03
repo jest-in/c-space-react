@@ -3,23 +3,25 @@ import { useState } from 'react';
 import Navigation from './navigation';
 
 import axios from 'axios';
+import {editAnnouncement,editId,editVisibility} from './all-announce';
+import {useNavigate } from 'react-router-dom';
 
 export default function AddAnnounce() {
+  const navigate=useNavigate();
 
   // Select tag value
-  const [selectValue,setSelectValue]=useState('')
+  const [selectValue,setSelectValue]=useState(editVisibility?editAnnouncement.visibility:'')
 
     // Required field errors
     const [textAreaError,setTextAreaError]=useState('hidden');
     const [typeError, setTypeError] = useState("hidden");
 
     // Announcement state
-    const [announcement,setAnnouncement]=useState('');
+    const [announcement,setAnnouncement]=useState(editVisibility?editVisibility:'');
 
     // Input saver
     function announcementDetailsSaver(event){
         const {value,name}=event.target;
-        console.log('Inputed value:',value);
         if (name === "announce"){
           setAnnouncement(value);
           if(value)
@@ -39,18 +41,30 @@ export default function AddAnnounce() {
     // Publish button handler
     function publishButton(){
         if(announcement&&selectValue){
-          const data = {
-            announcement: announcement,
-            visibility:selectValue,
-          };
-          axios
-            .post("http://localhost:5000/api/v1/announce", data, {
-              withCredentials: true,
-            })
-            .then((res) => {
-              if(res.data.status==='success')
-              window.location.reload(false);
-            });
+            const data = {
+              announcement: announcement,
+              visibility: selectValue,
+            };
+          if(!editId){
+            axios
+              .post("http://localhost:5000/api/v1/announce", data, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                if (res.data.status === "success")
+                  window.location.reload(false);
+              });
+          }
+          else{
+            axios
+              .post(`http://localhost:5000/api/v1/announce/${editId}`, data, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                if (res.data.status === "success")
+                  navigate('/all-announce');
+              });
+          }
         }
     }
 
@@ -96,7 +110,10 @@ export default function AddAnnounce() {
                 onChange={(event) => announcementDetailsSaver(event)}
                 onBlur={(event) => announcementDetailsSaver(event)}
               >
-                <option className={typeError ? "hidden" : ""} value="nothing">
+                <option
+                  className={`${typeError ? "hidden" : ""} ${editId?'hidden':''}`}
+                  value="nothing"
+                >
                   nothing selected
                 </option>
                 <option value="private">Private</option>
