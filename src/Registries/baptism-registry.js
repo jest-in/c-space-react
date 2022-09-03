@@ -13,12 +13,13 @@ export default function BaptismRegistry() {
 
   useEffect(()=>{
     // Get request
-    axios.get(`http://localhost:5000/api/v1/persons/id/${personId}`).then((res)=>{
-      console.log(res.data);
-      if(res.data.status==='success'){
-        setBaptismDetails(res.data.data);
-      }
-    });
+    axios
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personId}`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          setBaptismDetails(res.data.data);
+        }
+      });
   },[])
 
   return (
@@ -93,13 +94,13 @@ export default function BaptismRegistry() {
             <div className="death-person-ward-div">
               <div className="heading-ward">Date of Birth</div>
               <div className="person-death-ward">
-                {baptismDetails.dob ? baptismDetails.dob : "-"}
+                {baptismDetails.dob ? baptismDetails.dob.split("T")[0] : "-"}
               </div>
             </div>
             <div className="death-person-ward-div">
               <div className="heading-ward">Date of Baptism</div>
               <div className="person-death-ward">
-                {baptismDetails.doBaptism ? baptismDetails.doBaptism : "-"}
+                {baptismDetails.doBaptism ? baptismDetails.doBaptism.split("T")[0] : "-"}
               </div>
             </div>
             <div className="death-person-ward-div">

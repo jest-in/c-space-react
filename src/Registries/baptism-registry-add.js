@@ -71,16 +71,19 @@ export default function BaptismRegistryadd() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
+      .get(
+        `http://localhost:5000/api/v1/persons/relations/${personId}`
+      )
       .then((res) => {
         const result = res.data.person;
 
         if (res.data.status === "success") {
-          // If father,mother details of the person present in database
-          // if(result.father) and if(result.mother)
-          // Get request
-
           setPersonData(result);
+          if (result.baptismName) setBaptismName(result.baptismName);
+          if (result.name) setName(result.name);
+          if (result.familyName) setFamilyName(result.familyName);
+          if(result.father) setFatherName(result.father);
+          if(result.mother) setMotherName(result.mother);
         } else navigate("/person");
       });
   }, []);
@@ -88,8 +91,6 @@ export default function BaptismRegistryadd() {
   // Inputs handler
   function inputsHandler(event) {
     const { name, value } = event.target;
-    console.log("Name:", name);
-    console.log("Value:", value);
     if (name === "father") {
       if (value) {
         setFatherNameError("hidden");
@@ -186,13 +187,11 @@ export default function BaptismRegistryadd() {
       return;
     }
     if(name==='godFatherName'){
-      console.log('GodFatherName');
       godFather['name']=value;
       return
     }
     if (name === "godFatherParish"){
       godFather["parish"] = value;
-      console.log(godFather);
       return
     } 
     if (name === "godMotherName"){
@@ -206,7 +205,7 @@ export default function BaptismRegistryadd() {
     requestTemplate[name] = value;
   }
 
-  function submitButton() {      console.log("Correct data:", requestTemplate);
+  function submitButton() {      
 
     // If data from database has value but requestTemplate has no value
     if (!requestTemplate.familyName && familyName) {
@@ -224,7 +223,6 @@ export default function BaptismRegistryadd() {
     if (!requestTemplate.mother && motherName) {
       requestTemplate.mother = motherName;
     }
-
     // If input fields are empty
     let error=false;
     if (!requestTemplate.familyName && !familyName) {
@@ -283,7 +281,6 @@ export default function BaptismRegistryadd() {
       error = true;
       setParishPriestError("");
     }
-
     // If no error
     if(!error){
       setSubmitButtonHide('hidden');
@@ -291,7 +288,6 @@ export default function BaptismRegistryadd() {
       requestTemplate['godMother']=godMother;
       if(remarks)
       requestTemplate['remarks']=remarks;
-      console.log('Correct data:',requestTemplate);
       axios
         .post(
           `http://localhost:5000/api/v1/registry/baptism-registry/${personId}`,
@@ -301,12 +297,9 @@ export default function BaptismRegistryadd() {
           }
         )
         .then((res) => {
-          // console.log(res.data);
           if (res.data.status === "success") {
-            console.log("success");
             navigate(-1);
-          }
-          else setSubmitButtonHide('');
+          } else setSubmitButtonHide("");
         });
     }
   }
