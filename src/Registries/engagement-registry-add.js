@@ -1,6 +1,7 @@
 import React from 'react'
 import Icon_Menu from '../Assets/Icon_Menu'
 import IconUpload from '../Assets/Icon_Upload'
+import Icon_Search from '../Assets/Icon_Search'
 import Navigation from '../navigation'
 
 export default function EngagementRegistryAdd() {
@@ -24,6 +25,149 @@ export default function EngagementRegistryAdd() {
   <hr />
   <div className="members-entries-div">
     <div className="registry-div">
+
+      <div className="same-parish-check-container">
+  <div className="same-parish-check-div">
+    <h3>
+      Is <span>bride/groom</span> from same parish?
+    </h3>
+    <label className="switch">
+      <input type="checkbox" defaultChecked />
+      <span className="slider round" />
+    </label>
+  </div>
+  <div className="same-parish-entries-container">
+    <div className="select-from-list-heading">
+      <h1>Select from the below list</h1>
+      <input type="text" name="search-name" placeholder="Search" id />
+      <Icon_Search/>
+    </div>
+    <div className="select-from-list-container">
+      <div className="select-from-list-header-container">
+        <div className="select-from-list-headings">
+          <div className="select-name">Name</div>
+          <div className="select-family-name">
+            Family Name
+          </div>
+          <div className="select-fathers-name">
+            Fathers name
+          </div>
+        </div>
+        <hr className="select-hr" />
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+      <div className="select-from-list-data">
+        <div className="select-name">Anil</div>
+        <div className="select-family-name">
+          Kundady
+        </div>
+        <div className="select-fathers-name">
+          Kundan
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
       <div className="registry-details-heading-div">
         <div className="bridegroom-head">Bridegroom</div>
         <div className="name-person-div">
