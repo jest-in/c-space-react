@@ -25,62 +25,6 @@ export default function DeathRegistryAdd() {
   <div className="members-entries-div">
     <div className="registry-div">
       <div className="registry-details-heading-div">
-        <div className="name-person-div">
-          <div className="heading-name">Name</div>
-          <div className="person-name">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="dob-person-div">
-          <div className="heading-dob">House name</div>
-          <div className="person-dob">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="phone-person-div">
-          <div className="heading-phone">Age</div>
-          <div className="person-phone">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="baptism-person-div">
-          <div className="heading-baptism">Father</div>
-          <div className="person-baptism">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="marriage-person-div">
-          <div className="heading-marriage">Mother</div>
-          <div className="person-marriage">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-div">
-          <div className="heading-death">Parish</div>
-          <div className="person-death">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-ward-div">
-          <div className="heading-ward">Ward</div>
-          <div className="person-death-ward">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
-        <div className="death-person-address-div">
-          <div className="heading-address">Address</div>
-          <div className="person-death-address">
-            <input type="text" name="Name" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
-          </div>
-        </div>
         <div className="death-person-ward-div">
           <div className="heading-ward">Sickness</div>
           <div className="person-death-ward">
