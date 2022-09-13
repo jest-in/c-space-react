@@ -95,7 +95,12 @@ const Person = () => {
             }}>Baptism Registry</button>
             <button>Engagement Registry</button>
             <button>Marriage Registry</button>
-            <button>Death Registry</button>
+            <button onClick={()=>{
+              if (!personDetails.death) {
+                navigate('/death-registry-add')
+              }
+              else navigate('/death-registry');
+            }}>Death Registry</button>
           </div>
           <div className="menu-div">
             <IconMenu />
