@@ -49,8 +49,8 @@ export default function EngagementRegistryAll() {
         </div>
         {engagementAll.map((person, index) => {
           const { engagementDate, celebrant } = person;
-          const groomName = person.groomData.name;
-          const brideName = person.brideData.name;
+          const groomName = person.groomData.baptismName;
+          const brideName = person.brideData.baptismName;
           return (
             <div className="member-details-div">
               <div className="mar-slno">{index + 1}</div>

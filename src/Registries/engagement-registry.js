@@ -26,7 +26,7 @@ export default function EngagementRegistry() {
         console.log(res.data);
         if (res.data.status === "success") {
           const result=res.data.data;
-          setName(res.data.data.name);
+          setName(res.data.data.baptismName);
           setGroomData(result.groomData);
           setBrideData(result.brideData);
           setOtherDetails({
@@ -65,7 +65,7 @@ export default function EngagementRegistry() {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                {groomData.name ? groomData.name : "-"}
+                {groomData.baptismName ? groomData.baptismName : "-"}
               </div>
             </div>
             <div className="dob-person-div">
@@ -114,7 +114,7 @@ export default function EngagementRegistry() {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                {brideData.name ? brideData.name : "-"}
+                {brideData.baptismName ? brideData.baptismName : "-"}
               </div>
             </div>
             <div className="dob-person-div">

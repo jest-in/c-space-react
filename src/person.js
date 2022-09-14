@@ -101,7 +101,9 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                navigate("/engagement-registry-add");
+                if(personDetails.maritalStatus==='engaged'&&personDetails.maritalStatus==='married')
+                navigate("/engagement-registry");
+                else navigate("/engagement-registry-add");
               }}
             >
               Engagement Registry
