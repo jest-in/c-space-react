@@ -2,88 +2,168 @@ import React from 'react'
 import Icon_Menu from './Assets/Icon_Menu'
 import Logo from './Assets/logo'
 import Icon_Upload from './Assets/Icon_Upload'
+import { useEffect } from 'react'
+import { useState } from 'react'
+import { personId,personName } from "./person";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import Navigation from './navigation'
 
 export default function MarriageRegistryAdd() {
+  const navigate = useNavigate();
+
+  // Show details
+  const [showDetails,setShowDetails]=useState('hidden');
+
+  // person name
+  const [name,setName]=useState('Loading');
+
+  // Groom details
+  const [GroomData,setGroomData]=useState({});
+
+  // Bride details
+  const [brideData,setBrideData]=useState({});
+
+  // Other details
+  const [otherDetails,setOtherDetails]=useState({
+    marriageDate:'',
+    celebrant:'',
+    witness:'',
+    parishPriest:'',
+    remarks:''
+  })
+
+  // Other details input handler
+  function otherDetailsInputHandler(event){
+    const {name,value}=event.target;
+    setOtherDetails((prev)=>{
+      let data=prev;
+      data[name]=value;
+      console.log(data);
+      return data;
+    })
+  }
+
+  // submit button
+  function submitButton(){
+    let data=otherDetails;
+     axios
+       .post(
+         `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`,
+         data,
+         {
+           withCredentials: true,
+         }
+       )
+       .then((res) => {
+         if (res.data.status === "success") {
+           navigate("/person");
+         }
+       });
+  }
+
+  useEffect(()=>{
+    axios
+      .get(
+        `http://localhost:5000/api/v1/registry/engagement-registry/${personId}`
+      )
+      .then((res) => {
+        if (res.data.status === "success") {
+          const result=res.data.data;
+          setName(personName);
+          setGroomData(result.groomData)
+          setBrideData(result.brideData);
+          setShowDetails('');
+        }
+      });
+  },[])
+
   return (
     <div className="container-family">
-      <header>
-        <div className="nav-div">
-          <nav>
-            <div className="logo-div">
-              <Logo />
-            </div>
-            <div className="navigations">
-              <a href="#">Overview</a>
-              <a className="registry-nav" href="#">
-                Registries
-                <div className="sub-menu1-div">
-                  <ul>
-                    <li>Family Registry</li>
-                    <li>Engagement Registry</li>
-                    <li>Marriage Registry</li>
-                    <li>Death Reigistry</li>
-                  </ul>
-                </div>
-              </a>
-              <a href="#">Transactions</a>
-              <a href="#">Pious Associations</a>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>Jestin George</h1>
+          <h1>{name}</h1>
         </div>
-        <div className="registries-nav-div">
+        <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
           <a href="#">Death Registry</a>
         </div>
-        <div className="menu-div">
+        <div className={`menu-div ${showDetails}`}>
           <Icon_Menu />
         </div>
       </div>
       <hr />
-      <div className="members-entries-div">
+      <div className={`members-entries-div ${showDetails}`}>
         <div className="registry-div">
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.name ? GroomData.name : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">House name</div>
               <div className="person-dob">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.houseName ? GroomData.houseName : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.age ? GroomData.age : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.father ? GroomData.father : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Mother</div>
               <div className="person-marriage">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.mother ? GroomData.mother : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={GroomData.parish ? GroomData.parish : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
           </div>
@@ -93,37 +173,67 @@ export default function MarriageRegistryAdd() {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.name ? brideData.name : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">House name</div>
               <div className="person-dob">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.houseName ? brideData.houseName : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.age ? brideData.age : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.father ? brideData.father : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Mother</div>
               <div className="person-marriage">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.mother ? brideData.mother : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
-                <input type="text" name="Name" />
+                <input
+                  defaultValue={brideData.parish ? brideData.parish : "-"}
+                  readOnly={true}
+                  type="text"
+                  name="Name"
+                />
               </div>
             </div>
           </div>
@@ -133,25 +243,45 @@ export default function MarriageRegistryAdd() {
             <div className="name-person-div">
               <div className="heading-name">Date</div>
               <div className="person-name">
-                <input type="text" name="Name" />
+                <input
+                  type="date"
+                  name="marriageDate"
+                  defaultValue={otherDetails.marriageDate}
+                  onChange={(event) => otherDetailsInputHandler(event)}
+                />
               </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">Celebrant</div>
               <div className="person-dob">
-                <input type="text" name="Name" />
+                <input
+                  type="text"
+                  name="celebrant"
+                  defaultValue={otherDetails.celebrant}
+                  onChange={(event) => otherDetailsInputHandler(event)}
+                />
               </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Witness</div>
               <div className="person-phone">
-                <input type="text" name="Name" />
+                <input
+                  type="text"
+                  name="witness"
+                  defaultValue={otherDetails.witness}
+                  onChange={(event) => otherDetailsInputHandler(event)}
+                />
               </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Parish priest</div>
               <div className="person-baptism">
-                <input type="text" name="Name" />
+                <input
+                  type="text"
+                  name="parisHpriest"
+                  defaultValue={otherDetails.parishPriest}
+                  onChange={(event) => otherDetailsInputHandler(event)}
+                />
               </div>
             </div>
           </div>
@@ -167,13 +297,18 @@ export default function MarriageRegistryAdd() {
         </div>
       </div>
 
-      <div className="desc-div">
+      <div className={`desc-div ${showDetails}`}>
         <div className="desc-heading">Description/Remarks</div>
         <div className="desc-content">
-          <input type="text" name="Description" />
+          <input
+            type="text"
+            name="Description"
+            defaultValue={otherDetails.remarks}
+            onChange={(event) => otherDetailsInputHandler(event)}
+          />
         </div>
         <div className="submit-btn-div">
-          <a href="">Submit</a>
+          <button onClick={() => submitButton()}>Submit</button>
         </div>
       </div>
     </div>

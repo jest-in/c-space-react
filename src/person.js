@@ -7,10 +7,9 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Icon_Add from './Assets/Icon_Add';
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
 
-let gender;
+let gender,personName;
 
 const Person = () => {
 
@@ -37,6 +36,7 @@ const Person = () => {
             setPersonDetails(result);
             setDetailSection('');
             gender=result.gender;
+            personName=result.name;
           }
           else
           navigate('/family-individual');
@@ -90,20 +90,40 @@ const Person = () => {
             <h1>{personDetails.name ? personDetails.name : "-"}</h1>
           </div>
           <div className="registries-nav-div">
-            <button onClick={()=>{
-              if (!personDetails.baptism) {
-                navigate('/baptism-registry-add')
-              }
-              else navigate('/baptism-registry');
-            }}>Baptism Registry</button>
-            <button>Engagement Registry</button>
-            <button>Marriage Registry</button>
-            <button onClick={()=>{
-              if (!personDetails.death) {
-                navigate('/death-registry-add')
-              }
-              else navigate('/death-registry');
-            }}>Death Registry</button>
+            <button
+              onClick={() => {
+                if (!personDetails.baptism) {
+                  navigate("/baptism-registry-add");
+                } else navigate("/baptism-registry");
+              }}
+            >
+              Baptism Registry
+            </button>
+            <button
+              onClick={() => {
+                navigate("/engagement-registry-add");
+              }}
+            >
+              Engagement Registry
+            </button>
+            <button
+              onClick={() => {
+                if (!personDetails.marriage) {
+                  navigate("/marriage-registry-add");
+                } else navigate("/marriage-registry");
+              }}
+            >
+              Marriage Registry
+            </button>
+            <button
+              onClick={() => {
+                if (!personDetails.death) {
+                  navigate("/death-registry-add");
+                } else navigate("/death-registry");
+              }}
+            >
+              Death Registry
+            </button>
           </div>
           <div className="menu-div">
             <IconMenu />
@@ -187,4 +207,4 @@ const Person = () => {
 }
 
 export default Person;
-export {personId,gender};
+export {personId,gender,personName};

@@ -7,11 +7,33 @@ import Navigation from './navigation';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 
-import {personId} from './person'
+import {personId,personName} from './person'
+import { useState } from 'react';
 
 function MarriageRegistry() {
 
   const navigate=useNavigate();
+
+  // show details
+  const [showDetails,setShowDetails]=useState('hidden');
+
+  // person name
+  const [name,setName]=useState('Loading');
+
+  // Groom data
+  const [groomData,setGroomData]=useState({});
+
+  // Bride data
+  const [brideData,setBrideData]=useState({});
+
+  // Other details
+  const [otherDetails, setOtherDetails] = useState({
+    marriageDate: "",
+    celebrant: "",
+    witness: "",
+    parishPriest: "",
+    remarks: "",
+  });
 
   useEffect(()=>{
 
@@ -23,7 +45,20 @@ function MarriageRegistry() {
         `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`
       )
       .then((res)=>{
-        console.log(res.data);
+        if(res.data.status==="success"){
+          const result=res.data.data;
+          setName(personName);
+          setGroomData(result.groomData);
+          setBrideData(result.brideData);
+          setOtherDetails({
+            marriageDate:result.marriageDate,
+            celebrant: result.celebrant,
+            witness: result.witness,
+            parishPriest: result.parishPriest,
+            remarks: result.remarks,
+          });
+          setShowDetails('');
+        }
       });
       else
       navigate(-1)
@@ -31,49 +66,61 @@ function MarriageRegistry() {
 
   return (
     <div className="container-family">
-      <Navigation/>
+      <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>Jestin George</h1>
+          <h1>{name}</h1>
         </div>
-        <div className="registries-nav-div">
+        <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
           <a href="#">Death Registry</a>
         </div>
-        <div className="menu-div">
-          <Icon_Menu/>
+        <div className={`menu-div ${showDetails}`}>
+          <Icon_Menu />
         </div>
       </div>
       <hr />
-      <div className="members-entries-div">
+      <div className={`members-entries-div ${showDetails}`}>
         <div className="registry-div">
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
               <div className="heading-name">Name</div>
-              <div className="person-name">Jestin George</div>
+              <div className="person-name">
+                {groomData.name ? groomData.name : "-"}
+              </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">House name</div>
-              <div className="person-dob">Menachery</div>
+              <div className="person-dob">
+                {groomData.houseName ? groomData.houseName : "-"}
+              </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Age</div>
-              <div className="person-phone">38</div>
+              <div className="person-phone">
+                {groomData.age ? groomData.age : "-"}
+              </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
-              <div className="person-baptism">George</div>
+              <div className="person-baptism">
+                {groomData.father ? groomData.father : "-"}
+              </div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Mother</div>
-              <div className="person-marriage">Rosamma</div>
+              <div className="person-marriage">
+                {groomData.mother ? groomData.mother : "-"}
+              </div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Parish</div>
-              <div className="person-death">St. Sebastian Church, Devagiri</div>
+              <div className="person-death">
+                {groomData.parish ? groomData.parish : "-"}
+              </div>
             </div>
           </div>
 
@@ -81,27 +128,39 @@ function MarriageRegistry() {
             <div className="bridegroom-head bride">Bride</div>
             <div className="name-person-div">
               <div className="heading-name">Name</div>
-              <div className="person-name">Thangamma</div>
+              <div className="person-name">
+                {brideData.name ? brideData.name : "-"}
+              </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">House name</div>
-              <div className="person-dob">Mannukunnel</div>
+              <div className="person-dob">
+                {brideData.houseName ? brideData.houseName : "-"}
+              </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Age</div>
-              <div className="person-phone">35</div>
+              <div className="person-phone">
+                {brideData.age ? brideData.age : "-"}
+              </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
-              <div className="person-baptism">Avarachan</div>
+              <div className="person-baptism">
+                {brideData.father ? brideData.father : "-"}
+              </div>
             </div>
             <div className="marriage-person-div">
               <div className="heading-marriage">Mother</div>
-              <div className="person-marriage">Avaramma</div>
+              <div className="person-marriage">
+                {brideData.mother ? brideData.mother : "-"}
+              </div>
             </div>
             <div className="death-person-div">
               <div className="heading-death">Parish</div>
-              <div className="person-death">St. John’s Church, Pogayor</div>
+              <div className="person-death">
+                {brideData.parish ? brideData.parish : "-"}
+              </div>
             </div>
           </div>
 
@@ -109,19 +168,29 @@ function MarriageRegistry() {
             <div className="bridegroom-head bride">Other details</div>
             <div className="name-person-div">
               <div className="heading-name">Date</div>
-              <div className="person-name">15-06-2028</div>
+              <div className="person-name">
+                {otherDetails.engagementDate
+                  ? otherDetails.engagementDate
+                  : "-"}
+              </div>
             </div>
             <div className="dob-person-div">
               <div className="heading-dob">Celebrant</div>
-              <div className="person-dob">Fr. James Fernandis</div>
+              <div className="person-dob">
+                {otherDetails.celebrant ? otherDetails.celebrant : "-"}
+              </div>
             </div>
             <div className="phone-person-div">
               <div className="heading-phone">Witness</div>
-              <div className="person-phone">Appachan, Leelamma</div>
+              <div className="person-phone">
+                {otherDetails.witness ? otherDetails.witness : "-"}
+              </div>
             </div>
             <div className="baptism-person-div">
               <div className="heading-baptism">Parish priest</div>
-              <div className="person-baptism">Avarachan</div>
+              <div className="person-baptism">
+                {otherDetails.parishPriest ? otherDetails.parishPriest : "-"}
+              </div>
             </div>
           </div>
         </div>
@@ -136,18 +205,11 @@ function MarriageRegistry() {
         </div>
       </div>
 
-      <div className="desc-div">
+      <div className={`desc-div ${showDetails}`}>
         <div className="desc-heading">Description/Remarks</div>
         <div className="desc-content">
-          <span className="blank-space"></span>a Contrary to popular belief,
-          Lorem Ipsum is not simply random text. It has roots in a piece of
-          classical Latin literature from 45 BC, making it over 2000 years old.
-          Richard McClintock, a Latin professor at Hampden-Sydney College in
-          Virginia, looked up one of the more obscure Latin words, consectetur,
-          from a Lorem Ipsum passage, and going through the cites of the word in
-          classical literature, discovered the undoubtable source. Lorem Ipsum
-          comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-          Malorum".{" "}
+          <span className="blank-space"></span>
+          {otherDetails.remarks ? otherDetails.remarks : "-"}
         </div>
       </div>
     </div>
