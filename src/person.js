@@ -92,7 +92,7 @@ const Person = () => {
           <div className="registries-nav-div">
             <button
               onClick={() => {
-                if (!personDetails.baptism) {
+                if (!personDetails.doBaptism) {
                   navigate("/baptism-registry-add");
                 } else navigate("/baptism-registry");
               }}
@@ -153,8 +153,8 @@ const Person = () => {
             <div className="baptism-person-div">
               <div className="heading-baptism">Baptism</div>
               <div className="person-baptism">
-                {personDetails.baptism
-                  ? personDetails.baptism.split("T")[0]
+                {personDetails.doBaptism
+                  ? personDetails.doBaptism.split("T")[0]
                   : "-"}
               </div>
             </div>

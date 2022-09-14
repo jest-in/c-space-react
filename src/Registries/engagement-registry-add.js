@@ -253,6 +253,7 @@ export default function EngagementRegistryAdd() {
         const result = res.data.person;
 
         if (res.data.status === "success") {
+          console.log('Relations:',result);
           setPersonName(result.name);
           if(gender==='M')
           setBrideGroom(result);
