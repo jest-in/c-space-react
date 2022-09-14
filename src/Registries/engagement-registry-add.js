@@ -162,16 +162,14 @@ export default function EngagementRegistryAdd() {
   // Clicking a person handler
   function clickPersonHandler(id) {
     axios
-      .get(`http://localhost:5000/api/v1/persons/relations/${id}`)
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`)
       .then((res) => {
-        const result = res.data.person;
+        const result = res.data.data;
 
         if (res.data.status === "success") {
-          partnerId=result.id;
-          if(gender==='F')
-          setBrideGroom(result);
-          else
-          setBride(result);
+          partnerId = result.id;
+          if (gender === "F") setBrideGroom(result);
+          else setBride(result);
         }
       });
   }
