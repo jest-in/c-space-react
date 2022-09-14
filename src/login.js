@@ -2,15 +2,50 @@ import Logo from "./Assets/logo";
 import axios from "axios";
 
 import {useNavigate} from 'react-router-dom'
+import { useState } from "react";
 
 function Login() {
 const navigate=useNavigate();
 
-  const data = {
-    loginId: "123456",
-    password: "pass12345",
-  };
+  // Errors
+  const [userIdError,setUserIdError]=useState('hidden');
+  const [passwordError, setPasswordError] = useState("hidden");
+
+  // Credentials
+  const [credentials,setCredentials]=useState({});
+
+  // Input Handler
+  function inputsHandler(event){
+    const {name,value}=event.target;
+    if(name==='loginId')
+    value?setUserIdError('hidden'):setUserIdError('');
+    else
+    value ? setPasswordError("hidden") : setPasswordError("");
+    setCredentials((prev)=>{
+      let data=prev;
+      data[name]=value;
+      return data;
+    })
+  }
+
   function authentication() {
+    if(!credentials.loginId)
+    setUserIdError('');
+    if(!credentials.password)
+    setPasswordError('');
+    if(credentials.loginId&&credentials.password){
+      console.log('Data:',credentials);
+      axios
+        .post(
+          "http://localhost:5000/api/v1/users/login",
+          credentials,
+          { withCredentials: true }
+        )
+        .then((res) => {
+          console.log(res.data);
+          if (res.data.status === "success") navigate("/family");
+        });
+    }
     // fetch("http://localhost:5000/api/v1/users/login", {
     //   method: "POST",
     //   credentials:'include',
@@ -21,18 +56,6 @@ const navigate=useNavigate();
     // })
     //   .then((response) => response.json())
     //   .then((response) => console.log(response));
-
-    axios
-      .post(
-        "http://localhost:5000/api/v1/users/login",
-        { loginId: "123456", password: "pass12345" },
-        { withCredentials: true }
-      )
-      .then((res) => {
-        console.log(res.data);
-        if(res.data.status==='success')
-        navigate('/family');
-      });
   }
   return (
     <>
@@ -41,14 +64,14 @@ const navigate=useNavigate();
           <div className="forms">
           <label className="user-id" htmlFor="uid">User id</label>
 
-            <input type="text" name="uid" id="uid" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input type="text" name="loginId" id="uid" defaultValue={credentials.loginId?credentials.loginId:''} onChange={(event)=>inputsHandler(event)} />
+            <label className={`add-family-error ${userIdError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
 
             <label className="password-text" htmlFor="password">
               Password
             </label>
-            <input type="password" name="password" id="password" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input type="password" name="password" id="password"defaultValue={credentials.password?credentials.password:''} onChange={(event)=>inputsHandler(event)} />
+            <label className={`add-family-error ${passwordError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
             <input type='submit' value='Log-In' className="login-btn" onClick={()=>authentication()}/>
             
 
