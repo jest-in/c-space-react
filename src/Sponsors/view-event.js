@@ -5,6 +5,9 @@ import Navigation from '../navigation'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// For exporting to individual-event
+let eventId;
+
 export default function ViewEvent() {
   const navigate = useNavigate();
 
@@ -43,9 +46,9 @@ export default function ViewEvent() {
           <div className="public-spons-amt">Amount</div>
         </div>
         {offers.map((event, index) => {
-          const { name, festDate, amount } = event;
+          const { name, festDate, amount,id } = event;
           return (
-            <div className="member-details-div" key={index}>
+            <div className="member-details-div" key={index} onClick={()=>eventId=id}>
               <div className="public-spons-slno">{index}</div>
               <div className="public-spons-date">{festDate}</div>
               <div className="public-spons-event">{name}</div>
@@ -57,3 +60,5 @@ export default function ViewEvent() {
     </div>
   );
 }
+
+export {eventId};

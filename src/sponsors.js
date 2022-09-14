@@ -1,6 +1,8 @@
 import axios from 'axios'
 import React from 'react'
+import { useState } from 'react'
 import Navigation from './navigation'
+import {eventId} from './Sponsors/individual-event'
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -19,6 +21,53 @@ function loadScript(src) {
 const __DEV__ = document.domain === 'localhost'
 
 export default function Sponsors() {
+
+  // Errors
+  const [nameError,setNameError]=useState('hidden');
+  const [descriptionError, setDescriptionError] = useState("hidden");
+  const [houseNameError, setHouseNameError] = useState("hidden");
+  const [contactError, setContactError] = useState("hidden");
+  const [amountError, setAmountError] = useState("hidden");
+
+  // inputs
+  const [inputs,setInputs]=useState({});
+
+  // Input handler
+  function inputHandler(event){
+    const {name,value}=event.target;
+    if (name === "name") {
+      value?setNameError('hidden'):setNameError('');
+    } else if (name === "houseName") {
+      value ? setHouseNameError("hidden") : setHouseNameError("");
+    } else if (name === "description") {
+      value ? setDescriptionError("hidden") : setDescriptionError("");
+    } else if (name === "contact") {
+      value ? setContactError("hidden") : setContactError("");
+    } else if (name === "amount") {
+      value ? setAmountError("hidden") : setAmountError("");
+    }
+    setInputs((prev)=>{
+      let data=prev;
+      data[name]=value;
+      console.log('Data:',data);
+      return data;
+    })
+  }
+
+  // make payment button
+  function makePaymentButton(){
+    if(!inputs.name)setNameError('');
+    if (!inputs.description) setDescriptionError("");
+    if (!inputs.houseName) setHouseNameError("");
+    if (!inputs.contact) setContactError("");
+    if (!inputs.amount) setAmountError("");
+    if(inputs.name&&inputs.description&&inputs.houseName&&inputs.contact&&inputs.amount){
+      console.log('Correct data',inputs);
+      // If all fields are entered then
+      displayRazorpay();
+    }
+  }
+
 	// const payeeInfo = {
 	// 	name: "isac",
 	// 	phoneNumber: "1234567890",
@@ -39,8 +88,8 @@ export default function Sponsors() {
 		// 	res.json()
 		// )
 		let data;
-		await axios.post('http://localhost:5000/api/v1/payment/paynow/6305c2a430f4d701ec04cc1a', 
-			{ baptismName: "isac", description: "for fun. Yoo!", phoneNum:7022741913, self:true },
+		await axios.post(`http://localhost:5000/api/v1/payment/paynow/${eventId}`, 
+			{ baptismName: inputs.name, description:inputs.description, phoneNum:inputs.contact, self:true },
 		    { withCredentials: true }
 		)
 		.then((res) => {
@@ -92,37 +141,37 @@ export default function Sponsors() {
         <div className="inner-div-1 payment-inner-div-1">
           <div className="house-name-div">
             <h1>Name</h1>
-            <input className="house-name-input" type="text" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input className="house-name-input" name='name' type="text" onChange={(event)=>inputHandler(event)} />
+            <label className={`add-family-error ${nameError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
           <div className="address-div">
             <h1>Description</h1>
-            <textarea className="address-input" cols={13} rows={4} defaultValue={""} />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <textarea className="address-input" name='description'  onChange={(event)=>inputHandler(event)} cols={13} rows={4} defaultValue={""} />
+            <label className={`add-family-error ${descriptionError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
         </div>
         <div className="inner-div-2 payment-inner-div-2">
           <div className="houseno-div">
             <h1>House Name</h1>
-            <input className="house-no-input" type="text" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input className="house-no-input" name='houseName' type="text" onChange={(event)=>inputHandler(event)} />
+            <label className={`add-family-error ${houseNameError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
           <div className="ward-div">
             <h1>Contact No</h1>
-            <input className="house-no-input" type="text" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input className="house-no-input" name='contact' type="text" onChange={(event)=>inputHandler(event)} />
+            <label className={`add-family-error ${contactError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
           <div className="ward-div">
             <h1>Amount</h1>
-            <input className="house-no-input" type="text" />
-            <label className="add-family-error" htmlFor="error">This field is required</label>
+            <input className="house-no-input" name='amount' type="text" onChange={(event)=>inputHandler(event)} />
+            <label className={`add-family-error ${amountError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
         </div>
       </div>
     </div>
   </div>
   <div className="publish-btn-div">
-    <button onClick={displayRazorpay}>Make Payment</button>
+    <button onClick={()=>makePaymentButton()}>Make Payment</button>
   </div>
 </div>
 
