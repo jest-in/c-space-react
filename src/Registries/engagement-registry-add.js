@@ -99,8 +99,8 @@ export default function EngagementRegistryAdd() {
     let error=true;
     let data={};
     if(!boxChecked){
-        const {name,familyName,father,mother,parish,dob,doBaptism,place}=(gender==='M'?bride:brideGroom);
-        if(!name)
+        const {baptismName,familyName,father,mother,parish,dob,doBaptism,place}=(gender==='M'?bride:brideGroom);
+        if(!baptismName)
           setNameError('')
         if(!familyName)
         setFamilyNameError('')
@@ -116,8 +116,8 @@ export default function EngagementRegistryAdd() {
         setDoBaptismError('')
         if(!place)
         setPlaceError('')
-        console.log(name,familyName,father,mother,parish,dob,doBaptism,place);
-        if(name&&familyName&&father&&mother&&dob&&doBaptism&&place){
+        console.log(baptismName,familyName,father,mother,parish,dob,doBaptism,place);
+        if(baptismName&&familyName&&father&&mother&&dob&&doBaptism&&place){
           error=false;
           data["groomData"] = {
             name: brideGroom.baptismName,
@@ -222,7 +222,7 @@ export default function EngagementRegistryAdd() {
   // Bride groom section handler
   function inputsOfBrideGroom(event){
     const {name,value}=event.target;
-    if (name==='name'){
+    if (name==='baptismName'){
       value?setNameError("hidden"):setNameError('');
     }
     if (name==='familyName'){
@@ -257,7 +257,7 @@ export default function EngagementRegistryAdd() {
   // Bride section input handler
   function inputsOfBride(event){
     const { name, value } = event.target;
-    if (name === "name") {
+    if (name === "baptismName") {
       value ? setNameError("hidden") : setNameError("");
     }
     if (name === "familyName") {
@@ -384,7 +384,7 @@ export default function EngagementRegistryAdd() {
                 <input
                   defaultValue={brideGroom.baptismName ? brideGroom.baptismName : ""}
                   type="text"
-                  name="name"
+                  name="baptismName"
                   onChange={(event) => inputsOfBrideGroom(event)}
                   readOnly={boxChecked ? true : gender === "M" ? true : false}
                 />
@@ -604,7 +604,7 @@ export default function EngagementRegistryAdd() {
                   defaultValue={bride.baptismName ? bride.baptismName : ""}
                   readOnly={boxChecked ? true : gender === "F" ? true : false}
                   type="text"
-                  name="name"
+                  name="baptismName"
                   onChange={(event) => inputsOfBride(event)}
                 />
                 <label
