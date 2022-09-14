@@ -439,7 +439,7 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            <div className="death-person-div">
+            {/* <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
@@ -464,7 +464,7 @@ export default function EngagementRegistryAdd() {
                   {parishError ? parishError : "This field is required"}
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="name-person-div">
               <div className="heading-name">Date of Birth</div>
               <div className="person-name">
@@ -656,7 +656,7 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            <div className="death-person-div">
+            {/* <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
@@ -681,7 +681,7 @@ export default function EngagementRegistryAdd() {
                   {parishError ? parishError : "This field is required"}
                 </label>
               </div>
-            </div>
+            </div> */}
             <div className="name-person-div">
               <div className="heading-name">Date of Birth</div>
               <div className="person-name">
