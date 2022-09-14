@@ -248,7 +248,7 @@ export default function EngagementRegistryAdd() {
     axios
       .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personId}`)
       .then((res) => {
-        const result = res.data.person;
+        const result = res.data.data;
 
         if (res.data.status === "success") {
           console.log('Relations:',result);
