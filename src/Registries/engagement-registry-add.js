@@ -6,7 +6,7 @@ import Navigation from '../navigation'
 import { useEffect } from 'react'
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { personId,gender } from '../person';
+import { personId,gender,personName } from '../person';
 
 let partnerId;
 
@@ -81,7 +81,7 @@ export default function EngagementRegistryAdd() {
     if (checked) {
       axios
         .get(
-          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender==='M'?'F':'M'}`
+          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender==='M'?'F':'M'}&sort=baptismName`
         )
         .then((res) => {
           const result = res.data.persons;
@@ -122,6 +122,7 @@ export default function EngagementRegistryAdd() {
         }
     }
     else{
+      error=false;
       data['partnerId']=partnerId;
     }
     if(!otherDetails.engagementDate){
@@ -145,7 +146,7 @@ export default function EngagementRegistryAdd() {
       // Post request
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${personId}`,
+          `http://localhost:5000/api/v1/registry/engagement-registry/${personId}`,
           data,
           {
             withCredentials: true,
