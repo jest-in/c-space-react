@@ -81,7 +81,7 @@ export default function EngagementRegistryAdd() {
     if (checked) {
       axios
         .get(
-          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender}`
+          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender==='M'?'F':'M'}`
         )
         .then((res) => {
           const result = res.data.persons;
