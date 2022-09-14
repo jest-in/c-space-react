@@ -45,6 +45,7 @@ function MarriageRegistry() {
         `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`
       )
       .then((res)=>{
+        console.log("RES : ",res.data)
         if(res.data.status==="success"){
           const result=res.data.data;
           setName(personName);

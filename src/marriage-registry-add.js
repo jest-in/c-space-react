@@ -9,6 +9,9 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navigation from './navigation'
 
+// Id for posting marriage registry
+let engagementRegId;
+
 export default function MarriageRegistryAdd() {
   const navigate = useNavigate();
 
@@ -49,7 +52,7 @@ export default function MarriageRegistryAdd() {
     let data=otherDetails;
      axios
        .post(
-         `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`,
+         `http://localhost:5000/api/v1/registry/marriage-registry/${engagementRegId}`,
          data,
          {
            withCredentials: true,
@@ -70,7 +73,9 @@ export default function MarriageRegistryAdd() {
       .then((res) => {
         if (res.data.status === "success") {
           const result=res.data.data;
+          console.log("RES ENTERD: ",result.groomData)
           setName(personName);
+          engagementRegId=result._id;
           setGroomData(result.groomData)
           setBrideData(result.brideData);
           setShowDetails('');
@@ -104,8 +109,7 @@ export default function MarriageRegistryAdd() {
               <div className="heading-name">Name</div>
               <div className="person-name">
                 <input
-                  defaultValue={GroomData.name ? GroomData.name : "-"}
-                  readOnly={true}
+                  value={GroomData.baptismName ? GroomData.baptismName : "-"}
                   type="text"
                   name="Name"
                 />
@@ -115,8 +119,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-dob">House name</div>
               <div className="person-dob">
                 <input
-                  defaultValue={GroomData.houseName ? GroomData.houseName : "-"}
-                  readOnly={true}
+                  value={GroomData.familyName ? GroomData.familyName : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -126,8 +130,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 <input
-                  defaultValue={GroomData.age ? GroomData.age : "-"}
-                  readOnly={true}
+                  value={GroomData.age ? GroomData.age : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -137,8 +141,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
                 <input
-                  defaultValue={GroomData.father ? GroomData.father : "-"}
-                  readOnly={true}
+                  value={GroomData.father ? GroomData.father : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -148,8 +152,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-marriage">Mother</div>
               <div className="person-marriage">
                 <input
-                  defaultValue={GroomData.mother ? GroomData.mother : "-"}
-                  readOnly={true}
+                  value={GroomData.mother ? GroomData.mother : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -159,8 +163,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
-                  defaultValue={GroomData.parish ? GroomData.parish : "-"}
-                  readOnly={true}
+                  value={GroomData.parish ? GroomData.parish : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -174,8 +178,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-name">Name</div>
               <div className="person-name">
                 <input
-                  defaultValue={brideData.name ? brideData.name : "-"}
-                  readOnly={true}
+                  value={brideData.baptismName ? brideData.baptismName : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -185,8 +189,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-dob">House name</div>
               <div className="person-dob">
                 <input
-                  defaultValue={brideData.houseName ? brideData.houseName : "-"}
-                  readOnly={true}
+                  value={brideData.familyName ? brideData.familyName : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -196,8 +200,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 <input
-                  defaultValue={brideData.age ? brideData.age : "-"}
-                  readOnly={true}
+                  value={brideData.age ? brideData.age : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -207,8 +211,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
                 <input
-                  defaultValue={brideData.father ? brideData.father : "-"}
-                  readOnly={true}
+                  value={brideData.father ? brideData.father : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -218,8 +222,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-marriage">Mother</div>
               <div className="person-marriage">
                 <input
-                  defaultValue={brideData.mother ? brideData.mother : "-"}
-                  readOnly={true}
+                  value={brideData.mother ? brideData.mother : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -229,8 +233,8 @@ export default function MarriageRegistryAdd() {
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
-                  defaultValue={brideData.parish ? brideData.parish : "-"}
-                  readOnly={true}
+                  value={brideData.parish ? brideData.parish : "-"}
+                  
                   type="text"
                   name="Name"
                 />
@@ -278,7 +282,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-baptism">
                 <input
                   type="text"
-                  name="parisHpriest"
+                  name="parishPriest"
                   defaultValue={otherDetails.parishPriest}
                   onChange={(event) => otherDetailsInputHandler(event)}
                 />
@@ -302,7 +306,7 @@ export default function MarriageRegistryAdd() {
         <div className="desc-content">
           <input
             type="text"
-            name="Description"
+            name="remarks"
             defaultValue={otherDetails.remarks}
             onChange={(event) => otherDetailsInputHandler(event)}
           />
