@@ -27,6 +27,9 @@ import EngagementRegistry from './Registries/engagement-registry';
 import EngagementRegistryAdd from './Registries/engagement-registry-add';
 import EngagementRegistryAll from './Registries/engagement-registry-all';
 import MarriageRegistryAll from './Registries/marriage-registry-all';
+import CreateEvent from './Sponsors/create-event';
+import ViewEvent from './Sponsors/view-event';
+import IndividualEvent from './Sponsors/individual-event';
 import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
 
@@ -64,6 +67,9 @@ function App() {
         <Route path="/engagement-registry-add" element={<EngagementRegistryAdd />} exact />
         <Route path="/engagement-registry-all" element={<EngagementRegistryAll />} exact />
         <Route path="/marriage-registry-all" element={<MarriageRegistryAll />} exact />
+        <Route path="/create-event" element={<CreateEvent />} exact />
+        <Route path="/view-event" element={<ViewEvent />} exact />
+        <Route path="/individual-event" element={<IndividualEvent />} exact />
       </Routes>
     </>
   );

@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React from 'react'
+import Navigation from './navigation'
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -55,9 +56,10 @@ export default function Sponsors() {
 			description: 'Thank you for nothing. Please give us some money',
 			image: 'http://localhost:1337/logo.svg',
 			handler: function (response) {
-				alert(response.razorpay_payment_id)
-				alert(response.razorpay_order_id)
-				alert(response.razorpay_signature)
+				// alert(response.razorpay_payment_id)
+				// alert(response.razorpay_order_id)
+				// alert(response.razorpay_signature)
+				console.log('PAY RES : ',response)
 			},
 			prefill: {
 				name:'isac',
@@ -71,9 +73,59 @@ export default function Sponsors() {
     }
 
   return (
-    <div>
-    <h1>HELLO</h1>
-    <button onClick={displayRazorpay}>click</button>
+    // <div>
+    // <h1>HELLO</h1>
+    // <button onClick={displayRazorpay}>click</button>
+    // </div>
+
+	<div className="container-family">
+  <Navigation/>
+  <div className="announce-title-div">
+    <div className="family-master">
+      <h1>Make Payment</h1>
     </div>
+  </div>
+  <hr />
+  <div className="compose-announcement-div">
+    <div className="family-details-div">
+      <div className="payment-entries">
+        <div className="inner-div-1 payment-inner-div-1">
+          <div className="house-name-div">
+            <h1>Name</h1>
+            <input className="house-name-input" type="text" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+          <div className="address-div">
+            <h1>Description</h1>
+            <textarea className="address-input" cols={13} rows={4} defaultValue={""} />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+        <div className="inner-div-2 payment-inner-div-2">
+          <div className="houseno-div">
+            <h1>House Name</h1>
+            <input className="house-no-input" type="text" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+          <div className="ward-div">
+            <h1>Contact No</h1>
+            <input className="house-no-input" type="text" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+          <div className="ward-div">
+            <h1>Amount</h1>
+            <input className="house-no-input" type="text" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div className="publish-btn-div">
+    <button onClick={displayRazorpay}>Make Payment</button>
+  </div>
+</div>
+
+
   )
 }

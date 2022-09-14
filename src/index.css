@@ -2729,6 +2729,28 @@ footer h1 {
     background-color: #332c9b;
 }
 
+/*Sponsers Page Start
+----------------------------------------------------------------*/
+
+.public-spons-slno {
+    width: 15%;
+}
+
+.public-spons-date {
+    width: 20%;
+}
+
+.public-spons-event {
+    width: 50%;
+}
+
+.public-spons-amt {
+    width: 15%;
+}
+
+/*Sponsers Page End
+----------------------------------------------------------------*/
+
 
 /* ****************************** */
 .switch {
@@ -2877,4 +2899,37 @@ span {
 
 .select-fathers-name {
     width: 33.33%;
+}
+
+.payment-entries {
+    display: flex;
+    width: 100%;
+}
+
+.payment-inner-div-1 {
+    margin-left: 300px;
+}
+
+.payment-inner-div-2 {
+    margin-right: 400px;
+}
+
+.event-details-div {
+    width: 100%;
+    display: flex;
+    margin-left: 90px;
+    margin-bottom: 50px;
+}
+
+.event-details-hr {
+    border: 2px solid var(--hover-underline);
+}
+
+.add-payment-btn {
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+
+.event-details-sponsers {
+    margin-bottom: 100px;
 }

@@ -39,6 +39,7 @@ export default function Navigation() {
                 </ul>
               </div>
             </a>
+            <a href="#">Offerings/Donations</a>
           </div>
         </nav>
       </div>
