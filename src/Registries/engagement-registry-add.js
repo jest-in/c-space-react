@@ -120,7 +120,7 @@ export default function EngagementRegistryAdd() {
         if(baptismName&&familyName&&father&&mother&&dob&&doBaptism&&place){
           error=false;
           data["groomData"] = {
-            name: brideGroom.baptismName,
+            baptismName: brideGroom.baptismName,
             familyName: brideGroom.familyName,
             father: brideGroom.father,
             mother: brideGroom.mother,
@@ -130,7 +130,7 @@ export default function EngagementRegistryAdd() {
             place: brideGroom.place,
           };
           data["brideData"] = {
-            name: bride.baptismName,
+            baptismName: bride.baptismName,
             familyName: bride.familyName,
             father: bride.father,
             mother: bride.mother,
@@ -145,7 +145,7 @@ export default function EngagementRegistryAdd() {
       error=false;
       data['partnerId']=partnerId;
       data["groomData"] = {
-        name: brideGroom.baptismName,
+        baptismName: brideGroom.baptismName,
         familyName: brideGroom.familyName,
         father: brideGroom.father,
         mother: brideGroom.mother,
@@ -155,7 +155,7 @@ export default function EngagementRegistryAdd() {
         place: brideGroom.place,
       };
       data["brideData"] = {
-        name: bride.baptismName,
+        baptismName: bride.baptismName,
         familyName: bride.familyName,
         father: bride.father,
         mother: bride.mother,
