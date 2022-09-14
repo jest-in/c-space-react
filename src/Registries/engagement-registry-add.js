@@ -116,14 +116,55 @@ export default function EngagementRegistryAdd() {
         setDoBaptismError('')
         if(!place)
         setPlaceError('')
-        if(name&&familyName&&father&&mother&&parish&&dob&&doBaptism&&place){
+        console.log(name,familyName,father,mother,parish,dob,doBaptism,place);
+        if(name&&familyName&&father&&mother&&dob&&doBaptism&&place){
           error=false;
-          data[gender==='M'?'brideData':'groomData']=(gender==='M'?bride:brideGroom);
+          data["groomData"] = {
+            name: brideGroom.baptismName,
+            familyName: brideGroom.familyName,
+            father: brideGroom.father,
+            mother: brideGroom.mother,
+            // parish: brideGroom.parish,
+            dob: brideGroom.dob.split("T")[0],
+            doBaptism: brideGroom.doBaptism.split("T")[0],
+            place: brideGroom.place,
+          };
+          data["brideData"] = {
+            name: bride.baptismName,
+            familyName: bride.familyName,
+            father: bride.father,
+            mother: bride.mother,
+            // parish: bride.parish,
+            dob: bride.dob.split("T")[0],
+            doBaptism: bride.doBaptism.split("T")[0],
+            place: bride.place,
+          };
         }
     }
     else{
       error=false;
       data['partnerId']=partnerId;
+      data["groomData"] = {
+        name: brideGroom.baptismName,
+        familyName: brideGroom.familyName,
+        father: brideGroom.father,
+        mother: brideGroom.mother,
+        // parish: brideGroom.parish,
+        dob: brideGroom.dob.split("T")[0],
+        doBaptism: brideGroom.doBaptism.split("T")[0],
+        place: brideGroom.place,
+      };
+      data["brideData"] = {
+        name: bride.baptismName,
+        familyName: bride.familyName,
+        father: bride.father,
+        mother: bride.mother,
+        // parish: bride.parish,
+        dob: bride.dob.split("T")[0],
+        doBaptism: bride.doBaptism.split("T")[0],
+        place: bride.place,
+      };
+      console.log(data);
     }
     if(!otherDetails.engagementDate){
       error=true;
@@ -139,11 +180,14 @@ export default function EngagementRegistryAdd() {
     }
     
     if (!error) {
+      console.log('No error');
       data["engagementDate"] = otherDetails.engagementDate;
       data["celebrant"] = otherDetails.celebrant;
       data["parishPriest"] = otherDetails.parishPriest;
       if (otherDetails.remarks) data["remarks"] = otherDetails.remarks;
-      // Post request
+
+    console.log("Final data:", data);
+    console.log("Error:", error);      // Post request
       axios
         .post(
           `http://localhost:5000/api/v1/registry/engagement-registry/${personId}`,
@@ -168,7 +212,7 @@ export default function EngagementRegistryAdd() {
         const result = res.data.data;
 
         if (res.data.status === "success") {
-          partnerId = result.id;
+          partnerId = result.userId;
           if (gender === "F") setBrideGroom(result);
           else setBride(result);
         }
@@ -533,7 +577,7 @@ export default function EngagementRegistryAdd() {
             >
               <div className="heading-death">Place of Baptism</div>
               <div className="person-death">
-                <input type="text" name="place" />
+                <input type="text" name="place" onChange={(event)=>inputsOfBrideGroom(event)} />
                 <label
                   className={`add-family-error ${
                     !boxChecked
@@ -746,7 +790,7 @@ export default function EngagementRegistryAdd() {
             >
               <div className="heading-death">Place of Baptism</div>
               <div className="person-death">
-                <input type="text" name="place" />
+                <input type="text" name="place" onChange={(event)=>inputsOfBrideGroom(event)} />
                 <label
                   className={`add-family-error ${
                     !boxChecked
