@@ -13,6 +13,7 @@ import Logo from "./Assets/logo";
 
 import axios from "axios";
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
+import Navigation from "./navigation";
 
 const url = "http://localhost:5000/api/v1/family";
 
@@ -63,37 +64,7 @@ export default function Family() {
   return (
     <>
       <div className="families-container">
-        <header>
-          <div className="nav-div">
-            <nav>
-              <div className="logo-div">
-                <Logo />
-              </div>
-              <div className="navigations">
-                <a href="#">Overview</a>
-                <a className="registry-nav" href="#">
-                  Registries
-                  <div className="sub-menu1-div">
-                    <ul>
-                      <div className="sub-menu-registries-div">
-                        <li>Family Registry</li>
-                        <li onClick={() => navigate("/add-family")}>
-                          <Icon_AddWhite />
-                          Add Family
-                        </li>
-                      </div>
-                      <li>Engagement Registry</li>
-                      <li>Marriage Registry</li>
-                      <li>Death Reigistry</li>
-                    </ul>
-                  </div>
-                </a>
-                <a href="#">Transactions</a>
-                <a href="#">Pious Associations</a>
-              </div>
-            </nav>
-          </div>
-        </header>
+        <Navigation/>
         <div className="graph-div">{/* graph goes here */}</div>
         <div className="secondary-nav-div">
           <div className="secondary-nav-subdiv1">
