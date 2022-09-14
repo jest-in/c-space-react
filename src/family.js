@@ -146,10 +146,6 @@ export default function Family() {
               )}
               {family.map((person, index) => {
                 const { name, dob, phoneNumber } = person;
-
-                // converting dob to a date string
-                let dofb = new Date(dob);
-                const dobString = dofb.toDateString();
                 return (
                   <div className="sub2-content" key={index}>
                     <div className="sub2-name-div">
@@ -158,7 +154,7 @@ export default function Family() {
                       </h1>
                     </div>
                     <div className="sub2-dob-div">
-                      <h1>{dobString ? dobString : "-"}</h1>
+                      <h1>{dob ? dob.split("T")[0] : "-"}</h1>
                     </div>
                     <div className="sub2-phone-div">
                       <h1>{phoneNumber ? phoneNumber : "-"}</h1>
