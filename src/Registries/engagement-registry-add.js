@@ -84,7 +84,7 @@ export default function EngagementRegistryAdd() {
           `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender==='M'?'F':'M'}&sort=baptismName`
         )
         .then((res) => {
-          const result = res.data.persons;
+          const result = res.data.person;
 
           if (res.data.status === "success") {
             setPersonsEligible(result);
@@ -137,12 +137,12 @@ export default function EngagementRegistryAdd() {
       error = true;
       setParishPriestError("");
     }
-    if(!error){
-      data['engagementDate']=otherDetails.engagementDate;
+    
+    if (!error) {
+      data["engagementDate"] = otherDetails.engagementDate;
       data["celebrant"] = otherDetails.celebrant;
       data["parishPriest"] = otherDetails.parishPriest;
-      if(otherDetails.remarks)
-      data['remarks']=otherDetails.remarks;
+      if (otherDetails.remarks) data["remarks"] = otherDetails.remarks;
       // Post request
       axios
         .post(
