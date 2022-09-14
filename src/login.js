@@ -39,17 +39,23 @@ const navigate=useNavigate();
       <div className="container">
         <div className="div1">
           <div className="forms">
-            <label htmlFor="uid">User id</label>
+          <label className="user-id" htmlFor="uid">User id</label>
+
             <input type="text" name="uid" id="uid" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
+
             <label className="password-text" htmlFor="password">
               Password
             </label>
             <input type="password" name="password" id="password" />
+            <label className="add-family-error" htmlFor="error">This field is required</label>
             <input type='submit' value='Log-In' className="login-btn" onClick={()=>authentication()}/>
+            
+
             <a href="/forgot-password" className="forgot-password">
               Forgot Password?
             </a>
-          </div>
+          </div>  
         </div>
         <div className="div2">
           <div className="logo-login">
