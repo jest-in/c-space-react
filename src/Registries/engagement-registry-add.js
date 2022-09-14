@@ -84,7 +84,7 @@ export default function EngagementRegistryAdd() {
           `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender}`
         )
         .then((res) => {
-          const result = res.data.person;
+          const result = res.data.persons;
 
           if (res.data.status === "success") {
             setPersonsEligible(result);
