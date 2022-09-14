@@ -168,7 +168,7 @@ export default function EngagementRegistryAdd() {
 
         if (res.data.status === "success") {
           partnerId=result.id;
-          if(gender==='M')
+          if(gender==='F')
           setBrideGroom(result);
           else
           setBride(result);
@@ -248,7 +248,7 @@ export default function EngagementRegistryAdd() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/persons/relations/${personId}`)
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personId}`)
       .then((res) => {
         const result = res.data.person;
 
