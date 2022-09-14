@@ -61,7 +61,7 @@ export default function EngagementRegistryAdd() {
       value?setEngagementDateError('hidden'):setEngagementDateError('');
     }
     if (name === "celebrant") {
-      value ? celebrantError("hidden") : celebrantError("");
+      value ? setCelebrantError("hidden") : celebrantError("");
     }
     if (name === "parishPriest") {
       value ? setParishPriestError("hidden") : setParishPriestError("");
@@ -334,10 +334,10 @@ export default function EngagementRegistryAdd() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 <input
-                  defaultValue={brideGroom.name ? brideGroom.name : ""}
+                  defaultValue={brideGroom.baptismName ? brideGroom.baptismName : ""}
                   type="text"
                   name="name"
                   onChange={(event) => inputsOfBrideGroom(event)}
@@ -553,10 +553,10 @@ export default function EngagementRegistryAdd() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head bride">Bride</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 <input
-                  defaultValue={bride.name ? bride.name : ""}
+                  defaultValue={bride.baptismName ? bride.baptismName : ""}
                   readOnly={boxChecked ? true : gender === "F" ? true : false}
                   type="text"
                   name="name"
@@ -812,7 +812,7 @@ export default function EngagementRegistryAdd() {
                 <input
                   defaultValue={otherDetails.parishPriest}
                   type="text"
-                  name="Name"
+                  name="parishPriest"
                   onChange={(event) => inputsOfOtherDetails(event)}
                 />
                 <label
