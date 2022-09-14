@@ -46,10 +46,10 @@ export default function ViewEvent() {
           <div className="public-spons-amt">Amount</div>
         </div>
         {offers.map((event, index) => {
-          const { name, festDate, amount,id } = event;
+          const { name, festDate, amount,_id } = event;
           return (
             <div className="member-details-div" key={index} onClick={()=>{
-              eventId = id;
+              eventId = _id;
               navigate('/individual-event');
             }}>
               <div className="public-spons-slno">{index}</div>
