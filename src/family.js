@@ -108,7 +108,7 @@ export default function Family() {
           </div>
           <div className="secondary-nav-subdiv2">
             <div className="sub-div2-content">
-              {familyName ? (
+              {family.length ? (
                 <>
                   <div className="sub2-head">
                     <div className="sub2-heading">
@@ -140,7 +140,7 @@ export default function Family() {
               ) : (
                 <div className="sub2-content-head">
                   <div className="sub2-dob-div">
-                    <h1>Nothing</h1>
+                    <h1>No members in {familyName}</h1>
                   </div>
                 </div>
               )}
