@@ -1,8 +1,11 @@
 import React from 'react'
 import Icon_AddWhite from './Assets/Icon_AddWhite';
 import Logo from './Assets/logo';
+import { useNavigate } from "react-router-dom";
 
 export default function Navigation() {
+  const navigate = useNavigate();
+
   return (
     <header>
       <div className="nav-div">
@@ -17,15 +20,21 @@ export default function Navigation() {
               <div className="sub-menu1-div">
                 <ul>
                   <div className="sub-menu-registries-div">
-                    <li>Family Registry</li>
-                    <li>
+                    <li onClick={() => navigate("/family")}>Family Registry</li>
+                    <li onClick={() => navigate("/add-family")}>
                       <Icon_AddWhite />
                       Add Family
                     </li>
                   </div>
-                  <li>Engagement Registry</li>
-                  <li>Marriage Registry</li>
-                  <li>Death Reigistry</li>
+                  <li onClick={() => navigate("/engagement-registry-all")}>
+                    Engagement Registry
+                  </li>
+                  <li onClick={() => navigate("/marriage-registry-all")}>
+                    Marriage Registry
+                  </li>
+                  <li onClick={() => navigate("/death-registry-all")}>
+                    Death Reigistry
+                  </li>
                 </ul>
               </div>
             </a>
@@ -34,12 +43,14 @@ export default function Navigation() {
               Announcements
               <div className="sub-menu2-div">
                 <ul>
-                  <li>Add Announcement</li>
-                  <li>View Announcements</li>
+                  <li onClick={() => navigate("/add-announce")}>Add Announcement</li>
+                  <li onClick={() => navigate("/all-announce")}>
+                    View Announcements
+                  </li>
                 </ul>
               </div>
             </a>
-            <a href="#">Offerings/Donations</a>
+            <a href="/view-event">Offerings/Donations</a>
           </div>
         </nav>
       </div>
