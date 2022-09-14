@@ -1019,7 +1019,7 @@ hr {
     flex-direction: column;
 }
 
-.person-photo-div a {
+.person-photo-div button {
     text-decoration: none;
     margin-top: 2px;
     font-weight: 600;
@@ -1027,7 +1027,7 @@ hr {
     color: var(--color-primary);
 }
 
-.person-photo-div a:hover {
+.person-photo-div button:hover {
     color: #332c9b;
 }
 

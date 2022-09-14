@@ -180,10 +180,27 @@ const Person = () => {
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
             />
-            <a href="">Sign up</a>
-            <a href="">Edit</a>
-            <a href="">Send Message</a>
-            <a href="">Proposed Changes</a>
+            <button onClick={()=>{
+              axios
+                .post(
+                  `http://localhost:5000/api/v1/users/signup`,
+                  {
+                    userId: personId,
+                    role: "User",
+                  },
+                  {
+                    withCredentials: true,
+                  }
+                )
+                .then((res) => {
+                  if (res.data.status === "success") {
+                    alert('Signup request successfull');
+                  }
+                });
+            }}>Sign up</button>
+            <button>Edit</button>
+            <button>Send Message</button>
+            <button>Proposed Changes</button>
           </div>
         </div>
 

@@ -36,8 +36,6 @@ function MarriageRegistry() {
   });
 
   useEffect(()=>{
-
-    const personId="62fdd46b74dae9ae3839d8b5";
     // get request
     if(personId)
     axios
