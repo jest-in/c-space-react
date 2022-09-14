@@ -222,6 +222,7 @@ export default function EngagementRegistryAdd() {
   // Bride groom section handler
   function inputsOfBrideGroom(event){
     const {name,value}=event.target;
+    console.log(name,value);
     if (name==='baptismName'){
       value?setNameError("hidden"):setNameError('');
     }
@@ -257,6 +258,7 @@ export default function EngagementRegistryAdd() {
   // Bride section input handler
   function inputsOfBride(event){
     const { name, value } = event.target;
+    console.log(name,value);
     if (name === "baptismName") {
       value ? setNameError("hidden") : setNameError("");
     }
@@ -790,7 +792,7 @@ export default function EngagementRegistryAdd() {
             >
               <div className="heading-death">Place of Baptism</div>
               <div className="person-death">
-                <input type="text" name="place" onChange={(event)=>inputsOfBrideGroom(event)} />
+                <input type="text" name="place" onChange={(event)=>inputsOfBride(event)} />
                 <label
                   className={`add-family-error ${
                     !boxChecked
