@@ -48,12 +48,16 @@ export default function ViewEvent() {
         {offers.map((event, index) => {
           const { name, festDate, amount,_id } = event;
           return (
-            <div className="member-details-div" key={index} onClick={()=>{
-              eventId = _id;
-              navigate('/individual-event');
-            }}>
+            <div
+              className="member-details-div"
+              key={index}
+              onClick={() => {
+                eventId = _id;
+                navigate("/individual-event");
+              }}
+            >
               <div className="public-spons-slno">{index}</div>
-              <div className="public-spons-date">{festDate}</div>
+              <div className="public-spons-date">{festDate.split("T")[0]}</div>
               <div className="public-spons-event">{name}</div>
               <div className="public-spons-amt">{amount}</div>
             </div>

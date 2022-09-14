@@ -2,7 +2,7 @@ import axios from 'axios'
 import React from 'react'
 import { useState } from 'react'
 import Navigation from './navigation'
-import {eventId} from './Sponsors/individual-event'
+import {eventId,eventAmount} from './Sponsors/individual-event'
 
 function loadScript(src) {
 	return new Promise((resolve) => {
@@ -27,7 +27,7 @@ export default function Sponsors() {
   const [descriptionError, setDescriptionError] = useState("hidden");
   const [houseNameError, setHouseNameError] = useState("hidden");
   const [contactError, setContactError] = useState("hidden");
-  const [amountError, setAmountError] = useState("hidden");
+  // const [amountError, setAmountError] = useState("hidden");
 
   // inputs
   const [inputs,setInputs]=useState({});
@@ -43,8 +43,6 @@ export default function Sponsors() {
       value ? setDescriptionError("hidden") : setDescriptionError("");
     } else if (name === "contact") {
       value ? setContactError("hidden") : setContactError("");
-    } else if (name === "amount") {
-      value ? setAmountError("hidden") : setAmountError("");
     }
     setInputs((prev)=>{
       let data=prev;
@@ -60,8 +58,7 @@ export default function Sponsors() {
     if (!inputs.description) setDescriptionError("");
     if (!inputs.houseName) setHouseNameError("");
     if (!inputs.contact) setContactError("");
-    if (!inputs.amount) setAmountError("");
-    if(inputs.name&&inputs.description&&inputs.houseName&&inputs.contact&&inputs.amount){
+    if(inputs.name&&inputs.description&&inputs.houseName&&inputs.contact){
       console.log('Correct data',inputs);
       // If all fields are entered then
       displayRazorpay();
@@ -163,8 +160,8 @@ export default function Sponsors() {
           </div>
           <div className="ward-div">
             <h1>Amount</h1>
-            <input className="house-no-input" name='amount' type="text" onChange={(event)=>inputHandler(event)} />
-            <label className={`add-family-error ${amountError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
+            <input className="house-no-input" name='amount' type="text" value={eventAmount?eventAmount:''} readOnly={true} />
+            {/* <label className={`add-family-error ${amountError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label> */}
           </div>
         </div>
       </div>

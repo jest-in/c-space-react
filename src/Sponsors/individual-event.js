@@ -7,6 +7,9 @@ import { eventId } from "./view-event";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
+// For exporting
+let eventAmount;
+
 export default function IndividualEvent() {
   const navigate = useNavigate();
 
@@ -23,6 +26,7 @@ export default function IndividualEvent() {
         if (res.data.status === "success") {
           setStatus("Event Details");
           setEvent(res.data.data);
+          eventAmount = res.data.data.amount;
         }
       });
   }, []);
@@ -119,4 +123,4 @@ export default function IndividualEvent() {
     </div>
   );
 }
-export {eventId};
+export {eventId,eventAmount};
