@@ -10,6 +10,8 @@ import { useNavigate } from 'react-router-dom';
 import Icon_Add from './Assets/Icon_Add';
 import Icon_AddWhite from "./Assets/Icon_AddWhite";
 
+let gender;
+
 const Person = () => {
 
   const navigate=useNavigate();
@@ -25,19 +27,20 @@ const Person = () => {
     if(!personId)
     navigate('/family-individual');
 
-    axios
-      .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
-      .then((res) => {
-        const result = res.data.person;
+      axios
+        .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
+        .then((res) => {
+          const result = res.data.person;
 
-        if(res.data.status==='success')
-        {
-          setPersonDetails(result);
-          setDetailSection('');
-        }
-        else
-        navigate('/family-individual');
-      });
+          if(res.data.status==='success')
+          {
+            setPersonDetails(result);
+            setDetailSection('');
+            gender=result.gender;
+          }
+          else
+          navigate('/family-individual');
+        });
   },[])
 
   return (
@@ -184,4 +187,4 @@ const Person = () => {
 }
 
 export default Person;
-export {personId};
+export {personId,gender};
