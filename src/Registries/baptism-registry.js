@@ -5,6 +5,7 @@ import axios from 'axios';
 import { personIdFromPerson,personName } from '../person';
 import { useEffect } from 'react';
 import { useState } from 'react';
+import { userIdFromAllBaptism } from './baptism-registry-all';
 
 export default function BaptismRegistry() {
 
@@ -12,10 +13,9 @@ export default function BaptismRegistry() {
   const [baptismDetails,setBaptismDetails]=useState({});
 
   useEffect(()=>{
-    console.log('Person Id from person.js:',personIdFromPerson);
     // Get request
     axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`)
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson?personIdFromPerson:userIdFromAllBaptism}`)
       .then((res) => {
         if (res.data.status === "success") {
           setBaptismDetails(res.data.data);
@@ -28,7 +28,10 @@ export default function BaptismRegistry() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>{personName}</h1>
+          <h1>
+            {baptismDetails.baptismName ? `${baptismDetails.baptismName} ` : ""}
+            {baptismDetails.familyName ? baptismDetails.familyName : ""}
+          </h1>
         </div>
         <div className="registries-nav-div">
           <a href="#">Baptism Registry</a>
@@ -53,7 +56,7 @@ export default function BaptismRegistry() {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                {personName}
+                {baptismDetails.name ? baptismDetails.name : "-"}
               </div>
             </div>
             <div className="dob-person-div">
@@ -86,12 +89,12 @@ export default function BaptismRegistry() {
                 {baptismDetails.place ? baptismDetails.place : "-"}
               </div>
             </div>
-            <div className="death-person-address-div">
+            {/* <div className="death-person-address-div">
               <div className="heading-address">Address</div>
               <div className="person-death-address">
                 {baptismDetails.address ? baptismDetails.address : "-"}
               </div>
-            </div>
+            </div> */}
             <div className="death-person-ward-div">
               <div className="heading-ward">Date of Birth</div>
               <div className="person-death-ward">
@@ -101,7 +104,9 @@ export default function BaptismRegistry() {
             <div className="death-person-ward-div">
               <div className="heading-ward">Date of Baptism</div>
               <div className="person-death-ward">
-                {baptismDetails.doBaptism ? baptismDetails.doBaptism.split("T")[0] : "-"}
+                {baptismDetails.doBaptism
+                  ? baptismDetails.doBaptism.split("T")[0]
+                  : "-"}
               </div>
             </div>
             <div className="death-person-ward-div">
