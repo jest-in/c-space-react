@@ -80,7 +80,7 @@ export default function Family() {
                 <Icon_Filter />
               </div>
             </div>
-            <div className="filter-area">
+            <div className="filter-area hidden">
               <div className="filters-head">
                 <h1>Has 3 children</h1>
                 <div>
