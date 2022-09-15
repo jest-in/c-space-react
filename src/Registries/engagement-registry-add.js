@@ -234,9 +234,24 @@ export default function EngagementRegistryAdd() {
 
   // Clicking a person handler
   function clickPersonHandler(id) {
-    axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`)
-      .then((res) => {
+    // axios
+    //   .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`)
+    //   .then((res) => {
+    //     const result = res.data.data;
+
+    //     if (res.data.status === "success") {
+    //       partnerId = result.userId;
+    //       if (gender === "F") setBrideGroom(result);
+    //       else setBride(result);
+    //     }
+    //   });
+
+      // Testing
+      axios
+        .get(
+          `http://localhost:5000/api/v1/registry/baptism-registry/${id}`
+        )
+        .then((res) => {
         const result = res.data.data;
 
         if (res.data.status === "success") {
@@ -244,7 +259,14 @@ export default function EngagementRegistryAdd() {
           if (gender === "F") setBrideGroom(result);
           else setBride(result);
         }
-      });
+      
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            alert("Please add baptism registry of this persons partner");
+            navigate(-1);
+          }
+        });
   }
 
   // Bride groom section handler

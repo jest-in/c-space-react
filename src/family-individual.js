@@ -136,13 +136,13 @@ export default function FamilyIndividual() {
               baptismName,
               dob,
               phoneNumber,
-              baptism,
+              doBaptism,
               marriage,
               death,
             } = member;
             console.log(id);
             const dobString = dob ? dob.split("T")[0] : "-";
-            const baptismString = baptism ? baptism.split("T")[0] : "-";
+            const baptismString = doBaptism ? doBaptism.split("T")[0] : "-";
             const marriageString = marriage ? marriage.split("T")[0] : "-";
             const deathString = death ? death.split("T")[0] : "-";
             return (
