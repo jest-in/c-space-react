@@ -1,11 +1,8 @@
 import React from "react";
 import { useState,useEffect } from "react";
 
-import Logo from "./Assets/logo";
 import Icon_Close from "./Assets/Icon_Close";
-import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Icon_Search from "./Assets/Icon_Search";
-import Icon_Filter from "./Assets/Icon_Filter";
 import IconUpload from "./Assets/Icon_Upload";
 import Icon_Menu from "./Assets/Icon_Menu";
 
@@ -66,7 +63,7 @@ export default function FamilyIndividual() {
 
   return (
     <div className="container-family">
-      <Navigation/>
+      <Navigation />
       <main className={detailSection}>
         <div className="title-div">
           <div className="family-master family-individual-master">
@@ -92,25 +89,25 @@ export default function FamilyIndividual() {
             <div className="inner-div-1">
               <div className="house-name-div">
                 <h1>Family name</h1>
-                <h2>{family.familyName?family.familyName:'-'}</h2>
+                <h2>{family.familyName ? family.familyName : "-"}</h2>
               </div>
               <div className="address-div">
                 <h1>Address</h1>
-                <h2>{family.address?family.address:'-'}</h2>
+                <h2>{family.address ? family.address : "-"}</h2>
               </div>
             </div>
             <div className="inner-div-2">
               <div className="houseno-div">
                 <h1>House No</h1>
-                <h2>{family.houseNum?family.houseNum:'-'}</h2>
+                <h2>{family.houseNum ? family.houseNum : "-"}</h2>
               </div>
               <div className="ward-div">
                 <h1>Ward No</h1>
-                <h2>{family.wardNum?family.wardNum:'-'}</h2>
+                <h2>{family.wardNum ? family.wardNum : "-"}</h2>
               </div>
               <div className="pincode-div">
                 <h1>Pincode</h1>
-                <h2>{family.pin?family.pin:'-'}</h2>
+                <h2>{family.pin ? family.pin : "-"}</h2>
               </div>
             </div>
           </div>
@@ -126,30 +123,28 @@ export default function FamilyIndividual() {
         </div>
         <div className={membersSection}>
           <div className="heading-div">
-            <div className="name-div">Name</div>
+            <div className="name-div">Baptism Name</div>
             <div className="dob-div">Date of birth</div>
             <div className="phone-div">Phone number</div>
-            <div className="baptism-div">Baptism</div>
-            <div className="marriage-div">Marriage</div>
-            <div className="death-div">Death</div>
-            <div className="relation-div">Relation</div>
+            <div className="baptism-div">Baptism Date</div>
+            <div className="marriage-div">Marriage Date</div>
+            <div className="death-div">Death Date</div>
           </div>
           {members.map((member, index) => {
             const {
               id,
-              name,
+              baptismName,
               dob,
               phoneNumber,
               baptism,
               marriage,
               death,
-              relation,
             } = member;
             console.log(id);
-            const dobString=dob?dob.split('T')[0]:'-';
-            const baptismString =baptism?baptism.split("T")[0]:'-';
-            const marriageString=marriage?marriage.split('T')[0]:'-';
-            const deathString = death?death.split("T")[0]:'-';
+            const dobString = dob ? dob.split("T")[0] : "-";
+            const baptismString = baptism ? baptism.split("T")[0] : "-";
+            const marriageString = marriage ? marriage.split("T")[0] : "-";
+            const deathString = death ? death.split("T")[0] : "-";
             return (
               <div
                 className="member-details-div"
@@ -160,14 +155,15 @@ export default function FamilyIndividual() {
                 }}
               >
                 <div className="name-div">
-                  {name?name:'-'}
+                  {baptismName ? baptismName : "-"}
                 </div>
                 <div className="dob-div">{dobString}</div>
-                <div className="phone-div">{phoneNumber?phoneNumber:'-'}</div>
+                <div className="phone-div">
+                  {phoneNumber ? phoneNumber : "-"}
+                </div>
                 <div className="baptism-div">{baptismString}</div>
                 <div className="marriage-div">{marriageString}</div>
                 <div className="death-div">{deathString}</div>
-                <div className="relation-div">{relation?relation:'-'}</div>
               </div>
             );
           })}
@@ -175,37 +171,21 @@ export default function FamilyIndividual() {
             <div className="desc-heading">Description/Remarks</div>
             <div className="desc-content">
               <span className="blank-space" />
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum".
+              -
             </div>
           </div>
           <div className="donation-div">
             <div className="donation-heading">Donations / offerings</div>
             <div className="donation-content">
               <span className="blank-space" />
-              Contrary to popular belief, Lorem Ipsum is not simply random text.
-              It has roots in a piece of classical Latin literature from 45 BC,
-              making it over 2000 years old. Richard McClintock, a Latin
-              professor at Hampden-Sydney College in Virginia, looked up one of
-              the more obscure Latin words, consectetur, from a Lorem Ipsum
-              passage, and going through the cites of the word in classical
-              literature, discovered the undoubtable source. Lorem Ipsum comes
-              from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et
-              Malorum".
+              -
             </div>
           </div>
         </div>
         <div className="message-popup-bg hidden">
           <div className="message-popup">
             <div className="message-close-icon-div">
-              <Icon_Close/>
+              <Icon_Close />
             </div>
             <div className="message-popup-head">
               <h1>Compose Message</h1>
@@ -223,9 +203,7 @@ export default function FamilyIndividual() {
               />
             </div>
             <div className="message-send-button">
-              <a href='#'>
-                Send
-              </a>
+              <a href="#">Send</a>
               <h1>Sent Successfully</h1>
               <h2 className="message-wrong">
                 Something went wrong! Try again.
