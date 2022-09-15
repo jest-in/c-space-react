@@ -47,7 +47,7 @@ const Person = () => {
 
   return (
     <div className="container-family">
-      <Navigation/>
+      <Navigation />
       <main className={detailSection}>
         <div className="title-div">
           <div className="person-head">
@@ -65,8 +65,11 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if(personDetails.maritalStatus==='engaged'||personDetails.maritalStatus==='married')
-                navigate("/engagement-registry");
+                if (
+                  personDetails.maritalStatus === "engaged" ||
+                  personDetails.maritalStatus === "married"
+                )
+                  navigate("/engagement-registry");
                 else navigate("/engagement-registry-add");
               }}
             >
@@ -99,9 +102,9 @@ const Person = () => {
         <div className="members-entries-div">
           <div className="details-heading-div">
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
-                {personDetails.name ? personDetails.name : "-"}
+                {personDetails.baptismName ? personDetails.baptismName : "-"}
               </div>
             </div>
             <div className="dob-person-div">
@@ -117,7 +120,7 @@ const Person = () => {
               </div>
             </div>
             <div className="baptism-person-div">
-              <div className="heading-baptism">Baptism</div>
+              <div className="heading-baptism">Baptism Date</div>
               <div className="person-baptism">
                 {personDetails.doBaptism
                   ? personDetails.doBaptism.split("T")[0]
@@ -125,7 +128,7 @@ const Person = () => {
               </div>
             </div>
             <div className="marriage-person-div">
-              <div className="heading-marriage">Marriage</div>
+              <div className="heading-marriage">Marriage Date</div>
               <div className="person-marriage">
                 {personDetails.marriage
                   ? personDetails.marriage.split("T")[0]
@@ -133,7 +136,7 @@ const Person = () => {
               </div>
             </div>
             <div className="death-person-div">
-              <div className="heading-death">Death</div>
+              <div className="heading-death">Death Date</div>
               <div className="person-death">
                 {personDetails.death ? personDetails.death.split("T")[0] : "-"}
               </div>
@@ -144,25 +147,29 @@ const Person = () => {
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
             />
-            <button onClick={()=>{
-              console.log("SIGN UP : ",personId)
-              axios
-                .post(
-                  `http://localhost:5000/api/v1/users/signup`,
-                  {
-                    userId: personId,
-                    role: "User",
-                  },
-                  {
-                    withCredentials: true,
-                  }
-                )
-                .then((res) => {
-                  if (res.data.status === "success") {
-                    alert('Signup request successfull');
-                  }
-                });
-            }}>Sign up</button>
+            <button
+              onClick={() => {
+                console.log("SIGN UP : ", personId);
+                axios
+                  .post(
+                    `http://localhost:5000/api/v1/users/signup`,
+                    {
+                      userId: personId,
+                      role: "User",
+                    },
+                    {
+                      withCredentials: true,
+                    }
+                  )
+                  .then((res) => {
+                    if (res.data.status === "success") {
+                      alert("Signup request successfull");
+                    }
+                  });
+              }}
+            >
+              Sign up
+            </button>
             <button>Edit</button>
             <button>Send Message</button>
             <button>Proposed Changes</button>
