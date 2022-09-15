@@ -2,7 +2,7 @@ import React from 'react'
 import Navigation from '../navigation'
 import IconMenu from '../Assets/Icon_Menu';
 import axios from 'axios';
-import { personId } from '../person';
+import { personId,personName } from '../person';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -27,7 +27,7 @@ export default function BaptismRegistry() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>{baptismDetails.name ? baptismDetails.name : "-"}</h1>
+          <h1>{personName}</h1>
         </div>
         <div className="registries-nav-div">
           <a href="#">Baptism Registry</a>
@@ -52,7 +52,7 @@ export default function BaptismRegistry() {
             <div className="name-person-div">
               <div className="heading-name">Name</div>
               <div className="person-name">
-                {baptismDetails.name ? baptismDetails.name : "-"}
+                {personName}
               </div>
             </div>
             <div className="dob-person-div">

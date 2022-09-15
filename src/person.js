@@ -144,6 +144,7 @@ const Person = () => {
               alt="personal pic"
             />
             <button onClick={()=>{
+              console.log("SIGN UP : ",personId)
               axios
                 .post(
                   `http://localhost:5000/api/v1/users/signup`,
