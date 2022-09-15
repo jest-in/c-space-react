@@ -2,7 +2,7 @@ import React from 'react'
 import Navigation from '../navigation'
 import IconMenu from '../Assets/Icon_Menu';
 import axios from 'axios';
-import { personId,personName } from '../person';
+import { personIdFromPerson,personName } from '../person';
 import { useEffect } from 'react';
 import { useState } from 'react';
 
@@ -12,9 +12,10 @@ export default function BaptismRegistry() {
   const [baptismDetails,setBaptismDetails]=useState({});
 
   useEffect(()=>{
+    console.log('Person Id from person.js:',personIdFromPerson);
     // Get request
     axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personId}`)
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`)
       .then((res) => {
         if (res.data.status === "success") {
           setBaptismDetails(res.data.data);

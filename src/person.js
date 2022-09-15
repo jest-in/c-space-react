@@ -1,4 +1,3 @@
-import Logo from './Assets/logo'
 import IconMenu from './Assets/Icon_Menu'
 
 import { personId } from './family-individual';
@@ -11,9 +10,9 @@ import { useNavigate } from 'react-router-dom';
 import Navigation from './navigation';
 
 let gender,personName;
+let personIdFromPerson;
 
 const Person = () => {
-
   const navigate=useNavigate();
 
   // Personal details
@@ -35,6 +34,7 @@ const Person = () => {
 
           if(res.data.status==='success')
           {
+            personIdFromPerson= result._id;
             setPersonDetails(result);
             setDetailSection('');
             gender=result.gender;
@@ -198,4 +198,4 @@ const Person = () => {
 }
 
 export default Person;
-export {personId,gender,personName};
+export {personIdFromPerson,gender,personName};

@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import Icon_Menu from '../Assets/Icon_Menu'
 import IconUpload from '../Assets/Icon_Upload'
 import Navigation from '../navigation'
-import { personId} from "../person";
+import { personIdFromPerson} from "../person";
 import axios from "axios";
 
 export default function EngagementRegistry() {
@@ -21,7 +21,7 @@ export default function EngagementRegistry() {
 
   useEffect(()=>{
     axios
-      .get(`http://localhost:5000/api/v1/registry/engagement-registry/${personId}`)
+      .get(`http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`)
       .then((res) => {
         console.log(res.data);
         if (res.data.status === "success") {

@@ -4,7 +4,7 @@ import Icon_Upload from "../Assets/Icon_Upload";
 import Navigation from "../navigation";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import {personId} from '../person';
+import {personIdFromPerson} from '../person';
 
 // temeplate for backend post request
 let sickness = "";
@@ -98,7 +98,7 @@ export default function DeathRegistryAdd() {
       // Post request
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/death-registry/${personId}`,
+          `http://localhost:5000/api/v1/registry/death-registry/${personIdFromPerson}`,
           data,
           {
             withCredentials: true,

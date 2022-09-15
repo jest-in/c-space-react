@@ -4,7 +4,7 @@ import Logo from './Assets/logo'
 import Icon_Upload from './Assets/Icon_Upload'
 import { useEffect } from 'react'
 import { useState } from 'react'
-import { personId,personName } from "./person";
+import { personIdFromPerson,personName } from "./person";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Navigation from './navigation'
@@ -68,7 +68,7 @@ export default function MarriageRegistryAdd() {
   useEffect(()=>{
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/engagement-registry/${personId}`
+        `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`
       )
       .then((res) => {
         if (res.data.status === "success") {

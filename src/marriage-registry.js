@@ -7,7 +7,7 @@ import Navigation from './navigation';
 import axios from "axios";
 import {useNavigate} from 'react-router-dom'
 
-import {personId,personName} from './person'
+import {personIdFromPerson,personName} from './person'
 import { useState } from 'react';
 
 function MarriageRegistry() {
@@ -37,10 +37,10 @@ function MarriageRegistry() {
 
   useEffect(()=>{
     // get request
-    if(personId)
+    if(personIdFromPerson)
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/marriage-registry/${personId}`
+        `http://localhost:5000/api/v1/registry/marriage-registry/${personIdFromPerson}`
       )
       .then((res)=>{
         console.log("RES : ",res.data)

@@ -2,9 +2,8 @@ import React from 'react'
 import { useEffect,useState } from 'react';
 import Navigation from '../navigation';
 import axios from "axios";
-import {personId} from '../person';
+import {personIdFromPerson} from '../person';
 import IconUpload from '../Assets/Icon_Upload';
-import Icon_Filter from '../Assets/Icon_Filter';
 import Icon_Menu from '../Assets/Icon_Menu';
 import { useNavigate } from "react-router-dom";
 
@@ -72,7 +71,7 @@ export default function BaptismRegistryadd() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/persons/relations/${personId}`
+        `http://localhost:5000/api/v1/persons/relations/${personIdFromPerson}`
       )
       .then((res) => {
         const result = res.data.person;
@@ -290,7 +289,7 @@ export default function BaptismRegistryadd() {
       requestTemplate['remarks']=remarks;
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${personId}`,
+          `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`,
           requestTemplate,
           {
             withCredentials: true,
