@@ -12,6 +12,9 @@ import Navigation from './navigation';
 let gender,personName;
 let personIdFromPerson;
 
+// If partner exist then for exporting partner Id
+let partnerIdFromPerson;
+
 const Person = () => {
   const navigate=useNavigate();
 
@@ -20,6 +23,28 @@ const Person = () => {
 
   // Person details section
   const [detailSection,setDetailSection]=useState('hidden');
+
+  // Engagement button
+  function engagementButton(){
+    if (
+      personDetails.maritalStatus === "engaged" ||
+      personDetails.maritalStatus === "married"
+    ) {
+        navigate("/engagement-registry");
+        return
+    }
+    if (!personDetails.doBaptism) {
+      alert('Please add baptism registry for continuing');
+      return;
+    }else if((personDetails.gender==='M'&&personDetails.age<21)||(personDetails.gender==='F'&&personDetails.age<18)){
+      alert('This person is under aged');
+      return;
+    }
+    if (personDetails.husband || personDetails.wife){
+      partnerIdFromPerson=personDetails.husband?personDetails.husband:personDetails.wife;
+    }
+      navigate("/engagement-registry-add");
+  }
 
   useEffect(()=>{
     // If person id is null
@@ -64,14 +89,7 @@ const Person = () => {
               Baptism Registry
             </button>
             <button
-              onClick={() => {
-                if (
-                  personDetails.maritalStatus === "engaged" ||
-                  personDetails.maritalStatus === "married"
-                )
-                  navigate("/engagement-registry");
-                else navigate("/engagement-registry-add");
-              }}
+              onClick={() =>engagementButton()}
             >
               Engagement Registry
             </button>
@@ -198,4 +216,4 @@ const Person = () => {
 }
 
 export default Person;
-export {personIdFromPerson,gender,personName};
+export {personIdFromPerson,gender,personName,partnerIdFromPerson};

@@ -1,27 +1,35 @@
-import React,{useState} from 'react'
-import Icon_Menu from '../Assets/Icon_Menu'
-import IconUpload from '../Assets/Icon_Upload'
-import Icon_Search from '../Assets/Icon_Search'
-import Navigation from '../navigation'
-import { useEffect } from 'react'
+import React, { useState } from "react";
+import Icon_Menu from "../Assets/Icon_Menu";
+import IconUpload from "../Assets/Icon_Upload";
+import Icon_Search from "../Assets/Icon_Search";
+import Navigation from "../navigation";
+import { useEffect } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { personIdFromPerson,gender,personName } from '../person';
+import {
+  personIdFromPerson,
+  gender,
+  personName,
+  partnerIdFromPerson,
+} from "../person";
 
 let partnerId;
 
 export default function EngagementRegistryAdd() {
   const navigate = useNavigate();
 
+  // same parish check button
+  const [checkButton,setCheckButton]=useState('');
+
   // Errors
-  const [nameError,setNameError]=useState('hidden');
-  const [familyNameError,setFamilyNameError] = useState("hidden");
-  const [fatherError,setFatherError] = useState("hidden");
-  const [motherError,setMotherError] = useState("hidden");
-  const [parishError,setParishError] = useState("hidden");
-  const [dobError,setDobError] = useState("hidden");
-  const [doBaptosmError,setDoBaptismError] = useState("hidden");
-  const [placeError,setPlaceError] = useState("hidden");
+  const [nameError, setNameError] = useState("hidden");
+  const [familyNameError, setFamilyNameError] = useState("hidden");
+  const [fatherError, setFatherError] = useState("hidden");
+  const [motherError, setMotherError] = useState("hidden");
+  const [parishError, setParishError] = useState("hidden");
+  const [dobError, setDobError] = useState("hidden");
+  const [doBaptosmError, setDoBaptismError] = useState("hidden");
+  const [placeError, setPlaceError] = useState("hidden");
 
   // Other details Error
   const [engagementDateError, setEngagementDateError] = useState("hidden");
@@ -29,7 +37,7 @@ export default function EngagementRegistryAdd() {
   const [parishPriestError, setParishPriestError] = useState("hidden");
 
   // Hiding section
-  const [showDetails,setShowDetails]=useState('hidden');
+  const [showDetails, setShowDetails] = useState("hidden");
 
   // Person name
   const [personName, setPersonName] = useState("Loading");
@@ -47,18 +55,18 @@ export default function EngagementRegistryAdd() {
   const [boxChecked, setBoxChecked] = useState(false);
 
   // Inputs of other details
-  const [otherDetails,setOtherDetails]=useState({
-    engagementDate:'',
-    celebrant:'',
-    parishPriest:'',
-    remarks:''
-  })
+  const [otherDetails, setOtherDetails] = useState({
+    engagementDate: "",
+    celebrant: "",
+    parishPriest: "",
+    remarks: "",
+  });
 
   // Inputs of other details section
-  function inputsOfOtherDetails(event){
+  function inputsOfOtherDetails(event) {
     const { name, value } = event.target;
-    if(name==='engagementDate'){
-      value?setEngagementDateError('hidden'):setEngagementDateError('');
+    if (name === "engagementDate") {
+      value ? setEngagementDateError("hidden") : setEngagementDateError("");
     }
     if (name === "celebrant") {
       value ? setCelebrantError("hidden") : celebrantError("");
@@ -81,7 +89,9 @@ export default function EngagementRegistryAdd() {
     if (checked) {
       axios
         .get(
-          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${gender==='M'?'F':'M'}&sort=baptismName`
+          `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${
+            gender === "M" ? "F" : "M"
+          }&sort=baptismName`
         )
         .then((res) => {
           const result = res.data.persons;
@@ -94,56 +104,73 @@ export default function EngagementRegistryAdd() {
   }
 
   // Submit button
-  function submitButtonHandler(){
+  function submitButtonHandler() {
     // check brideGroom and bride and other details
-    let error=true;
-    let data={};
-    if(!boxChecked){
-        const {baptismName,familyName,father,mother,parish,dob,doBaptism,place}=(gender==='M'?bride:brideGroom);
-        if(!baptismName)
-          setNameError('')
-        if(!familyName)
-        setFamilyNameError('')
-        if(!father)
-        setFatherError('')
-        if(!mother)
-        setMotherError('')
-        if(!parish)
-        setParishError('')
-        if(!dob)
-        setDobError('')
-        if(!doBaptism)
-        setDoBaptismError('')
-        if(!place)
-        setPlaceError('')
-        console.log(baptismName,familyName,father,mother,parish,dob,doBaptism,place);
-        if(baptismName&&familyName&&father&&mother&&dob&&doBaptism&&place){
-          error=false;
-          data["groomData"] = {
-            baptismName: brideGroom.baptismName,
-            familyName: brideGroom.familyName,
-            father: brideGroom.father,
-            mother: brideGroom.mother,
-            // parish: brideGroom.parish,
-            dob: brideGroom.dob.split("T")[0],
-            doBaptism: brideGroom.doBaptism.split("T")[0],
-            place: brideGroom.place,
-          };
-          data["brideData"] = {
-            baptismName: bride.baptismName,
-            familyName: bride.familyName,
-            father: bride.father,
-            mother: bride.mother,
-            // parish: bride.parish,
-            dob: bride.dob.split("T")[0],
-            doBaptism: bride.doBaptism.split("T")[0],
-            place: bride.place,
-          };
-        }
-    }
-    else{
-      error=false;
-      data['partnerId']=partnerId;
+    let error = true;
+    let data = {};
+    if (!boxChecked&&!checkButton) {
+      const {
+        baptismName,
+        familyName,
+        father,
+        mother,
+        parish,
+        dob,
+        doBaptism,
+        birthPlace,
+      } = gender === "M" ? bride : brideGroom;
+      if (!baptismName) setNameError("");
+      if (!familyName) setFamilyNameError("");
+      if (!father) setFatherError("");
+      if (!mother) setMotherError("");
+      if (!parish) setParishError("");
+      if (!dob) setDobError("");
+      if (!doBaptism) setDoBaptismError("");
+      if (!birthPlace) setPlaceError("");
+      console.log(
+        baptismName,
+        familyName,
+        father,
+        mother,
+        parish,
+        dob,
+        doBaptism,
+        birthPlace
+      );
+      if (
+        baptismName &&
+        familyName &&
+        father &&
+        mother &&
+        dob &&
+        doBaptism &&
+        birthPlace
+      ) {
+        error = false;
+        data["groomData"] = {
+          baptismName: brideGroom.baptismName,
+          familyName: brideGroom.familyName,
+          father: brideGroom.father,
+          mother: brideGroom.mother,
+          // parish: brideGroom.parish,
+          dob: brideGroom.dob.split("T")[0],
+          doBaptism: brideGroom.doBaptism.split("T")[0],
+          birthPlace: brideGroom.birthPlace,
+        };
+        data["brideData"] = {
+          baptismName: bride.baptismName,
+          familyName: bride.familyName,
+          father: bride.father,
+          mother: bride.mother,
+          // parish: bride.parish,
+          dob: bride.dob.split("T")[0],
+          doBaptism: bride.doBaptism.split("T")[0],
+          birthPlace: bride.birthPlace,
+        };
+      }
+    } else {
+      error = false;
+      data["partnerId"] = partnerId?partnerId:partnerIdFromPerson;
       data["groomData"] = {
         baptismName: brideGroom.baptismName,
         familyName: brideGroom.familyName,
@@ -152,7 +179,7 @@ export default function EngagementRegistryAdd() {
         // parish: brideGroom.parish,
         dob: brideGroom.dob.split("T")[0],
         doBaptism: brideGroom.doBaptism.split("T")[0],
-        place: brideGroom.place,
+        birthPlace: brideGroom.birthPlace,
       };
       data["brideData"] = {
         baptismName: bride.baptismName,
@@ -162,13 +189,13 @@ export default function EngagementRegistryAdd() {
         // parish: bride.parish,
         dob: bride.dob.split("T")[0],
         doBaptism: bride.doBaptism.split("T")[0],
-        place: bride.place,
+        birthPlace: bride.birthPlace,
       };
       console.log(data);
     }
-    if(!otherDetails.engagementDate){
-      error=true;
-      setEngagementDateError('');
+    if (!otherDetails.engagementDate) {
+      error = true;
+      setEngagementDateError("");
     }
     if (!otherDetails.celebrant) {
       error = true;
@@ -178,16 +205,17 @@ export default function EngagementRegistryAdd() {
       error = true;
       setParishPriestError("");
     }
-    
+
     if (!error) {
-      console.log('No error');
+      console.log("No error");
       data["engagementDate"] = otherDetails.engagementDate;
       data["celebrant"] = otherDetails.celebrant;
       data["parishPriest"] = otherDetails.parishPriest;
       if (otherDetails.remarks) data["remarks"] = otherDetails.remarks;
 
-    console.log("Final data:", data);
-    console.log("Error:", error);      // Post request
+      console.log("Final data:", data);
+      console.log("Error:", error); 
+      // Post request
       axios
         .post(
           `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`,
@@ -220,45 +248,9 @@ export default function EngagementRegistryAdd() {
   }
 
   // Bride groom section handler
-  function inputsOfBrideGroom(event){
-    const {name,value}=event.target;
-    console.log(name,value);
-    if (name==='baptismName'){
-      value?setNameError("hidden"):setNameError('');
-    }
-    if (name==='familyName'){
-      value?setFamilyNameError('hidden'):setFamilyNameError('');
-    }
-    if (name==='father'){
-      value?setFatherError("hidden"):setFatherError('');
-    } 
-    if (name==='mother'){
-      value?setMotherError("hidden"):setMotherError('');
-    }
-    if (name==='parish'){
-      value?setParishError("hidden"):setParishError('');
-    } 
-    if (name==='dob'){
-      value?setDobError("hidden"):setDobError('');
-    } 
-    if (name==='doBaptism'){
-      value?setDoBaptismError("hidden"):setDoBaptismError('');
-    } 
-    if (name==='place'){
-      value ? setPlaceError("hidden") : setPlaceError("");     
-    } 
-    setBrideGroom((prev)=>{
-      let data=prev;
-      data[name]=value;
-      console.log(data);
-      return data;
-    })
-  }
-
-  // Bride section input handler
-  function inputsOfBride(event){
+  function inputsOfBrideGroom(event) {
     const { name, value } = event.target;
-    console.log(name,value);
+    console.log(name, value);
     if (name === "baptismName") {
       value ? setNameError("hidden") : setNameError("");
     }
@@ -280,9 +272,45 @@ export default function EngagementRegistryAdd() {
     if (name === "doBaptism") {
       value ? setDoBaptismError("hidden") : setDoBaptismError("");
     }
-    if (name === "place") {
+    if (name === "birthPlace") {
       value ? setPlaceError("hidden") : setPlaceError("");
-    } 
+    }
+    setBrideGroom((prev) => {
+      let data = prev;
+      data[name] = value;
+      console.log(data);
+      return data;
+    });
+  }
+
+  // Bride section input handler
+  function inputsOfBride(event) {
+    const { name, value } = event.target;
+    console.log(name, value);
+    if (name === "baptismName") {
+      value ? setNameError("hidden") : setNameError("");
+    }
+    if (name === "familyName") {
+      value ? setFamilyNameError("hidden") : setFamilyNameError("");
+    }
+    if (name === "father") {
+      value ? setFatherError("hidden") : setFatherError("");
+    }
+    if (name === "mother") {
+      value ? setMotherError("hidden") : setMotherError("");
+    }
+    if (name === "parish") {
+      value ? setParishError("hidden") : setParishError("");
+    }
+    if (name === "dob") {
+      value ? setDobError("hidden") : setDobError("");
+    }
+    if (name === "doBaptism") {
+      value ? setDoBaptismError("hidden") : setDoBaptismError("");
+    }
+    if (name === "birthPlace") {
+      value ? setPlaceError("hidden") : setPlaceError("");
+    }
     setBride((prev) => {
       let data = prev;
       data[name] = value;
@@ -292,19 +320,46 @@ export default function EngagementRegistryAdd() {
   }
 
   useEffect(() => {
+    if (partnerIdFromPerson) {
+      axios
+        .get(
+          `http://localhost:5000/api/v1/registry/baptism-registry/${partnerIdFromPerson}`
+        )
+        .then((res) => {
+          const result = res.data.data;
+          console.log("status:", res);
+          if (res.data.status === "fail") {
+            alert("Please add baptism registry of this persons partner");
+            navigate(-1);
+          }
+
+          if (res.data.status === "success") {
+            setCheckButton('hidden');
+            setPersonName(result.name);
+            if (gender === "F") setBrideGroom(result);
+            else setBride(result);
+            // setShowDetails("");
+          }
+        })
+        .catch((err) => {
+          if (err.response.status === 404) {
+            alert("Please add baptism registry of this persons partner");
+            navigate(-1);
+          }
+        });
+    }
     axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`)
+      .get(
+        `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`
+      )
       .then((res) => {
         const result = res.data.data;
 
         if (res.data.status === "success") {
-          console.log('Relations:',result);
           setPersonName(result.name);
-          if(gender==='M')
-          setBrideGroom(result);
-          else
-          setBride(result);
-          setShowDetails('');
+          if (gender === "M") setBrideGroom(result);
+          else setBride(result);
+          setShowDetails("");
         } else navigate(-1);
       });
   }, []);
@@ -328,7 +383,7 @@ export default function EngagementRegistryAdd() {
       <hr />
       <div className={`members-entries-div ${showDetails}`}>
         <div className="registry-div">
-          <div className="same-parish-check-container">
+          <div className={`same-parish-check-container ${checkButton}`}>
             <div className="same-parish-check-div">
               <h3>
                 Is <span>bride/groom</span> from same parish?
@@ -384,7 +439,9 @@ export default function EngagementRegistryAdd() {
               <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 <input
-                  defaultValue={brideGroom.baptismName ? brideGroom.baptismName : ""}
+                  defaultValue={
+                    brideGroom.baptismName ? brideGroom.baptismName : ""
+                  }
                   type="text"
                   name="baptismName"
                   onChange={(event) => inputsOfBrideGroom(event)}
@@ -572,14 +629,18 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            <div
+            {/* <div
               className={`death-person-div ${
                 boxChecked ? "hidden" : gender === "M" ? "hidden" : ""
               }`}
             >
               <div className="heading-death">Place of Baptism</div>
               <div className="person-death">
-                <input type="text" name="place" onChange={(event)=>inputsOfBrideGroom(event)} />
+                <input
+                  type="text"
+                  name="place"
+                  onChange={(event) => inputsOfBrideGroom(event)}
+                />
                 <label
                   className={`add-family-error ${
                     !boxChecked
@@ -589,6 +650,28 @@ export default function EngagementRegistryAdd() {
                         ? "hidden"
                         : ""
                       : "hidden"
+                  }`}
+                  htmlFor="error"
+                >
+                  {placeError ? placeError : "This field is required"}
+                </label>
+              </div>
+            </div> */}
+            <div className={`death-person-div`}>
+              <div className="heading-death">Place of Birth</div>
+              <div className="person-death">
+                <input
+                  defaultValue={
+                    brideGroom.birthPlace ? brideGroom.birthPlace : ""
+                  }
+                  readOnly={boxChecked ? true : gender === "M" ? true : false}
+                  type="text"
+                  name="birthPlace"
+                  onChange={(event) => inputsOfBrideGroom(event)}
+                />
+                <label
+                  className={`add-family-error ${
+                    placeError === "hidden" ? "hidden" : ""
                   }`}
                   htmlFor="error"
                 >
@@ -785,14 +868,18 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            <div
+            {/* <div
               className={`death-person-div ${
                 boxChecked ? "hidden" : gender === "F" ? "hidden" : ""
               }`}
             >
               <div className="heading-death">Place of Baptism</div>
               <div className="person-death">
-                <input type="text" name="place" onChange={(event)=>inputsOfBride(event)} />
+                <input
+                  type="text"
+                  name="place"
+                  onChange={(event) => inputsOfBride(event)}
+                />
                 <label
                   className={`add-family-error ${
                     !boxChecked
@@ -802,6 +889,28 @@ export default function EngagementRegistryAdd() {
                         ? "hidden"
                         : ""
                       : "hidden"
+                  }`}
+                  htmlFor="error"
+                >
+                  {placeError ? placeError : "This field is required"}
+                </label>
+              </div>
+            </div> */}
+            <div className={`death-person-div`}>
+              <div className="heading-death">Place of Birth</div>
+              <div className="person-death">
+                <input
+                  defaultValue={
+                    bride.birthPlace ? bride.birthPlace : ""
+                  }
+                  readOnly={boxChecked ? true : gender === "M" ? true : false}
+                  type="text"
+                  name="birthPlace"
+                  onChange={(event) => inputsOfBride(event)}
+                />
+                <label
+                  className={`add-family-error ${
+                    placeError === "hidden" ? "hidden" : ""
                   }`}
                   htmlFor="error"
                 >
