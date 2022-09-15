@@ -110,6 +110,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-name">
                 <input
                   value={GroomData.baptismName ? GroomData.baptismName : "-"}
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -120,7 +121,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-dob">
                 <input
                   value={GroomData.familyName ? GroomData.familyName : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -131,7 +132,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-phone">
                 <input
                   value={GroomData.age ? GroomData.age : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -142,7 +143,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-baptism">
                 <input
                   value={GroomData.father ? GroomData.father : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -153,7 +154,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-marriage">
                 <input
                   value={GroomData.mother ? GroomData.mother : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -164,7 +165,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-death">
                 <input
                   value={GroomData.parish ? GroomData.parish : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -179,7 +180,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-name">
                 <input
                   value={brideData.baptismName ? brideData.baptismName : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -190,7 +191,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-dob">
                 <input
                   value={brideData.familyName ? brideData.familyName : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -201,7 +202,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-phone">
                 <input
                   value={brideData.age ? brideData.age : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -212,7 +213,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-baptism">
                 <input
                   value={brideData.father ? brideData.father : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -223,7 +224,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-marriage">
                 <input
                   value={brideData.mother ? brideData.mother : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
@@ -234,7 +235,7 @@ export default function MarriageRegistryAdd() {
               <div className="person-death">
                 <input
                   value={brideData.parish ? brideData.parish : "-"}
-                  
+                  // readOnly={true}
                   type="text"
                   name="Name"
                 />
