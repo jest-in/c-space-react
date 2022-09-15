@@ -2,12 +2,12 @@ import Logo from './Assets/logo'
 import IconMenu from './Assets/Icon_Menu'
 
 import { personId } from './family-individual';
+import {personIdFromFamily} from './family';
 import { useEffect } from 'react';
 
 import axios from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Navigation from './navigation';
 
 let gender,personName;
@@ -24,11 +24,12 @@ const Person = () => {
 
   useEffect(()=>{
     // If person id is null
-    if(!personId)
-    navigate('/family-individual');
-
+    if (!personId && !personIdFromFamily) {
+      navigate("/family");
+      return;
+    }
       axios
-        .get(`http://localhost:5000/api/v1/persons/id/${personId}`)
+        .get(`http://localhost:5000/api/v1/persons/id/${personId?personId:personIdFromFamily}`)
         .then((res) => {
           const result = res.data.person;
 

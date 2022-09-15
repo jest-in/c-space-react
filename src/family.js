@@ -7,17 +7,15 @@ import Arrow from "./Assets/Arrow";
 import Icon_Add from "./Assets/Icon_Add";
 import Icon_Close from "./Assets/Icon_Close";
 import Icon_Filter from "./Assets/Icon_Filter";
-import Icon_Menu from "./Assets/Icon_Menu";
 import Icon_Search from "./Assets/Icon_Search";
-import Logo from "./Assets/logo";
 
 import axios from "axios";
-import Icon_AddWhite from "./Assets/Icon_AddWhite";
 import Navigation from "./navigation";
 
 const url = "http://localhost:5000/api/v1/family";
 
 let id = "";
+let personIdFromFamily;
 
 export default function Family() {
   //For dynamic updation of families data
@@ -34,10 +32,10 @@ export default function Family() {
     axios.get(url).then((res) => {
       setFamilies(res.data.data);
       setFamilyName(res.data.data[0].familyName);
-
+      // id of first femmber of family
       id = res.data.data[0]._id;
-
-      getRequest(id);
+      // function for get request of family members
+      getRequest(id);  
     });
   }, []);
 
@@ -94,6 +92,11 @@ export default function Family() {
             <hr />
             <div className="sub-div-content">
               {families.map((family, index) => {
+                // if(index===0){
+                //   console.log('FamilyName:',family.familyName);
+                //   setFamilyName(family.familyName);
+                //   // getRequest(family._id);
+                // }
                 return (
                   <div
                     className="sub-entries"
@@ -127,7 +130,7 @@ export default function Family() {
                   <hr />
                   <div className="sub2-content-head">
                     <div className="sub2-name-div">
-                      <h1>Name</h1>
+                      <h1>Baptism Name</h1>
                     </div>
                     <div className="sub2-dob-div">
                       <h1>Date of Birth</h1>
@@ -145,12 +148,15 @@ export default function Family() {
                 </div>
               )}
               {family.map((person, index) => {
-                const { name, dob, phoneNumber } = person;
+                const { baptismName, dob, phoneNumber,id } = person;
                 return (
-                  <div className="sub2-content" key={index}>
+                  <div className="sub2-content" key={index} onClick={()=>{
+                    personIdFromFamily = id;
+                    navigate("/person");
+                  }}>
                     <div className="sub2-name-div">
                       <h1>
-                        {name?name:'-'}
+                        {baptismName?baptismName:'-'}
                       </h1>
                     </div>
                     <div className="sub2-dob-div">
@@ -171,4 +177,4 @@ export default function Family() {
 }
 
 // created to use while viewing in detail about individual family
-export { id, url };
+export { id, url, personIdFromFamily };
