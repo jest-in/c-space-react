@@ -670,8 +670,17 @@ export default function EngagementRegistryAdd() {
                   onChange={(event) => inputsOfBrideGroom(event)}
                 />
                 <label
+                  // className={`add-family-error ${
+                  //   placeError === "hidden" ? "hidden" : ""
+                  // }`}
                   className={`add-family-error ${
-                    placeError === "hidden" ? "hidden" : ""
+                    !boxChecked
+                      ? gender === "M"
+                        ? "hidden"
+                        : doBaptosmError === "hidden"
+                        ? "hidden"
+                        : ""
+                      : "hidden"
                   }`}
                   htmlFor="error"
                 >
@@ -900,17 +909,24 @@ export default function EngagementRegistryAdd() {
               <div className="heading-death">Place of Birth</div>
               <div className="person-death">
                 <input
-                  defaultValue={
-                    bride.birthPlace ? bride.birthPlace : ""
-                  }
-                  readOnly={boxChecked ? true : gender === "M" ? true : false}
+                  defaultValue={bride.birthPlace ? bride.birthPlace : ""}
+                  readOnly={boxChecked ? true : gender === "F" ? true : false}
                   type="text"
                   name="birthPlace"
                   onChange={(event) => inputsOfBride(event)}
                 />
                 <label
+                  // className={`add-family-error ${
+                  //   placeError === "hidden" ? "hidden" : ""
+                  // }`}
                   className={`add-family-error ${
-                    placeError === "hidden" ? "hidden" : ""
+                    !boxChecked
+                      ? gender === "F"
+                        ? "hidden"
+                        : doBaptosmError === "hidden"
+                        ? "hidden"
+                        : ""
+                      : "hidden"
                   }`}
                   htmlFor="error"
                 >
