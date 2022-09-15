@@ -52,6 +52,9 @@ export default function BaptismRegistryadd() {
   // Mother name
   const [motherName, setMotherName] = useState("");
 
+  // Parish
+  const [parish,setParish]=useState('Gandibagilu');
+
   // Error use state
   const [motherNameError, setMotherNameError] = useState("hidden");
   const [fatherNameError, setFatherNameError] = useState("hidden");
@@ -61,6 +64,7 @@ export default function BaptismRegistryadd() {
   const [dobError,setDobError]=useState('hidden');
   const [doBaptismError,setDoBaptismError] = useState("hidden");
   const [placeError,setPlaceError] = useState("hidden");
+  const [parishError,setParishError]=useState('hidden');
   const [godFatherNameError,setGodFatherNameError] = useState("hidden");
   const [godMotherNameError,setGodMotherNameError] = useState("hidden");
   const [godFatherParishError, setGodFatherParishError] = useState("hidden");
@@ -71,7 +75,7 @@ export default function BaptismRegistryadd() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/persons/relations/${personIdFromPerson}`
+        `http://localhost:5000/api/v1/persons/relations/${personIdFromPerson}?father=1&mother=1`
       )
       .then((res) => {
         const result = res.data.person;
@@ -81,8 +85,8 @@ export default function BaptismRegistryadd() {
           if (result.baptismName) setBaptismName(result.baptismName);
           if (result.name) setName(result.name);
           if (result.familyName) setFamilyName(result.familyName);
-          if(result.father) setFatherName(result.father);
-          if(result.mother) setMotherName(result.mother);
+          if (result.father) setFatherName(result.father.baptismName);
+          if (result.mother) setMotherName(result.mother.baptismName);
         } else navigate("/person");
       });
   }, []);
@@ -179,7 +183,13 @@ export default function BaptismRegistryadd() {
       } else {
         setParishPriestError("");
       }
-    } 
+    } else if (name === "parish") {
+      console.log("Parish:", requestTemplate.parish);
+      setParish(value);
+      if(value)
+      setParishError('hidden')
+      else setParishError('');
+    }
     // If remarks have null value
     if (name === "remarks") {
       remarks=value;
@@ -202,6 +212,11 @@ export default function BaptismRegistryadd() {
       return
     } 
     requestTemplate[name] = value;
+
+    //  Parish field changing when modified
+    if(name==='parish'){
+      setParish(value);
+    }
   }
 
   function submitButton() {      
@@ -221,6 +236,9 @@ export default function BaptismRegistryadd() {
     }
     if (!requestTemplate.mother && motherName) {
       requestTemplate.mother = motherName;
+    }
+    if (!requestTemplate.parish && parish) {
+      requestTemplate.parish = parish;
     }
     // If input fields are empty
     let error=false;
@@ -243,6 +261,10 @@ export default function BaptismRegistryadd() {
     if (!requestTemplate.mother && !motherName) {
       error = true;
       setMotherNameError('');
+    }
+    if (!requestTemplate.parish && !parish) {
+      error = true;
+      setParishError("");
     }
     if (!requestTemplate.place) {
       error = true;
@@ -287,9 +309,10 @@ export default function BaptismRegistryadd() {
       requestTemplate['godMother']=godMother;
       if(remarks)
       requestTemplate['remarks']=remarks;
+      // console.log('Post Data:',requestTemplate);
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`,
+          `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}?father=1&mother=1`,
           requestTemplate,
           {
             withCredentials: true,
@@ -433,15 +456,15 @@ export default function BaptismRegistryadd() {
                 </label>
               </div>
             </div>
-            {/* <div className="death-person-address-div">
-              <div className="heading-address">Address</div>
+            <div className="death-person-address-div">
+              <div className="heading-address">Parish</div>
               <div className="person-death-address">
-                <input type="text" name="Name" />
-                <label className="add-family-error" htmlFor="error">
+                <input type="text" name="parish" defaultValue={parish} onChange={(event) => inputsHandler(event)}/>
+                <label className={`add-family-error ${parishError==='hidden'?'hidden':''}`} htmlFor="error">
                   This field is required
                 </label>
               </div>
-            </div> */}
+            </div>
             <div className="death-person-ward-div">
               <div className="heading-ward">Date of Birth</div>
               <div className="person-death-ward">
