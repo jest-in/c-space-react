@@ -49,8 +49,8 @@ export default function BaptismRegistryAll() {
         <div className="heading-div">
           <div className="mar-slno">S.No</div>
           <div className="mar-groom-name">Baptism Name</div>
-          <div className="mar-bride-name">Fathers Name</div>
-          <div className="mar-celebrant">Mothers Name</div>
+          <div className="mar-bride-name">Father Name</div>
+          <div className="mar-celebrant">Mother Name</div>
           <div className="mar-date">Date</div>
         </div>
         {baptismRegistry.map((person, index) => {

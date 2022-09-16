@@ -26,6 +26,9 @@ export default function Navigation() {
                       Add Family
                     </li>
                   </div>
+                  <li onClick={() => navigate("/baptism-registry-all")}>
+                    Baptism Registry
+                  </li>
                   <li onClick={() => navigate("/engagement-registry-all")}>
                     Engagement Registry
                   </li>
@@ -43,7 +46,9 @@ export default function Navigation() {
               Announcements
               <div className="sub-menu2-div">
                 <ul>
-                  <li onClick={() => navigate("/add-announce")}>Add Announcement</li>
+                  <li onClick={() => navigate("/add-announce")}>
+                    Add Announcement
+                  </li>
                   <li onClick={() => navigate("/all-announce")}>
                     View Announcements
                   </li>

@@ -167,7 +167,7 @@ export default function AddFamilyRelation() {
   }
 
   function Selection({ props }) {
-    const {id,defaultValue}=props;
+    const {id,defaultValue,gender}=props;
     return (
       <select
         defaultValue={defaultValue}
@@ -176,22 +176,45 @@ export default function AddFamilyRelation() {
         onChange={(event) => selectionHandler(event, id)}
       >
         <option value="select">select</option>
-        <option className={hideFather} value="father">
+        <option
+          className={`${hideFather} ${gender === "F" ? "hidden" : ""}`}
+          value="father"
+        >
           Father
         </option>
-        <option className={hideMother} value="mother">
+        <option
+          className={`${hideMother} ${gender === "M" ? "hidden" : ""}`}
+          value="mother"
+        >
           Mother
         </option>
-        <option className={hideHusband} value="husband">
+        <option
+          className={`${hideHusband} ${gender === "F" ? "hidden" : ""}`}
+          value="husband"
+        >
           Husband
         </option>
-        <option className={hideWife} value="wife">
+        <option
+          className={`${hideWife} ${gender === "M" ? "hidden" : ""}`}
+          value="wife"
+        >
           Wife
         </option>
-        <option value="son">Son</option>
-        <option value="daughter">Daughter</option>
-        <option value="brother">Brother</option>
-        <option value="sister">Sister</option>
+        <option className={`${gender === "F" ? "hidden" : ""}`} value="son">
+          Son
+        </option>
+        <option
+          className={`${gender === "M" ? "hidden" : ""}`}
+          value="daughter"
+        >
+          Daughter
+        </option>
+        <option className={`${gender === "F" ? "hidden" : ""}`} value="brother">
+          Brother
+        </option>
+        <option className={`${gender === "M" ? "hidden" : ""}`} value="sister">
+          Sister
+        </option>
         <option value="other">other</option>
       </select>
     );
@@ -337,7 +360,7 @@ export default function AddFamilyRelation() {
           <h1 className="relation-type-head">Relation Type</h1>
         </div>
         {relativesOfPerson.map((relative, index) => {
-          const { id } = relative;
+          const { id,gender } = relative;
           let defaultValue = "select";
           if (temporaryData[id]) {
             defaultValue = temporaryData[id];
@@ -345,7 +368,7 @@ export default function AddFamilyRelation() {
           return (
             <div className="relatives-entry-div" key={index}>
               <h1>{relative.name}</h1>
-              <Selection props={{ id, defaultValue }} />
+              <Selection props={{ id, defaultValue,gender }} />
             </div>
           );
         })}
