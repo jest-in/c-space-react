@@ -15,11 +15,19 @@ export default function BaptismRegistry() {
   useEffect(()=>{
     // Get request
     axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson?personIdFromPerson:userIdFromAllBaptism}`)
+      .get(
+        `http://localhost:5000/api/v1/registry/baptism-registry/${
+          personIdFromPerson ? personIdFromPerson : userIdFromAllBaptism
+        }`
+      )
       .then((res) => {
         if (res.data.status === "success") {
           setBaptismDetails(res.data.data);
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   },[])
 

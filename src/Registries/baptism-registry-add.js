@@ -88,6 +88,10 @@ export default function BaptismRegistryadd() {
           if (result.father) setFatherName(result.father.baptismName);
           if (result.mother) setMotherName(result.mother.baptismName);
         } else navigate("/person");
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   }, []);
 
@@ -322,6 +326,10 @@ export default function BaptismRegistryadd() {
           if (res.data.status === "success") {
             navigate(-1);
           } else setSubmitButtonHide("");
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.resonse.data.message}`);
         });
     }
   }

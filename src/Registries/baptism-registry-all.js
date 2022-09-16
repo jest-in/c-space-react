@@ -22,6 +22,10 @@ export default function BaptismRegistryAll() {
         if (res.data.status === "success") {
           setBaptismRegistry(res.data.data);
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   },[])
 
