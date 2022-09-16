@@ -86,7 +86,7 @@ export default function BaptismRegistry() {
             <div className="death-person-ward-div">
               <div className="heading-ward">Birth Place</div>
               <div className="person-death-ward">
-                {baptismDetails.place ? baptismDetails.place : "-"}
+                {baptismDetails.birthPlace ? baptismDetails.birthPlace : "-"}
               </div>
             </div>
             {/* <div className="death-person-address-div">
