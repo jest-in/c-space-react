@@ -71,7 +71,7 @@ const Person = () => {
         })
         .catch((err) => {
           // Error
-          alert(`${err.resonse.data.message}`);
+          alert(`${err.response.data.message}`);
         });
   },[])
 
@@ -191,7 +191,7 @@ const Person = () => {
                   })
                   .catch((err) => {
                     // Error
-                    alert(`${err.resonse.data.message}`);
+                    alert(`${err.response.data.message}`);
                   });
               }}
             >

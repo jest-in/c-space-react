@@ -162,7 +162,7 @@ export default function AddFamilyRelation() {
       })
       .catch((err) => {
         // Error
-        alert(`${err.resonse.data.message}`);
+        alert(`${err.response.data.message}`);
       });
   }
 
@@ -214,7 +214,7 @@ export default function AddFamilyRelation() {
     })
     .catch((err) => {
       // Error
-      alert(`${err.resonse.data.message}`);
+      alert(`${err.response.data.message}`);
     });
     // Temporary response for testing
     const res = {

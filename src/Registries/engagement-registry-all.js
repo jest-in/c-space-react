@@ -25,7 +25,7 @@ export default function EngagementRegistryAll() {
       })
       .catch((err) => {
         // Error
-        alert(`${err.resonse.data.message}`);
+        alert(`${err.response.data.message}`);
       });
   },[])
 

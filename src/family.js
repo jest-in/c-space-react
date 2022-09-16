@@ -38,7 +38,7 @@ export default function Family() {
       getRequest(id);  
     }).catch((err)=>{
       // Error
-      alert(`${err.resonse.data.message}`)
+      alert(`${err.response.data.message}`)
     });
   }, []);
 
@@ -61,7 +61,7 @@ export default function Family() {
           })
           .catch((err) => {
             // Error
-            alert(`${err.resonse.data.message}`);
+            alert(`${err.response.data.message}`);
           });
   }
 

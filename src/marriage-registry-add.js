@@ -65,7 +65,7 @@ export default function MarriageRegistryAdd() {
        })
        .catch((err) => {
          // Error
-         alert(`${err.resonse.data.message}`);
+         alert(`${err.response.data.message}`);
        });
   }
 
@@ -87,7 +87,7 @@ export default function MarriageRegistryAdd() {
       })
       .catch((err) => {
         // Error
-        alert(`${err.resonse.data.message}`);
+        alert(`${err.response.data.message}`);
       });
   },[])
 
