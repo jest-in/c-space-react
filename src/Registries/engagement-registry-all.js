@@ -15,12 +15,18 @@ export default function EngagementRegistryAll() {
   const [engagementAll,setEngagementAll]=useState([]);
 
   useEffect(()=>{
-    axios.get().then((res)=>{
-      if(res.data.status==='success'){
-        setEngagementAll(res.data.data);
-        setShowDetails('');
-      }
-    });
+    axios
+      .get()
+      .then((res) => {
+        if (res.data.status === "success") {
+          setEngagementAll(res.data.data);
+          setShowDetails("");
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
+      });
   },[])
 
   return (

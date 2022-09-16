@@ -99,6 +99,10 @@ export default function EngagementRegistryAdd() {
           if (res.data.status === "success") {
             setPersonsEligible(result);
           }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.resonse.data.message}`);
         });
     }
   }
@@ -228,6 +232,10 @@ export default function EngagementRegistryAdd() {
           if (res.data.status === "success") {
             navigate(-1);
           }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.resonse.data.message}`);
         });
     }
   }
@@ -383,6 +391,10 @@ export default function EngagementRegistryAdd() {
           else setBride(result);
           setShowDetails("");
         } else navigate(-1);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   }, []);
   return (

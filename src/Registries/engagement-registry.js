@@ -21,22 +21,28 @@ export default function EngagementRegistry() {
 
   useEffect(()=>{
     axios
-      .get(`http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`)
+      .get(
+        `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`
+      )
       .then((res) => {
         console.log(res.data);
         if (res.data.status === "success") {
-          const result=res.data.data;
+          const result = res.data.data;
           setName(res.data.data.baptismName);
           setGroomData(result.groomData);
           setBrideData(result.brideData);
           setOtherDetails({
             engagementDate: result.engagementDate,
-            celebrant:result.celebrant,
-            parishPriest:result.parishPriest,
-            remarks:result.remarks
+            celebrant: result.celebrant,
+            parishPriest: result.parishPriest,
+            remarks: result.remarks,
           });
           setShowDetails("");
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   },[])
 
