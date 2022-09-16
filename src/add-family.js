@@ -75,7 +75,7 @@ export default function AddFamily() {
           })
           .catch((err) => {
             // Error
-            alert(`${err.resonse.data.message}`);
+            alert(`${err.response.data.message}`);
           });
       }
     }
@@ -182,7 +182,7 @@ export default function AddFamily() {
         })
         .catch((err) => {
           // Error
-          alert(`${err.resonse.data.message}`);
+          alert(`${err.response.data.message}`);
         });
     }
   }
