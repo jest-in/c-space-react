@@ -39,26 +39,28 @@ export default function FamilyIndividual() {
     if(!familyId)
     navigate('/family');
     
-    axios.get(`${url}/${id}`).then((res) => {
-      console.log(res.data.data);
-      const result = res.data.data;
+    axios
+      .get(`${url}/${id}`)
+      .then((res) => {
+        console.log(res.data.data);
+        const result = res.data.data;
 
-      // If result is null then detail section should be hidden
-      if (result._id){
-        setDetailSection("");
-      }
-      else
-        navigate("/family");
+        // If result is null then detail section should be hidden
+        if (result._id) {
+          setDetailSection("");
+        } else navigate("/family");
 
-      setFamily(result);
+        setFamily(result);
 
-      // Only display if members array contains atleast 1 element
-      if(result.members.length>0)
-      setmembersSection("famili-members-div ");
+        // Only display if members array contains atleast 1 element
+        if (result.members.length > 0) setmembersSection("famili-members-div ");
 
-      setMembers(result.members);
-
-    })
+        setMembers(result.members);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
+      });
   },[]);
 
   return (

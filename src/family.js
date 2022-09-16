@@ -36,6 +36,9 @@ export default function Family() {
       id = res.data.data[0]._id;
       // function for get request of family members
       getRequest(id);  
+    }).catch((err)=>{
+      // Error
+      alert(`${err.resonse.data.message}`)
     });
   }, []);
 
@@ -50,10 +53,16 @@ export default function Family() {
 
   // Get request with family id
   function getRequest(id){
-        axios.get(`${url}/${id}`).then((res) => {
-          const result = res.data.data;
-          setFamily(result.members);
-        });
+        axios
+          .get(`${url}/${id}`)
+          .then((res) => {
+            const result = res.data.data;
+            setFamily(result.members);
+          })
+          .catch((err) => {
+            // Error
+            alert(`${err.resonse.data.message}`);
+          });
   }
 
   // Navigation

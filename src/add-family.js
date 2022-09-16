@@ -72,6 +72,10 @@ export default function AddFamily() {
               setReadOnlyMode(true);
               setMemberDetailSection("");
             }
+          })
+          .catch((err) => {
+            // Error
+            alert(`${err.resonse.data.message}`);
           });
       }
     }
@@ -171,11 +175,14 @@ export default function AddFamily() {
         })
         .then((res) => {
           // console.log("RES : ",res)
-          if (res.data.status === "success")
-          setTimeout(nav, 2000);
-          function nav(){
-            navigate('/add-family-relation')
+          if (res.data.status === "success") setTimeout(nav, 2000);
+          function nav() {
+            navigate("/add-family-relation");
           }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.resonse.data.message}`);
         });
     }
   }

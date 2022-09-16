@@ -117,7 +117,9 @@ export default function AddFamilyRelation() {
     console.log("Post request to:", membersInFamily[indexOfMembersInFamily-1].id);
     axios
       .post(
-        `http://localhost:5000/api/v1/persons/relations/${membersInFamily[indexOfMembersInFamily-1].id}`,
+        `http://localhost:5000/api/v1/persons/relations/${
+          membersInFamily[indexOfMembersInFamily - 1].id
+        }`,
         relations,
         {
           withCredentials: true,
@@ -157,6 +159,10 @@ export default function AddFamilyRelation() {
             setIndexOfMembersInFamily((prev) => prev + 1);
           }
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   }
 
@@ -192,10 +198,12 @@ export default function AddFamilyRelation() {
   }
 
   useEffect(()=>{
-  axios.get(`http://localhost:5000/api/v1/family/${familyId}`).then((res)=>{
-      const result=res.data.data;
-      if(res.data.status==='success'){
-        console.log('Main Result:',result);
+  axios
+    .get(`http://localhost:5000/api/v1/family/${familyId}`)
+    .then((res) => {
+      const result = res.data.data;
+      if (res.data.status === "success") {
+        console.log("Main Result:", result);
         if (!result.members.length) setStatus("No members");
         setMembersInFamily(result.members);
         const list = result.members;
@@ -203,7 +211,11 @@ export default function AddFamilyRelation() {
         setRelativesOfPerson(list.filter((ele, index) => index !== 0));
         setIndexOfMembersInFamily(1);
       }
-  });
+    })
+    .catch((err) => {
+      // Error
+      alert(`${err.resonse.data.message}`);
+    });
     // Temporary response for testing
     const res = {
       status: "success",

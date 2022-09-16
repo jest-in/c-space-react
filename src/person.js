@@ -53,20 +53,25 @@ const Person = () => {
       return;
     }
       axios
-        .get(`http://localhost:5000/api/v1/persons/id/${personId?personId:personIdFromFamily}`)
+        .get(
+          `http://localhost:5000/api/v1/persons/id/${
+            personId ? personId : personIdFromFamily
+          }`
+        )
         .then((res) => {
           const result = res.data.person;
 
-          if(res.data.status==='success')
-          {
-            personIdFromPerson= result._id;
+          if (res.data.status === "success") {
+            personIdFromPerson = result._id;
             setPersonDetails(result);
-            setDetailSection('');
-            gender=result.gender;
-            personName=result.name;
-          }
-          else
-          navigate('/family-individual');
+            setDetailSection("");
+            gender = result.gender;
+            personName = result.name;
+          } else navigate("/family-individual");
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.resonse.data.message}`);
         });
   },[])
 
@@ -172,7 +177,7 @@ const Person = () => {
                   .post(
                     `http://localhost:5000/api/v1/users/signup`,
                     {
-                      userId: personId,
+                      loginId: personId,
                       role: "User",
                     },
                     {
@@ -183,6 +188,10 @@ const Person = () => {
                     if (res.data.status === "success") {
                       alert("Signup request successfull");
                     }
+                  })
+                  .catch((err) => {
+                    // Error
+                    alert(`${err.resonse.data.message}`);
                   });
               }}
             >
