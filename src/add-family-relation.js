@@ -66,8 +66,9 @@ export default function AddFamilyRelation() {
     if (value) {
       setTemporaryData((prev) => {
         let data = prev;
+        if(value!=='select')
         data[id] = value;
-        // console.log("Data", data);
+        console.log("Data", data);
         return data;
       });
       setRelations((prev) => {
@@ -113,36 +114,50 @@ export default function AddFamilyRelation() {
       return
     }
 
-    console.log("Post request");
-    
-    // If all members relation are added
-    if (!membersInFamily[indexOfMembersInFamily]){
-      alert("All relations added");
-      return;
-    }//If all relations are not added
-    else if (membersInFamily[indexOfMembersInFamily]) {
-      // initialising the details storing variables
-      setRelations({
-        sisters: [],
-        brothers: [],
-        sons: [],
-        daughters: [],
+    console.log("Post request to:", membersInFamily[indexOfMembersInFamily-1].id);
+    axios
+      .post(
+        `http://localhost:5000/api/v1/persons/relations/${membersInFamily[indexOfMembersInFamily-1].id}`,
+        relations,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.status === "success") {
+          // If all members relation are added
+          if (!membersInFamily[indexOfMembersInFamily]) {
+            alert("All relations added");
+            navigate("/family");
+            return;
+          } //If all relations are not added
+          else if (membersInFamily[indexOfMembersInFamily]) {
+            // initialising the details storing variables
+            setRelations({
+              sisters: [],
+              brothers: [],
+              sons: [],
+              daughters: [],
+            });
+            setTemporaryData({});
+            // Unhiding all options
+            setHideWife("");
+            setHideHusband("");
+            setHideMother("");
+            setHideFather("");
+            // Changing name of the person
+            setPerson(membersInFamily[indexOfMembersInFamily].name);
+            // relatives for the next person
+            setRelativesOfPerson(
+              membersInFamily.filter(
+                (ele, index) => index !== indexOfMembersInFamily
+              )
+            );
+            setIndexOfMembersInFamily((prev) => prev + 1);
+          }
+        }
       });
-      setTemporaryData({});
-      // Unhiding all options
-      setHideWife("");
-      setHideHusband("");
-      setHideMother("");
-      setHideFather("");
-      // Changing name of the person
-      setPerson(membersInFamily[indexOfMembersInFamily].name);
-      // relatives for the next person
-      setRelativesOfPerson(
-        membersInFamily.filter((ele, index) => index !== indexOfMembersInFamily)
-      );
-      setIndexOfMembersInFamily((prev) => prev + 1);
-
-    }
   }
 
   function Selection({ props }) {
@@ -154,7 +169,7 @@ export default function AddFamilyRelation() {
         id="relation"
         onChange={(event) => selectionHandler(event, id)}
       >
-        <option value="notApplicable">Not Applicable</option>
+        <option value="select">select</option>
         <option className={hideFather} value="father">
           Father
         </option>
@@ -171,21 +186,24 @@ export default function AddFamilyRelation() {
         <option value="daughter">Daughter</option>
         <option value="brother">Brother</option>
         <option value="sister">Sister</option>
+        <option value="other">other</option>
       </select>
     );
   }
 
   useEffect(()=>{
-  // axios.get(`http://localhost:5000/api/v1/family/${familyId}`).then((res)=>{
-  //     const result=res.data.data;
-  //     console.log(result);
-  //     if(res.data.status==='success'){
-  //         setFamilyName(result.familyName);
-  //         setMembers(result.members);
-  //         const list=result.members;
-  //         setRelatives(list.filter((ele, index) => index !== 0));
-  //     }
-  // });
+  axios.get(`http://localhost:5000/api/v1/family/${familyId}`).then((res)=>{
+      const result=res.data.data;
+      if(res.data.status==='success'){
+        console.log('Main Result:',result);
+        if (!result.members.length) setStatus("No members");
+        setMembersInFamily(result.members);
+        const list = result.members;
+        setPerson(list[0].name);
+        setRelativesOfPerson(list.filter((ele, index) => index !== 0));
+        setIndexOfMembersInFamily(1);
+      }
+  });
     // Temporary response for testing
     const res = {
       status: "success",
@@ -278,16 +296,16 @@ export default function AddFamilyRelation() {
         __v: 0,
       },
     };
-    const result = res.data;
-    if (res.status === "success") {
-      if(!result.members.length)
-      setStatus('No members')
-      setMembersInFamily(result.members);
-      const list = result.members;
-      setPerson(list[0].name);
-      setRelativesOfPerson(list.filter((ele, index) => index !== 0));
-      setIndexOfMembersInFamily(1);
-    }
+    // const result = res.data;
+    // if (res.status === "success") {
+    //   if(!result.members.length)
+    //   setStatus('No members')
+    //   setMembersInFamily(result.members);
+    //   const list = result.members;
+    //   setPerson(list[0].name);
+    //   setRelativesOfPerson(list.filter((ele, index) => index !== 0));
+    //   setIndexOfMembersInFamily(1);
+    // }
   },[])
 
   return (
@@ -308,7 +326,7 @@ export default function AddFamilyRelation() {
         </div>
         {relativesOfPerson.map((relative, index) => {
           const { id } = relative;
-          let defaultValue = "notApplicable";
+          let defaultValue = "select";
           if (temporaryData[id]) {
             defaultValue = temporaryData[id];
           }
