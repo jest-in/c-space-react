@@ -36,14 +36,16 @@ const navigate=useNavigate();
     if(credentials.loginId&&credentials.password){
       console.log('Data:',credentials);
       axios
-        .post(
-          "http://localhost:5000/api/v1/users/login",
-          credentials,
-          { withCredentials: true }
-        )
+        .post("http://localhost:5000/api/v1/users/login", credentials, {
+          withCredentials: true,
+        })
         .then((res) => {
           console.log(res.data);
           if (res.data.status === "success") navigate("/family");
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
         });
     }
     // fetch("http://localhost:5000/api/v1/users/login", {

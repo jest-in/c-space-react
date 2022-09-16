@@ -53,16 +53,23 @@ export default function AddAnnounce() {
               .then((res) => {
                 if (res.data.status === "success")
                   window.location.reload(false);
+              })
+              .catch((err) => {
+                // Error
+                alert(`${err.response.data.message}`);
               });
           }
           else{
             axios
-              .post(`http://localhost:5000/api/v1/announce/${editId}`, data, {
+              .patch(`http://localhost:5000/api/v1/announce/${editId}`, data, {
                 withCredentials: true,
               })
               .then((res) => {
-                if (res.data.status === "success")
-                  navigate('/all-announce');
+                if (res.data.status === "success") navigate("/all-announce");
+              })
+              .catch((err) => {
+                // Error
+                alert(`${err.response.data.message}`);
               });
           }
         }

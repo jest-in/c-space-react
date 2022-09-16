@@ -18,24 +18,41 @@ export default function AllAnnounce() {
 
   useEffect(()=>{
     // Change Announcement state after retrieving data from server
-    axios.get("http://localhost:5000/api/v1/announce").then((res)=>{
-      if(res.data.status==='success'){
-      setAnnouncements(res.data.announcements);
-      }
-    });
+    axios
+      .get("http://localhost:5000/api/v1/announce")
+      .then((res) => {
+        if (res.data.status === "success") {
+          console.log("Announcements:", res.data.announcements);
+          setAnnouncements(res.data.announcements);
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
   },[])
 
   function deleteHandler(index){
-    const deletingAnnouncement=announcements[index].id;
-    axios.delete(`http://localhost:5000/api/v1/announce/${deletingAnnouncement}`).then((res)=>{
-      if(res.data.status==='success')
-      setAnnouncements((prev) => prev.filter((announcement, prevIndex)=>prevIndex!==index));
-    });
+    const deletingAnnouncement=announcements[index]._id;
+    axios
+      .delete(`http://localhost:5000/api/v1/announce/${deletingAnnouncement}`)
+      .then((res) => {
+        if (res.data.status === "success")
+          setAnnouncements((prev) =>
+            prev.filter((announcement, prevIndex) => prevIndex !== index)
+          );
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
   }
 
   function editHandler(announcement){
+    console.log('Edit clicked');
     editAnnouncement=announcement.announcement;
-    editId=announcement.id;
+    editId=announcement._id;
+    console.log('Announcement Id:',editId);
     editVisibility=announcement.visibility;
     navigate('/add-announce');
   }
@@ -66,11 +83,15 @@ export default function AllAnnounce() {
             <div className="member-details-div" key={index}>
               <div className="announce-slno">{index + 1}</div>
               <div className="announce-subject">{announcement}</div>
-              <div className="announce-date">{date?date.split('T')[0]:'-'}</div>
+              <div className="announce-date">
+                {date ? date.split("T")[0] : "-"}
+              </div>
               <div className="announce-icons">
-                <DeleteIcon onClick={()=>deleteHandler(index)} /> 
+                <h2 onClick={() => deleteHandler(index)}>Delete</h2>
+                {/* <DeleteIcon onClick={() => deleteHandler(index)} /> */}
                 <br />
-                <EditIcon onClick={()=>editHandler(announcementData)} />
+                {/* <EditIcon onClick={() => editHandler(announcementData)} /> */}
+                <h2 onClick={() => editHandler(announcementData)}>Edit</h2>
               </div>
             </div>
           );
