@@ -10,6 +10,9 @@ import { useNavigate } from "react-router-dom";
 export default function AddFamilyRelation() {
   const navigate=useNavigate();
 
+  // status
+  const [status,setStatus]=useState('Loading');
+
   // Index
   const [indexOfMembersInFamily, setIndexOfMembersInFamily] = useState(0);
 
@@ -277,6 +280,8 @@ export default function AddFamilyRelation() {
     };
     const result = res.data;
     if (res.status === "success") {
+      if(!result.members.length)
+      setStatus('No members')
       setMembersInFamily(result.members);
       const list = result.members;
       setPerson(list[0].name);
@@ -296,27 +301,27 @@ export default function AddFamilyRelation() {
       <hr />
       <div className="relation-details-container">
         <div className="relation-details-head">
-          <h1 className="relation-title-head">{person}</h1>
+          <h1 className="relation-title-head">
+            {membersInFamily.length ? person : status}
+          </h1>
           <h1 className="relation-type-head">Relation Type</h1>
         </div>
-        {
-          relativesOfPerson.map((relative,index)=>{
-            const {id}=relative;
-            let defaultValue = "notApplicable";
-            if(temporaryData[id]){
-              defaultValue = temporaryData[id];
-            }
-            return (
-              <div className="relatives-entry-div" key={index}>
-                <h1>{relative.name}</h1>
-                <Selection props={{id,defaultValue}}/>
-              </div>
-            );
-          })
-        }
+        {relativesOfPerson.map((relative, index) => {
+          const { id } = relative;
+          let defaultValue = "notApplicable";
+          if (temporaryData[id]) {
+            defaultValue = temporaryData[id];
+          }
+          return (
+            <div className="relatives-entry-div" key={index}>
+              <h1>{relative.name}</h1>
+              <Selection props={{ id, defaultValue }} />
+            </div>
+          );
+        })}
       </div>
-      <div className="save-btn-div">
-        <button onClick={()=>saveButton()}>Save</button>
+      <div className={`save-btn-div ${relativesOfPerson.length?'':'hidden'}`}>
+        <button onClick={() => saveButton()}>Save</button>
       </div>
     </div>
   );
