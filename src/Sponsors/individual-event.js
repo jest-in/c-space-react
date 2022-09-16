@@ -19,6 +19,9 @@ export default function IndividualEvent() {
   // Event details
   const [event, setEvent] = useState({});
 
+  // Sponsors
+  const [sponsors,setSponsors]=useState([]);
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v1/offerings/${eventId}`)
@@ -33,6 +36,21 @@ export default function IndividualEvent() {
         // Error
         alert(`${err.response.data.message}`);
       });
+      axios
+        .get(
+          `http://localhost:5000/api/v1/offerings/${eventId}/sponsors`
+        )
+        .then((res) => {
+          if (res.data.status === "success") {
+            const result = res.data.data;
+            console.log('Sponsors Data:',result);
+            setSponsors(result);
+          }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
+        });
   }, []);
 
   return (
@@ -45,7 +63,11 @@ export default function IndividualEvent() {
       </div>
       <hr />
       <div className="event-details-div">
-        <div className={`family-entries ${status !== "Event Details"?'hidden':''}`}>
+        <div
+          className={`family-entries ${
+            status !== "Event Details" ? "hidden" : ""
+          }`}
+        >
           <div className="inner-div-1">
             <div className="house-name-div">
               <h1>Event name</h1>
@@ -68,13 +90,24 @@ export default function IndividualEvent() {
           </div>
         </div>
       </div>
-      <div className={`create-led-btn-div ${status !== "Event Details"?'hidden':''}`}>
-        <button className="create-led-btn add-payment-btn" onClick={()=>navigate('/sponsors')}>
+      <div
+        className={`create-led-btn-div ${
+          status !== "Event Details" ? "hidden" : ""
+        }`}
+      >
+        <button
+          className="create-led-btn add-payment-btn"
+          onClick={() => navigate("/sponsors")}
+        >
           <h1>Add Payment</h1>
         </button>
       </div>
-      <hr className={`event-details-hr ${status !== "Event Details"?'hidden':''}`} />
-      <div className="title-div">
+      <hr
+        className={`event-details-hr ${
+          status !== "Event Details" ? "hidden" : ""
+        }`}
+      />
+      <div className={`title-div ${sponsors.length ? "" : "hidden"}`}>
         <div className="family-master">
           <h1>Sponsers</h1>
         </div>
@@ -86,43 +119,29 @@ export default function IndividualEvent() {
           <Icon_Filter />
         </div>
       </div>
-      <hr />
-      <div className="famili-members-div transactions event-details-sponsers">
+      <hr className={sponsors.length?'':'hidden'} />
+      <div className={`famili-members-div transactions event-details-sponsers ${sponsors.length?'':'hidden'}`}>
         <div className="heading-div">
           <div className="mar-slno">S.No</div>
           <div className="mar-groom-name">Name</div>
-          <div className="mar-bride-name">Family Name</div>
+          {/* <div className="mar-bride-name">Family Name</div> */}
           <div className="mar-celebrant">Description</div>
           <div className="mar-date">Date</div>
         </div>
-        <div className="member-details-div">
-          <div className="mar-slno">1</div>
-          <div className="mar-groom-name">Andappan</div>
-          <div className="mar-bride-name">Kundady</div>
-          <div className="mar-celebrant">For Festival</div>
-          <div className="mar-date">5-12-2021</div>
-        </div>
-        <div className="member-details-div">
-          <div className="mar-slno">2</div>
-          <div className="mar-groom-name">Fransis</div>
-          <div className="mar-bride-name">Kottarathil</div>
-          <div className="mar-celebrant">For Christmas</div>
-          <div className="mar-date">25-04-2022</div>
-        </div>
-        <div className="member-details-div">
-          <div className="mar-slno">3</div>
-          <div className="mar-groom-name">Rosa</div>
-          <div className="mar-bride-name">Madathil</div>
-          <div className="mar-celebrant">For Easter</div>
-          <div className="mar-date">18-08-2022</div>
-        </div>
-        <div className="member-details-div">
-          <div className="mar-slno">4</div>
-          <div className="mar-groom-name">Jestin George</div>
-          <div className="mar-bride-name">Moolamattam</div>
-          <div className="mar-celebrant">For Easter</div>
-          <div className="mar-date">10-10-2022</div>
-        </div>
+        {
+          sponsors.map((sponsor,index)=>{
+            const {baptismName,familyName,description,paidAt}=sponsor;
+            return (
+              <div className="member-details-div" key={index+1}>
+                <div className="mar-slno">{index+1}</div>
+                <div className="mar-groom-name">{baptismName?baptismName:'-'}</div>
+                {/* <div className="mar-bride-name">{familyName}</div> */}
+                <div className="mar-celebrant">{description?description:'-'}</div>
+                <div className="mar-date">{paidAt?paidAt.split("T")[0]:'-'}</div>
+              </div>
+            );
+          })
+        }
       </div>
     </div>
   );

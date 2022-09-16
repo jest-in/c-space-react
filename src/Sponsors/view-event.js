@@ -61,7 +61,7 @@ export default function ViewEvent() {
                 navigate("/individual-event");
               }}
             >
-              <div className="public-spons-slno">{index}</div>
+              <div className="public-spons-slno">{index+1}</div>
               <div className="public-spons-date">{festDate.split("T")[0]}</div>
               <div className="public-spons-event">{name}</div>
               <div className="public-spons-amt">{amount}</div>
