@@ -62,6 +62,10 @@ export default function MarriageRegistryAdd() {
          if (res.data.status === "success") {
            navigate("/person");
          }
+       })
+       .catch((err) => {
+         // Error
+         alert(`${err.resonse.data.message}`);
        });
   }
 
@@ -72,14 +76,18 @@ export default function MarriageRegistryAdd() {
       )
       .then((res) => {
         if (res.data.status === "success") {
-          const result=res.data.data;
-          console.log("RES ENTERD: ",result.groomData)
+          const result = res.data.data;
+          console.log("RES ENTERD: ", result.groomData);
           setName(personName);
-          engagementRegId=result._id;
-          setGroomData(result.groomData)
+          engagementRegId = result._id;
+          setGroomData(result.groomData);
           setBrideData(result.brideData);
-          setShowDetails('');
+          setShowDetails("");
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
       });
   },[])
 

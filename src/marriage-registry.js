@@ -50,11 +50,14 @@ function MarriageRegistry() {
           setGroomData(result.groomData);
           setBrideData(result.brideData);
           setOtherDetails({
-            marriageDate:result.marriageDate,
+            marriageDate: result.marriageDate,
             celebrant: result.celebrant,
             witness: result.witness,
             parishPriest: result.parishPriest,
             remarks: result.remarks,
+          }).catch((err) => {
+            // Error
+            alert(`${err.resonse.data.message}`);
           });
           setShowDetails('');
         }

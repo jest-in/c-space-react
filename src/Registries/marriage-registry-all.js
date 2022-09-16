@@ -15,13 +15,19 @@ export default function MarriageRegistryAll() {
   const [marriageAll,setMarriageAll]=useState([]);
 
   useEffect(()=>{
-    axios.get().then((res)=>{
-      if(res.data.status==='success'){
-        const result=res.data.data;
-        // setShowDetails('');
-        setMarriageAll(result);
-      }
-    })
+    axios
+      .get()
+      .then((res) => {
+        if (res.data.status === "success") {
+          const result = res.data.data;
+          // setShowDetails('');
+          setMarriageAll(result);
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.resonse.data.message}`);
+      });
   },[])
 
   return (
