@@ -14,7 +14,7 @@ let requestTemplate = {
   familyName: "",
   father: "",
   mother: "",
-  place: "",
+  birthPlace: "",
   dob: "",
   doBaptism: "",
   minister: "",
@@ -129,7 +129,7 @@ export default function BaptismRegistryadd() {
         setBaptismNameError("");
       }
       setBaptismName(value);
-    } else if (name === "place") {
+    } else if (name === "birthPlace") {
       if (value) {
         setPlaceError("hidden");
       } else {
@@ -266,7 +266,7 @@ export default function BaptismRegistryadd() {
       error = true;
       setParishError("");
     }
-    if (!requestTemplate.place) {
+    if (!requestTemplate.birthPlace) {
       error = true;
       setPlaceError('');
     }
@@ -445,7 +445,7 @@ export default function BaptismRegistryadd() {
               <div className="person-death-ward">
                 <input
                   type="text"
-                  name="place"
+                  name="birthPlace"
                   onChange={(event) => inputsHandler(event)}
                 />
                 <label
