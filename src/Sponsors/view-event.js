@@ -18,15 +18,20 @@ export default function ViewEvent() {
   const [offers, setOffers] = useState([]);
 
   useEffect(()=>{
-    axios.get(`http://localhost:5000/api/v1/offerings`).then((res) => {
-      if (res.data.status === "success") {
-        if(res.data.data.length){
-          setStatus("Available Events");
-          setOffers(res.data.data);
+    axios
+      .get(`http://localhost:5000/api/v1/offerings`)
+      .then((res) => {
+        if (res.data.status === "success") {
+          if (res.data.data.length) {
+            setStatus("Available Events");
+            setOffers(res.data.data);
+          } else setStatus("Events not available");
         }
-        else setStatus("Events not available");
-      }
-    });
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
   },[])
 
   return (

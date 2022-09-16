@@ -57,8 +57,12 @@ export default function CreateEvent() {
         })
         .then((res) => {
           if (res.data.status === "success") {
-            navigate('/view-event');
+            navigate("/view-event");
           }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
         });
     }
   }

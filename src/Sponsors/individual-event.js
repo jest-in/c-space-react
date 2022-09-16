@@ -28,6 +28,10 @@ export default function IndividualEvent() {
           setEvent(res.data.data);
           eventAmount = res.data.data.amount;
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
       });
   }, []);
 
