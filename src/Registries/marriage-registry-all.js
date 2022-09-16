@@ -16,7 +16,7 @@ export default function MarriageRegistryAll() {
 
   useEffect(()=>{
     axios
-      .get()
+      .get(`http://localhost:5000/api/v1/registry/marriage-registry`)
       .then((res) => {
         if (res.data.status === "success") {
           const result = res.data.data;
@@ -59,9 +59,7 @@ export default function MarriageRegistryAll() {
           <div className="mar-celebrant">Celebrant</div>
         </div>
         {marriageAll.map((member, index) => {
-          const { celebrant, marriageDate } = member;
-          const groomName = member.groomData.name;
-          const brideName = member.brideData.name;
+          const { celebrant, groomName,brideName, marriageDate } = member;
           return (
             <div className="member-details-div" key={index}>
               <div className="mar-slno">{index + 1}</div>

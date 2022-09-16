@@ -16,7 +16,7 @@ export default function EngagementRegistryAll() {
 
   useEffect(()=>{
     axios
-      .get()
+      .get(`http://localhost:5000/api/v1/registry/engagement-registry`)
       .then((res) => {
         if (res.data.status === "success") {
           setEngagementAll(res.data.data);
@@ -25,7 +25,8 @@ export default function EngagementRegistryAll() {
       })
       .catch((err) => {
         // Error
-        alert(`${err.response.data.message}`);
+        // if(err.response)
+        alert(JSON.stringify(err));
       });
   },[])
 
@@ -58,7 +59,7 @@ export default function EngagementRegistryAll() {
           const groomName = person.groomData.baptismName;
           const brideName = person.brideData.baptismName;
           return (
-            <div className="member-details-div">
+            <div className="member-details-div" key={index}>
               <div className="mar-slno">{index + 1}</div>
               <div className="mar-groom-name">
                 {groomName ? groomName : "-"}

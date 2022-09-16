@@ -172,12 +172,11 @@ const Person = () => {
             />
             <button
               onClick={() => {
-                console.log("SIGN UP : ", personId);
                 axios
                   .post(
                     `http://localhost:5000/api/v1/users/signup`,
                     {
-                      userId: personId,
+                      userId: personId?personId:personIdFromFamily,
                       role: "User",
                     },
                     {
