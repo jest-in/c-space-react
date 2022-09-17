@@ -135,7 +135,7 @@ export default function MarriageRegistryAdd() {
                 />
               </div>
             </div>
-            <div className="phone-person-div">
+            {/* <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 <input
@@ -145,7 +145,7 @@ export default function MarriageRegistryAdd() {
                   name="Name"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
@@ -205,7 +205,7 @@ export default function MarriageRegistryAdd() {
                 />
               </div>
             </div>
-            <div className="phone-person-div">
+            {/* <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 <input
@@ -215,7 +215,7 @@ export default function MarriageRegistryAdd() {
                   name="Name"
                 />
               </div>
-            </div>
+            </div> */}
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
