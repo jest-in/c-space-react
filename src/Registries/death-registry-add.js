@@ -285,7 +285,6 @@ export default function DeathRegistryAdd() {
                 <input
                   type="text"
                   name="place"
-                  placeholder="DD-MM-YYYY"
                   onChange={(event) => inputHandler(event)}
                 />
                 <label
