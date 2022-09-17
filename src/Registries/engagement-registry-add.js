@@ -272,7 +272,7 @@ export default function EngagementRegistryAdd() {
         })
         .catch((err) => {
           if (err.response.status === 404) {
-            alert("Please add baptism registry of this persons partner");
+            alert("Please add baptism registry of this persons");
             navigate(-1);
           }
         });

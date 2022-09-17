@@ -280,6 +280,25 @@ export default function DeathRegistryAdd() {
               </div>
             </div>
             <div className="death-person-ward-div">
+              <div className="heading-ward">Place</div>
+              <div className="person-death-ward">
+                <input
+                  type="date"
+                  name="place"
+                  placeholder="DD-MM-YYYY"
+                  onChange={(event) => inputHandler(event)}
+                />
+                <label
+                  className={`add-family-error ${
+                    dodError === "hidden" ? "hidden" : ""
+                  }`}
+                  htmlFor="error"
+                >
+                  {dodError !== "hidden" ? dodError : "This field is required"}
+                </label>
+              </div>
+            </div>
+            <div className="death-person-ward-div">
               <div className="heading-ward">Date of Burial</div>
               <div className="person-death-ward">
                 <input

@@ -47,6 +47,9 @@ const Person = () => {
   }
 
   useEffect(()=>{
+    // Imported data
+    console.log("Imported data:",);
+
     // If person id is null
     if (!personId && !personIdFromFamily) {
       navigate("/family");
