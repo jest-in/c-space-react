@@ -31,9 +31,6 @@ let remarks='';
 export default function BaptismRegistryadd() {
   const navigate = useNavigate();
 
-  // Submit button 
-  const [submitButtonHide,setSubmitButtonHide]=useState('');
-
   // For fields which are present in database
   const [personData, setPersonData] = useState({});
 
@@ -308,7 +305,6 @@ export default function BaptismRegistryadd() {
     }
     // If no error
     if(!error){
-      setSubmitButtonHide('hidden');
       requestTemplate['godFather']=godFather;
       requestTemplate['godMother']=godMother;
       if(remarks)
@@ -325,7 +321,7 @@ export default function BaptismRegistryadd() {
         .then((res) => {
           if (res.data.status === "success") {
             navigate(-1);
-          } else setSubmitButtonHide("");
+          }
         })
         .catch((err) => {
           // Error
@@ -630,7 +626,7 @@ export default function BaptismRegistryadd() {
           />
         </div>
         <div className="submit-btn-div">
-          <button className={submitButtonHide} onClick={() => submitButton()}>
+          <button onClick={() => submitButton()}>
             Submit
           </button>
         </div>
