@@ -1,10 +1,8 @@
 import React, { useEffect } from "react";
-import Logo from "./Assets/logo";
 import IconUpload from "./Assets/Icon_Upload";
 import AddSection from "./Assets/add-section";
 import axios from "axios";
 import { useState } from "react";
-import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./navigation";
 
@@ -29,11 +27,11 @@ export default function AddFamily() {
   const [createFamilyButton, setCreateFamilyButton] = useState("");
 
   // Error fields
-  const [houseNameError, setHouseNameError] = useState("");
-  const [hoseNumError, setHoseNumError] = useState("");
-  const [addressError, setAddressError] = useState("");
-  const [wardNumError, setWardNumError] = useState("");
-  const [pincodeError, setPincodeError] = useState("");
+  const [houseNameError, setHouseNameError] = useState("hidden");
+  const [hoseNumError, setHoseNumError] = useState("hidden");
+  const [addressError, setAddressError] = useState("hidden");
+  const [wardNumError, setWardNumError] = useState("hidden");
+  const [pincodeError, setPincodeError] = useState("hidden");
 
   // Mandatory fields handling function
   function checkInputs(name, value) {
@@ -111,9 +109,11 @@ export default function AddFamily() {
   // Function handling inputs
   function handleMember(event, index) {
     const { name, value } = event.target;
+    let key=name;
+    // if the name and index are same then the input is from gender selection(M/F)
+    if(name === index) key='gender';
     let list = [...members];
-    list[index][name] = value;
-    // console.log(list);
+    list[index][key] = value;
     setMembers(list);
 
     if (name === "name") {
@@ -158,6 +158,7 @@ export default function AddFamily() {
     let error = false;
     for (let i = 0; i < members.length; i++) {
       if (Object.keys(members[i]).length !== 5) {
+        alert('check whether you have entered all details');
         error = true;
         break;
       }
@@ -323,9 +324,7 @@ export default function AddFamily() {
           </div>
         </div>
         <hr />
-        {members.map((member, index) => {
-          // const {name,baptismName,phoneNum,email,gender}=member;
-          // console.log(membersError);
+        {members.map((_, index) => {
           return (
             <div className="add-member-details-div" key={index}>
               <div className="row1-div">
@@ -405,7 +404,7 @@ export default function AddFamily() {
                     <div className="radio1">
                       <input
                         id="male"
-                        name="gender"
+                        name={index}
                         value="M"
                         type="radio"
                         onChange={(event) => handleMember(event, index)}
@@ -415,7 +414,7 @@ export default function AddFamily() {
                     <div className="radio2">
                       <input
                         id="female"
-                        name="gender"
+                        name={index}
                         value="F"
                         type="radio"
                         onChange={(event) => handleMember(event, index)}
