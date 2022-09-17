@@ -15,6 +15,7 @@ let dod = "";
 let doburial = "";
 let parishPriest = "";
 let remarks = "";
+let place=''
 
 export default function DeathRegistryAdd() {
   const navigate = useNavigate();
@@ -27,6 +28,7 @@ export default function DeathRegistryAdd() {
   const [dodError, setDodError] = useState("hidden");
   const [doBurialError, setDoBurialError] = useState("hidden");
   const [priestError, setPriestError] = useState("hidden");
+  const [placeError, setPlaceError] = useState("hidden");
 
   // Inputs handling function
   function inputHandler(event) {
@@ -56,11 +58,18 @@ export default function DeathRegistryAdd() {
       if (value) setDoBurialError("hidden");
       doburial = value;
     }
+    if (name === "place") {
+      if (value) setPlaceError("hidden");
+      place = value;
+    }
     if (name === "parishPriest") {
       parishPriest = value;
     }
     if (name === "remarks") {
       remarks = value;
+    }
+    if(name==='place'){
+      place=value;
     }
   }
 
@@ -81,7 +90,11 @@ export default function DeathRegistryAdd() {
     if (!doburial) {
       setDoBurialError("This field is required");
     }
-    if (confession && viaticum && anointing && dod && doburial) {
+    if (!place) {
+      setPlaceError("This field is required");
+    }
+    console.log('Testing:',confession , viaticum , anointing , dod , doburial,place);
+    if (confession && viaticum && anointing && dod && doburial&&place) {
       let data = {
         sacraments: {
           confession: confession,
@@ -89,11 +102,14 @@ export default function DeathRegistryAdd() {
           anointing: anointing,
         },
         dod: dod,
-        doburial: doburial,
+        doBurial: doburial,
+        place: place,
       };
       if (sickness) data["sickness"] = sickness;
       if (parishPriest) data["parishPriest"] = parishPriest;
       if (remarks) data["remarks"] = remarks;
+
+      console.log('Data for post request:',data);
 
       // Post request
       axios
