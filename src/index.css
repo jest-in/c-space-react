@@ -2934,3 +2934,74 @@ span {
 .event-details-sponsers {
     margin-bottom: 100px;
 }
+
+.registries-nav-div a {
+    font-weight: 400;
+    font-size: 20px;
+    text-decoration: none;
+    color: var(--text-primary);
+    transition: 0.2s ease-in-out;
+}
+
+.registries-nav-div a:hover {
+    border-bottom: 3px solid var(--hover-underline);
+}
+
+/*Send mail popup
+----------------------------------------------------------------*/
+
+.mail-input {
+    border: 2px solid var(--color-3);
+    border-radius: 10px;
+    padding: 10px;
+    outline: none;
+    width: 500px;
+    margin: 10px 0;
+}
+
+.message-input-div input:focus{
+    border: 2px solid var(--color-primary);
+}
+
+.mail-form{
+    display: flex;
+    flex-direction: column;
+}
+
+.attatch{
+    margin-top: 10px;
+    width: 500px;
+}
+
+.mail-send-btn{
+    background-color: var(--color-primary);
+    color: var(--color-secondary);
+    font-weight: 500;
+    width: 100px;
+    align-self: flex-end;
+    padding: 5px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+}
+
+.mail-send-btn:hover{
+    background-color: #4c43cd;
+}
+
+.mail-popup{
+    width: 800px;
+    height: 600px;
+}
+
+.attatchment{
+    width: 00px;
+}
+
+.mail-close-icon{
+    margin-right: 5px;
+    margin-top: 5px;
+}
+
+/*Send mail popup
+----------------------------------------------------------------*/

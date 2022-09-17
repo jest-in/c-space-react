@@ -1,5 +1,5 @@
-body {
-                width: 230mm;
+        .main-body {
+                width: 210mm;
                 height: 100%;
                 margin: 0 auto;
                 padding: 0;
@@ -112,6 +112,7 @@ body {
 
             .certificate-content-div p span {
                 font-weight: 600;
+                color: black;
             }
 
             .witness-div {
@@ -140,10 +141,18 @@ body {
                 font-weight: 600;
             }
 
+            .witness-entries span{
+                color: black;
+            }
+
             .credentials-div {
                 width: 100%;
                 display: flex;
-                padding: 100px 50px 10px 50px;
+                padding: 150px 50px 10px 50px;
+            }
+
+            .name-title span{
+                color: black;
             }
 
             .place-date-div {
@@ -182,9 +191,17 @@ body {
                 width: 100%;
             }
 
+            .digital-signature-div h1{
+                color: red;
+                font-size: 12px;
+                font-weight: 500;
+                margin-top: 50px;
+                margin-left: 50px;
+            }
+
             .digital-signature-content {
-                font-size: 8px;
-                padding: 50px;
+                font-size: 12px;
+                padding: 10px 50px 50px 50px;
             }
 
             @page {
