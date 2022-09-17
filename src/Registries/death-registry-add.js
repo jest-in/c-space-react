@@ -283,7 +283,7 @@ export default function DeathRegistryAdd() {
               <div className="heading-ward">Place</div>
               <div className="person-death-ward">
                 <input
-                  type="date"
+                  type="text"
                   name="place"
                   placeholder="DD-MM-YYYY"
                   onChange={(event) => inputHandler(event)}
