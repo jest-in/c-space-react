@@ -100,9 +100,17 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if (!personDetails.marriage&&personDetails.status==='engaged') {
-                  navigate("/marriage-registry-add");
-                } else if (personDetails.marriage) navigate("/marriage-registry");
+                if (personDetails.maritalStatus !== "engaged"){
+                  alert('Please add engagement registry first');
+                  return;
+                }
+                  if (
+                    !personDetails.marriage &&
+                    personDetails.status === "engaged"
+                  ) {
+                    navigate("/marriage-registry-add");
+                  } else if (personDetails.marriage)
+                    navigate("/marriage-registry");
               }}
             >
               Marriage Registry
