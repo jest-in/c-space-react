@@ -108,6 +108,10 @@ export default function DeathRegistryAdd() {
           if (res.data.status === "success") {
             navigate("/person");
           }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
         });
     }
   }
