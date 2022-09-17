@@ -148,6 +148,7 @@ export default function EngagementRegistryAdd() {
         mother &&
         dob &&
         doBaptism &&
+        parish &&
         birthPlace
       ) {
         error = false;
@@ -156,7 +157,7 @@ export default function EngagementRegistryAdd() {
           familyName: brideGroom.familyName,
           father: brideGroom.father,
           mother: brideGroom.mother,
-          // parish: brideGroom.parish,
+          parish: brideGroom.parish,
           dob: brideGroom.dob.split("T")[0],
           doBaptism: brideGroom.doBaptism.split("T")[0],
           birthPlace: brideGroom.birthPlace,
@@ -166,7 +167,7 @@ export default function EngagementRegistryAdd() {
           familyName: bride.familyName,
           father: bride.father,
           mother: bride.mother,
-          // parish: bride.parish,
+          parish: bride.parish,
           dob: bride.dob.split("T")[0],
           doBaptism: bride.doBaptism.split("T")[0],
           birthPlace: bride.birthPlace,
@@ -180,7 +181,7 @@ export default function EngagementRegistryAdd() {
         familyName: brideGroom.familyName,
         father: brideGroom.father,
         mother: brideGroom.mother,
-        // parish: brideGroom.parish,
+        parish: brideGroom.parish,
         dob: brideGroom.dob.split("T")[0],
         doBaptism: brideGroom.doBaptism.split("T")[0],
         birthPlace: brideGroom.birthPlace,
@@ -190,7 +191,7 @@ export default function EngagementRegistryAdd() {
         familyName: bride.familyName,
         father: bride.father,
         mother: bride.mother,
-        // parish: bride.parish,
+        parish: bride.parish,
         dob: bride.dob.split("T")[0],
         doBaptism: bride.doBaptism.split("T")[0],
         birthPlace: bride.birthPlace,
@@ -577,7 +578,7 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            {/* <div className="death-person-div">
+            <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
@@ -602,7 +603,7 @@ export default function EngagementRegistryAdd() {
                   {parishError ? parishError : "This field is required"}
                 </label>
               </div>
-            </div> */}
+            </div>
             <div className="name-person-div">
               <div className="heading-name">Date of Birth</div>
               <div className="person-name">
@@ -829,7 +830,7 @@ export default function EngagementRegistryAdd() {
                 </label>
               </div>
             </div>
-            {/* <div className="death-person-div">
+            <div className="death-person-div">
               <div className="heading-death">Parish</div>
               <div className="person-death">
                 <input
@@ -854,7 +855,7 @@ export default function EngagementRegistryAdd() {
                   {parishError ? parishError : "This field is required"}
                 </label>
               </div>
-            </div> */}
+            </div>
             <div className="name-person-div">
               <div className="heading-name">Date of Birth</div>
               <div className="person-name">

@@ -90,23 +90,23 @@ function MarriageRegistry() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
-                {groomData.name ? groomData.name : "-"}
+                {groomData.baptismName ? groomData.baptismName : "-"}
               </div>
             </div>
             <div className="dob-person-div">
-              <div className="heading-dob">House name</div>
+              <div className="heading-dob">Family name</div>
               <div className="person-dob">
-                {groomData.houseName ? groomData.houseName : "-"}
+                {groomData.familyName ? groomData.familyName : "-"}
               </div>
             </div>
-            <div className="phone-person-div">
+            {/* <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 {groomData.age ? groomData.age : "-"}
               </div>
-            </div>
+            </div> */}
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
