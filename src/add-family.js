@@ -21,7 +21,7 @@ export default function AddFamily() {
   const [readOnlyMode,setReadOnlyMode]=useState(false);
 
   // Adding members details section
-  const [memberDetailSection, setMemberDetailSection] = useState("hidden");
+  const [memberDetailSection, setMemberDetailSection] = useState("");
 
   // Create family button display/hide
   const [createFamilyButton, setCreateFamilyButton] = useState("");
@@ -109,11 +109,9 @@ export default function AddFamily() {
   // Function handling inputs
   function handleMember(event, index) {
     const { name, value } = event.target;
-    let key=name;
-    // if the name and index are same then the input is from gender selection(M/F)
-    if(name === index) key='gender';
     let list = [...members];
-    list[index][key] = value;
+    // if the name and index are same then the input is from gender selection(M/F)
+    list[index][name === index.toString()?'gender':name] = value; console.log("Data",list);
     setMembers(list);
 
     if (name === "name") {
