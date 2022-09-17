@@ -48,7 +48,7 @@ const Person = () => {
 
   useEffect(()=>{
     // Imported data
-    console.log("Imported data:",);
+    console.log("Imported data personId,personIdFromFamily:",personId,personIdFromFamily);
 
     // If person id is null
     if (!personId && !personIdFromFamily) {

@@ -125,7 +125,7 @@ export default function Family() {
                     <div
                       className="view-detail-div"
                       onClick={() => {
-                        navigate("/family-individual");
+                        navigate("/family-individual", { state: { id: 7, color: 'green' } });
                       }}
                     >
                       <h1>View in detail</h1>
