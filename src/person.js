@@ -120,7 +120,7 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if (!personDetails.death) {
+                if (!personDetails.dod) {
                   navigate("/death-registry-add");
                 } else navigate("/death-registry");
               }}
@@ -172,7 +172,7 @@ const Person = () => {
             <div className="death-person-div">
               <div className="heading-death">Death Date</div>
               <div className="person-death">
-                {personDetails.death ? personDetails.death.split("T")[0] : "-"}
+                {personDetails.dod ? personDetails.dod.split("T")[0] : "-"}
               </div>
             </div>
           </div>

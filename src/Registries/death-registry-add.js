@@ -63,13 +63,11 @@ export default function DeathRegistryAdd() {
       place = value;
     }
     if (name === "parishPriest") {
+      if (value) setPriestError("hidden");
       parishPriest = value;
     }
     if (name === "remarks") {
       remarks = value;
-    }
-    if(name==='place'){
-      place=value;
     }
   }
 
@@ -93,8 +91,11 @@ export default function DeathRegistryAdd() {
     if (!place) {
       setPlaceError("This field is required");
     }
+    if (!parishPriest) {
+      setPriestError("This field is required");
+    }
     console.log('Testing:',confession , viaticum , anointing , dod , doburial,place);
-    if (confession && viaticum && anointing && dod && doburial&&place) {
+    if (confession && viaticum && anointing && dod && doburial&&place&&parishPriest) {
       let data = {
         sacraments: {
           confession: confession,
@@ -104,9 +105,9 @@ export default function DeathRegistryAdd() {
         dod: dod,
         doBurial: doburial,
         place: place,
+        parishPriest:parishPriest
       };
       if (sickness) data["sickness"] = sickness;
-      if (parishPriest) data["parishPriest"] = parishPriest;
       if (remarks) data["remarks"] = remarks;
 
       console.log('Data for post request:',data);
@@ -309,11 +310,11 @@ export default function DeathRegistryAdd() {
                 />
                 <label
                   className={`add-family-error ${
-                    dodError === "hidden" ? "hidden" : ""
+                    placeError === "hidden" ? "hidden" : ""
                   }`}
                   htmlFor="error"
                 >
-                  {dodError !== "hidden" ? dodError : "This field is required"}
+                  {placeError !== "hidden" ? placeError : "This field is required"}
                 </label>
               </div>
             </div>
