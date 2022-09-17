@@ -32,6 +32,7 @@ import ViewEvent from './Sponsors/view-event';
 import IndividualEvent from './Sponsors/individual-event';
 import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
+import MarriageCertificate from "./certificates/marriage-certificate";
 
 function App() {
   return (
@@ -43,7 +44,6 @@ function App() {
         <Route path="/marriage-registry" element={<MarriageRegistry />} exact />
         <Route path="/family" element={<Family />} exact />
         <Route path="/family-individual" element={<FamilyIndividual />} exact />
-        <Route path="/pie-chart" element={<Example />} exact />
         <Route path="/forgot-password" element={<ForgotPassword />} exact />
         <Route path="/marriage-registry-add" element={<MarriageRegistryAdd />} exact />
         <Route path="/add-family-relation" element={<AddFamilyRelation />} exact />
@@ -70,6 +70,7 @@ function App() {
         <Route path="/create-event" element={<CreateEvent />} exact />
         <Route path="/view-event" element={<ViewEvent />} exact />
         <Route path="/individual-event" element={<IndividualEvent />} exact />
+        <Route path="/marriage-certificate" element={<MarriageCertificate />} exact />
       </Routes>
     </>
   );

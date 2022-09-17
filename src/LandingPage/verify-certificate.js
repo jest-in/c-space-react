@@ -1,7 +1,32 @@
 import React from 'react'
+import { useState } from 'react';
 import Logo from '../Assets/logo';
+import axios from "axios";
 
 export default function VerifyCertificate() {
+  // input
+  const [inputToken,setInputToken]=useState({});
+
+  // Function for proceed button
+  function proceedButton(){
+    console.log('Input token:',inputToken);
+    if(inputToken.sign){
+      axios
+        .post(`http://localhost:5000/api/v1/verify-sign`, inputToken, {
+          withCredentials: true,
+        })
+        .then((res) => {
+          if (res.data.status === "success") {
+            // if token is verified successfully
+          }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
+        });
+    }
+  }
+
   return (
     <div className="forgot-password-body">
       <div className="container-forgot-password verify-container">
@@ -23,13 +48,21 @@ export default function VerifyCertificate() {
             <div className="otp-forms">
               <label htmlFor="uid">Enter Token</label>
               <textarea
-                name="token"
+                name="sign"
                 id="token"
                 cols={30}
                 rows={10}
-                defaultValue={""}
+                onChange={(event)=>{
+                  const {name,value}=event.target;
+                  setInputToken((prev)=>{
+                    let data=prev;
+                    data[name]=value;
+                    return data;
+                  })
+                }}
+                defaultValue={inputToken.sign}
               />
-              <input
+              <input onClick={()=>proceedButton()}
                 type="button"
                 defaultValue="Proceed"
                 id="otp-btn-proceed"

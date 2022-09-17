@@ -11,10 +11,11 @@ import Icon_Search from "./Assets/Icon_Search";
 
 import axios from "axios";
 import Navigation from "./navigation";
+import Chart from "./pieChart";
 
 const url = "http://localhost:5000/api/v1/family";
 
-let id = "";
+let id;
 let personIdFromFamily;
 
 export default function Family() {
@@ -43,7 +44,7 @@ export default function Family() {
   }, []);
 
   //function for requesting individual family details
-  function FamilyDetails(index) {
+  function familyDetails(index) {
     id = families[index]._id;
 
     setFamilyName(families[index].familyName);
@@ -72,7 +73,7 @@ export default function Family() {
     <>
       <div className="families-container">
         <Navigation/>
-        <div className="graph-div">{/* graph goes here */}</div>
+        <div className="graph-div"><Chart/></div>
         <div className="secondary-nav-div">
           <div className="secondary-nav-subdiv1">
             <div className="sub1-head">
@@ -101,16 +102,11 @@ export default function Family() {
             <hr />
             <div className="sub-div-content">
               {families.map((family, index) => {
-                // if(index===0){
-                //   console.log('FamilyName:',family.familyName);
-                //   setFamilyName(family.familyName);
-                //   // getRequest(family._id);
-                // }
                 return (
                   <div
                     className="sub-entries"
                     key={family._id}
-                    onClick={() => FamilyDetails(index)}
+                    onClick={() => familyDetails(index)}
                   >
                     <h1>{family.familyName}</h1>
                   </div>

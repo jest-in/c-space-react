@@ -109,7 +109,7 @@ const Person = () => {
                 }
                   if (
                     !personDetails.marriage &&
-                    personDetails.status === "engaged"
+                    personDetails.status === "engaged"&&personDetails.isActive
                   ) {
                     navigate("/marriage-registry-add");
                   } else if (personDetails.marriage)

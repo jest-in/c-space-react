@@ -1,59 +1,93 @@
 // import "./styles.css";
-// import React, { useCallback, useState } from "react";
-import { PieChart, Pie, Cell } from "recharts";
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+} from "recharts";
 
 const data = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
+  {
+    category: "0-10",
+    male: 4000,
+    female: 2400,
+  },
+  {
+    category: "11-20",
+    male: 3000,
+    female: 1398,
+  },
+  {
+    category: "21-30",
+    male: 2000,
+    female: 8,
+  },
+  {
+    category: "31-40",
+    male: 2780,
+    female: 3908,
+  },
+  {
+    category: "41-50",
+    male: 18,
+    female: 4800,
+  },
+  {
+    category: "51-60",
+    male: 2390,
+    female: 3800,
+  },
+  {
+    category: "61-70",
+    male: 3490,
+    female: 4300,
+  },
+  {
+    category: "71-80",
+    male: 200,
+    female: 3568,
+  },
+  {
+    category: "81-90",
+    male: 1245,
+    female: 4256,
+  },
+  {
+    category: "91-100",
+    male: 1458,
+    female: 1235,
+  },
+  {
+    category: "100 above",
+    male: 6542,
+    female: 2453,
+  },
 ];
 
-const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042"];
-
-const RADIAN = Math.PI / 180;
-const renderCustomizedLabel = ({
-  cx,
-  cy,
-  midAngle,
-  innerRadius,
-  outerRadius,
-  percent,
-  index,
-}: any) => {
-  const radius = innerRadius + (outerRadius - innerRadius) * 0.5;
-  const x = cx + radius * Math.cos(-midAngle * RADIAN);
-  const y = cy + radius * Math.sin(-midAngle * RADIAN);
-
+export default function Chart() {
   return (
-    <text
-      x={x}
-      y={y}
-      fill="white"
-      textAnchor={x > cx ? "start" : "end"}
-      dominantBaseline="central"
+    <BarChart
+      width={1500}
+      height={600}
+      data={data}
+      margin={{
+        top: 10  ,
+        right: 30,
+        left: 20,
+        bottom: 100,
+      }}
     >
-      {`${(percent * 100).toFixed(0)}%`}
-    </text>
-  );
-};
-export default function App() {
-  return (
-    <PieChart width={400} height={400}>
-      <Pie
-        data={data}   
-        cx={200}
-        cy={200}
-        labelLine={false}
-        label={renderCustomizedLabel}
-        outerRadius={80}
-        fill="#8884d8"
-        dataKey="value"
-      >
-        {data.map((entry, index) => (
-          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-        ))}
-      </Pie>
-    </PieChart>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="category" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="male" fill="#FB466C" minPointSize={5}></Bar>
+      <Bar dataKey="female" fill="#6C63F0" minPointSize={10} />
+    </BarChart>
   );
 }
