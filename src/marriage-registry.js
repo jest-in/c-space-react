@@ -42,10 +42,10 @@ function MarriageRegistry() {
       .get(
         `http://localhost:5000/api/v1/registry/marriage-registry/${personIdFromPerson}`
       )
-      .then((res)=>{
-        console.log("RES : ",res.data)
-        if(res.data.status==="success"){
-          const result=res.data.data;
+      .then((res) => {
+        console.log("RES : ", res.data);
+        if (res.data.status === "success") {
+          const result = res.data.data;
           setName(personName);
           setGroomData(result.groomData);
           setBrideData(result.brideData);
@@ -55,12 +55,13 @@ function MarriageRegistry() {
             witness: result.witness,
             parishPriest: result.parishPriest,
             remarks: result.remarks,
-          }).catch((err) => {
-            // Error
-            alert(`${err.response.data.message}`);
           });
-          setShowDetails('');
+          setShowDetails("");
         }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
       });
       else
       navigate(-1)

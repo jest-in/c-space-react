@@ -111,7 +111,7 @@ export default function AddFamily() {
     const { name, value } = event.target;
     let list = [...members];
     // if the name and index are same then the input is from gender selection(M/F)
-    list[index][name === index.toString()?'gender':name] = value; console.log("Data",list);
+    list[index][name === index.toString()?'gender':name] = value;
     setMembers(list);
 
     if (name === "name") {
