@@ -149,7 +149,7 @@ export default function AddFamilyRelation() {
             setHideMother("");
             setHideFather("");
             // Changing name of the person
-            setPerson(membersInFamily[indexOfMembersInFamily].name);
+            setPerson(membersInFamily[indexOfMembersInFamily].baptismName);
             // relatives for the next person
             setRelativesOfPerson(
               membersInFamily.filter(
@@ -230,8 +230,8 @@ export default function AddFamilyRelation() {
         if (!result.members.length) setStatus("No members");
         setMembersInFamily(result.members);
         const list = result.members;
-        setPerson(list[0].name);
-        setRelativesOfPerson(list.filter((ele, index) => index !== 0));
+        setPerson(list[0].baptismName);
+        setRelativesOfPerson(list.filter((_, index) => index !== 0));
         setIndexOfMembersInFamily(1);
       }
     })
@@ -352,7 +352,7 @@ export default function AddFamilyRelation() {
         </div>
       </div>
       <hr />
-      <div className="relation-details-container">
+      <div className={`relation-details-container`}>
         <div className="relation-details-head">
           <h1 className="relation-title-head">
             {membersInFamily.length ? person : status}
@@ -360,20 +360,22 @@ export default function AddFamilyRelation() {
           <h1 className="relation-type-head">Relation Type</h1>
         </div>
         {relativesOfPerson.map((relative, index) => {
-          const { id,gender } = relative;
+          const { id, gender } = relative;
           let defaultValue = "select";
           if (temporaryData[id]) {
             defaultValue = temporaryData[id];
           }
           return (
             <div className="relatives-entry-div" key={index}>
-              <h1>{relative.name}</h1>
-              <Selection props={{ id, defaultValue,gender }} />
+              <h1>{relative.baptismName}</h1>
+              <Selection props={{ id, defaultValue, gender }} />
             </div>
           );
         })}
       </div>
-      <div className={`save-btn-div ${relativesOfPerson.length?'':'hidden'}`}>
+      <div
+        className={`save-btn-div ${relativesOfPerson.length ? "" : "hidden"}`}
+      >
         <button onClick={() => saveButton()}>Save</button>
       </div>
     </div>
