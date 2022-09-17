@@ -21,7 +21,7 @@ export default function AddFamily() {
   const [readOnlyMode,setReadOnlyMode]=useState(false);
 
   // Adding members details section
-  const [memberDetailSection, setMemberDetailSection] = useState("");
+  const [memberDetailSection, setMemberDetailSection] = useState("hidden");
 
   // Create family button display/hide
   const [createFamilyButton, setCreateFamilyButton] = useState("");
