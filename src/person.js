@@ -6,7 +6,7 @@ import { useEffect } from 'react';
 
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from './navigation';
 
 let gender,personName;
@@ -16,67 +16,70 @@ let personIdFromPerson;
 let partnerIdFromPerson;
 
 const Person = () => {
-  const navigate=useNavigate();
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
+  const navigate = useNavigate();
 
   // Personal details
-  const [personDetails,setPersonDetails]=useState({});
+  const [personDetails, setPersonDetails] = useState({});
 
   // Person details section
-  const [detailSection,setDetailSection]=useState('hidden');
+  const [detailSection, setDetailSection] = useState("hidden");
 
   // Engagement button
-  function engagementButton(){
+  function engagementButton() {
     if (
       personDetails.maritalStatus === "engaged" ||
       personDetails.maritalStatus === "married"
     ) {
-        navigate("/engagement-registry");
-        return
+      navigate("/engagement-registry");
+      return;
     }
     if (!personDetails.doBaptism) {
-      alert('Please add baptism registry for continuing');
+      alert("Please add baptism registry for continuing");
       return;
-    }else if((personDetails.gender==='M'&&personDetails.age<21)||(personDetails.gender==='F'&&personDetails.age<18)){
-      alert('This person is under aged');
+    } else if (
+      (personDetails.gender === "M" && personDetails.age < 21) ||
+      (personDetails.gender === "F" && personDetails.age < 18)
+    ) {
+      alert("This person is under aged");
       return;
     }
-    if (personDetails.husband || personDetails.wife){
-      partnerIdFromPerson=personDetails.husband?personDetails.husband:personDetails.wife;
+    if (personDetails.husband || personDetails.wife) {
+      partnerIdFromPerson = personDetails.husband
+        ? personDetails.husband
+        : personDetails.wife;
     }
-      navigate("/engagement-registry-add");
+    navigate("/engagement-registry-add");
   }
 
-  useEffect(()=>{
-    // Imported data
-    console.log("Imported data personId,personIdFromFamily:",personId,personIdFromFamily);
-
+  useEffect(() => {
     // If person id is null
     if (!personId && !personIdFromFamily) {
       navigate("/family");
       return;
     }
-      axios
-        .get(
-          `http://localhost:5000/api/v1/persons/id/${
-            personId ? personId : personIdFromFamily
-          }`
-        )
-        .then((res) => {
-          const result = res.data.person;
+    axios
+      .get(
+        `http://localhost:5000/api/v1/persons/id/${location.state}`
+      )
+      .then((res) => {
+        const result = res.data.person;
 
-          if (res.data.status === "success") {
-            personIdFromPerson = result._id;
-            setPersonDetails(result);
-            setDetailSection("");
-            gender = result.gender;
-            personName = result.name;
-          } else navigate("/family-individual");
-        })
-        .catch((err) => {
-          // Error
-          alert(`${err.response.data.message}`);
-        });
-  },[])
+        if (res.data.status === "success") {
+          personIdFromPerson = result._id;
+          setPersonDetails(result);
+          setDetailSection("");
+          gender = result.gender;
+          personName = result.name;
+        } else navigate("/family-individual");
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }, []);
 
   return (
     <div className="container-family">
@@ -84,7 +87,9 @@ const Person = () => {
       <main className={detailSection}>
         <div className="title-div">
           <div className="person-head">
-            <h1>{personDetails.baptismName ? personDetails.baptismName : "-"}</h1>
+            <h1>
+              {personDetails.baptismName ? personDetails.baptismName : "-"}
+            </h1>
           </div>
           <div className="registries-nav-div">
             <button
@@ -96,24 +101,23 @@ const Person = () => {
             >
               Baptism Registry
             </button>
-            <button
-              onClick={() =>engagementButton()}
-            >
+            <button onClick={() => engagementButton()}>
               Engagement Registry
             </button>
             <button
               onClick={() => {
-                if (personDetails.maritalStatus !== "engaged"){
-                  alert('Please add engagement registry first');
+                if (personDetails.maritalStatus !== "engaged") {
+                  alert("Please add engagement registry first");
                   return;
                 }
-                  if (
-                    !personDetails.marriage &&
-                    personDetails.status === "engaged"&&personDetails.isActive
-                  ) {
-                    navigate("/marriage-registry-add");
-                  } else if (personDetails.marriage)
-                    navigate("/marriage-registry");
+                if (
+                  !personDetails.marriage &&
+                  personDetails.status === "engaged" &&
+                  personDetails.isActive
+                ) {
+                  navigate("/marriage-registry-add");
+                } else if (personDetails.marriage)
+                  navigate("/marriage-registry");
               }}
             >
               Marriage Registry
@@ -187,7 +191,7 @@ const Person = () => {
                   .post(
                     `http://localhost:5000/api/v1/users/signup`,
                     {
-                      userId: personId?personId:personIdFromFamily,
+                      userId: personId ? personId : personIdFromFamily,
                       role: "User",
                     },
                     {

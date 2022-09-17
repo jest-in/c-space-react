@@ -125,7 +125,11 @@ export default function Family() {
                     <div
                       className="view-detail-div"
                       onClick={() => {
-                        navigate("/family-individual", { state: { id: 7, color: 'green' } });
+                        if(family[0].familyId){
+                          navigate("/family-individual", {
+                            state: family[0].familyId,
+                          });
+                        }
                       }}
                     >
                       <h1>View in detail</h1>
@@ -157,7 +161,9 @@ export default function Family() {
                 return (
                   <div className="sub2-content" key={index} onClick={()=>{
                     personIdFromFamily = id;
-                    navigate("/person");
+                    navigate("/person", {
+                      state:id,
+                    });
                   }}>
                     <div className="sub2-name-div">
                       <h1>

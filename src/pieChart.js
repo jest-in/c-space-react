@@ -72,7 +72,7 @@ export default function Chart() {
   return (
     <BarChart
       width={1500}
-      height={600}
+      height={500}
       data={data}
       margin={{
         top: 10  ,

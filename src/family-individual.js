@@ -7,7 +7,7 @@ import IconUpload from "./Assets/Icon_Upload";
 import Icon_Menu from "./Assets/Icon_Menu";
 
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 import { id,url } from "./family";
 import Navigation from "./navigation";
@@ -17,7 +17,9 @@ let personId;
 let familyId;
 
 export default function FamilyIndividual() {
-
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
   // Family
@@ -40,7 +42,7 @@ export default function FamilyIndividual() {
     navigate('/family');
     
     axios
-      .get(`${url}/${id}`)
+      .get(`http://localhost:5000/api/v1/family/${location.state}`)
       .then((res) => {
         console.log(res.data.data);
         const result = res.data.data;
