@@ -91,7 +91,7 @@ export default function EngagementRegistryAdd() {
         .get(
           `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${
             gender === "M" ? "F" : "M"
-          }&sort=baptismName`
+          }${gender === "M" ? "&age[gte]=18" : "&age[gte]=21"}&sort=baptismName`
         )
         .then((res) => {
           const result = res.data.persons;
