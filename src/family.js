@@ -60,9 +60,9 @@ export default function Family() {
   // Get request with family id
   function getRequest(id){
         axios
-          .get(`${url, {
-        withCredentials: true,
-      }}/${id}`)
+          .get(`${url}/${id}`, {
+            withCredentials: true,
+          })
           .then((res) => {
             const result = res.data.data;
             setFamily(result.members);
