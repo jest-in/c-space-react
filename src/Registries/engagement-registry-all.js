@@ -5,9 +5,10 @@ import { useEffect } from 'react'
 import Icon_Filter from '../Assets/Icon_Filter'
 import Icon_Search from '../Assets/Icon_Search'
 import Navigation from '../navigation'
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function EngagementRegistryAll() {
-
+  const navigate = useNavigate();
   // Show details section
   const [showDetails,setShowDetails]=useState('hidden');
 
@@ -55,11 +56,15 @@ export default function EngagementRegistryAll() {
           <div className="mar-celebrant">Celebrant</div>
         </div>
         {engagementAll.map((person, index) => {
-          const { engagementDate, celebrant } = person;
+          const { engagementDate, celebrant,_id } = person;
           const groomName = person.groomData.baptismName;
           const brideName = person.brideData.baptismName;
           return (
-            <div className="member-details-div" key={index}>
+            <div className="member-details-div" key={index} onClick={()=>{
+              navigate("/engagement-registry", {
+                state: _id,
+              });
+            }}>
               <div className="mar-slno">{index + 1}</div>
               <div className="mar-groom-name">
                 {groomName ? groomName : "-"}

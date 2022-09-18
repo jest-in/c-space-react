@@ -6,14 +6,18 @@ import { personIdFromPerson,personName } from '../person';
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { userIdFromAllBaptism } from './baptism-registry-all';
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function BaptismRegistry() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
 
   // Baptism Details
   const [baptismDetails,setBaptismDetails]=useState({});
 
   useEffect(()=>{
-    // Get request
+    // Get request use location.state
     axios
       .get(
         `http://localhost:5000/api/v1/registry/baptism-registry/${

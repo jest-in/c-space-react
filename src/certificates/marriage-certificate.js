@@ -26,7 +26,6 @@ export default function MarriageCertificate() {
       )
       .then((res) => {
         const result = res.data.data;
-        console.log("Result for marriage-registry pdf:", result);
         if (res.data.status === "success") {
           setDetails(result);
           setBrideData(result.brideData);
