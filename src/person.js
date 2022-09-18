@@ -94,7 +94,6 @@ const Person = () => {
 
   return (
     <div className="container-family">
-      <div className="hidden">
         {/* SMS Box */}
         <div className="message-popup-bg">
           <div className="message-popup">
@@ -199,7 +198,6 @@ const Person = () => {
           </div>
         </div>
         {/* Universal Alert Box */}
-      </div>
 
       <Navigation />
       <main className={detailSection}>
