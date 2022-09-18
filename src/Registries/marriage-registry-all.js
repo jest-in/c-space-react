@@ -60,11 +60,11 @@ export default function MarriageRegistryAll() {
           <div className="mar-celebrant">Celebrant</div>
         </div>
         {marriageAll.map((member, index) => {
-          const { celebrant, groomName,brideName, marriageDate,_id } = member;
+          const { celebrant, groomName,brideName, marriageDate,groomId,brideId } = member;
           return (
             <div className="member-details-div" key={index} onClick={()=>{
               navigate("/marriage-registry", {
-                state: _id,
+                state: groomId?groomId:brideId,
               });
             }}>
               <div className="mar-slno">{index + 1}</div>

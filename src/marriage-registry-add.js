@@ -6,14 +6,21 @@ import { useEffect } from 'react'
 import { useState } from 'react'
 import { personIdFromPerson,personName } from "./person";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import Navigation from './navigation'
 
 // Id for posting marriage registry
 let engagementRegId;
 
 export default function MarriageRegistryAdd() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
+
   const navigate = useNavigate();
+
+  // Engagement id
+  const [engagementRegId,setEngagementRegId]=useState('');
 
   // Show details
   const [showDetails,setShowDetails]=useState('hidden');
@@ -72,14 +79,14 @@ export default function MarriageRegistryAdd() {
   useEffect(()=>{
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`
+        `http://localhost:5000/api/v1/registry/engagement-registry/${location.state}`
       )
       .then((res) => {
         if (res.data.status === "success") {
           const result = res.data.data;
           console.log("RES ENTERD: ", result.groomData);
-          setName(personName);
-          engagementRegId = result._id;
+          // setName(personName);     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+          setEngagementRegId(result._id);
           setGroomData(result.groomData);
           setBrideData(result.brideData);
           setShowDetails("");
@@ -114,7 +121,7 @@ export default function MarriageRegistryAdd() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 <input
                   value={GroomData.baptismName ? GroomData.baptismName : "-"}
@@ -125,7 +132,7 @@ export default function MarriageRegistryAdd() {
               </div>
             </div>
             <div className="dob-person-div">
-              <div className="heading-dob">House name</div>
+              <div className="heading-dob">Family name</div>
               <div className="person-dob">
                 <input
                   value={GroomData.familyName ? GroomData.familyName : "-"}
@@ -184,7 +191,7 @@ export default function MarriageRegistryAdd() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head bride">Bride</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 <input
                   value={brideData.baptismName ? brideData.baptismName : "-"}
@@ -195,7 +202,7 @@ export default function MarriageRegistryAdd() {
               </div>
             </div>
             <div className="dob-person-div">
-              <div className="heading-dob">House name</div>
+              <div className="heading-dob">Family name</div>
               <div className="person-dob">
                 <input
                   value={brideData.familyName ? brideData.familyName : "-"}

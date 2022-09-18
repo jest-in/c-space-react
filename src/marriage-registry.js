@@ -39,10 +39,10 @@ function MarriageRegistry() {
 
   useEffect(()=>{
     // get request use location.state !!!!!!!!!!!!!!!!!!!!!!!
-    if(personIdFromPerson)
+    if(location.state)
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/marriage-registry/${personIdFromPerson}`
+        `http://localhost:5000/api/v1/registry/marriage-registry/${location.state}`
       )
       .then((res) => {
         console.log("RES : ", res.data);

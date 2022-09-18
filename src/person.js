@@ -227,9 +227,13 @@ const Person = () => {
                   personDetails.status === "engaged" &&
                   personDetails.isActive
                 ) {
-                  navigate("/marriage-registry-add");
+                  navigate("/marriage-registry-add", {
+                    state: location.state,
+                  });
                 } else if (personDetails.marriage)
-                  navigate("/marriage-registry");
+                  navigate("/marriage-registry", {
+                    state: location.state,
+                  });
               }}
             >
               Marriage Registry
