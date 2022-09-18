@@ -60,9 +60,21 @@ export default function FamilyIndividual() {
     const formData = new FormData();
 
     // Update the formData object
-    formData.append("image", event.target.files[0], event.target.files[0].name);
+    formData.append("photo", event.target.files[0], event.target.files[0].name);
 
-    console.log("File details:", formData);
+    axios
+      .patch(`http://localhost:5000/api/v1/family/${location.state}`, formData, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          alert('uploaded successfully')
+        } 
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
 
   }
 
