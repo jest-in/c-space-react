@@ -67,7 +67,7 @@ export default function MarriageRegistryAdd() {
        )
        .then((res) => {
          if (res.data.status === "success") {
-           navigate("/person");
+           navigate(-1);
          }
        })
        .catch((err) => {

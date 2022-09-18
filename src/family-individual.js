@@ -1,5 +1,5 @@
 import React from "react";
-import { useState,useEffect } from "react";
+import { useState,useEffect,useRef } from "react";
 
 import Icon_Close from "./Assets/Icon_Close";
 import Icon_Search from "./Assets/Icon_Search";
@@ -22,20 +22,35 @@ export default function FamilyIndividual() {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
+  const hiddenFileInput = useRef(null);  
+
   // Family
-  const [family,setFamily]=useState([]);
+  const [family, setFamily] = useState([]);
 
   // Family members
-  const [members,setMembers]=useState([]);
+  const [members, setMembers] = useState([]);
 
   // Heading division
   const [membersSection, setmembersSection] = useState("hidden");
 
   // Details section
-  const [detailSection,setDetailSection]=useState('hidden');
+  const [detailSection, setDetailSection] = useState("hidden");
 
-  useEffect(()=>{
-    familyId=id;
+  // photo upload
+  function photoUpload() {
+    console.log("upload clicked");
+    hiddenFileInput.current.click();
+  }
+
+  // change in file
+  function onFileChange(event) {
+    const fileUploaded = event.target.files[0];
+    console.log('File details:',fileUploaded);
+    // props.handleFile(fileUploaded);
+  }
+
+  useEffect(() => {
+    familyId = id;
     axios
       .get(`http://localhost:5000/api/v1/family/${location.state}`, {
         withCredentials: true,
@@ -60,7 +75,7 @@ export default function FamilyIndividual() {
         // Error
         alert(`${err.response.data.message}`);
       });
-  },[]);
+  }, []);
 
   return (
     <div className="container-family">
@@ -113,9 +128,15 @@ export default function FamilyIndividual() {
             </div>
           </div>
           <div className="family-photo">
-            <div className="upload-btn">
+            <div className="upload-btn" onClick={() => photoUpload()}>
               <h1>Family photo</h1>
               <IconUpload />
+              <input
+                type="file"
+                ref={hiddenFileInput}
+                onChange={(event) => onFileChange(event)}
+                style={{ display: "none" }}
+              />
             </div>
             <div className="photo-container">
               <img src={require("./Assets/family-photo.png")} />
@@ -141,7 +162,6 @@ export default function FamilyIndividual() {
               marriage,
               death,
             } = member;
-            console.log(id);
             const dobString = dob ? dob.split("T")[0] : "-";
             const baptismString = doBaptism ? doBaptism.split("T")[0] : "-";
             const marriageString = marriage ? marriage.split("T")[0] : "-";
@@ -173,15 +193,13 @@ export default function FamilyIndividual() {
           <div className="description-div">
             <div className="desc-heading">Description/Remarks</div>
             <div className="desc-content">
-              <span className="blank-space" />
-              -
+              <span className="blank-space" />-
             </div>
           </div>
           <div className="donation-div">
             <div className="donation-heading">Donations / offerings</div>
             <div className="donation-content">
-              <span className="blank-space" />
-              -
+              <span className="blank-space" />-
             </div>
           </div>
         </div>
