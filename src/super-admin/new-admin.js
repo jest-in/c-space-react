@@ -62,7 +62,9 @@ export default function NewAdmin() {
   // submit button
   function blockButton() {
     axios
-      .get(`http://localhost:5000/api/v1/users/signup/admin`)
+      .get(`http://localhost:5000/api/v1/users/signup/admin`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           alert(res.data.message);
