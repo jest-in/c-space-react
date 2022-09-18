@@ -5,9 +5,10 @@ import {personIdFromFamily} from './family';
 import { useEffect } from 'react';
 
 import axios from 'axios';
-import { useState } from 'react';
+import { useState ,useRef} from 'react';
 import { useNavigate, useLocation } from "react-router-dom";
 import Navigation from './navigation';
+import Icon_Close from './Assets/Icon_Close';
 
 let gender,personName;
 let personIdFromPerson;
@@ -20,6 +21,39 @@ const Person = () => {
   // Imported data
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
+  
+  const fileInput=useRef();
+  const data = new FormData();
+  // onFile change
+  function onFileChange(event){
+    // setAttachement({ selectedFile: event.target.files[0] });
+    data.append("attachment", event.target.files[0], event.target.files[0].name);
+  }
+  // input from mail form
+  function inputsFromMailForm(event){
+    const {name,value}=event.target;
+    data.append(name,value);
+  }
+  // send mail button in form 
+  function sendMailFromForm(){
+    data.append('to',email);
+    axios
+      .post("http://localhost:5000/api/v1/send-mail", data, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.status === "success") {
+          alert('Mail sent successfully')
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+    }
+      //email 
+  const [email,setEmail]=useState('');
 
   // Personal details
   const [personDetails, setPersonDetails] = useState({});
@@ -78,6 +112,10 @@ const Person = () => {
         const result = res.data.person;
 
         if (res.data.status === "success") {
+
+          // email 
+          setEmail(result.email);
+
           console.log("personIdFromPerson:", result.id);
           personIdFromPerson = result.id;
           setPersonDetails(result);
@@ -94,110 +132,119 @@ const Person = () => {
 
   return (
     <div className="container-family">
-        {/* SMS Box */}
-        <div className="message-popup-bg hidden">
-          <div className="message-popup">
-            <div className="message-close-icon-div">
-              <img className="message-close-icon" src="/Icon_Close.svg" alt />
-            </div>
-            <div className="message-popup-head">
-              <h1>Compose Message</h1>
-              <hr />
-            </div>
-            <div className="message-input-div">
+      {/* SMS Box */}
+      <div className="message-popup-bg hidden">
+        <div className="message-popup">
+          <div className="message-close-icon-div">
+            <img className="message-close-icon" src="/Icon_Close.svg" alt />
+          </div>
+          <div className="message-popup-head">
+            <h1>Compose Message</h1>
+            <hr />
+          </div>
+          <div className="message-input-div">
+            <textarea
+              name="message"
+              id="message"
+              rows={6}
+              cols={25}
+              placeholder="Type your message here..."
+              autoFocus
+              defaultValue={""}
+            />
+          </div>
+          <div className="message-send-button hidden">
+            <a href="#">Send</a>
+            <h1>Sent Successfully</h1>
+            <h2 className="message-wrong">Something went wrong! Try again.</h2>
+          </div>
+        </div>
+      </div>
+      {/* SMS Box */}
+
+      {/* Mail Box */}
+      <div className="message-popup-bg">
+        <div className="message-popup mail-popup">
+          <div className="message-close-icon-div" onClick={() => {}}>
+            <Icon_Close />
+          </div>
+          <div className="message-popup-head">
+            <h1>Compose Mail</h1>
+            <hr />
+          </div>
+          <div className="message-input-div">
+            <form
+              className="mail-form"
+              // action="/http://localhost:5000/api/v1/send-mail"
+              // method="post"
+            >
+              <input
+                value={email}
+                className="mail-input"
+                type="text"
+                readOnly={true}
+              />
+              <input
+                className="mail-input"
+                type="text"
+                name="subject"
+                placeholder="Subject"
+                onChange={(event) => inputsFromMailForm(event)}
+              />
               <textarea
-                name="message"
+                name="text"
                 id="message"
-                rows={6}
+                rows={4}
                 cols={25}
                 placeholder="Type your message here..."
                 autoFocus
+                onChange={(event) => inputsFromMailForm(event)}
                 defaultValue={""}
               />
-            </div>
-            <div className="message-send-button hidden">
-              <a href='#'>
-                Send
-              </a>
-              <h1>Sent Successfully</h1>
-              <h2 className="message-wrong">
-                Something went wrong! Try again.
-              </h2>
-            </div>
-          </div>
-        </div>
-        {/* SMS Box */}
-
-        {/* Mail Box */}
-        <div className="message-popup-bg hidden">
-          <div className="message-popup mail-popup">
-            <div className="message-close-icon-div">
-              <img className="mail-close-icon" src="/Icon_Close.svg"/>
-            </div>
-            <div className="message-popup-head">
-              <h1>Compose Mail</h1>
-              <hr />
-            </div>
-            <div className="message-input-div">
-              <form
-                className="mail-form"
-                action="/http://localhost:5000/api/v1/send-mail"
-                method="post"
-              >
-                <input className="mail-input" type="text" readOnly />
-                <input
-                  className="mail-input"
-                  type="text"
-                  placeholder="Subject"
-                />
-                <textarea
-                  name="message"
-                  id="message"
-                  rows={4}
-                  cols={25}
-                  placeholder="Type your message here..."
-                  autofocus
-                  defaultValue={""}
-                />
-                <input type="file" name="attatchment" className="attatch" />
-                <input
-                  className="mail-send-btn"
-                  type="submit"
-                  defaultValue="Send"
-                />
-              </form>
-            </div>
-            <div className="message-send-button">
-              <h1>Sent Successfully</h1>
-              <h2 className="message-wrong">
-                Something went wrong! Try again.
-              </h2>
-            </div>
-          </div>
-        </div>
-        {/* Mail Box */}
-
-        {/* Universal Alert Box */}
-        <div className="universal-alert-popup-bg hidden">
-          <div className="universal-alert-popup hidden">
-            <div className="universal-alert-message-close-icon-div">
-              <img
-                className="universal-alert-message-close-icon"
-                src="/Icon_Close.svg"
-                alt
+              <input
+                type="file"
+                name="attatchment"
+                className="attatch"
+                ref={fileInput}
+                onChange={(event) => onFileChange(event)}
               />
-            </div>
-            <div className="universal-alert-message-div">
-              <label className="universal-alert-message">
-                Baptism registry of this person is not updated
-              </label>
-            </div>
-            <div className="universal-alert-ok-button-div">
-              <button className="universal-alert-ok-buttion">Ok</button>
-            </div>
+              <input
+                className="mail-send-btn"
+                value="Send"
+                type="button"
+                onClick={() => sendMailFromForm()}
+              />
+            </form>
+          </div>
+          <div className="message-send-button">
+            <h1>Sent Successfully</h1>
+            <h2 className="message-wrong">Something went wrong! Try again.</h2>
           </div>
         </div>
-        {/* Universal Alert Box */}
+      </div>
+      {/* Mail Box */}
+
+      {/* Universal Alert Box */}
+      <div className="universal-alert-popup-bg hidden">
+        <div className="universal-alert-popup hidden">
+          <div className="universal-alert-message-close-icon-div">
+            <img
+              className="universal-alert-message-close-icon"
+              src="/Icon_Close.svg"
+              alt
+            />
+          </div>
+          <div className="universal-alert-message-div">
+            <label className="universal-alert-message">
+              Baptism registry of this person is not updated
+            </label>
+          </div>
+          <div className="universal-alert-ok-button-div">
+            <button className="universal-alert-ok-buttion">Ok</button>
+          </div>
+        </div>
+      </div>
+      {/* Universal Alert Box */}
 
       <Navigation />
       <main className={detailSection}>
@@ -214,9 +261,10 @@ const Person = () => {
                   navigate("/baptism-registry-add", {
                     state: location.state,
                   });
-                } else navigate("/baptism-registry", {
-                  state: location.state,
-                });
+                } else
+                  navigate("/baptism-registry", {
+                    state: location.state,
+                  });
               }}
             >
               Baptism Registry
@@ -226,7 +274,10 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if (personDetails.maritalStatus !== "engaged"&&!personDetails.marriage) {
+                if (
+                  personDetails.maritalStatus !== "engaged" &&
+                  !personDetails.marriage
+                ) {
                   alert("Please add engagement registry first");
                   return;
                 }
@@ -252,9 +303,10 @@ const Person = () => {
                   navigate("/death-registry-add", {
                     state: location.state,
                   });
-                } else navigate("/death-registry", {
-                  state: location.state,
-                });
+                } else
+                  navigate("/death-registry", {
+                    state: location.state,
+                  });
               }}
             >
               Death Registry
@@ -341,6 +393,7 @@ const Person = () => {
             </button>
             <button>Edit</button>
             <button>Send Message</button>
+            <button>Send Mail</button>
             <button>Proposed Changes</button>
           </div>
         </div>

@@ -40,7 +40,7 @@ export default function FamilyIndividual() {
   const [detailSection, setDetailSection] = useState("hidden");
 
   // family image
-  const [photo,setPhoto]=useState({});
+  const [photo, setPhoto] = useState({});
 
   // photo upload
   function photoUpload() {
@@ -173,7 +173,7 @@ export default function FamilyIndividual() {
               />
             </div>
             <div className="photo-container">
-              <img src={`http://localhost:5000/${photoLink}`} alt='family-photo'/>
+              <img src={`http://localhost:5000/img/family/${photoLink}`} alt='family-photo'/>
             </div>
           </div>
         </div>

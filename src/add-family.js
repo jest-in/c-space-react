@@ -10,20 +10,13 @@ let data = {};
 data["parishId"] = "ch1";
 
 // variables for family_id and ward number
-let familyId,
-  wardNo = "";
-
+let  wardNo = "";
+let  familyId;
 export default function AddFamily() {
   // For navigation
   const navigate = useNavigate();
 
-
-  // function for initializing data
-  function initialize(){
-    familyId="";
-  }
   function initializeData() {
-    wardNo = "";
     data = {};
   }
 
@@ -75,7 +68,7 @@ export default function AddFamily() {
             if (res.data.status === "success") {
               initializeData();
               const { _id, wardNum } = res.data.data;
-              familyId = _id;
+              familyId=_id;
               wardNo = wardNum;
               setCreateFamilyButton("hidden");
               setReadOnlyMode(true);
@@ -186,7 +179,7 @@ export default function AddFamily() {
         .then((res) => {
           // console.log("RES : ",res)
           if (res.data.status === "success"){
-            initialize();
+            // initialize();
             setTimeout(nav, 2000);
             function nav() {
               navigate("/add-family-relation", {
