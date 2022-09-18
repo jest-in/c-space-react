@@ -23,6 +23,18 @@ export default function DeathRegistryAdd() {
 
   const navigate = useNavigate();
 
+  // data for backend post
+  const [sickness, setSickness] = useState("hidden");
+  const [confession, setconfession] = useState("hidden");
+  const [viaticum, setviaticum] = useState("hidden");
+  const [anointing, setanointing] = useState("hidden");
+  const [dod, setdod] = useState("hidden");
+  const [doburial, setdoburial] = useState("hidden");
+  const [parishPriest, setparishPriest] = useState("hidden");
+  const [remarks, setremarks] = useState("hidden");
+  const [place, setplace] = useState("hidden");
+
+
   // Error handling variables
   const [sicknessError, setSicknessError] = useState("hidden");
   const [confessionError, setCconfessionError] = useState("hidden");
@@ -39,38 +51,38 @@ export default function DeathRegistryAdd() {
     console.log("Input Name:", name);
     console.log("Input Value:", value);
     if (name === "sickness") {
-      sickness = value;
+      setSickness(value);
     }
     if (name === "confession") {
       if (value) setCconfessionError("hidden");
-      confession = value;
+      setconfession(value);
     }
     if (name === "viaticum") {
       if (value) setViatiumError("hidden");
-      viaticum = value;
+      setviaticum(value);
     }
     if (name === "anointing") {
       if (value) setAnointingError("hidden");
-      anointing = value;
+      setanointing(value);
     }
     if (name === "dod") {
       if (value) setDodError("hidden");
-      dod = value;
+      setdod(value);
     }
     if (name === "doburial") {
       if (value) setDoBurialError("hidden");
-      doburial = value;
+      setdoburial(value);
     }
     if (name === "place") {
       if (value) setPlaceError("hidden");
-      place = value;
+      setplace(value);
     }
     if (name === "parishPriest") {
       if (value) setPriestError("hidden");
-      parishPriest = value;
+      setparishPriest(value);
     }
     if (name === "remarks") {
-      remarks = value;
+      setremarks(value);
     }
   }
 

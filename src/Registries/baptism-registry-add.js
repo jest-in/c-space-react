@@ -8,25 +8,25 @@ import Icon_Menu from '../Assets/Icon_Menu';
 import { useNavigate ,useLocation} from "react-router-dom";
 
 // Template of request data
-let requestTemplate = {
-  baptismName: "",
-  name: "",
-  familyName: "",
-  father: "",
-  mother: "",
-  birthPlace: "",
-  dob: "",
-  doBaptism: "",
-  minister: "",
-  parishPriest: "",
-};
-let godFather={
+// let requestTemplate = {
+//   baptismName: "",
+//   name: "",
+//   familyName: "",
+//   father: "",
+//   mother: "",
+//   birthPlace: "",
+//   dob: "",
+//   doBaptism: "",
+//   minister: "",
+//   parishPriest: "",
+// };
+// let godFather={
 
-}
-let godMother={
+// }
+// let godMother={
 
-}
-let remarks='';
+// }
+// let remarks='';
 
 export default function BaptismRegistryadd() {
   const location = useLocation();
@@ -34,9 +34,8 @@ export default function BaptismRegistryadd() {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
-// template initializing to previous state
-function initialize(){
-  requestTemplate = {
+  // request template
+  const [requestTemplate, setRequestTemplate] = useState({
     baptismName: "",
     name: "",
     familyName: "",
@@ -47,11 +46,10 @@ function initialize(){
     doBaptism: "",
     minister: "",
     parishPriest: "",
-  };
-  godFather = {};
-  godMother = {};
-  remarks = "";
-}
+  });
+  const [godFather, setGodFather] = useState({});
+  const [godMother, setGodMother] = useState({});
+  const [remarks, setRemarks] = useState('');
 
   // For fields which are present in database
   const [personData, setPersonData] = useState({});
@@ -217,26 +215,51 @@ function initialize(){
     }
     // If remarks have null value
     if (name === "remarks") {
-      remarks = value;
+      setRemarks(value);
       return;
     }
     if (name === "godFatherName") {
-      godFather["name"] = value;
+      setGodFather((prev)=>{
+        let data=prev;
+        data["name"] = value;
+        return data;
+      })
+      // godFather["name"] = value;
       return;
     }
     if (name === "godFatherParish") {
-      godFather["parish"] = value;
+      setGodFather((prev) => {
+        let data = prev;
+        data["parish"] = value;
+        return data;
+      });
+      // godFather["parish"] = value;
       return;
     }
     if (name === "godMotherName") {
-      godMother["name"] = value;
+      setGodMother((prev) => {
+        let data = prev;
+        data["name"] = value;
+        return data;
+      });
+      // godMother["name"] = value;
       return;
     }
     if (name === "godMotherParish") {
-      godMother["parish"] = value;
+      setGodMother((prev) => {
+        let data = prev;
+        data["parish"] = value;
+        return data;
+      });
+      // godMother["parish"] = value;
       return;
     }
-    requestTemplate[name] = value;
+    // requestTemplate[name] = value;
+    setRequestTemplate((prev)=>{
+      let data=prev;
+      data[name]=value;
+      return data;
+    });
 
     //  Parish field changing when modified
     if (name === "parish") {
@@ -328,10 +351,17 @@ function initialize(){
     }
     // If no error
     if (!error) {
-      requestTemplate["godFather"] = godFather;
-      requestTemplate["godMother"] = godMother;
-      if (remarks) requestTemplate["remarks"] = remarks;
-      // console.log('Post Data:',requestTemplate);
+      setRequestTemplate((prev)=>{
+        let data=prev;
+        data["godFather"] = godFather;
+        data["godMother"] = godMother;
+        if (remarks) data["remarks"] = remarks;
+        return data;
+      })
+      // requestTemplate["godFather"] = godFather;
+      // requestTemplate["godMother"] = godMother;
+      // if (remarks) requestTemplate["remarks"] = remarks;
+      console.log('Post Data:',requestTemplate);
       axios
         .post(
           `http://localhost:5000/api/v1/registry/baptism-registry/${location.state}?father=1&mother=1`,
@@ -342,7 +372,6 @@ function initialize(){
         )
         .then((res) => {
           if (res.data.status === "success") {
-            initialize();
             navigate('/baptism-registry-all');
           }
         })

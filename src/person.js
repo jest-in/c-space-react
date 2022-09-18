@@ -1,16 +1,16 @@
-import IconMenu from './Assets/Icon_Menu'
+import IconMenu from "./Assets/Icon_Menu";
 
-import { personId } from './family-individual';
-import {personIdFromFamily} from './family';
-import { useEffect } from 'react';
+import { personId } from "./family-individual";
+import { personIdFromFamily } from "./family";
+import { useEffect } from "react";
 
-import axios from 'axios';
-import { useState ,useRef} from 'react';
+import axios from "axios";
+import { useState, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import Navigation from './navigation';
-import Icon_Close from './Assets/Icon_Close';
+import Navigation from "./navigation";
+import Icon_Close from "./Assets/Icon_Close";
 
-let gender,personName;
+let gender, personName;
 let personIdFromPerson;
 
 // If partner exist then for exporting partner Id
@@ -21,18 +21,18 @@ const Person = () => {
   // Imported data
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
-  
+
   // sms box
   const [smsBox, setSmsBox] = useState("hidden");
-  const [smsMessage,setSmsMessage]=useState('');
+  const [smsMessage, setSmsMessage] = useState("");
   const [smsSuccess, setSmsSuccess] = useState("hidden");
   const [smsError, setSmsError] = useState("hidden");
   // onchange input
-  function smsInput(event){
+  function smsInput(event) {
     setSmsMessage(event.target.value);
-  } 
+  }
   // sms send button
-  function smsSend(){
+  function smsSend() {
     // axios
     //   .post(
     //     "http://localhost:5000/api/v1/send-mail",
@@ -59,24 +59,31 @@ const Person = () => {
   }
 
   // mail box
-  const [mailBox,setMailBox]=useState('hidden')
+  const [mailText, setMailText] = useState('');
+  const [mailMessage, setMailMessage] = useState('');
+  const [mailBox, setMailBox] = useState("hidden");
   const [mailSentSuccess, setMailSentSuccess] = useState("hidden");
-  const [mailSentError,setMailSentError]=useState('hidden')
-  const fileInput=useRef();
+  const [mailSentError, setMailSentError] = useState("hidden");
+  const fileInput = useRef();
   const data = new FormData();
   // onFile change
-  function onFileChange(event){
+  function onFileChange(event) {
     // setAttachement({ selectedFile: event.target.files[0] });
-    data.append("attachment", event.target.files[0], event.target.files[0].name);
+    data.append(
+      "attachment",
+      event.target.files[0],
+      event.target.files[0].name
+    );
   }
   // input from mail form
-  function inputsFromMailForm(event){
-    const {name,value}=event.target;
-    data.append(name,value);
+  function inputsFromMailForm(event) {
+    const { name, value } = event.target;
+    name==='text'?setMailText(value):setMailMessage(value);
+    data.append(name, value);
   }
-  // send mail button in form 
-  function sendMailFromForm(){
-    data.append('to',email);
+  // send mail button in form
+  function sendMailFromForm() {
+    data.append("to", email);
     axios
       .post("http://localhost:5000/api/v1/send-mail", data, {
         withCredentials: true,
@@ -84,17 +91,17 @@ const Person = () => {
       .then((res) => {
         // console.log(res.data);
         if (res.data.status === "success") {
-          setMailSentSuccess('');
+          setMailSentSuccess("");
         }
       })
       .catch((err) => {
-        setMailSentError('');
+        setMailSentError("");
         // Error
         alert(`${err.response.data.message}`);
       });
-    }
-      //email 
-  const [email,setEmail]=useState('');
+  }
+  //email
+  const [email, setEmail] = useState("");
 
   // Personal details
   const [personDetails, setPersonDetails] = useState({});
@@ -109,9 +116,10 @@ const Person = () => {
       personDetails.maritalStatus === "married"
     ) {
       navigate("/engagement-registry", {
-                state:{
-                  id:location.state,
-                }});
+        state: {
+          id: location.state,
+        },
+      });
       return;
     }
     if (!personDetails.doBaptism) {
@@ -129,14 +137,16 @@ const Person = () => {
         ? personDetails.husband
         : personDetails.wife;
     }
-    if (!personDetails.dod) navigate("/engagement-registry-add", {
-                state:{
-                  id:location.state,
-                  gender:personDetails.gender,
-                  partnerId:personDetails.husband
-                    ? personDetails.husband
-                    : personDetails.wife,
-                }});
+    if (!personDetails.dod)
+      navigate("/engagement-registry-add", {
+        state: {
+          id: location.state,
+          gender: personDetails.gender,
+          partnerId: personDetails.husband
+            ? personDetails.husband
+            : personDetails.wife,
+        },
+      });
   }
 
   useEffect(() => {
@@ -153,8 +163,7 @@ const Person = () => {
         const result = res.data.person;
 
         if (res.data.status === "success") {
-
-          // email 
+          // email
           setEmail(result.email);
 
           console.log("personIdFromPerson:", result.id);
@@ -176,7 +185,15 @@ const Person = () => {
       {/* SMS Box */}
       <div className={`message-popup-bg ${smsBox}`}>
         <div className={`message-popup ${smsBox}`}>
-          <div className="message-close-icon-div" onClick={()=>setSmsBox('hidden')}>
+          <div
+            className="message-close-icon-div"
+            onClick={() => {
+              setSmsBox("hidden");
+              setSmsMessage('');
+              setSmsSuccess('hidden');
+              setSmsError('hidden');
+            }}
+          >
             <Icon_Close />
           </div>
           <div className="message-popup-head">
@@ -191,14 +208,16 @@ const Person = () => {
               cols={25}
               placeholder="Type your message here..."
               autoFocus
-              onChange={(event)=>smsInput(event)}
-              defaultValue={""}
+              value={smsMessage}
+              onChange={(event) => smsInput(event)}
             />
           </div>
           <div className="message-send-button ">
-            <button onClick={()=>smsSend()}>Send</button>
+            <button onClick={() => smsSend()}>Send</button>
             <h1 className={smsError}>Sent Successfully</h1>
-            <h2 className={`message-wrong ${smsSuccess}`}>Something went wrong! Try again.</h2>
+            <h2 className={`message-wrong ${smsSuccess}`}>
+              Something went wrong! Try again.
+            </h2>
           </div>
         </div>
       </div>
@@ -209,7 +228,14 @@ const Person = () => {
         <div className={`message-popup mail-popup ${mailBox}`}>
           <div
             className="message-close-icon-div"
-            onClick={() => setMailBox("hidden")}
+            onClick={() => {
+              setMailSentError("hidden");
+              setMailSentSuccess("hidden");
+              setMailMessage('');
+              setMailText("");
+              setMailBox("hidden");
+              fileInput.current.value = "";
+            }}
           >
             <Icon_Close />
           </div>
@@ -234,6 +260,7 @@ const Person = () => {
                 type="text"
                 name="subject"
                 placeholder="Subject"
+                value={mailMessage}
                 onChange={(event) => inputsFromMailForm(event)}
               />
               <textarea
@@ -243,8 +270,8 @@ const Person = () => {
                 cols={25}
                 placeholder="Type your message here..."
                 autoFocus
+                value={mailText}
                 onChange={(event) => inputsFromMailForm(event)}
-                defaultValue={""}
               />
               <input
                 type="file"
@@ -468,7 +495,7 @@ const Person = () => {
       </main>
     </div>
   );
-}
+};
 
 export default Person;
-export {personIdFromPerson,gender,personName,partnerIdFromPerson};
+export { personIdFromPerson, gender, personName, partnerIdFromPerson };
