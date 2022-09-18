@@ -111,7 +111,7 @@ const Person = () => {
                 rows={6}
                 cols={25}
                 placeholder="Type your message here..."
-                autofocus
+                autoFocus
                 defaultValue={""}
               />
             </div>
@@ -132,7 +132,7 @@ const Person = () => {
         <div className="message-popup-bg hidden">
           <div className="message-popup mail-popup">
             <div className="message-close-icon-div">
-              <img className="mail-close-icon" src="/Icon_Close.svg" alt />
+              <img className="mail-close-icon" src="/Icon_Close.svg"/>
             </div>
             <div className="message-popup-head">
               <h1>Compose Mail</h1>

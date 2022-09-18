@@ -383,9 +383,9 @@ export default function EngagementRegistryAdd() {
 
           if (res.data.status === "success") {
             setCheckButton("hidden");
-            setPersonName(result.name);
-            if (gender === "F") setBrideGroom(result);
-            else setBride(result);
+            // setPersonName(result.name);
+            if (result.gender === "F") setBride(result);
+            else setBrideGroom(result);
             // setShowDetails("");
           }
         })
@@ -408,7 +408,7 @@ export default function EngagementRegistryAdd() {
 
         if (res.data.status === "success") {
           setPersonName(result.name);
-          if (gender === "M") setBrideGroom(result);
+          if (result.gender === "M") setBrideGroom(result);
           else setBride(result);
           setShowDetails("");
         } else navigate(-1);

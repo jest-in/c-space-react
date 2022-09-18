@@ -3,20 +3,23 @@ import { useState } from 'react';
 import Navigation from './navigation';
 import axios from 'axios';
 import {editAnnouncement,editId,editVisibility} from './all-announce';
-import {useNavigate } from 'react-router-dom';
+import {useNavigate,useLocation } from 'react-router-dom';
 
 export default function AddAnnounce() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   const navigate=useNavigate();
 
   // Select tag value
-  const [selectValue,setSelectValue]=useState(editVisibility?editVisibility:'')
+  const [selectValue,setSelectValue]=useState(location.state.visibility?location.state.visibility:'')
 
     // Required field errors
     const [textAreaError,setTextAreaError]=useState('hidden');
     const [typeError, setTypeError] = useState("hidden");
 
     // Announcement state
-    const [announcement,setAnnouncement]=useState(editAnnouncement?editAnnouncement:'');
+    const [announcement,setAnnouncement]=useState(location.state.announcement?location.state.announcement:'');
 
     // Input saver
     function announcementDetailsSaver(event){
@@ -44,7 +47,7 @@ export default function AddAnnounce() {
               announcement: announcement,
               visibility: selectValue,
             };
-          if(!editId){
+          if (!location.state.announcementId) {
             axios
               .post("http://localhost:5000/api/v1/announce", data, {
                 withCredentials: true,
@@ -57,12 +60,15 @@ export default function AddAnnounce() {
                 // Error
                 alert(`${err.response.data.message}`);
               });
-          }
-          else{
+          } else {
             axios
-              .patch(`http://localhost:5000/api/v1/announce/${editId}`, data, {
-                withCredentials: true,
-              })
+              .patch(
+                `http://localhost:5000/api/v1/announce/${location.state.announcementId}`,
+                data,
+                {
+                  withCredentials: true,
+                }
+              )
               .then((res) => {
                 if (res.data.status === "success") navigate("/all-announce");
               })
