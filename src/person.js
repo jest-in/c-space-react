@@ -235,6 +235,7 @@ const Person = () => {
         </div>
 
         <div>
+          {/* SMS Box */}
   <div className="message-popup-bg hidden">
     <div className="message-popup">
       <div className="message-close-icon-div">
@@ -256,6 +257,9 @@ const Person = () => {
       </div>
     </div>
   </div>
+  {/* SMS Box */}
+  
+  {/* Mail Box */}
   <div className="message-popup-bg">
     <div className="message-popup mail-popup">
       <div className="message-close-icon-div">
@@ -282,6 +286,25 @@ const Person = () => {
       </div>
     </div>
   </div>
+  {/* Mail Box */}
+
+  {/* Universal Alert Box */}
+  <div className="universal-alert-popup-bg">
+  <div className="universal-alert-popup">
+    <div className="universal-alert-message-close-icon-div">
+      <img className="universal-alert-message-close-icon" src="/Icon_Close.svg" alt />
+    </div>
+    <div className="universal-alert-message-div">
+      <label className="universal-alert-message">
+        Baptism registry of this person is not updated
+      </label>
+    </div>
+    <div className="universal-alert-ok-button-div">
+      <button className="universal-alert-ok-buttion">Ok</button>
+    </div>
+  </div>
+</div>
+{/* Universal Alert Box */}
 </div>
 
       </main>
