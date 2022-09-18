@@ -16,7 +16,7 @@ export default function IndexPage() {
 
   useEffect(() => {
     // Change Announcement state after retrieving data from server
-    axios.get("http://localhost:5000/api/v1/announce").then((res) => {
+    axios.get("http://localhost:5000/api/v1/announce/public").then((res) => {
       if (res.data.status === "success") {
         console.log(res.data.announcements[0].announcement);
         setAnnouncements(res.data.announcements);
@@ -223,9 +223,9 @@ export default function IndexPage() {
                   <span className="quotes">"</span>
                 </h1>
                 <div className="announce-daytime-div">
-                  <div className="announce-date-div">
+                  {/* <div className="announce-date-div">
                     <h2>12:45 AM</h2>
-                  </div>
+                  </div> */}
                   <div className="announce-time-div">
                     <h2>
                       {announcements.length > 0
@@ -246,9 +246,9 @@ export default function IndexPage() {
                   <span className="quotes">"</span>
                 </h1>
                 <div className="announce-daytime-div">
-                  <div className="announce-date-div">
+                  {/* <div className="announce-date-div">
                     <h2>12:45 AM</h2>
-                  </div>
+                  </div> */}
                   <div className="announce-time-div">
                     <h2>
                       {announcements.length > 0

@@ -30,17 +30,22 @@ export default function Family() {
 
   useEffect(() => {
     //Requesting families data (GET)
-    axios.get(url).then((res) => {
-      setFamilies(res.data.data);
-      setFamilyName(res.data.data[0].familyName);
-      // id of first femmber of family
-      id = res.data.data[0]._id;
-      // function for get request of family members
-      getRequest(id);  
-    }).catch((err)=>{
-      // Error
-      alert(`${err.response.data.message}`)
-    });
+    axios
+      .get(url, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setFamilies(res.data.data);
+        setFamilyName(res.data.data[0].familyName);
+        // id of first femmber of family
+        id = res.data.data[0]._id;
+        // function for get request of family members
+        getRequest(id);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
   }, []);
 
   //function for requesting individual family details
@@ -55,7 +60,9 @@ export default function Family() {
   // Get request with family id
   function getRequest(id){
         axios
-          .get(`${url}/${id}`)
+          .get(`${url, {
+        withCredentials: true,
+      }}/${id}`)
           .then((res) => {
             const result = res.data.data;
             setFamily(result.members);

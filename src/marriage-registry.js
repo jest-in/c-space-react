@@ -42,7 +42,10 @@ function MarriageRegistry() {
     if(location.state)
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/marriage-registry/${location.state}`
+        `http://localhost:5000/api/v1/registry/marriage-registry/${location.state}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         console.log("RES : ", res.data);

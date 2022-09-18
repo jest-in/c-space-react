@@ -222,7 +222,9 @@ export default function AddFamilyRelation() {
 
   useEffect(()=>{
   axios
-    .get(`http://localhost:5000/api/v1/family/${familyId}`)
+    .get(`http://localhost:5000/api/v1/family/${familyId}`, {
+      withCredentials: true,
+    })
     .then((res) => {
       const result = res.data.data;
       if (res.data.status === "success") {

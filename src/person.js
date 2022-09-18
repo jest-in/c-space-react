@@ -71,9 +71,9 @@ const Person = () => {
       return;
     }
     axios
-      .get(
-        `http://localhost:5000/api/v1/persons/id/${location.state}`
-      )
+      .get(`http://localhost:5000/api/v1/persons/id/${location.state}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         const result = res.data.person;
 

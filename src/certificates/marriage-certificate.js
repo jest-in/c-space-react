@@ -22,7 +22,10 @@ export default function MarriageCertificate() {
     // use location.state for dynamic generation of certificate!!!!!!!!!!!
     axios
       .get(
-        `http://localhost:5000/api/v1/create-pdf/marriage/${"632532331ccb3f0ad8b42bee"}`
+        `http://localhost:5000/api/v1/create-pdf/marriage/${"632532331ccb3f0ad8b42bee"}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         const result = res.data.data;

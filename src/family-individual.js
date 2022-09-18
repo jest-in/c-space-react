@@ -37,7 +37,9 @@ export default function FamilyIndividual() {
   useEffect(()=>{
     familyId=id;
     axios
-      .get(`http://localhost:5000/api/v1/family/${location.state}`)
+      .get(`http://localhost:5000/api/v1/family/${location.state}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         console.log(res.data.data);
         const result = res.data.data;

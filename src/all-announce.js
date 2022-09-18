@@ -19,7 +19,9 @@ export default function AllAnnounce() {
   useEffect(()=>{
     // Change Announcement state after retrieving data from server
     axios
-      .get("http://localhost:5000/api/v1/announce")
+      .get("http://localhost:5000/api/v1/announce", {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           console.log("Announcements:", res.data.announcements);
@@ -35,11 +37,13 @@ export default function AllAnnounce() {
   function deleteHandler(index){
     const deletingAnnouncement=announcements[index]._id;
     axios
-      .delete(`http://localhost:5000/api/v1/announce/${deletingAnnouncement}`)
+      .delete(`http://localhost:5000/api/v1/announce/${deletingAnnouncement}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success")
           setAnnouncements((prev) =>
-            prev.filter((announcement, prevIndex) => prevIndex !== index)
+            prev.filter((_, prevIndex) => prevIndex !== index)
           );
       })
       .catch((err) => {
@@ -54,7 +58,11 @@ export default function AllAnnounce() {
     editId=announcement._id;
     console.log('Announcement Id:',editId);
     editVisibility=announcement.visibility;
-    navigate('/add-announce');
+    navigate("/add-announce", {
+      state:{
+        announcementId
+      },
+    });
   }
 
   return (

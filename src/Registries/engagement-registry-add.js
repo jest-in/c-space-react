@@ -99,7 +99,12 @@ export default function EngagementRegistryAdd() {
         .get(
           `http://localhost:5000/api/v1/persons?isActive=true&maritalStatus=single&gender=${
             gender === "M" ? "F" : "M"
-          }${gender === "M" ? "&age[gte]=18" : "&age[gte]=21"}&sort=baptismName`
+          }${
+            gender === "M" ? "&age[gte]=18" : "&age[gte]=21"
+          }&sort=baptismName`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           const result = res.data.persons;
@@ -265,12 +270,14 @@ export default function EngagementRegistryAdd() {
 
     // Testing
     axios
-      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`)
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         const result = res.data.data;
 
         if (res.data.status === "success") {
-          setPartnerId (result.userId);
+          setPartnerId(result.userId);
           if (gender === "F") setBrideGroom(result);
           else setBride(result);
         }
@@ -361,7 +368,10 @@ export default function EngagementRegistryAdd() {
     if (location.state.partnerId) {
       axios
         .get(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.partnerId}`
+          `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.partnerId}`,
+          {
+            withCredentials: true,
+          }
         )
         .then((res) => {
           const result = res.data.data;
@@ -388,7 +398,10 @@ export default function EngagementRegistryAdd() {
     }
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.id}`
+        `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.id}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         const result = res.data.data;

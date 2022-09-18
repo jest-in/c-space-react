@@ -17,7 +17,9 @@ export default function BaptismRegistryAll() {
   useEffect(()=>{
     // Get request for all baptism registry
     axios
-      .get("http://localhost:5000/api/v1/registry/baptism-registry")
+      .get("http://localhost:5000/api/v1/registry/baptism-registry", {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           setBaptismRegistry(res.data.data);

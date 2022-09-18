@@ -26,7 +26,10 @@ export default function EngagementRegistry() {
   useEffect(()=>{
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/engagement-registry/${location.state.id}`
+        `http://localhost:5000/api/v1/registry/engagement-registry/${location.state.id}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         console.log(res.data);

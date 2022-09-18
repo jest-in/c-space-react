@@ -24,7 +24,9 @@ export default function IndividualEvent() {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/api/v1/offerings/${eventId}`)
+      .get(`http://localhost:5000/api/v1/offerings/${eventId}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           setStatus("Event Details");
@@ -37,13 +39,13 @@ export default function IndividualEvent() {
         alert(`${err.response.data.message}`);
       });
       axios
-        .get(
-          `http://localhost:5000/api/v1/offerings/${eventId}/sponsors`
-        )
+        .get(`http://localhost:5000/api/v1/offerings/${eventId}/sponsors`, {
+          withCredentials: true,
+        })
         .then((res) => {
           if (res.data.status === "success") {
             const result = res.data.data;
-            console.log('Sponsors Data:',result);
+            console.log("Sponsors Data:", result);
             setSponsors(result);
           }
         })

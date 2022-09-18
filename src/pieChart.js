@@ -81,12 +81,14 @@ export default function Chart() {
 
   useEffect(()=>{
   axios
-    .get(`http://localhost:5000/api/v1/chart/age-chart`)
+    .get(`http://localhost:5000/api/v1/chart/age-chart`, {
+      withCredentials: true,
+    })
     .then((res) => {
-      const result=res.data.data;
-      if(res.data.status='success'){
+      const result = res.data.data;
+      if ((res.data.status = "success")) {
         setData(result);
-        setShow('');
+        setShow("");
       }
     })
     .catch((err) => {

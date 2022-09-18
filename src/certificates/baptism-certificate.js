@@ -20,7 +20,10 @@ export default function BaptismCertificate() {
     // use location.state for dynamic generation of certificate!!!!!!!!!!!
     axios
       .get(
-        `http://localhost:5000/api/v1/create-pdf/baptism/${"6322e0a9cbf7d6d0a695e93e"}`
+        `http://localhost:5000/api/v1/create-pdf/baptism/${"6322e0a9cbf7d6d0a695e93e"}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         const result = res.data.data;

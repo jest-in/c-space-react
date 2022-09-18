@@ -19,7 +19,9 @@ export default function ViewEvent() {
 
   useEffect(()=>{
     axios
-      .get(`http://localhost:5000/api/v1/offerings`)
+      .get(`http://localhost:5000/api/v1/offerings`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           if (res.data.data.length) {

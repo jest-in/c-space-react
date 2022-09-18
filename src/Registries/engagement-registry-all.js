@@ -17,7 +17,9 @@ export default function EngagementRegistryAll() {
 
   useEffect(()=>{
     axios
-      .get(`http://localhost:5000/api/v1/registry/engagement-registry`)
+      .get(`http://localhost:5000/api/v1/registry/engagement-registry`, {
+        withCredentials: true,
+      })
       .then((res) => {
         if (res.data.status === "success") {
           setEngagementAll(res.data.data);

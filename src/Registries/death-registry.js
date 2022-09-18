@@ -23,7 +23,10 @@ export default function DeathRegistry() {
     // add location.state to get request url
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/death-registry/${location.state}`
+        `http://localhost:5000/api/v1/registry/death-registry/${location.state}`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         if (res.data.status === "success") {

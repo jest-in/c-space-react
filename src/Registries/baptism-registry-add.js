@@ -76,7 +76,10 @@ export default function BaptismRegistryadd() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/persons/relations/${location.state}?father=1&mother=1`
+        `http://localhost:5000/api/v1/persons/relations/${location.state}?father=1&mother=1`,
+        {
+          withCredentials: true,
+        }
       )
       .then((res) => {
         const result = res.data.person;
