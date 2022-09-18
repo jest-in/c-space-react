@@ -363,7 +363,6 @@ export default function EngagementRegistryAdd() {
   }
 
   useEffect(() => {
-    setGender(location.state.gender);
     setPartnerId(location.state.partnerId);
     if (location.state.partnerId) {
       axios
@@ -383,10 +382,8 @@ export default function EngagementRegistryAdd() {
 
           if (res.data.status === "success") {
             setCheckButton("hidden");
-            // setPersonName(result.name);
             if (result.gender === "F") setBride(result);
             else setBrideGroom(result);
-            // setShowDetails("");
           }
         })
         .catch((err) => {
@@ -407,7 +404,7 @@ export default function EngagementRegistryAdd() {
         const result = res.data.data;
 
         if (res.data.status === "success") {
-          setPersonName(result.name);
+          setGender(location.state.gender);
           if (result.gender === "M") setBrideGroom(result);
           else setBride(result);
           setShowDetails("");
@@ -423,7 +420,7 @@ export default function EngagementRegistryAdd() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>{personName}</h1>
+          <h1>Engagement Registry</h1>
         </div>
         <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
