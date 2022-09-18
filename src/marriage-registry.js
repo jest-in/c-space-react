@@ -76,10 +76,10 @@ function MarriageRegistry() {
     <div className="container-family">
       <Navigation />
       <div className="title-div">
-        <div className="person-head">
+        <div className="person-head  regestries-person-head">
           <h1>Marriage Registry</h1>
         </div>
-        <div className={`registries-nav-div ${showDetails}`}>
+        {/* <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
@@ -87,7 +87,7 @@ function MarriageRegistry() {
         </div>
         <div className={`menu-div ${showDetails}`}>
           <Icon_Menu />
-        </div>
+        </div> */}
       </div>
       <hr />
       <div className={`members-entries-div ${showDetails}`}>

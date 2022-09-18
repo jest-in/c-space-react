@@ -46,7 +46,7 @@ export default function DeathRegistry() {
     <div className="container-family">
       <Navigation />
       <div className="title-div">
-        <div className="person-head">
+        <div className="person-head  regestries-person-head">
           <h1>
             {person.baptismName ? `${person.baptismName} ` : ""}
             {person.familyName ? person.familyName : ""}
