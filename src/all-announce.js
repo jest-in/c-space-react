@@ -58,10 +58,10 @@ export default function AllAnnounce() {
     editId=announcement._id;
     console.log('Announcement Id:',editId);
     editVisibility=announcement.visibility;
-    navigate("/add-announce", {
-      state:{
-        announcementId
-      },
+    // navigate("/add-announce", {
+    //   state:{
+    //     announcementId
+    //   },
     });
   }
 
