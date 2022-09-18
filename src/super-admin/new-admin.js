@@ -39,7 +39,7 @@ export default function NewAdmin() {
     }
     axios
       .post(
-        `http://localhost:5000/api/v1/users/signup`,
+        `http://localhost:5000/api/v1/users/signup/admin`,
         {
           name: name,
           phoneNumber: phoneNumber,
@@ -62,7 +62,7 @@ export default function NewAdmin() {
   // submit button
   function blockButton() {
     axios
-      .get(`http://localhost:5000/api/v1/users/signup`)
+      .get(`http://localhost:5000/api/v1/users/signup/admin`)
       .then((res) => {
         if (res.data.status === "success") {
           alert(res.data.message);
