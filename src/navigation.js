@@ -2,6 +2,7 @@ import React from 'react'
 import Icon_AddWhite from './Assets/Icon_AddWhite';
 import Logo from './Assets/logo';
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
 export default function Navigation() {
   const navigate = useNavigate();
@@ -58,7 +59,21 @@ export default function Navigation() {
             <a href="/view-event">Offerings/Donations</a>
           </div>
           <div className="logout-nav-div">
-            <button className="logout-btn">Logout</button>
+            <button className="logout-btn" onClick={()=>{
+              axios
+                .get(`http://localhost:5000/api/v1/users/logout`, {
+                  withCredentials: true,
+                })
+                .then((res) => {
+                  if (res.data.status === "success") {
+                    navigate("/");
+                  }
+                })
+                .catch((err) => {
+                  // Error
+                  alert(`${err.response.data.message}`);
+                });
+            }}>Logout</button>
           </div>
 
         </nav>
