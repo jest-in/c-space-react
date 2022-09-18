@@ -34,6 +34,24 @@ export default function BaptismRegistryadd() {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
+// template initializing to previous state
+function initialize(){
+  requestTemplate = {
+    baptismName: "",
+    name: "",
+    familyName: "",
+    father: "",
+    mother: "",
+    birthPlace: "",
+    dob: "",
+    doBaptism: "",
+    minister: "",
+    parishPriest: "",
+  };
+  godFather = {};
+  godMother = {};
+  remarks = "";
+}
 
   // For fields which are present in database
   const [personData, setPersonData] = useState({});
@@ -54,7 +72,7 @@ export default function BaptismRegistryadd() {
   const [motherName, setMotherName] = useState("");
 
   // Parish
-  const [parish,setParish]=useState('Gandibagilu');
+  const [parish, setParish] = useState("Gandibagilu");
 
   // Error use state
   const [motherNameError, setMotherNameError] = useState("hidden");
@@ -62,16 +80,16 @@ export default function BaptismRegistryadd() {
   const [familyNameError, setFamilyNameError] = useState("hidden");
   const [nameError, setNameError] = useState("hidden");
   const [baptismNameError, setBaptismNameError] = useState("hidden");
-  const [dobError,setDobError]=useState('hidden');
-  const [doBaptismError,setDoBaptismError] = useState("hidden");
-  const [placeError,setPlaceError] = useState("hidden");
-  const [parishError,setParishError]=useState('hidden');
-  const [godFatherNameError,setGodFatherNameError] = useState("hidden");
-  const [godMotherNameError,setGodMotherNameError] = useState("hidden");
+  const [dobError, setDobError] = useState("hidden");
+  const [doBaptismError, setDoBaptismError] = useState("hidden");
+  const [placeError, setPlaceError] = useState("hidden");
+  const [parishError, setParishError] = useState("hidden");
+  const [godFatherNameError, setGodFatherNameError] = useState("hidden");
+  const [godMotherNameError, setGodMotherNameError] = useState("hidden");
   const [godFatherParishError, setGodFatherParishError] = useState("hidden");
-  const [godMotherParishError,setGodMotherParishError] = useState("hidden");
-  const [ministerError,setMinisterError] = useState("hidden");
-  const [parishPriestError,setParishPriestError] = useState("hidden");
+  const [godMotherParishError, setGodMotherParishError] = useState("hidden");
+  const [ministerError, setMinisterError] = useState("hidden");
+  const [parishPriestError, setParishPriestError] = useState("hidden");
 
   useEffect(() => {
     axios
@@ -194,47 +212,45 @@ export default function BaptismRegistryadd() {
     } else if (name === "parish") {
       console.log("Parish:", requestTemplate.parish);
       setParish(value);
-      if(value)
-      setParishError('hidden')
-      else setParishError('');
+      if (value) setParishError("hidden");
+      else setParishError("");
     }
     // If remarks have null value
     if (name === "remarks") {
-      remarks=value;
+      remarks = value;
       return;
     }
-    if(name==='godFatherName'){
-      godFather['name']=value;
-      return
+    if (name === "godFatherName") {
+      godFather["name"] = value;
+      return;
     }
-    if (name === "godFatherParish"){
+    if (name === "godFatherParish") {
       godFather["parish"] = value;
-      return
-    } 
-    if (name === "godMotherName"){
-      godMother["name"] = value;
-      return
+      return;
     }
-    if (name === "godMotherParish"){
+    if (name === "godMotherName") {
+      godMother["name"] = value;
+      return;
+    }
+    if (name === "godMotherParish") {
       godMother["parish"] = value;
-      return
-    } 
+      return;
+    }
     requestTemplate[name] = value;
 
     //  Parish field changing when modified
-    if(name==='parish'){
+    if (name === "parish") {
       setParish(value);
     }
   }
 
-  function submitButton() {      
-
+  function submitButton() {
     // If data from database has value but requestTemplate has no value
     if (!requestTemplate.familyName && familyName) {
-      requestTemplate.familyName=familyName;
+      requestTemplate.familyName = familyName;
     }
     if (!requestTemplate.name && name) {
-      requestTemplate.name=name;
+      requestTemplate.name = name;
     }
     if (!requestTemplate.baptismName && baptismName) {
       requestTemplate.baptismName = baptismName;
@@ -249,26 +265,26 @@ export default function BaptismRegistryadd() {
       requestTemplate.parish = parish;
     }
     // If input fields are empty
-    let error=false;
+    let error = false;
     if (!requestTemplate.familyName && !familyName) {
-      error=true;
-      setFamilyNameError('');
+      error = true;
+      setFamilyNameError("");
     }
     if (!requestTemplate.name && !name) {
       error = true;
-      setNameError('');
+      setNameError("");
     }
     if (!requestTemplate.baptismName && !baptismName) {
       error = true;
-      setBaptismNameError('');
+      setBaptismNameError("");
     }
     if (!requestTemplate.father && !fatherName) {
       error = true;
-      setFatherNameError('');
+      setFatherNameError("");
     }
     if (!requestTemplate.mother && !motherName) {
       error = true;
-      setMotherNameError('');
+      setMotherNameError("");
     }
     if (!requestTemplate.parish && !parish) {
       error = true;
@@ -276,7 +292,7 @@ export default function BaptismRegistryadd() {
     }
     if (!requestTemplate.birthPlace) {
       error = true;
-      setPlaceError('');
+      setPlaceError("");
     }
     if (!requestTemplate.dob) {
       error = true;
@@ -284,7 +300,7 @@ export default function BaptismRegistryadd() {
     }
     if (!requestTemplate.doBaptism) {
       error = true;
-      setDoBaptismError('');
+      setDoBaptismError("");
     }
     if (!godFather.name) {
       error = true;
@@ -292,7 +308,7 @@ export default function BaptismRegistryadd() {
     }
     if (!godFather.parish) {
       error = true;
-      setGodFatherParishError('');
+      setGodFatherParishError("");
     }
     if (!godMother.name) {
       error = true;
@@ -311,11 +327,10 @@ export default function BaptismRegistryadd() {
       setParishPriestError("");
     }
     // If no error
-    if(!error){
-      requestTemplate['godFather']=godFather;
-      requestTemplate['godMother']=godMother;
-      if(remarks)
-      requestTemplate['remarks']=remarks;
+    if (!error) {
+      requestTemplate["godFather"] = godFather;
+      requestTemplate["godMother"] = godMother;
+      if (remarks) requestTemplate["remarks"] = remarks;
       // console.log('Post Data:',requestTemplate);
       axios
         .post(
@@ -327,7 +342,8 @@ export default function BaptismRegistryadd() {
         )
         .then((res) => {
           if (res.data.status === "success") {
-            navigate(-1);
+            initialize();
+            navigate('/baptism-registry-all');
           }
         })
         .catch((err) => {
@@ -470,8 +486,18 @@ export default function BaptismRegistryadd() {
             <div className="death-person-address-div">
               <div className="heading-address">Parish</div>
               <div className="person-death-address">
-                <input type="text" name="parish" defaultValue={parish} onChange={(event) => inputsHandler(event)}/>
-                <label className={`add-family-error ${parishError==='hidden'?'hidden':''}`} htmlFor="error">
+                <input
+                  type="text"
+                  name="parish"
+                  defaultValue={parish}
+                  onChange={(event) => inputsHandler(event)}
+                />
+                <label
+                  className={`add-family-error ${
+                    parishError === "hidden" ? "hidden" : ""
+                  }`}
+                  htmlFor="error"
+                >
                   This field is required
                 </label>
               </div>
@@ -633,9 +659,7 @@ export default function BaptismRegistryadd() {
           />
         </div>
         <div className="submit-btn-div">
-          <button onClick={() => submitButton()}>
-            Submit
-          </button>
+          <button onClick={() => submitButton()}>Submit</button>
         </div>
       </div>
     </div>

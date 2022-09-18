@@ -36,6 +36,9 @@ export default function FamilyIndividual() {
   // Details section
   const [detailSection, setDetailSection] = useState("hidden");
 
+  // family image
+  const [photo,setPhoto]=useState({});
+
   // photo upload
   function photoUpload() {
     console.log("upload clicked");
@@ -44,9 +47,23 @@ export default function FamilyIndividual() {
 
   // change in file
   function onFileChange(event) {
-    const fileUploaded = event.target.files[0];
-    console.log('File details:',fileUploaded);
+    console.log("Input:", event.target.files[0]);
+    const image = { selectedFile: event.target.files[0] };
+
+        console.log("Input:", event.target.files[0]);
+    console.log("Input:", event.target.files[0].name);
+
+
     // props.handleFile(fileUploaded);
+
+    // Create an object of formData
+    const formData = new FormData();
+
+    // Update the formData object
+    formData.append("image", event.target.files[0], event.target.files[0].name);
+
+    console.log("File details:", formData);
+
   }
 
   useEffect(() => {
