@@ -95,7 +95,7 @@ const Person = () => {
   return (
     <div className="container-family">
         {/* SMS Box */}
-        <div className="message-popup-bg">
+        <div className="message-popup-bg hidden">
           <div className="message-popup">
             <div className="message-close-icon-div">
               <img className="message-close-icon" src="/Icon_Close.svg" alt />
@@ -178,8 +178,8 @@ const Person = () => {
         {/* Mail Box */}
 
         {/* Universal Alert Box */}
-        <div className="hidden universal-alert-popup-bg">
-          <div className="universal-alert-popup">
+        <div className="universal-alert-popup-bg hidden">
+          <div className="universal-alert-popup hidden">
             <div className="universal-alert-message-close-icon-div">
               <img
                 className="universal-alert-message-close-icon"
