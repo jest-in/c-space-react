@@ -22,6 +22,41 @@ const Person = () => {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
   
+  // sms box
+  const [smsBox, setSmsBox] = useState("hidden");
+  const [smsMessage,setSmsMessage]=useState('');
+  const [smsSuccess, setSmsSuccess] = useState("hidden");
+  const [smsError, setSmsError] = useState("hidden");
+  // onchange input
+  function smsInput(event){
+    setSmsMessage(event.target.value);
+  } 
+  // sms send button
+  function smsSend(){
+    axios
+      .post(
+        "http://localhost:5000/api/v1/send-mail",
+        {
+          to: "all",
+          id: "5",
+          message: smsMessage,
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.status === "success") {
+          setSmsSuccess("");
+        }
+      })
+      .catch((err) => {
+        setSmsError("");
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }
 
   // mail box
   const [mailBox,setMailBox]=useState('hidden')
@@ -137,12 +172,12 @@ const Person = () => {
   }, []);
 
   return (
-    <div className="container-family">
+    <div className={`container-family`}>
       {/* SMS Box */}
-      <div className="message-popup-bg hidden">
-        <div className="message-popup">
-          <div className="message-close-icon-div">
-            <img className="message-close-icon" src="/Icon_Close.svg" alt />
+      <div className={`message-popup-bg ${smsBox}`}>
+        <div className={`message-popup ${smsBox}`}>
+          <div className="message-close-icon-div" onClick={()=>setSmsBox('hidden')}>
+            <Icon_Close />
           </div>
           <div className="message-popup-head">
             <h1>Compose Message</h1>
@@ -156,13 +191,14 @@ const Person = () => {
               cols={25}
               placeholder="Type your message here..."
               autoFocus
+              onChange={(event)=>smsInput(event)}
               defaultValue={""}
             />
           </div>
-          <div className="message-send-button hidden">
-            <a href="#">Send</a>
-            <h1>Sent Successfully</h1>
-            <h2 className="message-wrong">Something went wrong! Try again.</h2>
+          <div className="message-send-button ">
+            <button onClick={()=>smsSend()}>Send</button>
+            <h1 className={smsError}>Sent Successfully</h1>
+            <h2 className={`message-wrong ${smsSuccess}`}>Something went wrong! Try again.</h2>
           </div>
         </div>
       </div>
@@ -171,7 +207,10 @@ const Person = () => {
       {/* Mail Box */}
       <div className={`message-popup-bg ${mailBox}`}>
         <div className={`message-popup mail-popup ${mailBox}`}>
-          <div className="message-close-icon-div" onClick={() =>setMailBox('hidden')}>
+          <div
+            className="message-close-icon-div"
+            onClick={() => setMailBox("hidden")}
+          >
             <Icon_Close />
           </div>
           <div className="message-popup-head">
@@ -224,7 +263,9 @@ const Person = () => {
           </div>
           <div className="message-send-button">
             <h1 className={mailSentSuccess}>Sent Successfully</h1>
-            <h2 className={`message-wrong ${mailSentError}`}>Something went wrong! Try again.</h2>
+            <h2 className={`message-wrong ${mailSentError}`}>
+              Something went wrong! Try again.
+            </h2>
           </div>
         </div>
       </div>
@@ -398,8 +439,13 @@ const Person = () => {
               Sign up
             </button>
             <button>Edit</button>
-            <button>Send Message</button>
-            <button className={email?'':'hidden'} onClick={()=>setMailBox('')}>Send Mail</button>
+            <button onClick={() => setSmsBox("")}>Send Message</button>
+            <button
+              className={email ? "" : "hidden"}
+              onClick={() => setMailBox("")}
+            >
+              Send Mail
+            </button>
             <button>Proposed Changes</button>
           </div>
         </div>
