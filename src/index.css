@@ -1796,10 +1796,6 @@ hr {
   color: var(--text-primary);
 }
 
-.hidden {
-  display: none;
-}
-
 .grp-slno {
   width: 10%;
 }
@@ -3095,4 +3091,7 @@ span {
 
 /*Alert popup End
 ----------------------------------------------------------------*/
-    
+
+.hidden {
+  display: none;
+}

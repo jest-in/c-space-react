@@ -53,16 +53,17 @@ export default function AllAnnounce() {
   }
 
   function editHandler(announcement){
-    console.log('Edit clicked');
-    editAnnouncement=announcement.announcement;
-    editId=announcement._id;
-    console.log('Announcement Id:',editId);
-    editVisibility=announcement.visibility;
-    navigate("/add-announce"
-    , {
-    //   state:{
-    //     announcementId
-    //   },
+    // console.log('Edit clicked');
+    // editAnnouncement=announcement.announcement;
+    // editId=announcement._id;
+    // console.log('Announcement Id:',editId);
+    // editVisibility=announcement.visibility;
+    navigate("/add-announce", {
+      state: {
+        announcementId: announcement._id,
+        announcement: announcement.announcement,
+        visibility:announcement.visibility,
+      },
     });
   }
 
