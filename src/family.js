@@ -164,12 +164,12 @@ export default function Family() {
                 </div>
               )}
               {family.map((person, index) => {
-                const { baptismName, dob, phoneNumber,id } = person;
+                const { baptismName, dob, phoneNumber,_id } = person;
                 return (
                   <div className="sub2-content" key={index} onClick={()=>{
                     personIdFromFamily = id;
                     navigate("/person", {
-                      state:id,
+                      state:_id,
                     });
                   }}>
                     <div className="sub2-name-div">
