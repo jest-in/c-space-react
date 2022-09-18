@@ -20,13 +20,10 @@ export default function DeathRegistry() {
   const [sacraments, setSacraments] = useState({});
 
   useEffect(()=>{
-    // id for testing
-    // "62fdc8269f296978d5b3ef3e"
-
     // add location.state to get request url
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/death-registry/${personIdFromPerson?personIdFromPerson:personIdFromDeathAll}`
+        `http://localhost:5000/api/v1/registry/death-registry/${location.state}`
       )
       .then((res) => {
         if (res.data.status === "success") {
@@ -52,7 +49,7 @@ export default function DeathRegistry() {
             {person.familyName ? person.familyName : ""}
           </h1>
         </div>
-        <div className="registries-nav-div">
+        {/* <div className="registries-nav-div">
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
@@ -60,7 +57,7 @@ export default function DeathRegistry() {
         </div>
         <div className="menu-div">
           <IconMenu />
-        </div>
+        </div> */}
       </div>
       <hr />
       <div className="members-entries-div">

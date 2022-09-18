@@ -241,8 +241,12 @@ const Person = () => {
             <button
               onClick={() => {
                 if (!personDetails.dod) {
-                  navigate("/death-registry-add");
-                } else navigate("/death-registry");
+                  navigate("/death-registry-add", {
+                    state: location.state,
+                  });
+                } else navigate("/death-registry", {
+                  state: location.state,
+                });
               }}
             >
               Death Registry

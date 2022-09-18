@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import Icon_Menu from "../Assets/Icon_Menu";
 import Icon_Upload from "../Assets/Icon_Upload";
 import Navigation from "../navigation";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 import {personIdFromPerson} from '../person';
 
 // temeplate for backend post request
@@ -18,6 +18,10 @@ let remarks = "";
 let place=''
 
 export default function DeathRegistryAdd() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
+
   const navigate = useNavigate();
 
   // Error handling variables
@@ -115,7 +119,7 @@ export default function DeathRegistryAdd() {
       // Post request
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/death-registry/${personIdFromPerson}`,
+          `http://localhost:5000/api/v1/registry/death-registry/${location.state}`,
           data,
           {
             withCredentials: true,
@@ -123,7 +127,7 @@ export default function DeathRegistryAdd() {
         )
         .then((res) => {
           if (res.data.status === "success") {
-            navigate("/person");
+            navigate(-1);
           }
         })
         .catch((err) => {
@@ -137,9 +141,9 @@ export default function DeathRegistryAdd() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>Jackson</h1>
+          <h1>Death Registry</h1>
         </div>
-        <div className="registries-nav-div">
+        {/* <div className="registries-nav-div">
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
@@ -147,7 +151,7 @@ export default function DeathRegistryAdd() {
         </div>
         <div className="menu-div">
           <Icon_Menu />
-        </div>
+        </div> */}
       </div>
       <hr />
       <div className="members-entries-div">
