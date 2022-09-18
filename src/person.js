@@ -22,6 +22,11 @@ const Person = () => {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
   
+
+  // mail box
+  const [mailBox,setMailBox]=useState('hidden')
+  const [mailSentSuccess, setMailSentSuccess] = useState("hidden");
+  const [mailSentError,setMailSentError]=useState('hidden')
   const fileInput=useRef();
   const data = new FormData();
   // onFile change
@@ -44,10 +49,11 @@ const Person = () => {
       .then((res) => {
         // console.log(res.data);
         if (res.data.status === "success") {
-          alert('Mail sent successfully')
+          setMailSentSuccess('');
         }
       })
       .catch((err) => {
+        setMailSentError('');
         // Error
         alert(`${err.response.data.message}`);
       });
@@ -163,9 +169,9 @@ const Person = () => {
       {/* SMS Box */}
 
       {/* Mail Box */}
-      <div className="message-popup-bg">
-        <div className="message-popup mail-popup">
-          <div className="message-close-icon-div" onClick={() => {}}>
+      <div className={`message-popup-bg ${mailBox}`}>
+        <div className={`message-popup mail-popup ${mailBox}`}>
+          <div className="message-close-icon-div" onClick={() =>setMailBox('hidden')}>
             <Icon_Close />
           </div>
           <div className="message-popup-head">
@@ -217,8 +223,8 @@ const Person = () => {
             </form>
           </div>
           <div className="message-send-button">
-            <h1>Sent Successfully</h1>
-            <h2 className="message-wrong">Something went wrong! Try again.</h2>
+            <h1 className={mailSentSuccess}>Sent Successfully</h1>
+            <h2 className={`message-wrong ${mailSentError}`}>Something went wrong! Try again.</h2>
           </div>
         </div>
       </div>
@@ -393,7 +399,7 @@ const Person = () => {
             </button>
             <button>Edit</button>
             <button>Send Message</button>
-            <button>Send Mail</button>
+            <button className={email?'':'hidden'} onClick={()=>setMailBox('')}>Send Mail</button>
             <button>Proposed Changes</button>
           </div>
         </div>

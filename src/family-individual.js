@@ -50,15 +50,6 @@ export default function FamilyIndividual() {
 
   // change in file
   function onFileChange(event) {
-    console.log("Input:", event.target.files[0]);
-    const image = { selectedFile: event.target.files[0] };
-
-        console.log("Input:", event.target.files[0]);
-    console.log("Input:", event.target.files[0].name);
-
-
-    // props.handleFile(fileUploaded);
-
     // Create an object of formData
     const formData = new FormData();
 
