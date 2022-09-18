@@ -20,9 +20,10 @@ export default function AddFamily() {
 
   // function for initializing data
   function initialize(){
-    familyId=wardNo = "";
+    familyId="";
   }
   function initializeData() {
+    wardNo = "";
     data = {};
   }
 
@@ -72,6 +73,7 @@ export default function AddFamily() {
           .then((res) => {
             // console.log(res.data);
             if (res.data.status === "success") {
+              initializeData();
               const { _id, wardNum } = res.data.data;
               familyId = _id;
               wardNo = wardNum;
@@ -183,10 +185,16 @@ export default function AddFamily() {
         })
         .then((res) => {
           // console.log("RES : ",res)
-          if (res.data.status === "success") setTimeout(nav, 2000);
-          function nav() {
-            navigate("/add-family-relation");
-          }
+          if (res.data.status === "success"){
+            initialize();
+            setTimeout(nav, 2000);
+            function nav() {
+              navigate("/add-family-relation", {
+                state: familyId,
+              });
+            }
+          } 
+          
         })
         .catch((err) => {
           // Error

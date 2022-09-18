@@ -27,6 +27,9 @@ export default function FamilyIndividual() {
   // Family
   const [family, setFamily] = useState([]);
 
+  // photo link
+  const [photoLink,setPhotoLink]=useState('');
+
   // Family members
   const [members, setMembers] = useState([]);
 
@@ -87,6 +90,8 @@ export default function FamilyIndividual() {
       .then((res) => {
         console.log(res.data.data);
         const result = res.data.data;
+
+        setPhotoLink(result.photo);
 
         // If result is null then detail section should be hidden
         if (result._id) {
@@ -168,7 +173,7 @@ export default function FamilyIndividual() {
               />
             </div>
             <div className="photo-container">
-              <img src={require("./Assets/family-photo.png")} />
+              <img src={`http://localhost:5000/${photoLink}`} alt='family-photo'/>
             </div>
           </div>
         </div>
