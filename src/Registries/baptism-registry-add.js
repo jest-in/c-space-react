@@ -5,7 +5,7 @@ import axios from "axios";
 import {personIdFromPerson} from '../person';
 import IconUpload from '../Assets/Icon_Upload';
 import Icon_Menu from '../Assets/Icon_Menu';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 
 // Template of request data
 let requestTemplate = {
@@ -29,7 +29,11 @@ let godMother={
 let remarks='';
 
 export default function BaptismRegistryadd() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
+
 
   // For fields which are present in database
   const [personData, setPersonData] = useState({});
@@ -72,7 +76,7 @@ export default function BaptismRegistryadd() {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:5000/api/v1/persons/relations/${personIdFromPerson}?father=1&mother=1`
+        `http://localhost:5000/api/v1/persons/relations/${location.state}?father=1&mother=1`
       )
       .then((res) => {
         const result = res.data.person;
@@ -312,7 +316,7 @@ export default function BaptismRegistryadd() {
       // console.log('Post Data:',requestTemplate);
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}?father=1&mother=1`,
+          `http://localhost:5000/api/v1/registry/baptism-registry/${location.state}?father=1&mother=1`,
           requestTemplate,
           {
             withCredentials: true,

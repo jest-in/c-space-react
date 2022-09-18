@@ -36,11 +36,6 @@ export default function FamilyIndividual() {
 
   useEffect(()=>{
     familyId=id;
-
-    // If family id is null then go to family.js page
-    if(!familyId)
-    navigate('/family');
-    
     axios
       .get(`http://localhost:5000/api/v1/family/${location.state}`)
       .then((res) => {
@@ -155,7 +150,9 @@ export default function FamilyIndividual() {
                 key={index}
                 onClick={() => {
                   personId = id;
-                  navigate("/person");
+                  navigate("/person", {
+                    state: id,
+                  });
                 }}
               >
                 <div className="name-div">

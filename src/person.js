@@ -51,7 +51,7 @@ const Person = () => {
         ? personDetails.husband
         : personDetails.wife;
     }
-    navigate("/engagement-registry-add");
+    if (!personDetails.dod) navigate("/engagement-registry-add");
   }
 
   useEffect(() => {
@@ -68,7 +68,8 @@ const Person = () => {
         const result = res.data.person;
 
         if (res.data.status === "success") {
-          personIdFromPerson = result._id;
+          console.log("personIdFromPerson:", result.id);
+          personIdFromPerson = result.id;
           setPersonDetails(result);
           setDetailSection("");
           gender = result.gender;
@@ -83,6 +84,113 @@ const Person = () => {
 
   return (
     <div className="container-family">
+      <div className="hidden">
+        {/* SMS Box */}
+        <div className="message-popup-bg">
+          <div className="message-popup">
+            <div className="message-close-icon-div">
+              <img className="message-close-icon" src="/Icon_Close.svg" alt />
+            </div>
+            <div className="message-popup-head">
+              <h1>Compose Message</h1>
+              <hr />
+            </div>
+            <div className="message-input-div">
+              <textarea
+                name="message"
+                id="message"
+                rows={6}
+                cols={25}
+                placeholder="Type your message here..."
+                autofocus
+                defaultValue={""}
+              />
+            </div>
+            <div className="message-send-button hidden">
+              <a href='#'>
+                Send
+              </a>
+              <h1>Sent Successfully</h1>
+              <h2 className="message-wrong">
+                Something went wrong! Try again.
+              </h2>
+            </div>
+          </div>
+        </div>
+        {/* SMS Box */}
+
+        {/* Mail Box */}
+        <div className="message-popup-bg hidden">
+          <div className="message-popup mail-popup">
+            <div className="message-close-icon-div">
+              <img className="mail-close-icon" src="/Icon_Close.svg" alt />
+            </div>
+            <div className="message-popup-head">
+              <h1>Compose Mail</h1>
+              <hr />
+            </div>
+            <div className="message-input-div">
+              <form
+                className="mail-form"
+                action="/http://localhost:5000/api/v1/send-mail"
+                method="post"
+              >
+                <input className="mail-input" type="text" readOnly />
+                <input
+                  className="mail-input"
+                  type="text"
+                  placeholder="Subject"
+                />
+                <textarea
+                  name="message"
+                  id="message"
+                  rows={4}
+                  cols={25}
+                  placeholder="Type your message here..."
+                  autofocus
+                  defaultValue={""}
+                />
+                <input type="file" name="attatchment" className="attatch" />
+                <input
+                  className="mail-send-btn"
+                  type="submit"
+                  defaultValue="Send"
+                />
+              </form>
+            </div>
+            <div className="message-send-button">
+              <h1>Sent Successfully</h1>
+              <h2 className="message-wrong">
+                Something went wrong! Try again.
+              </h2>
+            </div>
+          </div>
+        </div>
+        {/* Mail Box */}
+
+        {/* Universal Alert Box */}
+        <div className="hidden universal-alert-popup-bg">
+          <div className="universal-alert-popup">
+            <div className="universal-alert-message-close-icon-div">
+              <img
+                className="universal-alert-message-close-icon"
+                src="/Icon_Close.svg"
+                alt
+              />
+            </div>
+            <div className="universal-alert-message-div">
+              <label className="universal-alert-message">
+                Baptism registry of this person is not updated
+              </label>
+            </div>
+            <div className="universal-alert-ok-button-div">
+              <button className="universal-alert-ok-buttion">Ok</button>
+            </div>
+          </div>
+        </div>
+        {/* Universal Alert Box */}
+      </div>
+
       <Navigation />
       <main className={detailSection}>
         <div className="title-div">
@@ -95,8 +203,12 @@ const Person = () => {
             <button
               onClick={() => {
                 if (!personDetails.doBaptism) {
-                  navigate("/baptism-registry-add");
-                } else navigate("/baptism-registry");
+                  navigate("/baptism-registry-add", {
+                    state: location.state,
+                  });
+                } else navigate("/baptism-registry", {
+                  state: location.state,
+                });
               }}
             >
               Baptism Registry
@@ -106,7 +218,7 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if (personDetails.maritalStatus !== "engaged") {
+                if (personDetails.maritalStatus !== "engaged"&&!personDetails.marriage) {
                   alert("Please add engagement registry first");
                   return;
                 }
@@ -216,7 +328,6 @@ const Person = () => {
             <button>Proposed Changes</button>
           </div>
         </div>
-
         <div className="desc-div">
           <div className="desc-heading person-desc-heading">
             Description/Remarks
@@ -233,80 +344,6 @@ const Person = () => {
             1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum".{" "}
           </div>
         </div>
-
-        <div>
-          {/* SMS Box */}
-  <div className="message-popup-bg hidden">
-    <div className="message-popup">
-      <div className="message-close-icon-div">
-        <img className="message-close-icon" src="/Icon_Close.svg" alt />
-      </div>
-      <div className="message-popup-head">
-        <h1>Compose Message</h1>
-        <hr />
-      </div>
-      <div className="message-input-div">
-        <textarea name="message" id="message" rows={6} cols={25} placeholder="Type your message here..." autofocus defaultValue={""} />
-      </div>
-      <div className="message-send-button">
-        <a className href>Send</a>
-        <h1>Sent Successfully</h1>
-        <h2 className="message-wrong">
-          Something went wrong! Try again.
-        </h2>
-      </div>
-    </div>
-  </div>
-  {/* SMS Box */}
-  
-  {/* Mail Box */}
-  <div className="message-popup-bg">
-    <div className="message-popup mail-popup">
-      <div className="message-close-icon-div">
-        <img className="mail-close-icon" src="/Icon_Close.svg" alt />
-      </div>
-      <div className="message-popup-head">
-        <h1>Compose Mail</h1>
-        <hr />
-      </div>
-      <div className="message-input-div">
-        <form className="mail-form" action="/http://localhost:5000/api/v1/send-mail" method="post">
-          <input className="mail-input" type="text" readOnly />
-          <input className="mail-input" type="text" placeholder="Subject" />
-          <textarea name="message" id="message" rows={4} cols={25} placeholder="Type your message here..." autofocus required="true" defaultValue={""} />
-          <input type="file" name="attatchment" className="attatch" />
-          <input className="mail-send-btn" type="submit" defaultValue="Send" />
-        </form>
-      </div>
-      <div className="message-send-button">
-        <h1>Sent Successfully</h1>
-        <h2 className="message-wrong">
-          Something went wrong! Try again.
-        </h2>
-      </div>
-    </div>
-  </div>
-  {/* Mail Box */}
-
-  {/* Universal Alert Box */}
-  <div className="universal-alert-popup-bg">
-  <div className="universal-alert-popup">
-    <div className="universal-alert-message-close-icon-div">
-      <img className="universal-alert-message-close-icon" src="/Icon_Close.svg" alt />
-    </div>
-    <div className="universal-alert-message-div">
-      <label className="universal-alert-message">
-        Baptism registry of this person is not updated
-      </label>
-    </div>
-    <div className="universal-alert-ok-button-div">
-      <button className="universal-alert-ok-buttion">Ok</button>
-    </div>
-  </div>
-</div>
-{/* Universal Alert Box */}
-</div>
-
       </main>
     </div>
   );

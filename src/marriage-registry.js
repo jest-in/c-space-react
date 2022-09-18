@@ -20,7 +20,7 @@ function MarriageRegistry() {
   const [showDetails,setShowDetails]=useState('hidden');
 
   // person name
-  const [name,setName]=useState('Loading');
+  const [data,setData]=useState({});
 
   // Groom data
   const [groomData,setGroomData]=useState({});
@@ -48,7 +48,7 @@ function MarriageRegistry() {
         console.log("RES : ", res.data);
         if (res.data.status === "success") {
           const result = res.data.data;
-          setName(personName);
+          setData(result);
           setGroomData(result.groomData);
           setBrideData(result.brideData);
           setOtherDetails({
@@ -74,7 +74,7 @@ function MarriageRegistry() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>{name}</h1>
+          <h1>Marriage Registry</h1>
         </div>
         <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
@@ -132,23 +132,23 @@ function MarriageRegistry() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head bride">Bride</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
-                {brideData.name ? brideData.name : "-"}
+                {brideData.baptismName ? brideData.baptismName : "-"}
               </div>
             </div>
             <div className="dob-person-div">
-              <div className="heading-dob">House name</div>
+              <div className="heading-dob">Family name</div>
               <div className="person-dob">
-                {brideData.houseName ? brideData.houseName : "-"}
+                {brideData.familyName ? brideData.familyName : "-"}
               </div>
             </div>
-            <div className="phone-person-div">
+            {/* <div className="phone-person-div">
               <div className="heading-phone">Age</div>
               <div className="person-phone">
                 {brideData.age ? brideData.age : "-"}
               </div>
-            </div>
+            </div> */}
             <div className="baptism-person-div">
               <div className="heading-baptism">Father</div>
               <div className="person-baptism">
@@ -174,8 +174,8 @@ function MarriageRegistry() {
             <div className="name-person-div">
               <div className="heading-name">Date</div>
               <div className="person-name">
-                {otherDetails.engagementDate
-                  ? otherDetails.engagementDate
+                {otherDetails.marriageDate
+                  ? otherDetails.marriageDate.split("T")[0]
                   : "-"}
               </div>
             </div>
@@ -185,12 +185,12 @@ function MarriageRegistry() {
                 {otherDetails.celebrant ? otherDetails.celebrant : "-"}
               </div>
             </div>
-            <div className="phone-person-div">
+            {/* <div className="phone-person-div">
               <div className="heading-phone">Witness</div>
               <div className="person-phone">
                 {otherDetails.witness ? otherDetails.witness : "-"}
               </div>
-            </div>
+            </div> */}
             <div className="baptism-person-div">
               <div className="heading-baptism">Parish priest</div>
               <div className="person-baptism">

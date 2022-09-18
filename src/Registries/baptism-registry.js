@@ -20,9 +20,7 @@ export default function BaptismRegistry() {
     // Get request use location.state
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/baptism-registry/${
-          personIdFromPerson ? personIdFromPerson : userIdFromAllBaptism
-        }`
+        `http://localhost:5000/api/v1/registry/baptism-registry/${location.state}`
       )
       .then((res) => {
         if (res.data.status === "success") {
