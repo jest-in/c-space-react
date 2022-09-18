@@ -233,6 +233,57 @@ const Person = () => {
             1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum".{" "}
           </div>
         </div>
+
+        <div>
+  <div className="message-popup-bg hidden">
+    <div className="message-popup">
+      <div className="message-close-icon-div">
+        <img className="message-close-icon" src="/Icon_Close.svg" alt />
+      </div>
+      <div className="message-popup-head">
+        <h1>Compose Message</h1>
+        <hr />
+      </div>
+      <div className="message-input-div">
+        <textarea name="message" id="message" rows={6} cols={25} placeholder="Type your message here..." autofocus defaultValue={""} />
+      </div>
+      <div className="message-send-button">
+        <a className href>Send</a>
+        <h1>Sent Successfully</h1>
+        <h2 className="message-wrong">
+          Something went wrong! Try again.
+        </h2>
+      </div>
+    </div>
+  </div>
+  <div className="message-popup-bg">
+    <div className="message-popup mail-popup">
+      <div className="message-close-icon-div">
+        <img className="mail-close-icon" src="/Icon_Close.svg" alt />
+      </div>
+      <div className="message-popup-head">
+        <h1>Compose Mail</h1>
+        <hr />
+      </div>
+      <div className="message-input-div">
+        <form className="mail-form" action="/http://localhost:5000/api/v1/send-mail" method="post">
+          <input className="mail-input" type="text" readOnly />
+          <input className="mail-input" type="text" placeholder="Subject" />
+          <textarea name="message" id="message" rows={4} cols={25} placeholder="Type your message here..." autofocus required="true" defaultValue={""} />
+          <input type="file" name="attatchment" className="attatch" />
+          <input className="mail-send-btn" type="submit" defaultValue="Send" />
+        </form>
+      </div>
+      <div className="message-send-button">
+        <h1>Sent Successfully</h1>
+        <h2 className="message-wrong">
+          Something went wrong! Try again.
+        </h2>
+      </div>
+    </div>
+  </div>
+</div>
+
       </main>
     </div>
   );
