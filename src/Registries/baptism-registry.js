@@ -40,13 +40,13 @@ export default function BaptismRegistry() {
     <div className="container-family">
       <Navigation />
       <div className="title-div">
-        <div className="person-head">
+        <div className="person-head regestries-person-head">
           <h1>
             {baptismDetails.baptismName ? `${baptismDetails.baptismName} ` : ""}
             {baptismDetails.familyName ? baptismDetails.familyName : ""}
           </h1>
         </div>
-        <div className="registries-nav-div">
+        {/* <div className="registries-nav-div">
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
@@ -54,7 +54,7 @@ export default function BaptismRegistry() {
         </div>
         <div className="menu-div">
           <IconMenu />
-        </div>
+        </div> */}
       </div>
       <hr />
       <div className="members-entries-div">

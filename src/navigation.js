@@ -57,6 +57,10 @@ export default function Navigation() {
             </a>
             <a href="/view-event">Offerings/Donations</a>
           </div>
+          <div className="logout-nav-div">
+            <button className="logout-btn">Logout</button>
+          </div>
+
         </nav>
       </div>
     </header>
