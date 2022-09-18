@@ -471,12 +471,11 @@ nav {
 } */
 
 .navigations {
-  width: 80%;
+  width: 65%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  padding-right: 300px;
 }
 
 .navigations a {
@@ -490,6 +489,27 @@ nav {
 
 .navigations a:hover {
   color: var(--color-primary);
+}
+
+.logout-nav-div {
+  width: 15%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logout-btn {
+  background-color: rgb(39, 37, 37);
+  color: var(--color-3);
+  font-weight: 500;
+  padding: 5px 20px;
+  border-radius: 25px;
+  transition: 0.2s ease in ease-in-out;
+}
+
+.logout-btn:hover {
+  color: var(--color-primary);
+  cursor: pointer;
 }
 
 .title-div {
