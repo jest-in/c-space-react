@@ -58,7 +58,9 @@ export default function BaptismRegistryAll() {
           return (
             <div className="member-details-div" key={index} onClick={()=>{
               userIdFromAllBaptism=userId;
-              navigate('/baptism-registry');
+              navigate("/baptism-registry", {
+                state: userId,
+              });
             }}>
               <div className="mar-slno">{index + 1}</div>
               <div className="mar-groom-name">{baptismName ? baptismName : "-"}</div>

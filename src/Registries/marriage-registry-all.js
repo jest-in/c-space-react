@@ -5,9 +5,10 @@ import Icon_Filter from '../Assets/Icon_Filter'
 import Icon_Search from '../Assets/Icon_Search'
 import Navigation from '../navigation'
 import axios from "axios";
+import { useNavigate} from "react-router-dom";
 
 export default function MarriageRegistryAll() {
-
+  const navigate = useNavigate();
   // // show details
   // const [showDetails, setShowDetails] = useState("hidden");
 
@@ -59,9 +60,13 @@ export default function MarriageRegistryAll() {
           <div className="mar-celebrant">Celebrant</div>
         </div>
         {marriageAll.map((member, index) => {
-          const { celebrant, groomName,brideName, marriageDate } = member;
+          const { celebrant, groomName,brideName, marriageDate,_id } = member;
           return (
-            <div className="member-details-div" key={index}>
+            <div className="member-details-div" key={index} onClick={()=>{
+              navigate("/marriage-registry", {
+                state: _id,
+              });
+            }}>
               <div className="mar-slno">{index + 1}</div>
               <div className="mar-groom-name">
                 {groomName ? groomName : "-"}

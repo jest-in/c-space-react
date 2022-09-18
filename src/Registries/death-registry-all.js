@@ -69,7 +69,9 @@ export default function DeathRegistryAll() {
           return(
             <div className="member-details-div" key={index} onClick={()=>{
               personIdFromDeathAll=userId;
-              navigate('/death-registry');
+              navigate('/death-registry', {
+                state: userId,
+              });
             }}>
             <div className="death-slno">{index + 1}</div>
             <div className="death-name">{baptismName ? baptismName : "-"}</div>

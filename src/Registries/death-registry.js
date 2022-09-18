@@ -7,9 +7,12 @@ import { personIdFromDeathAll } from './death-registry-all'
 import { useEffect } from 'react'
 import axios from "axios";
 import { useState } from 'react'
+import { useLocation } from "react-router-dom";
 
 export default function DeathRegistry() {
-
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   // Death details
   const [person,setPerson]=useState({});
 
@@ -19,6 +22,8 @@ export default function DeathRegistry() {
   useEffect(()=>{
     // id for testing
     // "62fdc8269f296978d5b3ef3e"
+
+    // add location.state to get request url
     axios
       .get(
         `http://localhost:5000/api/v1/registry/death-registry/${personIdFromPerson?personIdFromPerson:personIdFromDeathAll}`

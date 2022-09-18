@@ -5,13 +5,15 @@ import Icon_Menu from "./Assets/Icon_Menu";
 import Navigation from './navigation';
 
 import axios from "axios";
-import {useNavigate} from 'react-router-dom'
+import {useNavigate,useLocation} from 'react-router-dom'
 
 import {personIdFromPerson,personName} from './person'
 import { useState } from 'react';
 
 function MarriageRegistry() {
-
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   const navigate=useNavigate();
 
   // show details
@@ -36,7 +38,7 @@ function MarriageRegistry() {
   });
 
   useEffect(()=>{
-    // get request
+    // get request use location.state !!!!!!!!!!!!!!!!!!!!!!!
     if(personIdFromPerson)
     axios
       .get(

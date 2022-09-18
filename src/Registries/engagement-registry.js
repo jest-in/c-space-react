@@ -5,9 +5,13 @@ import IconUpload from '../Assets/Icon_Upload'
 import Navigation from '../navigation'
 import { personIdFromPerson} from "../person";
 import axios from "axios";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function EngagementRegistry() {
-
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
+  const navigate = useNavigate();
   // Name of person
   const [name,setName]=useState('Loading');
 
@@ -69,7 +73,7 @@ export default function EngagementRegistry() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 {groomData.baptismName ? groomData.baptismName : "-"}
               </div>
@@ -118,7 +122,7 @@ export default function EngagementRegistry() {
           <div className="registry-details-heading-div">
             <div className="bridegroom-head bride">Bride</div>
             <div className="name-person-div">
-              <div className="heading-name">Name</div>
+              <div className="heading-name">Baptism Name</div>
               <div className="person-name">
                 {brideData.baptismName ? brideData.baptismName : "-"}
               </div>
