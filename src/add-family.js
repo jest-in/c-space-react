@@ -17,6 +17,15 @@ export default function AddFamily() {
   // For navigation
   const navigate = useNavigate();
 
+
+  // function for initializing data
+  function initialize(){
+    familyId=wardNo = "";
+  }
+  function initializeData() {
+    data = {};
+  }
+
   // Add family inputs raedonly mode desciding section
   const [readOnlyMode,setReadOnlyMode]=useState(false);
 

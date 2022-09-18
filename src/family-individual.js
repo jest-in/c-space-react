@@ -183,7 +183,7 @@ export default function FamilyIndividual() {
           </div>
           {members.map((member, index) => {
             const {
-              id,
+              _id,
               baptismName,
               dob,
               phoneNumber,
@@ -202,7 +202,7 @@ export default function FamilyIndividual() {
                 onClick={() => {
                   personId = id;
                   navigate("/person", {
-                    state: id,
+                    state: _id,
                   });
                 }}
               >
