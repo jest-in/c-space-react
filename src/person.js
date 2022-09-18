@@ -33,7 +33,10 @@ const Person = () => {
       personDetails.maritalStatus === "engaged" ||
       personDetails.maritalStatus === "married"
     ) {
-      navigate("/engagement-registry");
+      navigate("/engagement-registry", {
+                state:{
+                  id:location.state,
+                }});
       return;
     }
     if (!personDetails.doBaptism) {
@@ -51,7 +54,14 @@ const Person = () => {
         ? personDetails.husband
         : personDetails.wife;
     }
-    if (!personDetails.dod) navigate("/engagement-registry-add");
+    if (!personDetails.dod) navigate("/engagement-registry-add", {
+                state:{
+                  id:location.state,
+                  gender:personDetails.gender,
+                  partnerId:personDetails.husband
+                    ? personDetails.husband
+                    : personDetails.wife,
+                }});
   }
 
   useEffect(() => {

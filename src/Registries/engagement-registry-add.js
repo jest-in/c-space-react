@@ -5,7 +5,7 @@ import Icon_Search from "../Assets/Icon_Search";
 import Navigation from "../navigation";
 import { useEffect } from "react";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,useLocation } from "react-router-dom";
 import {
   personIdFromPerson,
   gender,
@@ -16,10 +16,18 @@ import {
 let partnerId;
 
 export default function EngagementRegistryAdd() {
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
+  // gender
+  const [gender, setGender] = useState("");
+  // gender
+  const [partnerId, setPartnerId] = useState("");
+
   // same parish check button
-  const [checkButton,setCheckButton]=useState('');
+  const [checkButton, setCheckButton] = useState("");
 
   // Errors
   const [nameError, setNameError] = useState("hidden");
@@ -112,7 +120,7 @@ export default function EngagementRegistryAdd() {
     // check brideGroom and bride and other details
     let error = true;
     let data = {};
-    if (!boxChecked&&!checkButton) {
+    if (!boxChecked && !checkButton) {
       const {
         baptismName,
         familyName,
@@ -175,7 +183,7 @@ export default function EngagementRegistryAdd() {
       }
     } else {
       error = false;
-      data["partnerId"] = partnerId?partnerId:partnerIdFromPerson;
+      data["partnerId"] = partnerId ? partnerId : location.state.partnerId;
       data["groomData"] = {
         baptismName: brideGroom.baptismName,
         familyName: brideGroom.familyName,
@@ -219,11 +227,11 @@ export default function EngagementRegistryAdd() {
       if (otherDetails.remarks) data["remarks"] = otherDetails.remarks;
 
       console.log("Final data:", data);
-      console.log("Error:", error); 
+      console.log("Error:", error);
       // Post request
       axios
         .post(
-          `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`,
+          `http://localhost:5000/api/v1/registry/engagement-registry/${location.state.id}`,
           data,
           {
             withCredentials: true,
@@ -255,27 +263,24 @@ export default function EngagementRegistryAdd() {
     //     }
     //   });
 
-      // Testing
-      axios
-        .get(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${id}`
-        )
-        .then((res) => {
+    // Testing
+    axios
+      .get(`http://localhost:5000/api/v1/registry/baptism-registry/${id}`)
+      .then((res) => {
         const result = res.data.data;
 
         if (res.data.status === "success") {
-          partnerId = result.userId;
+          setPartnerId (result.userId);
           if (gender === "F") setBrideGroom(result);
           else setBride(result);
         }
-      
-        })
-        .catch((err) => {
-          if (err.response.status === 404) {
-            alert("Please add baptism registry of this persons");
-            navigate(-1);
-          }
-        });
+      })
+      .catch((err) => {
+        if (err.response.status === 404) {
+          alert("Please add baptism registry of this persons");
+          navigate(-1);
+        }
+      });
   }
 
   // Bride groom section handler
@@ -351,10 +356,12 @@ export default function EngagementRegistryAdd() {
   }
 
   useEffect(() => {
-    if (partnerIdFromPerson) {
+    setGender(location.state.gender);
+    setPartnerId(location.state.partnerId);
+    if (location.state.partnerId) {
       axios
         .get(
-          `http://localhost:5000/api/v1/registry/baptism-registry/${partnerIdFromPerson}`
+          `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.partnerId}`
         )
         .then((res) => {
           const result = res.data.data;
@@ -365,7 +372,7 @@ export default function EngagementRegistryAdd() {
           }
 
           if (res.data.status === "success") {
-            setCheckButton('hidden');
+            setCheckButton("hidden");
             setPersonName(result.name);
             if (gender === "F") setBrideGroom(result);
             else setBride(result);
@@ -381,7 +388,7 @@ export default function EngagementRegistryAdd() {
     }
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/baptism-registry/${personIdFromPerson}`
+        `http://localhost:5000/api/v1/registry/baptism-registry/${location.state.id}`
       )
       .then((res) => {
         const result = res.data.data;

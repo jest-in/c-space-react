@@ -26,7 +26,7 @@ export default function EngagementRegistry() {
   useEffect(()=>{
     axios
       .get(
-        `http://localhost:5000/api/v1/registry/engagement-registry/${personIdFromPerson}`
+        `http://localhost:5000/api/v1/registry/engagement-registry/${location.state.id}`
       )
       .then((res) => {
         console.log(res.data);

@@ -56,13 +56,15 @@ export default function EngagementRegistryAll() {
           <div className="mar-celebrant">Celebrant</div>
         </div>
         {engagementAll.map((person, index) => {
-          const { engagementDate, celebrant,_id } = person;
+          const { engagementDate, celebrant,brideId,groomId } = person;
           const groomName = person.groomData.baptismName;
           const brideName = person.brideData.baptismName;
           return (
             <div className="member-details-div" key={index} onClick={()=>{
               navigate("/engagement-registry", {
-                state: _id,
+                state:{
+                  id:groomId?groomId:brideId,
+                },
               });
             }}>
               <div className="mar-slno">{index + 1}</div>
