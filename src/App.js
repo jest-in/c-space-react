@@ -34,6 +34,7 @@ import AllAnnounce from './all-announce'
 import AddAnnounce from './add-announce'
 import MarriageCertificate from "./certificates/marriage-certificate";
 import BaptismCertificate from "./certificates/baptism-certificate";
+import NewAdmin from './super-admin/new-admin'
 
 function App() {
   return (
@@ -73,6 +74,7 @@ function App() {
         <Route path="/individual-event" element={<IndividualEvent />} exact />
         <Route path="/marriage-certificate" element={<MarriageCertificate />} exact />
         <Route path="/baptism-certificate" element={<BaptismCertificate />} exact />
+        <Route path="/new-admin" element={<NewAdmin />} exact />
       </Routes>
     </>
   );
