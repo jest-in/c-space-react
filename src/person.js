@@ -33,29 +33,29 @@ const Person = () => {
   } 
   // sms send button
   function smsSend(){
-    axios
-      .post(
-        "http://localhost:5000/api/v1/send-mail",
-        {
-          to: "all",
-          id: "5",
-          message: smsMessage,
-        },
-        {
-          withCredentials: true,
-        }
-      )
-      .then((res) => {
-        // console.log(res.data);
-        if (res.data.status === "success") {
-          setSmsSuccess("");
-        }
-      })
-      .catch((err) => {
-        setSmsError("");
-        // Error
-        alert(`${err.response.data.message}`);
-      });
+    // axios
+    //   .post(
+    //     "http://localhost:5000/api/v1/send-mail",
+    //     {
+    //       to: "all",
+    //       id: "5",
+    //       message: smsMessage,
+    //     },
+    //     {
+    //       withCredentials: true,
+    //     }
+    //   )
+    //   .then((res) => {
+    //     // console.log(res.data);
+    //     if (res.data.status === "success") {
+    //       setSmsSuccess("");
+    //     }
+    //   })
+    //   .catch((err) => {
+    //     setSmsError("");
+    //     // Error
+    //     alert(`${err.response.data.message}`);
+    //   });
   }
 
   // mail box
