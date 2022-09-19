@@ -775,8 +775,9 @@ hr {
   transition: 0.2s ease-in-out;
 }
 
-.create-family-btn-div a:hover {
+.create-family-btn-div button:hover {
   background-color: #332c9b;
+  cursor: pointer;
 }
 
 .famili-members-div {

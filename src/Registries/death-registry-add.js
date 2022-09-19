@@ -151,7 +151,7 @@ export default function DeathRegistryAdd() {
     <div className="container-family">
       <Navigation />
       <div className="title-div">
-        <div className="person-head">
+        <div className="person-head regestries-person-head">
           <h1>Death Registry</h1>
         </div>
         {/* <div className="registries-nav-div">
