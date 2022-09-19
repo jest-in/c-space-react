@@ -4,6 +4,7 @@ import Icon_Filter from '../Assets/Icon_Filter';
 import Icon_Search from '../Assets/Icon_Search';
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import Icon_Close from '../Assets/Icon_Close';
 
 // For exporting to baptism registry
 let userIdFromAllBaptism;
@@ -33,6 +34,62 @@ export default function BaptismRegistryAll() {
 
   return (
     <div className="container-family">
+      <div className="baptism-filter-popup-bg">
+  <div className="baptism-filter-popup-content">
+    <div className="filter-close-icon-div">
+      <Icon_Close/>
+    </div>
+    <div className="baptism-filter-content">
+      <div className="baptism-filter-dob-div">
+        <div className="baptism-filter-dob-label">
+          <label htmlFor="DOB">DOB:</label>
+        </div>
+        <div className="baptism-filter-dob-input">
+          <input type="date" />
+          <input type="date" />
+        </div>
+      </div>
+      <div className="baptism-filter-dob-div">
+        <div className="baptism-filter-dob-label">
+          <label htmlFor="DOB">Gender :</label>
+        </div>
+        <div className="baptism-filter-dob-input">
+          <div className="radio-div">
+            <div className="radio1">
+              <input id="male" name="male" type="radio" />
+              <label htmlFor="male">Male</label>
+            </div>
+            <div className="radio2">
+              <input id="rb1" name="male" type="radio" />
+              <label htmlFor="rb1">Female</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="baptism-filter-dob-div">
+        <div className="baptism-filter-dob-label">
+          <label htmlFor="DOB">Date of Baptism :</label>
+        </div>
+        <div className="baptism-filter-dob-input">
+          <input type="date" />
+          <input type="date" />
+        </div>
+      </div>
+      <div className="baptism-filter-dob-div">
+        <div className="baptism-filter-dob-label">
+          <label htmlFor="DOB">Minister :</label>
+        </div>
+        <div className="baptism-filter-dob-input">
+          <input type="text" />
+        </div>
+      </div>
+    </div>
+    <div className="filter-apply-div">
+      <button className="filter-apply-button">Apply</button>
+    </div>
+  </div>
+</div>
+
       <Navigation />
       <div className="title-div">
         <div className="family-master">
