@@ -9,20 +9,37 @@ export default function Ledgers() {
     }
   return (
         <div className="container-family">
+            <div className="create-legder-popup-div1">
+  <div className="leg-pop-ledname-div">
+    <label htmlFor>Ledger name</label>
+    <input type="text" />
+    <label className="add-family-error" htmlFor="error">This field is required</label>
+  </div>
+  <div className="leg-pop-ledgroup-div">
+    <label htmlFor>Under</label>
+    {/* <input type="text" /> */}
+    <select name="relation" id="under-group">
+      <option value selected disabled hidden />
+      <option value="Direct income">Direct income</option>
+      <option value="Direct expenses">
+        Direct expenses
+      </option>
+    </select>
+    <label className="add-family-error" htmlFor="error">This field is required</label>
+  </div>
+  <button className="led-create-btn">Create</button>
+</div>
+
         <Navigation/>
         <div className="title-div">
             <div className="family-master">
                <h1>Transactions</h1> 
             </div>
-            <div className="registries-nav-div">
-                <a href="#">Ledgers</a>
-                <a href="#">Groups</a>
-                <a href="#">Vouchers</a>
-                <a href="#">Reports</a>
-            </div>
-            <div className="menu-div">
-                <Icon_Menu/>
-            </div>   
+            <div className="baptism-registry-edit-btn-div">
+          <button className="create-led-btn">
+            Create Ledger
+          </button>
+        </div>   
         </div>
         <hr/>
         <div className="famili-members-div transactions">
@@ -69,9 +86,6 @@ export default function Ledgers() {
                 <div className="led-total">+898550</div>
                 <div className="led-type">Receipt</div>
             </div>
-        </div>
-        <div className="create-led-btn-div">
-            <a href="" className="create-led-btn"><h1>Create Ledger</h1></a>
         </div>
     </div>
   )

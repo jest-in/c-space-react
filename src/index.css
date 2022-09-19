@@ -1715,10 +1715,10 @@ hr {
   text-decoration: none;
   background: var(--color-primary);
   color: var(--color-secondary);
-  margin: 50px 80px;
   padding: 5px 20px;
   border-radius: 3px;
   transition: 0.2s ease-in-out;
+  font-weight: 600;
 }
 
 .create-led-btn h1 {
