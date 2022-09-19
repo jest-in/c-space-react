@@ -93,8 +93,6 @@ export default function Groups() {
           <div className="grp-slno">S.No</div>
           <div className="grp-name">Name</div>
           <div className="grp-nature">Nature of group</div>
-          <div className="grp-notrans">No of Transactions</div>
-          <div className="grp-total">Total</div>
         </div>
         {groupDetails.map((group, index) => {
           return (
