@@ -79,10 +79,11 @@ const Person = () => {
   function inputsFromMailForm(event) {
     const { name, value } = event.target;
     name==='text'?setMailText(value):setMailMessage(value);
-    data.append(name, value);
   }
   // send mail button in form
   function sendMailFromForm() {
+    data.append('text', mailText);
+    data.append("subject", mailMessage);
     data.append("to", email);
     axios
       .post("http://localhost:5000/api/v1/send-mail", data, {
