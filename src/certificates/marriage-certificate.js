@@ -53,7 +53,7 @@ export default function MarriageCertificate() {
           </div>
           <div className="regno-div">
             <h1>Reg. No.</h1>
-            <h2>163</h2>
+            <h2>{details._id}</h2>
           </div>
           <div className="certificate-content-div">
             <p>

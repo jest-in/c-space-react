@@ -51,7 +51,7 @@ export default function BaptismCertificate() {
         </div>
         <div className="regno-div">
           <h1>Reg. No.</h1>
-          <h2>163</h2>
+          <h2>{details._id}</h2>
         </div>
         <div className="name-div-baptism-cer">
           <h1 className="name-title">
