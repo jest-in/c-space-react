@@ -137,8 +137,8 @@ export default function Sponsors() {
       <div className="payment-entries">
         <div className="inner-div-1 payment-inner-div-1">
           <div className="house-name-div">
-            <h1>Name</h1>
-            <input className="house-name-input" name='name' type="text" onChange={(event)=>inputHandler(event)} />
+            <h1>Amount</h1>
+            <input className="house-no-input" name='amount' type="text" value={eventAmount?eventAmount:''} readOnly={true} />
             <label className={`add-family-error ${nameError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
           <div className="address-div">
@@ -147,7 +147,7 @@ export default function Sponsors() {
             <label className={`add-family-error ${descriptionError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
         </div>
-        <div className="inner-div-2 payment-inner-div-2">
+        {/* <div className="inner-div-2 payment-inner-div-2">
           <div className="houseno-div">
             <h1>House Name</h1>
             <input className="house-no-input" name='houseName' type="text" onChange={(event)=>inputHandler(event)} />
@@ -160,10 +160,10 @@ export default function Sponsors() {
           </div>
           <div className="ward-div">
             <h1>Amount</h1>
-            <input className="house-no-input" name='amount' type="text" value={eventAmount?eventAmount:''} readOnly={true} />
+            <input className="house-no-input" name='amount' type="text" value={eventAmount?eventAmount:''} readOnly={true} /> */}
             {/* <label className={`add-family-error ${amountError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label> */}
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
       </div>
     </div>
   </div>
