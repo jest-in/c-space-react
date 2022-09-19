@@ -17,44 +17,81 @@ let personIdFromPerson;
 let partnerIdFromPerson;
 
 const Person = () => {
-  const location = useLocation();
-  // Imported data
-  console.log("Imported object from family using navigate:", location);
-  const navigate = useNavigate();
+  // photo upload handling section
+  const hiddenFileInput = useRef(null);
+  // photo upload
+  function photoUpload() {
+    console.log("upload clicked");
+    hiddenFileInput.current.click();
+  }
 
-  // sign up section
-  const [showSignUp,setShowSignUp]=useState('hidden');
-  const [role,setRole]=useState('');
-  const [emptyOption, setEmptyOption] = useState("hidden");
-  function signUp() {
-    if(role){
-      // return
-      axios
-      .post(
-        `http://localhost:5000/api/v1/users/signup`,
-        {
-          userId: location.state,
-          role: "User",
-        },
+  // change in file
+  function onFileChange(event) {
+    // Create an object of formData
+    const formData = new FormData();
+
+    // Update the formData object
+    formData.append("photo", event.target.files[0], event.target.files[0].name);
+
+    axios
+      .patch(
+        `http://localhost:5000/api/v1/family/${location.state}`,
+        formData,
         {
           withCredentials: true,
         }
       )
       .then((res) => {
         if (res.data.status === "success") {
-          closeSignUp();
-          alert(res.data.message);
+          alert("uploaded successfully");
         }
       })
       .catch((err) => {
         // Error
         alert(`${err.response.data.message}`);
-      });}
+      });
   }
-  function closeSignUp(){
-    setRole('');
-    setEmptyOption('');
-    setShowSignUp('hidden');
+  // /////////////////////
+
+  const location = useLocation();
+  // Imported data
+  console.log("Imported object from family using navigate:", location);
+  const navigate = useNavigate();
+
+  // sign up section
+  const [showSignUp, setShowSignUp] = useState("hidden");
+  const [role, setRole] = useState("");
+  const [emptyOption, setEmptyOption] = useState("hidden");
+  function signUp() {
+    if (role) {
+      // return
+      axios
+        .post(
+          `http://localhost:5000/api/v1/users/signup`,
+          {
+            userId: location.state,
+            role: "User",
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          if (res.data.status === "success") {
+            closeSignUp();
+            alert(res.data.message);
+          }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
+        });
+    }
+  }
+  function closeSignUp() {
+    setRole("");
+    setEmptyOption("");
+    setShowSignUp("hidden");
   }
 
   // sms box
@@ -74,7 +111,7 @@ const Person = () => {
         {
           to: "person",
           id: location.state,
-          message: 'Your OTP is 1232,valid for 5 mins',
+          message: "Your OTP is 1232,valid for 5 mins",
         },
         {
           withCredentials: true,
@@ -94,8 +131,8 @@ const Person = () => {
   }
 
   // mail box
-  const [mailText, setMailText] = useState('');
-  const [mailMessage, setMailMessage] = useState('');
+  const [mailText, setMailText] = useState("");
+  const [mailMessage, setMailMessage] = useState("");
   const [mailBox, setMailBox] = useState("hidden");
   const [mailSentSuccess, setMailSentSuccess] = useState("hidden");
   const [mailSentError, setMailSentError] = useState("hidden");
@@ -113,11 +150,11 @@ const Person = () => {
   // input from mail form
   function inputsFromMailForm(event) {
     const { name, value } = event.target;
-    name==='text'?setMailText(value):setMailMessage(value);
+    name === "text" ? setMailText(value) : setMailMessage(value);
   }
   // send mail button in form
   function sendMailFromForm() {
-    data.append('text', mailText);
+    data.append("text", mailText);
     data.append("subject", mailMessage);
     data.append("to", email);
     axios
