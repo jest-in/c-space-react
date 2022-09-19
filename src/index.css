@@ -2974,7 +2974,7 @@ span {
 }
 
 .payment-inner-div-1 {
-  margin-left: 300px;
+  margin-left: 520px;
 }
 
 .payment-inner-div-2 {
@@ -3428,6 +3428,45 @@ span {
 
 /*Filter popup end
 ----------------------------------------------------------------*/
+
+/*Signup popup start
+----------------------------------------------------------------*/
+
+.signup-popup-bg{
+    width: 100vw;
+    height: 100vh;
+    background-color: #0000007c;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.5s ease-in-out;
+}
+
+.signup-popup-content{
+    width: 450px;
+    height: 200px;
+    background-color: var(--color-secondary);
+    box-shadow: 5px 5px 50px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 13px;
+    display: flex;
+    flex-direction: column;
+    transition: 0.5s ease-in-out;
+    padding: 10px 20px 20px 30px;
+    align-items: center;
+}
+
+.signup-popup-entries{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 10px;
+}
+
+/*Signup popup end
+----------------------------------------------------------------*/
+
+
 
 .hidden {
   display: none;
