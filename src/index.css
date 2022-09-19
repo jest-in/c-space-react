@@ -1709,7 +1709,7 @@ hr {
   width: 100%;
   align-items: flex-end;
   justify-content: flex-end;
-  padding: 10px 0px;
+  padding: 30px 50px;
 }
 
 .create-led-btn {
@@ -1728,6 +1728,7 @@ hr {
 
 .create-led-btn:hover {
   background-color: #403bd2;
+  cursor: pointer;
   /* color: var(--text-primary); */
 }
 
