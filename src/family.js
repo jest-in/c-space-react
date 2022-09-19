@@ -28,6 +28,30 @@ export default function Family() {
   // For dynamic updation of individual family details
   const [family, setFamily] = useState([]);
 
+  // search filter
+  const [search,setSearch]=useState('');
+  function searchIconButton(){
+    axios
+      .get(
+        `http://localhost:5000/api/v1/family?${search?`familyName=${search}`:''}`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setFamilies(res.data.data);
+        setFamilyName(res.data.data[0].familyName);
+        // id of first femmber of family
+        id = res.data.data[0]._id;
+        // function for get request of family members
+        getRequest(id);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }
+
   // filter section
   const [showFilter, setShowFilter] = useState("hidden");
   const [wardNum,setWardNum]=useState('');
@@ -44,6 +68,7 @@ export default function Family() {
   }
   // apply button
   function applyButton() {
+    setSearch('');
     console.log('Apply clicked:',wardNum,houseNum,members,sort);
     axios
       .get(
@@ -136,59 +161,99 @@ export default function Family() {
     <>
       <div className="families-container">
         <div className={`filter-popup-bg ${showFilter}`}>
-  <div className={`filter-popup-container ${showFilter}`}>
-    <div className="filter-close-icon-div" onClick={()=>closeFilter()}>
-      <Icon_Close/>
-    </div>
-    <div className="filter-on-ward-div">
-      <div className="filter-on-ward-title">
-        <label htmlFor>Ward</label>
-      </div>
-      <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" name='wardNum' type="text" value={wardNum} onChange={(event)=>filterInput(event)}/>
-      </div>
-    </div>
-    <div className="filter-on-house-no-div">
-      <div className="filter-on-ward-title">
-        <label htmlFor>House number</label>
-      </div>
-      <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" name='houseNum' value={houseNum} onChange={(event)=>filterInput(event)}/>
-      </div>
-    </div>
-    <div className="filter-on-house-no-div">
-      <div className="filter-on-ward-title">
-        <label htmlFor>Number of members</label>
-      </div>
-      <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" name='members' value={members} onChange={(event)=>filterInput(event)}/>
-      </div>
-    </div>
-    <div className="filter-on-sort-div">
-      <div className="filter-on-ward-title">
-        <label htmlFor>Sort</label>
-      </div>
-      <div className="filter-on-ward-input">
-        <div className="radio-div">
-          <div className="radio1">
-            <input id="male" name="sort" type="radio" value='on' checked={sort==='on'?true:false} onChange={(event)=>filterInput(event)}/>
-            <label htmlFor="male">A-Z</label>
-          </div>
-          <div className="radio2">
-            <input id="rb1" name="sort" type="radio" value='off' checked={sort==='off'?true:false} onChange={(event)=>filterInput(event)}/>
-            <label htmlFor="rb1">Z-A</label>
+          <div className={`filter-popup-container ${showFilter}`}>
+            <div
+              className="filter-close-icon-div"
+              onClick={() => closeFilter()}
+            >
+              <Icon_Close />
+            </div>
+            <div className="filter-on-ward-div">
+              <div className="filter-on-ward-title">
+                <label htmlFor>Ward</label>
+              </div>
+              <div className="filter-on-ward-input">
+                <input
+                  className="filter-on-ward-tb"
+                  name="wardNum"
+                  type="text"
+                  value={wardNum}
+                  onChange={(event) => filterInput(event)}
+                />
+              </div>
+            </div>
+            <div className="filter-on-house-no-div">
+              <div className="filter-on-ward-title">
+                <label htmlFor>House number</label>
+              </div>
+              <div className="filter-on-ward-input">
+                <input
+                  className="filter-on-ward-tb"
+                  name="houseNum"
+                  value={houseNum}
+                  onChange={(event) => filterInput(event)}
+                />
+              </div>
+            </div>
+            <div className="filter-on-house-no-div">
+              <div className="filter-on-ward-title">
+                <label htmlFor>Number of members</label>
+              </div>
+              <div className="filter-on-ward-input">
+                <input
+                  className="filter-on-ward-tb"
+                  name="members"
+                  value={members}
+                  onChange={(event) => filterInput(event)}
+                />
+              </div>
+            </div>
+            <div className="filter-on-sort-div">
+              <div className="filter-on-ward-title">
+                <label htmlFor>Sort</label>
+              </div>
+              <div className="filter-on-ward-input">
+                <div className="radio-div">
+                  <div className="radio1">
+                    <input
+                      id="male"
+                      name="sort"
+                      type="radio"
+                      value="on"
+                      checked={sort === "on" ? true : false}
+                      onChange={(event) => filterInput(event)}
+                    />
+                    <label htmlFor="male">A-Z</label>
+                  </div>
+                  <div className="radio2">
+                    <input
+                      id="rb1"
+                      name="sort"
+                      type="radio"
+                      value="off"
+                      checked={sort === "off" ? true : false}
+                      onChange={(event) => filterInput(event)}
+                    />
+                    <label htmlFor="rb1">Z-A</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="filter-apply-div">
+              <button
+                className="filter-apply-button"
+                onClick={() => applyButton()}
+              >
+                Apply
+              </button>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-    <div className="filter-apply-div">
-      <button className="filter-apply-button" onClick={()=>applyButton()}>Apply</button>
-    </div>
-  </div>
-</div>
 
-        <Navigation/>
-        <div className="graph-div"><Chart/></div>
+        <Navigation />
+        <div className="graph-div">
+          <Chart />
+        </div>
         <div className="secondary-nav-div">
           <div className="secondary-nav-subdiv1">
             <div className="sub1-head">
@@ -196,10 +261,18 @@ export default function Family() {
                 <h1>Families</h1>
               </div>
               <div className="families-search-div">
-                <input type="text" name="search-name" placeholder="Search by family" />
-                <Icon_Search />
+                <input
+                  type="text"
+                  name="search-name"
+                  value={search}
+                  onChange={(event) => setSearch(event.target.value)}
+                  placeholder="Search by family"
+                />
+                <div className="families-search-icon" onClick={()=>searchIconButton()}>
+                  <Icon_Search />
+                </div>
               </div>
-              <div className="filter-div" onClick={()=>setShowFilter('')}>
+              <div className="filter-div" onClick={() => setShowFilter("")}>
                 <Icon_Filter />
               </div>
             </div>
@@ -240,7 +313,7 @@ export default function Family() {
                     <div
                       className="view-detail-div"
                       onClick={() => {
-                        if(family[0].familyId){
+                        if (family[0].familyId) {
                           navigate("/family-individual", {
                             state: family[0].familyId,
                           });
@@ -272,18 +345,20 @@ export default function Family() {
                 </div>
               )}
               {family.map((person, index) => {
-                const { baptismName, dob, phoneNumber,_id } = person;
+                const { baptismName, dob, phoneNumber, _id } = person;
                 return (
-                  <div className="sub2-content" key={index} onClick={()=>{
-                    personIdFromFamily = id;
-                    navigate("/person", {
-                      state:_id,
-                    });
-                  }}>
+                  <div
+                    className="sub2-content"
+                    key={index}
+                    onClick={() => {
+                      personIdFromFamily = id;
+                      navigate("/person", {
+                        state: _id,
+                      });
+                    }}
+                  >
                     <div className="sub2-name-div">
-                      <h1>
-                        {baptismName?baptismName:'-'}
-                      </h1>
+                      <h1>{baptismName ? baptismName : "-"}</h1>
                     </div>
                     <div className="sub2-dob-div">
                       <h1>{dob ? dob.split("T")[0] : "-"}</h1>

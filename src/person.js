@@ -22,6 +22,41 @@ const Person = () => {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
 
+  // sign up section
+  const [showSignUp,setShowSignUp]=useState('hidden');
+  const [role,setRole]=useState('');
+  const [emptyOption, setEmptyOption] = useState("hidden");
+  function signUp() {
+    if(role){
+      // return
+      axios
+      .post(
+        `http://localhost:5000/api/v1/users/signup`,
+        {
+          userId: location.state,
+          role: "User",
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        if (res.data.status === "success") {
+          closeSignUp();
+          alert(res.data.message);
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });}
+  }
+  function closeSignUp(){
+    setRole('');
+    setEmptyOption('');
+    setShowSignUp('hidden');
+  }
+
   // sms box
   const [smsBox, setSmsBox] = useState("hidden");
   const [smsMessage, setSmsMessage] = useState("");
@@ -33,29 +68,29 @@ const Person = () => {
   }
   // sms send button
   function smsSend() {
-    // axios
-    //   .post(
-    //     "http://localhost:5000/api/v1/send-mail",
-    //     {
-    //       to: "all",
-    //       id: "5",
-    //       message: smsMessage,
-    //     },
-    //     {
-    //       withCredentials: true,
-    //     }
-    //   )
-    //   .then((res) => {
-    //     // console.log(res.data);
-    //     if (res.data.status === "success") {
-    //       setSmsSuccess("");
-    //     }
-    //   })
-    //   .catch((err) => {
-    //     setSmsError("");
-    //     // Error
-    //     alert(`${err.response.data.message}`);
-    //   });
+    axios
+      .post(
+        "http://localhost:5000/api/v1/send-mail",
+        {
+          to: "person",
+          id: location.state,
+          message: 'Your OTP is 1232,valid for 5 mins',
+        },
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        // console.log(res.data);
+        if (res.data.status === "success") {
+          setSmsSuccess("");
+        }
+      })
+      .catch((err) => {
+        setSmsError("");
+        // Error
+        alert(`${err.response.data.message}`);
+      });
   }
 
   // mail box
@@ -185,25 +220,34 @@ const Person = () => {
     <div className={`container-family`}>
       {/* signup popup start */}
 
-      <div className="signup-popup-bg">
-  <div className="signup-popup-content">
-    <div className="filter-close-icon-div">
-      <Icon_Close/>
-    </div>
-    <div className="signup-popup-entries">
-      <label htmlFor>Select role</label>
-      <select name="relation" id="under-group">
-        <option value selected disabled hidden />
-        <option value="user">User</option>
-        <option value="accountant">Accountant</option>
-      </select>
-      <div className="filter-apply-div">
-        <button className="filter-apply-button">Signup</button>
+      <div className={`signup-popup-bg ${showSignUp}`}>
+        <div className="signup-popup-content">
+          <div className="filter-close-icon-div" onClick={() => closeSignUp()}>
+            <Icon_Close />
+          </div>
+          <div className="signup-popup-entries">
+            <label htmlFor>Select role</label>
+            <select
+              value={role ? role : "nothing"}
+              onChange={(event) => {
+                setEmptyOption("hidden");
+                setRole(event.target.value);
+              }}
+              name="relation"
+              id="under-group"
+            >
+              <option className={emptyOption} value=""></option>
+              <option value="user">User</option>
+              <option value="accountant">Accountant</option>
+            </select>
+            <div className="filter-apply-div">
+              <button className="filter-apply-button" onClick={() => signUp()}>
+                Signup
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-  </div>
-</div>
-
 
       {/* signup popup end */}
       {/* SMS Box */}
@@ -213,9 +257,9 @@ const Person = () => {
             className="message-close-icon-div"
             onClick={() => {
               setSmsBox("hidden");
-              setSmsMessage('');
-              setSmsSuccess('hidden');
-              setSmsError('hidden');
+              setSmsMessage("");
+              setSmsSuccess("hidden");
+              setSmsError("hidden");
             }}
           >
             <Icon_Close />
@@ -255,7 +299,7 @@ const Person = () => {
             onClick={() => {
               setMailSentError("hidden");
               setMailSentSuccess("hidden");
-              setMailMessage('');
+              setMailMessage("");
               setMailText("");
               setMailBox("hidden");
               fileInput.current.value = "";
@@ -463,32 +507,7 @@ const Person = () => {
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
             />
-            <button
-              onClick={() => {
-                axios
-                  .post(
-                    `http://localhost:5000/api/v1/users/signup`,
-                    {
-                      userId: personId ? personId : personIdFromFamily,
-                      role: "User",
-                    },
-                    {
-                      withCredentials: true,
-                    }
-                  )
-                  .then((res) => {
-                    if (res.data.status === "success") {
-                      alert("Signup request successfull");
-                    }
-                  })
-                  .catch((err) => {
-                    // Error
-                    alert(`${err.response.data.message}`);
-                  });
-              }}
-            >
-              Sign up
-            </button>
+            <button onClick={() => setShowSignUp("")}>Sign up</button>
             <button>Edit</button>
             <button onClick={() => setSmsBox("")}>Send Message</button>
             <button
