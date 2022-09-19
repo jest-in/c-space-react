@@ -28,6 +28,62 @@ export default function Family() {
   // For dynamic updation of individual family details
   const [family, setFamily] = useState([]);
 
+  // filter section
+  const [showFilter, setShowFilter] = useState("hidden");
+  const [wardNum,setWardNum]=useState('');
+  const [houseNum, setHouseNum] = useState("");
+  const [members, setMembers] = useState("");
+  const [sort, setSort] = useState("");
+  // filter input handler
+  function filterInput(event){
+    const {name,value}=event.target;
+    if(name==='wardNum') setWardNum(value);
+    if (name === "houseNum") setHouseNum(value);
+    if (name === "members") setMembers(value);
+    if (name === "sort") setSort(value);
+  }
+  // apply button
+  function applyButton() {
+    console.log('Apply clicked:',wardNum,houseNum,members,sort);
+    axios
+      .get(
+        `http://localhost:5000/api/v1/family?${
+          wardNum ? `wardNum=${wardNum}&` : ""
+        }${houseNum ? `houseNum=${houseNum}&` : ""}${
+          members ? `members=${members}&` : ""
+        }`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then((res) => {
+        setFamilies(res.data.data);
+        setFamilyName(res.data.data[0].familyName);
+        // id of first femmber of family
+        id = res.data.data[0]._id;
+        // function for get request of family members
+        getRequest(id);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+    setWardNum("");
+    setMembers("");
+    setSort("");
+    setHouseNum("");
+    setShowFilter("hidden");
+  }
+  // close filter
+  function closeFilter() {
+    console.log("close clicked:");
+    setWardNum('');
+    setMembers('');
+    setSort('');
+    setHouseNum('');
+    setShowFilter('hidden')
+  }
+
   useEffect(() => {
     //Requesting families data (GET)
     axios
@@ -79,9 +135,9 @@ export default function Family() {
   return (
     <>
       <div className="families-container">
-        <div className="filter-popup-bg hidden">
-  <div className="filter-popup-container hidden">
-    <div className="filter-close-icon-div">
+        <div className={`filter-popup-bg ${showFilter}`}>
+  <div className={`filter-popup-container ${showFilter}`}>
+    <div className="filter-close-icon-div" onClick={()=>closeFilter()}>
       <Icon_Close/>
     </div>
     <div className="filter-on-ward-div">
@@ -89,7 +145,7 @@ export default function Family() {
         <label htmlFor>Ward</label>
       </div>
       <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" type="text" name id />
+        <input className="filter-on-ward-tb" name='wardNum' type="text" value={wardNum} onChange={(event)=>filterInput(event)}/>
       </div>
     </div>
     <div className="filter-on-house-no-div">
@@ -97,7 +153,7 @@ export default function Family() {
         <label htmlFor>House number</label>
       </div>
       <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" name id />
+        <input className="filter-on-ward-tb" name='houseNum' value={houseNum} onChange={(event)=>filterInput(event)}/>
       </div>
     </div>
     <div className="filter-on-house-no-div">
@@ -105,7 +161,7 @@ export default function Family() {
         <label htmlFor>Number of members</label>
       </div>
       <div className="filter-on-ward-input">
-        <input className="filter-on-ward-tb" name id />
+        <input className="filter-on-ward-tb" name='members' value={members} onChange={(event)=>filterInput(event)}/>
       </div>
     </div>
     <div className="filter-on-sort-div">
@@ -115,18 +171,18 @@ export default function Family() {
       <div className="filter-on-ward-input">
         <div className="radio-div">
           <div className="radio1">
-            <input id="male" name="male" type="radio" />
+            <input id="male" name="sort" type="radio" value='on' checked={sort==='on'?true:false} onChange={(event)=>filterInput(event)}/>
             <label htmlFor="male">A-Z</label>
           </div>
           <div className="radio2">
-            <input id="rb1" name="male" type="radio" />
+            <input id="rb1" name="sort" type="radio" value='off' checked={sort==='off'?true:false} onChange={(event)=>filterInput(event)}/>
             <label htmlFor="rb1">Z-A</label>
           </div>
         </div>
       </div>
     </div>
     <div className="filter-apply-div">
-      <button className="filter-apply-button">Apply</button>
+      <button className="filter-apply-button" onClick={()=>applyButton()}>Apply</button>
     </div>
   </div>
 </div>
@@ -143,7 +199,7 @@ export default function Family() {
                 <input type="text" name="search-name" placeholder="Search by family" />
                 <Icon_Search />
               </div>
-              <div className="filter-div">
+              <div className="filter-div" onClick={()=>setShowFilter('')}>
                 <Icon_Filter />
               </div>
             </div>
