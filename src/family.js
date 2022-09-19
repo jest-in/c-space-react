@@ -79,6 +79,58 @@ export default function Family() {
   return (
     <>
       <div className="families-container">
+        <div className="filter-popup-bg">
+  <div className="filter-popup-container">
+    <div className="filter-close-icon-div">
+      <Icon_Close/>
+    </div>
+    <div className="filter-on-ward-div">
+      <div className="filter-on-ward-title">
+        <label htmlFor>Ward</label>
+      </div>
+      <div className="filter-on-ward-input">
+        <input className="filter-on-ward-tb" type="text" name id />
+      </div>
+    </div>
+    <div className="filter-on-house-no-div">
+      <div className="filter-on-ward-title">
+        <label htmlFor>House number</label>
+      </div>
+      <div className="filter-on-ward-input">
+        <input className="filter-on-ward-tb" name id />
+      </div>
+    </div>
+    <div className="filter-on-house-no-div">
+      <div className="filter-on-ward-title">
+        <label htmlFor>Number of members</label>
+      </div>
+      <div className="filter-on-ward-input">
+        <input className="filter-on-ward-tb" name id />
+      </div>
+    </div>
+    <div className="filter-on-sort-div">
+      <div className="filter-on-ward-title">
+        <label htmlFor>Sort</label>
+      </div>
+      <div className="filter-on-ward-input">
+        <div className="radio-div">
+          <div className="radio1">
+            <input id="male" name="male" type="radio" />
+            <label htmlFor="male">A-Z</label>
+          </div>
+          <div className="radio2">
+            <input id="rb1" name="male" type="radio" />
+            <label htmlFor="rb1">Z-A</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div className="filter-apply-div">
+      <button className="filter-apply-button">Apply</button>
+    </div>
+  </div>
+</div>
+
         <Navigation/>
         <div className="graph-div"><Chart/></div>
         <div className="secondary-nav-div">
@@ -88,7 +140,7 @@ export default function Family() {
                 <h1>Families</h1>
               </div>
               <div className="families-search-div">
-                <input type="text" name="search-name" placeholder="Search" />
+                <input type="text" name="search-name" placeholder="Search by family" />
                 <Icon_Search />
               </div>
               <div className="filter-div">
