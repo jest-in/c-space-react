@@ -79,13 +79,15 @@ function MarriageRegistry() {
         <div className="person-head  regestries-person-head">
           <h1>Marriage Registry</h1>
         </div>
-        {/* <div className={`registries-nav-div ${showDetails}`}>
-          <a href="#">Baptism Registry</a>
+        <div className="baptism-registry-edit-btn-div">
+          <button className="baptism-edit-btn">Make Invalid</button>
+          <button className="baptism-edit-btn">Download Certificate</button>
+          {/* <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
-          <a href="#">Death Registry</a>
+          <a href="#">Death Registry</a> */}
         </div>
-        <div className={`menu-div ${showDetails}`}>
+        {/* <div className={`menu-div ${showDetails}`}>
           <Icon_Menu />
         </div> */}
       </div>

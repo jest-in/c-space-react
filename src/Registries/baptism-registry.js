@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import { useState } from 'react';
 import { userIdFromAllBaptism } from './baptism-registry-all';
 import { useNavigate, useLocation } from "react-router-dom";
+import IconUpload from '../Assets/Icon_Upload';
 
 export default function BaptismRegistry() {
   const location = useLocation();
@@ -46,13 +47,15 @@ export default function BaptismRegistry() {
             {baptismDetails.familyName ? baptismDetails.familyName : ""}
           </h1>
         </div>
-        {/* <div className="registries-nav-div">
-          <a href="#">Baptism Registry</a>
+        <div className="baptism-registry-edit-btn-div">
+          <button className="baptism-edit-btn">Edit Registry</button>
+          <button className="baptism-edit-btn">Download Cerfificate</button>
+          {/* <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
-          <a href="#">Death Registry</a>
+          <a href="#">Death Registry</a> */}
         </div>
-        <div className="menu-div">
+        {/* <div className="menu-div">
           <IconMenu />
         </div> */}
       </div>
@@ -167,7 +170,7 @@ export default function BaptismRegistry() {
           </div>
         </div>
         <div className="registry-photo-div">
-          <img className="upload-icon" src="/Icon-Upload.svg" alt="Upload" />
+          <IconUpload/>
           <img
             className="marriage-photo"
             src={require("../Assets/marriage.png")}
