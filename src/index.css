@@ -2594,6 +2594,7 @@ footer h1 {
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
 }
 
 #token {
@@ -3560,4 +3561,17 @@ span {
 
 .hidden {
   display: none;
+}
+
+.certificate-token{
+    border: 2px solid var(--color-3);
+    width: 500px;
+}
+
+.certificate-verify-desc{
+    width: 500px;
+}
+
+.certificate-note{
+    margin-top: 20px;
 }
