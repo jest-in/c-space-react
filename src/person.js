@@ -210,18 +210,18 @@ const Person = () => {
         ? personDetails.husband
         : personDetails.wife;
     }
-    if (!personDetails.dod){
+    if (!personDetails.dod) {
       let temp;
-      if(personDetails.maritalStatus==='Reg-To-Be-Added'){
+      if (personDetails.maritalStatus === "Reg-To-Be-Added") {
         temp = personDetails.husband
-            ? personDetails.husband
-            : personDetails.wife
+          ? personDetails.husband
+          : personDetails.wife;
       }
       navigate("/engagement-registry-add", {
         state: {
           id: location.state,
           gender: personDetails.gender,
-          partnerId: temp
+          partnerId: temp,
         },
       });
     }
@@ -458,23 +458,23 @@ const Person = () => {
             </button>
             <button
               onClick={() => {
-                if (
-                  personDetails.maritalStatus !== "engaged" &&
-                ) {
+                if (personDetails.maritalStatus === "married") {
+                  navigate("/marriage-registry", {
+                    state: location.state,
+                  });
+                } else if (personDetails.maritalStatus !== "engaged") {
                   alert("Please add engagement registry first");
                   return;
-                }
-                if (
+                } else if (personDetails.dod) {
+                  alert("This person is already dead!");
+                } else if (
                   personDetails.maritalStatus === "engaged" &&
                   personDetails.isActive
                 ) {
                   navigate("/marriage-registry-add", {
                     state: location.state,
                   });
-                } else if (personDetails.maritalStatus==='married')
-                  navigate("/marriage-registry", {
-                    state: location.state,
-                  });
+                }
               }}
             >
               Marriage Registry
@@ -548,7 +548,6 @@ const Person = () => {
               alt="personal pic"
             />
             <button onClick={() => setShowSignUp("")}>Sign up</button>
-            <button>Edit</button>
             <button onClick={() => setSmsBox("")}>Send Message</button>
             <button
               className={email ? "" : "hidden"}
@@ -556,7 +555,7 @@ const Person = () => {
             >
               Send Mail
             </button>
-            <button>Proposed Changes</button>
+            <button>Enable Privacy</button>
           </div>
         </div>
         <div className="desc-div">
