@@ -3140,3 +3140,159 @@ span {
 .hidden {
   display: none;
 }
+
+/*Transactions Start
+----------------------------------------------------------------*/
+
+.create-legder-popup-div1 {
+    width: 300px;
+    height: auto;
+    background-color: var(--color-secondary);
+    box-shadow: 5px 5px 50px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+    position: absolute;
+    top: 230px;
+    right: 270px;
+    padding: 20px;
+}
+
+.leg-pop-close-div{
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.leg-pop-ledname-div input,
+.leg-pop-ledgroup-div input {
+    width: 250px;
+    border-radius: 5px;
+    border: 2px solid var(--color-3);
+    outline: none;
+    padding: 5px;
+}
+
+.leg-pop-ledname-div input:focus,
+.leg-pop-ledgroup-div input:focus {
+    border: 2px solid var(--color-primary);
+}
+
+.leg-pop-ledgroup-div {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin-top: 10px;
+}
+
+#under-group {
+    width: 250px;
+    background: none;
+    border: 2px solid var(--color-3);
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#under-group:focus {
+    border: 2px solid var(--color-primary);
+}
+
+.led-create-btn {
+    background-color: var(--color-primary);
+    padding: 2px 20px;
+    color: var(--color-secondary);
+    font-weight: 500;
+    border-radius: 2px;
+    margin-top: 10px;
+}
+
+.led-create-btn:hover {
+    background-color: #332c9b;
+}
+
+.create-legder-popup-div2 {
+    width: 200px;
+    height: auto;
+    background-color: var(--color-secondary);
+    box-shadow: 5px 5px 50px 15px rgba(0, 0, 0, 0.25);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s ease-in-out;
+    position: relative;
+    top: -90px;
+    left: 260px;
+    padding: 20px;
+}
+
+.add-voucher-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 70px;
+}
+
+.add-voucher-sub1 {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+.add-voucher-sub2 {
+    display: flex;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.add-voucher-sub3 {
+    display: flex;
+    flex-direction: column;
+    margin-left: 50px;
+    margin-top: 70px;
+}
+
+.add-voucher-sub1 label,
+.add-voucher-sub2 label,
+.add-voucher-sub3 label {
+    font-weight: 500;
+}
+
+.add-voucher-sub1 input,
+.add-voucher-sub2 input {
+    border: 2px solid var(--color-3);
+    border-radius: 5px;
+    outline: none;
+    padding: 5px;
+    width: 250px;
+}
+
+.add-voucher-sub1 input:focus,
+.add-voucher-sub2 input:focus,
+.add-voucher-sub3 input:focus {
+    border: 2px solid var(--color-primary);
+}
+
+.add-voucher-sub3 input {
+    border: 2px solid var(--color-3);
+    border-radius: 5px;
+    outline: none;
+    padding: 20px 20px;
+    width: 1300px;
+}
+
+.vno-div,
+.vdate-div,
+.vacc-div {
+    display: flex;
+    flex-direction: column;
+    width: 33.3%;
+    margin-left: 50px;
+}
+
+/*Transactions Start
+----------------------------------------------------------------*/
