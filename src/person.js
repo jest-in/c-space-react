@@ -183,6 +183,29 @@ const Person = () => {
 
   return (
     <div className={`container-family`}>
+      {/* signup popup start */}
+
+      <div className="signup-popup-bg">
+  <div className="signup-popup-content">
+    <div className="filter-close-icon-div">
+      <Icon_Close/>
+    </div>
+    <div className="signup-popup-entries">
+      <label htmlFor>Select role</label>
+      <select name="relation" id="under-group">
+        <option value selected disabled hidden />
+        <option value="user">User</option>
+        <option value="accountant">Accountant</option>
+      </select>
+      <div className="filter-apply-div">
+        <button className="filter-apply-button">Signup</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+      {/* signup popup end */}
       {/* SMS Box */}
       <div className={`message-popup-bg ${smsBox}`}>
         <div className={`message-popup ${smsBox}`}>
