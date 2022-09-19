@@ -210,16 +210,21 @@ const Person = () => {
         ? personDetails.husband
         : personDetails.wife;
     }
-    if (!personDetails.dod)
+    if (!personDetails.dod){
+      let temp;
+      if(personDetails.maritalStatus==='Reg-To-Be-Added'){
+        temp = personDetails.husband
+            ? personDetails.husband
+            : personDetails.wife
+      }
       navigate("/engagement-registry-add", {
         state: {
           id: location.state,
           gender: personDetails.gender,
-          partnerId: personDetails.husband
-            ? personDetails.husband
-            : personDetails.wife,
+          partnerId: temp
         },
       });
+    }
   }
 
   useEffect(() => {

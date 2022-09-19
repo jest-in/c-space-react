@@ -76,7 +76,7 @@ export default function Family() {
           wardNum ? `wardNum=${wardNum}&` : ""
         }${houseNum ? `houseNum=${houseNum}&` : ""}${
           members ? `members=${members}&` : ""
-        }`,
+        }${sort?'sort=-familyName':''}`,
         {
           withCredentials: true,
         }
@@ -214,7 +214,7 @@ export default function Family() {
               </div>
               <div className="filter-on-ward-input">
                 <div className="radio-div">
-                  <div className="radio1">
+                  {/* <div className="radio1">
                     <input
                       id="male"
                       name="sort"
@@ -224,14 +224,14 @@ export default function Family() {
                       onChange={(event) => filterInput(event)}
                     />
                     <label htmlFor="male">A-Z</label>
-                  </div>
+                  </div> */}
                   <div className="radio2">
                     <input
                       id="rb1"
                       name="sort"
                       type="radio"
-                      value="off"
-                      checked={sort === "off" ? true : false}
+                      value="on"
+                      checked={sort === "on" ? true : false}
                       onChange={(event) => filterInput(event)}
                     />
                     <label htmlFor="rb1">Z-A</label>
