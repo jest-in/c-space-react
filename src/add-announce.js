@@ -42,6 +42,7 @@ export default function AddAnnounce() {
 
     // Publish button handler
     function publishButton(){
+      if(!selectValue) setTypeError(''  )
         if(announcement&&selectValue){
             const data = {
               announcement: announcement,
