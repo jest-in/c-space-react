@@ -7,6 +7,14 @@ import axios from "axios";
 export default function Navigation() {
   const navigate = useNavigate();
 
+// function
+function anniversaryCsv(){
+  // 
+}
+function bdayCsv() {
+  //
+}
+
   return (
     <header>
       <div className="nav-div">
@@ -70,10 +78,10 @@ export default function Navigation() {
               Extras
               <div className="sub-menu2-div">
                 <ul>
-                  <li onClick={() => navigate("/add-announce")}>
+                  <li onClick={() => bdayCsv()}>
                     Download Todays Birthday Details
                   </li>
-                  <li onClick={() => navigate("/all-announce")}>
+                  <li onClick={() => anniversaryCsv()}>
                     Download Todays Wedding Details
                   </li>
                 </ul>
