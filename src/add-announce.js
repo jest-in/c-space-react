@@ -12,14 +12,14 @@ export default function AddAnnounce() {
   const navigate=useNavigate();
 
   // Select tag value
-  const [selectValue,setSelectValue]=useState(location.state.visibility?location.state.visibility:'')
+  const [selectValue,setSelectValue]=useState(location.state?location.state.visibility:'')
 
     // Required field errors
     const [textAreaError,setTextAreaError]=useState('hidden');
     const [typeError, setTypeError] = useState("hidden");
 
     // Announcement state
-    const [announcement,setAnnouncement]=useState(location.state.announcement?location.state.announcement:'');
+    const [announcement,setAnnouncement]=useState(location.state?location.state.announcement:'');
 
     // Input saver
     function announcementDetailsSaver(event){
@@ -47,7 +47,7 @@ export default function AddAnnounce() {
               announcement: announcement,
               visibility: selectValue,
             };
-          if (!location.state.announcementId) {
+          if (!location.state) {
             axios
               .post("http://localhost:5000/api/v1/announce", data, {
                 withCredentials: true,
