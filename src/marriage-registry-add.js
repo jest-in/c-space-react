@@ -106,7 +106,7 @@ export default function MarriageRegistryAdd() {
       <Navigation />
       <div className="title-div">
         <div className="person-head">
-          <h1>{name}</h1>
+          <h1>Marriage Registry</h1>
         </div>
         <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
