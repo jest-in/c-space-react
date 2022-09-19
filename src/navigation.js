@@ -1,6 +1,6 @@
-import React from 'react'
-import Icon_AddWhite from './Assets/Icon_AddWhite';
-import Logo from './Assets/logo';
+import React from "react";
+import Icon_AddWhite from "./Assets/Icon_AddWhite";
+import Logo from "./Assets/logo";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -56,26 +56,40 @@ export default function Navigation() {
                 </ul>
               </div>
             </a>
-            <a href="/view-event">Offerings/Donations</a>
+            <a className="announcement-nav" href="#">
+              Donations/Offerings
+              <div className="sub-menu2-div">
+                <ul>
+                  <li onClick={() => navigate("/create-event")}>
+                    Create Event
+                  </li>
+                  <li onClick={() => navigate("/view-event")}>View Events</li>
+                </ul>
+              </div>
+            </a>
           </div>
           <div className="logout-nav-div">
-            <button className="logout-btn" onClick={()=>{
-              axios
-                .get(`http://localhost:5000/api/v1/users/logout`, {
-                  withCredentials: true,
-                })
-                .then((res) => {
-                  if (res.data.status === "success") {
-                    navigate("/");
-                  }
-                })
-                .catch((err) => {
-                  // Error
-                  alert(`${err.response.data.message}`);
-                });
-            }}>Logout</button>
+            <button
+              className="logout-btn"
+              onClick={() => {
+                axios
+                  .get(`http://localhost:5000/api/v1/users/logout`, {
+                    withCredentials: true,
+                  })
+                  .then((res) => {
+                    if (res.data.status === "success") {
+                      navigate("/");
+                    }
+                  })
+                  .catch((err) => {
+                    // Error
+                    alert(`${err.response.data.message}`);
+                  });
+              }}
+            >
+              Logout
+            </button>
           </div>
-
         </nav>
       </div>
     </header>

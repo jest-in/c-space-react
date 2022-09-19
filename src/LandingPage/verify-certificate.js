@@ -6,9 +6,14 @@ import axios from "axios";
 export default function VerifyCertificate() {
   // input
   const [inputToken,setInputToken]=useState({});
+  const [response,setResponse]=useState('');
+
+  const {verified,setVerified}=useState('hidden');
+  const [ invalidError, setInvalidError ]= useState("hidden");
 
   // Function for proceed button
   function proceedButton(){
+    setResponse('');
     console.log('Input token:',inputToken);
     if(inputToken.sign){
       axios
