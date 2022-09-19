@@ -6,8 +6,8 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navigation from "./navigation";
 
-let data = {};
-data["parishId"] = "ch1";
+// let data = {};
+// data["parishId"] = "ch1";
 
 // variables for family_id and ward number
 let  wardNo = "";
@@ -16,9 +16,13 @@ export default function AddFamily() {
   // For navigation
   const navigate = useNavigate();
 
-  function initializeData() {
-    data = {};
-  }
+  // function initializeData() {
+  //   data = {};
+  // }
+
+  const [data,setData]=useState({parishId:"ch1",});
+  const [familyId, setFamilyId] = useState('');
+  const [wardNo, setWardNo] = useState('');
 
   // Add family inputs raedonly mode desciding section
   const [readOnlyMode,setReadOnlyMode]=useState(false);
@@ -66,11 +70,14 @@ export default function AddFamily() {
           .then((res) => {
             // console.log(res.data);
             if (res.data.status === "success") {
-              initializeData();
+              // initializeData();
               const { _id, wardNum } = res.data.data;
-              familyId=_id;
-              wardNo = wardNum;
+              // familyId=_id;
+              setFamilyId(_id);
+              // wardNo = wardNum;
+              setWardNo(wardNum);
               setCreateFamilyButton("hidden");
+              setData({})
               setReadOnlyMode(true);
               setMemberDetailSection("");
             }
@@ -88,7 +95,12 @@ export default function AddFamily() {
     const { name, value } = event.target;
 
     // Storing values to the data object
-    data[name] = value;
+    setData((prev)=>{
+      let data=prev;
+      data[name] = value;
+      return data;
+    })
+    // data[name] = value;
 
     // console.log(data);
     checkInputs(name, value);

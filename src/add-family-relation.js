@@ -5,9 +5,12 @@ import { familyId } from './add-family';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
-import { useNavigate } from "react-router-dom";
+import { useNavigate ,useLocation} from "react-router-dom";
 
 export default function AddFamilyRelation() {
+    const location = useLocation();
+    // Imported data
+    console.log("Imported object from family using navigate:", location);
   const navigate=useNavigate();
 
   // status
@@ -20,6 +23,7 @@ export default function AddFamilyRelation() {
   const [membersInFamily,setMembersInFamily]=useState([]);
   const [person, setPerson] = useState('');
   const [relativesOfPerson, setRelativesOfPerson] = useState([]);
+  const [familyName,setFamilyName]=useState('');
 
   // Hiding father,mother,husband,wife select options
   const [hideFather,setHideFather]=useState('');
@@ -113,12 +117,11 @@ export default function AddFamilyRelation() {
       alert(`Please enter everyone's relation`);
       return
     }
-
-    console.log("Post request to:", membersInFamily[indexOfMembersInFamily-1].id);
+    console.log("Post request to:", membersInFamily[indexOfMembersInFamily-1]._id);
     axios
       .post(
         `http://localhost:5000/api/v1/persons/relations/${
-          membersInFamily[indexOfMembersInFamily - 1].id
+          membersInFamily[indexOfMembersInFamily - 1]._id
         }`,
         relations,
         {
@@ -167,13 +170,13 @@ export default function AddFamilyRelation() {
   }
 
   function Selection({ props }) {
-    const {id,defaultValue,gender}=props;
+    const {_id,defaultValue,gender}=props;
     return (
       <select
         defaultValue={defaultValue}
         name="relation"
         id="relation"
-        onChange={(event) => selectionHandler(event, id)}
+        onChange={(event) => selectionHandler(event, _id)}
       >
         <option value="select">select</option>
         <option
@@ -222,7 +225,7 @@ export default function AddFamilyRelation() {
 
   useEffect(()=>{
   axios
-    .get(`http://localhost:5000/api/v1/family/${familyId}`, {
+    .get(`http://localhost:5000/api/v1/family/${location.state}`, {
       withCredentials: true,
     })
     .then((res) => {
@@ -232,6 +235,7 @@ export default function AddFamilyRelation() {
         if (!result.members.length) setStatus("No members");
         setMembersInFamily(result.members);
         const list = result.members;
+        setFamilyName(result.familyName);
         setPerson(list[0].baptismName);
         setRelativesOfPerson(list.filter((_, index) => index !== 0));
         setIndexOfMembersInFamily(1);
@@ -350,7 +354,7 @@ export default function AddFamilyRelation() {
       <Navigation />
       <div className="title-div">
         <div className="family-name">
-          <h1>Kazhuthadiyil</h1>
+          <h1>{familyName}</h1>
         </div>
       </div>
       <hr />
@@ -362,15 +366,73 @@ export default function AddFamilyRelation() {
           <h1 className="relation-type-head">Relation Type</h1>
         </div>
         {relativesOfPerson.map((relative, index) => {
-          const { id, gender } = relative;
+          const { _id, gender } = relative;
+          console.log('Id',_id);
           let defaultValue = "select";
-          if (temporaryData[id]) {
-            defaultValue = temporaryData[id];
+          if (temporaryData[_id]) {
+            defaultValue = temporaryData[_id];
           }
           return (
             <div className="relatives-entry-div" key={index}>
               <h1>{relative.baptismName}</h1>
-              <Selection props={{ id, defaultValue, gender }} />
+              {/* <select
+                defaultValue={defaultValue}
+                name="relation"
+                id="relation"
+                onChange={(event) => selectionHandler(event, _id)}
+              >
+                <option value="select">select</option>
+                <option
+                  className={`${hideFather} ${gender === "F" ? "hidden" : ""}`}
+                  value="father"
+                >
+                  Father
+                </option>
+                <option
+                  className={`${hideMother} ${gender === "M" ? "hidden" : ""}`}
+                  value="mother"
+                >
+                  Mother
+                </option>
+                <option
+                  className={`${hideHusband} ${gender === "F" ? "hidden" : ""}`}
+                  value="husband"
+                >
+                  Husband
+                </option>
+                <option
+                  className={`${hideWife} ${gender === "M" ? "hidden" : ""}`}
+                  value="wife"
+                >
+                  Wife
+                </option>
+                <option
+                  className={`${gender === "F" ? "hidden" : ""}`}
+                  value="son"
+                >
+                  Son
+                </option>
+                <option
+                  className={`${gender === "M" ? "hidden" : ""}`}
+                  value="daughter"
+                >
+                  Daughter
+                </option>
+                <option
+                  className={`${gender === "F" ? "hidden" : ""}`}
+                  value="brother"
+                >
+                  Brother
+                </option>
+                <option
+                  className={`${gender === "M" ? "hidden" : ""}`}
+                  value="sister"
+                >
+                  Sister
+                </option>
+                <option value="other">other</option>
+              </select> */}
+              <Selection props={{ _id, defaultValue, gender }} />
             </div>
           );
         })}
