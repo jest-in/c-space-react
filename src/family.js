@@ -79,8 +79,8 @@ export default function Family() {
   return (
     <>
       <div className="families-container">
-        <div className="filter-popup-bg">
-  <div className="filter-popup-container">
+        <div className="filter-popup-bg hidden">
+  <div className="filter-popup-container hidden">
     <div className="filter-close-icon-div">
       <Icon_Close/>
     </div>
