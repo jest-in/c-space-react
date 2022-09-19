@@ -460,7 +460,6 @@ const Person = () => {
               onClick={() => {
                 if (
                   personDetails.maritalStatus !== "engaged" &&
-                  !personDetails.marriage
                 ) {
                   alert("Please add engagement registry first");
                   return;
