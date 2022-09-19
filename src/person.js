@@ -461,14 +461,13 @@ const Person = () => {
                   return;
                 }
                 if (
-                  !personDetails.marriage &&
                   personDetails.maritalStatus === "engaged" &&
                   personDetails.isActive
                 ) {
                   navigate("/marriage-registry-add", {
                     state: location.state,
                   });
-                } else if (personDetails.marriage)
+                } else if (personDetails.maritalStatus==='married')
                   navigate("/marriage-registry", {
                     state: location.state,
                   });

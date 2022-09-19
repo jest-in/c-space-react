@@ -3,40 +3,119 @@ import Icon_Close from '../Assets/Icon_Close';
 import Icon_Menu from '../Assets/Icon_Menu'
 import Logo from '../Assets/logo'
 import Navigation from '../navigation';
+import axios from "axios";
+import { useEffect,useState } from "react";
 
 export default function Ledgers() {
-    function clickListener() {
-        console.log("clicked");
+  // inputs
+  const [ledgerName, setLedgerName] = useState("");
+  const [under, setUnder] = useState("");
+
+  const [ledgerNameError, setLedgerNameError] = useState("hidden");
+  const [underError, setUnderError] = useState("hidden");
+
+  const [showCreateLedger, setShowCreateLedger] = useState("hidden");
+
+  const [ledgerDetails, setLedgerDetails] = useState([]);
+  // create group button
+  function inputHandler(event) {
+    const { name, value } = event.target;
+    console.log("Inputs:", name, value);
+    if (name === "name") {
+      setLedgerName(value);
+      value ? setLedgerNameError("hidden") : setLedgerNameError("");
+    } else {
+      value ? setUnderError("hidden") : setUnderError("");
+      setUnder(value);
     }
+  }
+
+  // create ledger button
+  function onCreateLedger(){
+    axios
+      .get(`http://localhost:5000/api/v1/accounts/groups`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        // 
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }
+
+  // create group button
+  function createButton() {
+    if (ledgerName && under) {
+      axios
+        .post(
+          "http://localhost:5000/api/v1/accounts/groups",
+          {
+            name: ledgerName,
+            type: under,
+          },
+          {
+            withCredentials: true,
+          }
+        )
+        .then((res) => {
+          // console.log(res.data);
+          if (res.data.status === "success") {
+            alert("group added");
+            window.location.reload(false);
+          }
+        })
+        .catch((err) => {
+          // Error
+          alert(`${err.response.data.message}`);
+          console.log("Error", err.response);
+        });
+    }
+  }
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/api/v1/accounts/ledgers`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setLedgerDetails(res.data.data);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }, []);
   return (
     <div className="container-family">
-      <div className="create-legder-popup-div1">
+      <div className={`create-legder-popup-div1 ${showCreateLedger}`}>
         <div
           className="leg-pop-close-div"
           onClick={() => {
-            // setGroupName("");
-            // setGroupNature("");
-            // setShowCreateGroup("hidden");
+            setLedgerName("");
+            setUnder("");
+            setShowCreateLedger("hidden");
           }}
         >
           <Icon_Close />
-        </div>       
+        </div>
         <div className="leg-pop-ledname-div">
-          <label htmlFor>Ledger name</label>
-          <input type="text" />
-          <label className="add-family-error" htmlFor="error">
+          <label>Ledger name</label>
+          <input type="text" onChange={(event)=>inputHandler(event)} />
+          <label className={`add-family-error  ${ledgerNameError}`} htmlFor="error">
             This field is required
           </label>
         </div>
         <div className="leg-pop-ledgroup-div">
-          <label htmlFor>Under</label>
+          <label>Under</label>
           {/* <input type="text" /> */}
-          <select name="relation" id="under-group">
+          <select name="relation" id="under-group" onChange={(event)=>inputHandler(event)}>
             <option value selected disabled hidden />
             <option value="Direct income">Direct income</option>
             <option value="Direct expenses">Direct expenses</option>
           </select>
-          <label className="add-family-error" htmlFor="error">
+          <label className={`add-family-error  ${underError}`} htmlFor="error">
             This field is required
           </label>
         </div>
@@ -49,7 +128,12 @@ export default function Ledgers() {
           <h1>Transactions</h1>
         </div>
         <div className="baptism-registry-edit-btn-div">
-          <button className="create-led-btn">Create Ledger</button>
+          <button
+            className="create-led-btn"
+            onClick={() =>onCreateLedger()}
+          >
+            Create Ledger
+          </button>
         </div>
       </div>
       <hr />
@@ -62,41 +146,18 @@ export default function Ledgers() {
           <div className="led-total">Total</div>
           <div className="led-type">Type</div>
         </div>
-        <div className="member-details-div" onClick={() => clickListener()}>
-          <div className="led-slno">1</div>
-          <div className="led-name">Electricity Bill</div>
-          <div className="led-under">Indirect Expenses</div>
-          <div className="led-no-tra">5</div>
-          <div className="led-total">-5520</div>
-          <div className="led-type">Payment</div>
-        </div>
-
-        <div className="member-details-div" onClick={() => clickListener()}>
-          <div className="led-slno">2</div>
-          <div className="led-name">Printing & Stationary</div>
-          <div className="led-under">Indirect Expenses</div>
-          <div className="led-no-tra">2</div>
-          <div className="led-total">-220</div>
-          <div className="led-type">Payment</div>
-        </div>
-
-        <div className="member-details-div" onClick={() => clickListener()}>
-          <div className="led-slno">3</div>
-          <div className="led-name">Furniture & Fixtures</div>
-          <div className="led-under">Indirect Expenses</div>
-          <div className="led-no-tra">1</div>
-          <div className="led-total">-28990</div>
-          <div className="led-type">Payment</div>
-        </div>
-
-        <div className="member-details-div" onClick={() => clickListener()}>
-          <div className="led-slno">4</div>
-          <div className="led-name">Coconut Sale</div>
-          <div className="led-under">Direct Income</div>
-          <div className="led-no-tra">2</div>
-          <div className="led-total">+898550</div>
-          <div className="led-type">Receipt</div>
-        </div>
+        {ledgerDetails.map((ledger, index) => {
+          return (
+            <div className="member-details-div" key={index}>
+              <div className="led-slno">{index + 1}</div>
+              <div className="led-name">{ledger.name}</div>
+              <div className="led-under">{ledger.groupName}</div>
+              <div className="led-no-tra">5</div>
+              <div className="led-total">-5520</div>
+              <div className="led-type">{ledger.type}</div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
