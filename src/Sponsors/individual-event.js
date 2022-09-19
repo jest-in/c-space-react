@@ -110,15 +110,11 @@ export default function IndividualEvent() {
         }`}
       />
       <div className={`title-div ${sponsors.length ? "" : "hidden"}`}>
-        <div className="family-master">
+        <div className="family-master regestries-person-head">
           <h1>Sponsors</h1>
         </div>
         <div className="search-div">
-          <input type="text" name="search-name" placeholder="Search" />
-          <Icon_Search />
-        </div>
-        <div className="filter-div">
-          <Icon_Filter />
+          <button class="sponsors-download-list" >Download List</button>
         </div>
       </div>
       <hr className={sponsors.length?'':'hidden'} />
