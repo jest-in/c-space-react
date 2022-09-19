@@ -6,6 +6,7 @@ import Navigation from "../navigation";
 import { eventId } from "./view-event";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+const fileDownload = require("js-file-download");
 
 // For exporting
 let eventAmount;
@@ -32,8 +33,10 @@ export default function IndividualEvent() {
         if (res.data.status === "success") {
           axios
             .get(`http://localhost:5000/sponsors.csv`, {
-              withCredentials: true,
-            });
+              withCredentials: true,responseType:'blob'
+            }).then((res)=>{
+              fileDownload(res.data, 'sponsors.csv')
+            })
         }
       })
       .catch((err) => {

@@ -11,7 +11,8 @@ export default function AddMember() {
   const navigate = useNavigate();
 
   // add-member section
-  // const []
+  const [showMemberSection,setShowMemberSection]=useState('');
+  const [showRelationSection,setShowRelationSection] = useState("hidden");
 
   // input variables
   const [name, setName] = useState("");
@@ -96,11 +97,9 @@ export default function AddMember() {
                 const result = res.data.data.members;
                 console.log("PERSON ID : ", personId);
                 if (res.data.status === "success") {
-                  console.log(
-                    `personid:${personId}-members`,
-                    result.filter((member) => member._id !== id)
-                  );
                   setmembers(result.filter((member) => member._id !== id));
+                  setShowMemberSection('hidden');
+                  setShowRelationSection('');
                 }
               })
               .catch((err) => {
@@ -296,13 +295,13 @@ export default function AddMember() {
   }, []);
   return (
     <main className={""}>
-      <div className="title-div add-title-div">
+      <div className={`title-div add-title-div ${showMemberSection}`}>
         <div className="family-master">
           <h1>Member details</h1>
         </div>
       </div>
       <hr />
-      <div className="add-member-details-div">
+      <div className={`add-member-details-div ${showMemberSection}`}>
         <div className="row1-div">
           <div className="first-name-div">
             <h1>{personName}</h1>
@@ -379,7 +378,7 @@ export default function AddMember() {
                   name="gender"
                   value="F"
                   type="radio"
-                  //   onChange={(event) => handleMember(event, index)}
+                  onChange={(event) => handleMember(event)}
                 />
                 <label htmlFor="female">Female</label>
               </div>
@@ -393,12 +392,12 @@ export default function AddMember() {
           </div>
         </div>
       </div>
-      <div className="create-family-btn-div add-family-submit-btn">
+      <div className={`create-family-btn-div add-family-submit-btn ${showMemberSection}`}>
         <button onClick={() => submitButton()}>Submit</button>
       </div>
-      <div className="relation-details-container">
+      <div className={`relation-details-container ${showRelationSection}`}>
         <div className="relation-details-head">
-          <h1 className="relation-title-head">Aola Simon</h1>
+          <h1 className="relation-title-head">{baptismName}</h1>
           <h1 className="relation-type-head">Relation Type</h1>
         </div>
         {members.map((person) => {
