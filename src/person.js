@@ -428,7 +428,7 @@ const Person = () => {
       <Navigation />
       <main className={detailSection}>
         <div className="title-div">
-          <div className="person-head">
+          <div className="person-head person-head-new-nav">
             <h1>
               {personDetails.baptismName ? personDetails.baptismName : "-"}
             </h1>
@@ -491,9 +491,9 @@ const Person = () => {
               Death Registry
             </button>
           </div>
-          <div className="menu-div">
+          {/* <div className="menu-div">
             <IconMenu />
-          </div>
+          </div> */}
         </div>
         <hr />
         <div className="members-entries-div">

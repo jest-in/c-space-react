@@ -252,6 +252,7 @@ html {
 
 .families-search-div {
   width: 60%;
+  display: flex;
 }
 
 .families-search-div img {
@@ -462,6 +463,10 @@ nav {
   justify-content: center;
 }
 
+.logo-div, .filter-div:hover{
+  cursor: pointer;
+}
+
 /* .logo-div h1{
     font-family: 'Josefin Sans';
     font-style: normal;
@@ -541,7 +546,7 @@ hr {
 }
 
 .family-individual-master {
-  width: 25%;
+  width: 55%;
   align-self: flex-start;
   justify-self: flex-start;
 }
@@ -554,15 +559,16 @@ hr {
   padding-right: 30px;
 }
 
-.family-individual-nav a {
+.family-individual-nav button {
   font-weight: 400;
   font-size: 20px;
   text-decoration: none;
   color: var(--text-primary);
+  background: none;
   transition: 0.2s ease-in-out;
 }
 
-.family-individual-nav a:hover {
+.family-individual-nav button:hover {
   border-bottom: 3px solid var(--hover-underline);
 }
 
@@ -899,6 +905,10 @@ hr {
 
 .person-head {
   width: 40%;
+}
+
+.person-head-new-nav{
+  width: 45%;
 }
 
 .regestries-person-head{
