@@ -13,6 +13,7 @@ export default function BaptismRegistry() {
   const location = useLocation();
   // Imported data
   console.log("Imported object from family using navigate:", location);
+  const navigate=useNavigate();
 
   // Baptism Details
   const [baptismDetails,setBaptismDetails]=useState({});
@@ -49,7 +50,9 @@ export default function BaptismRegistry() {
         </div>
         <div className="baptism-registry-edit-btn-div">
           <button className="baptism-edit-btn">Edit Registry</button>
-          <button className="baptism-edit-btn">Download Cerfificate</button>
+          <button className="baptism-edit-btn" onClick={()=>navigate('/baptism-certificate',{
+            state:baptismDetails.userId,
+          })}>Download Cerfificate</button>
           {/* <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>

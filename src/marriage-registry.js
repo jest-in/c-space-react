@@ -81,7 +81,9 @@ function MarriageRegistry() {
         </div>
         <div className="baptism-registry-edit-btn-div">
           <button className="baptism-edit-btn">Make Invalid</button>
-          <button className="baptism-edit-btn">Download Certificate</button>
+          <button className="baptism-edit-btn" onClick={()=>navigate('/marriage-certificate',{
+            state:data._id,
+          })}>Download Certificate</button>
           {/* <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
