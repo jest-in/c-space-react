@@ -24,15 +24,15 @@ export default function DeathRegistryAdd() {
   const navigate = useNavigate();
 
   // data for backend post
-  const [sickness, setSickness] = useState("hidden");
-  const [confession, setconfession] = useState("hidden");
-  const [viaticum, setviaticum] = useState("hidden");
-  const [anointing, setanointing] = useState("hidden");
-  const [dod, setdod] = useState("hidden");
-  const [doburial, setdoburial] = useState("hidden");
-  const [parishPriest, setparishPriest] = useState("hidden");
-  const [remarks, setremarks] = useState("hidden");
-  const [place, setplace] = useState("hidden");
+  const [sickness, setSickness] = useState("");
+  const [confession, setconfession] = useState("");
+  const [viaticum, setviaticum] = useState("");
+  const [anointing, setanointing] = useState("");
+  const [dod, setdod] = useState("");
+  const [doburial, setdoburial] = useState("");
+  const [parishPriest, setparishPriest] = useState("");
+  const [remarks, setremarks] = useState("");
+  const [place, setplace] = useState("");
 
 
   // Error handling variables
