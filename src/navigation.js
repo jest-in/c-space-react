@@ -4,14 +4,28 @@ import Logo from "./Assets/logo";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
+const fileDownload = require("js-file-download");
+
 export default function Navigation() {
   const navigate = useNavigate();
 
 // function
 function anniversaryCsv(){
+  axios
+  .get(`http://localhost:5000/anniversaries.csv`, {
+    withCredentials: true,responseType:'blob'
+  }).then((res)=>{
+    fileDownload(res.data, 'anniversaries.csv')
+  })
   // 
 }
 function bdayCsv() {
+  axios
+            .get(`http://localhost:5000/bdays.csv`, {
+              withCredentials: true,responseType:'blob'
+            }).then((res)=>{
+              fileDownload(res.data, 'bdays.csv')
+            })
   //
 }
 
@@ -79,10 +93,10 @@ function bdayCsv() {
               <div className="sub-menu2-div">
                 <ul>
                   <li onClick={() => bdayCsv()}>
-                    Download Todays Birthday Details
+                    Birthday list
                   </li>
                   <li onClick={() => anniversaryCsv()}>
-                    Download Todays Wedding Details
+                    Anniversary list
                   </li>
                 </ul>
               </div>
