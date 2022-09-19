@@ -120,13 +120,10 @@ export default function FamilyIndividual() {
             <button >Send Message</button>
             <button >Proposed Changes</button>
           </div>
-          <div className="search-div">
+          {/* <div className="search-div">
             <input type="text" name="search-name" placeholder="Search" />
             <Icon_Search />
-          </div>
-          <div className="filter-div">
-            <Icon_Menu />
-          </div>
+          </div> */}
         </div>
         <hr />
         <div className="family-details-div">

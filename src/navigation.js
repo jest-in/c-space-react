@@ -11,11 +11,10 @@ export default function Navigation() {
     <header>
       <div className="nav-div">
         <nav>
-          <div className="logo-div">
+          <div className="logo-div" onClick={() => navigate("/family")}>
             <Logo />
           </div>
           <div className="navigations">
-            <a href="#">Overview</a>
             <a className="registry-nav" href="#">
               Registries
               <div className="sub-menu1-div">
@@ -64,6 +63,19 @@ export default function Navigation() {
                     Create Event
                   </li>
                   <li onClick={() => navigate("/view-event")}>View Events</li>
+                </ul>
+              </div>
+            </a>
+            <a className="announcement-nav" href="#">
+              Extras
+              <div className="sub-menu2-div">
+                <ul>
+                  <li onClick={() => navigate("/add-announce")}>
+                    Download Todays Birthday Details
+                  </li>
+                  <li onClick={() => navigate("/all-announce")}>
+                    Download Todays Wedding Details
+                  </li>
                 </ul>
               </div>
             </a>

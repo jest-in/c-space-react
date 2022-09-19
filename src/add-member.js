@@ -304,7 +304,7 @@ export default function AddMember() {
       <div className={`add-member-details-div ${showMemberSection}`}>
         <div className="row1-div">
           <div className="first-name-div">
-            <h1>{personName}</h1>
+            <h1>Person name</h1>
             <input
               className="house-no-input"
               type="text"
