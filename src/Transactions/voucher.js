@@ -2,23 +2,33 @@ import React from 'react'
 import Logo from '../Assets/logo';
 import Icon_Menu from '../Assets/Icon_Menu'
 import Navigation from '../navigation';
+import { useNavigate } from "react-router-dom";
+import { useEffect } from 'react';
+import { useState } from 'react';
+import axios from "axios";
 
 export default function Voucher() {
+  const [vouchers,setVouchers]=useState([]);
+  const navigate=useNavigate();
+  useEffect(()=>{
+    axios
+      .get(`http://localhost:5000/api/v1/accounts/vouchers`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        setVouchers(res.data.data);
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  },[])
   return (
     <div className="container-family">
-      <Navigation/>
+      <Navigation />
       <div className="title-div">
-        <div className="family-master">
+        <div className="family-master regestries-person-head">
           <h1>Vouchers</h1>
-        </div>
-        <div className="registries-nav-div">
-          <a href="#">Ledgers</a>
-          <a href="#">Groups</a>
-          <a href="#">Vouchers</a>
-          <a href="#">Reports</a>
-        </div>
-        <div className="menu-div">
-          <Icon_Menu />
         </div>
       </div>
       <hr />
@@ -32,46 +42,23 @@ export default function Voucher() {
           <div className="vchr-amount">Amount</div>
           <div className="vchr-mode">Mode</div>
         </div>
-        <div className="member-details-div" onclick="clickListener()">
-          <div className="vchr-vno">1</div>
-          <div className="vchr-date">02-08-2022</div>
-          <div className="vchr-particulars">Electricity Bill</div>
-          <div className="vchr-account">Indirect Expenses</div>
-          <div className="vchr-type">Payment</div>
-          <div className="vchr-amount">5520</div>
-          <div className="vchr-mode">Cash</div>
-        </div>
-        <div className="member-details-div" onclick="clickListener()">
-          <div className="vchr-vno">2</div>
-          <div className="vchr-date">15-08-2022</div>
-          <div className="vchr-particulars">Printing and Stationary</div>
-          <div className="vchr-account">Indirect Expenses</div>
-          <div className="vchr-type">Payment</div>
-          <div className="vchr-amount">320</div>
-          <div className="vchr-mode">Bank</div>
-        </div>
-        <div className="member-details-div" onclick="clickListener()">
-          <div className="vchr-vno">3</div>
-          <div className="vchr-date">22-09-2022</div>
-          <div className="vchr-particulars">Furniture &amp; Fixtures</div>
-          <div className="vchr-account">Indirect Expenses</div>
-          <div className="vchr-type">Payment</div>
-          <div className="vchr-amount">85520</div>
-          <div className="vchr-mode">Cash</div>
-        </div>
-        <div className="member-details-div" onclick="clickListener()">
-          <div className="vchr-vno">4</div>
-          <div className="vchr-date">25-09-2022</div>
-          <div className="vchr-particulars">Coconut Sale</div>
-          <div className="vchr-account">Direct Income</div>
-          <div className="vchr-type">Receipt</div>
-          <div className="vchr-amount">535800</div>
-          <div className="vchr-mode">Bank</div>
-        </div>
+        {vouchers.map((voucher, index) => {
+          return (
+            <div className="member-details-div" key={index}>
+              <div className="vchr-vno">{voucher.voucherNum}</div>
+              <div className="vchr-date">{voucher.date.split("T")[0]}</div>
+              <div className="vchr-particulars">{voucher.ledgerName}</div>
+              <div className="vchr-account">{voucher.groupName}</div>
+              <div className="vchr-type">{voucher.type}</div>
+              <div className="vchr-amount">{voucher.amount}</div>
+              <div className="vchr-mode">{voucher.account}</div>
+            </div>
+          );
+        })}
       </div>
       <div className="create-led-btn-div">
         <a href className="create-led-btn">
-          <h1>Add Voucher</h1>
+          <h1 onClick={() => navigate("/add-voucher")}>Add Voucher</h1>
         </a>
       </div>
     </div>

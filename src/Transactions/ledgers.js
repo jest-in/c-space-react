@@ -9,25 +9,36 @@ import { useEffect,useState } from "react";
 export default function Ledgers() {
   // inputs
   const [ledgerName, setLedgerName] = useState("");
-  const [under, setUnder] = useState("");
+  // const [under, setUnder] = useState("");
 
   const [ledgerNameError, setLedgerNameError] = useState("hidden");
-  const [underError, setUnderError] = useState("hidden");
+  // group name
+  // const [underError, setUnderError] = useState("hidden");
+  // selected
+  const [groupId,setGroupId]=useState('');
 
   const [showCreateLedger, setShowCreateLedger] = useState("hidden");
 
   const [ledgerDetails, setLedgerDetails] = useState([]);
+  const [groupDetails, setGroupDetails] = useState([]);
+
   // create group button
   function inputHandler(event) {
     const { name, value } = event.target;
     console.log("Inputs:", name, value);
-    if (name === "name") {
+    // if (name === "name") {
       setLedgerName(value);
       value ? setLedgerNameError("hidden") : setLedgerNameError("");
-    } else {
-      value ? setUnderError("hidden") : setUnderError("");
-      setUnder(value);
-    }
+    // } 
+    // else {
+    //   value ? setUnderError("hidden") : setUnderError("");
+    //   setUnder(value);
+    // }
+  }
+  function selectClick(id,name){
+    // setUnder(name);
+    setGroupId(id);
+    console.log("Inputs:", id);
   }
 
   // create ledger button
@@ -37,7 +48,8 @@ export default function Ledgers() {
         withCredentials: true,
       })
       .then((res) => {
-        // 
+        setShowCreateLedger('');
+        setGroupDetails(res.data.data);
       })
       .catch((err) => {
         // Error
@@ -47,13 +59,13 @@ export default function Ledgers() {
 
   // create group button
   function createButton() {
-    if (ledgerName && under) {
+    if (ledgerName && groupId) {
       axios
         .post(
-          "http://localhost:5000/api/v1/accounts/groups",
+          "http://localhost:5000/api/v1/accounts/ledgers",
           {
+            groupId: groupId,
             name: ledgerName,
-            type: under,
           },
           {
             withCredentials: true,
@@ -62,7 +74,7 @@ export default function Ledgers() {
         .then((res) => {
           // console.log(res.data);
           if (res.data.status === "success") {
-            alert("group added");
+            alert("ledgers added");
             window.location.reload(false);
           }
         })
@@ -94,7 +106,6 @@ export default function Ledgers() {
           className="leg-pop-close-div"
           onClick={() => {
             setLedgerName("");
-            setUnder("");
             setShowCreateLedger("hidden");
           }}
         >
@@ -110,22 +121,23 @@ export default function Ledgers() {
         <div className="leg-pop-ledgroup-div">
           <label>Under</label>
           {/* <input type="text" /> */}
-          <select name="relation" id="under-group" onChange={(event)=>inputHandler(event)}>
+          <select name="relation" id="under-group" >
             <option value selected disabled hidden />
-            <option value="Direct income">Direct income</option>
-            <option value="Direct expenses">Direct expenses</option>
+            {groupDetails.map((group)=>{
+              return <option onClick={()=>selectClick(group._id,group.name)}>{group.name}</option>;
+            })}
           </select>
-          <label className={`add-family-error  ${underError}`} htmlFor="error">
+          <label className={`add-family-error hidden`} htmlFor="error">
             This field is required
           </label>
         </div>
-        <button className="led-create-btn">Create</button>
+        <button className="led-create-btn" onClick={()=>createButton()}>Create</button>
       </div>
 
       <Navigation />
       <div className="title-div">
         <div className="family-master">
-          <h1>Transactions</h1>
+          <h1>Ledgers</h1>
         </div>
         <div className="baptism-registry-edit-btn-div">
           <button
@@ -142,8 +154,6 @@ export default function Ledgers() {
           <div className="led-slno">S.No</div>
           <div className="led-name">Name</div>
           <div className="led-under">Under Group</div>
-          <div className="led-no-tra">No of Transations</div>
-          <div className="led-total">Total</div>
           <div className="led-type">Type</div>
         </div>
         {ledgerDetails.map((ledger, index) => {
@@ -152,8 +162,6 @@ export default function Ledgers() {
               <div className="led-slno">{index + 1}</div>
               <div className="led-name">{ledger.name}</div>
               <div className="led-under">{ledger.groupName}</div>
-              <div className="led-no-tra">5</div>
-              <div className="led-total">-5520</div>
               <div className="led-type">{ledger.type}</div>
             </div>
           );

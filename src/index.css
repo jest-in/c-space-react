@@ -1677,23 +1677,15 @@ hr {
 }
 
 .led-slno {
-  width: 5%;
+  width: 10%;
 }
 
 .led-name {
-  width: 30%;
+  width: 50%;
 }
 
 .led-under {
-  width: 20%;
-}
-
-.led-no-tra {
-  width: 20%;
-}
-
-.led-total {
-  width: 15%;
+  width: 30%;
 }
 
 .led-type {
@@ -1858,20 +1850,13 @@ hr {
 }
 
 .grp-name {
-  width: 25%;
+  width: 45%;
 }
 
 .grp-nature {
-  width: 25%;
+  width: 45%;
 }
 
-.grp-notrans {
-  width: 25%;
-}
-
-.grp-total {
-  width: 15%;
-}
 
 /* Forgot Password End
 ----------------------------------------------------------------*/

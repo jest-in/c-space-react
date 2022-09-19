@@ -63,7 +63,25 @@ function bdayCsv() {
                 </ul>
               </div>
             </a>
-            <a href="#">Transactions</a>
+            <a className="registry-nav" href="#">
+              Transactions
+              <div className="sub-menu1-div">
+                <ul>
+                  <li onClick={() => navigate("/groups")}>
+                    Groups
+                  </li>
+                  <li onClick={() => navigate("/ledgers")}>
+                    Ledgers
+                  </li>
+                  <li onClick={() => navigate("/voucher")}>
+                    Vouchers
+                  </li>
+                  <li onClick={() => navigate("/add-voucher")}>
+                    + Add Vouchers
+                  </li>
+                </ul>
+              </div>
+            </a>
             <a className="announcement-nav" href="#">
               Announcements
               <div className="sub-menu2-div">
@@ -92,12 +110,8 @@ function bdayCsv() {
               Extras
               <div className="sub-menu2-div">
                 <ul>
-                  <li onClick={() => bdayCsv()}>
-                    Birthday list
-                  </li>
-                  <li onClick={() => anniversaryCsv()}>
-                    Anniversary list
-                  </li>
+                  <li onClick={() => bdayCsv()}>Birthday list</li>
+                  <li onClick={() => anniversaryCsv()}>Anniversary list</li>
                 </ul>
               </div>
             </a>
