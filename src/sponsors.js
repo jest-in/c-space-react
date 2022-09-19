@@ -26,8 +26,6 @@ export default function Sponsors() {
   const [nameError,setNameError]=useState('hidden');
   const [descriptionError, setDescriptionError] = useState("hidden");
   const [houseNameError, setHouseNameError] = useState("hidden");
-  const [contactError, setContactError] = useState("hidden");
-  // const [amountError, setAmountError] = useState("hidden");
 
   // inputs
   const [inputs,setInputs]=useState({});
@@ -35,14 +33,8 @@ export default function Sponsors() {
   // Input handler
   function inputHandler(event){
     const {name,value}=event.target;
-    if (name === "name") {
-      value?setNameError('hidden'):setNameError('');
-    } else if (name === "houseName") {
-      value ? setHouseNameError("hidden") : setHouseNameError("");
-    } else if (name === "description") {
+    if (name === "description") {
       value ? setDescriptionError("hidden") : setDescriptionError("");
-    } else if (name === "contact") {
-      value ? setContactError("hidden") : setContactError("");
     }
     setInputs((prev)=>{
       let data=prev;
@@ -54,11 +46,8 @@ export default function Sponsors() {
 
   // make payment button
   function makePaymentButton(){
-    if(!inputs.name)setNameError('');
     if (!inputs.description) setDescriptionError("");
-    if (!inputs.houseName) setHouseNameError("");
-    if (!inputs.contact) setContactError("");
-    if(inputs.name&&inputs.description&&inputs.houseName&&inputs.contact){
+    if(inputs.description){
       console.log('Correct data',inputs);
       // If all fields are entered then
       displayRazorpay();
@@ -139,7 +128,6 @@ export default function Sponsors() {
           <div className="house-name-div">
             <h1>Amount</h1>
             <input className="house-no-input" name='amount' type="text" value={eventAmount?eventAmount:''} readOnly={true} />
-            <label className={`add-family-error ${nameError==='hidden'?'hidden':''}`} htmlFor="error">This field is required</label>
           </div>
           <div className="address-div">
             <h1>Description</h1>
