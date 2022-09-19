@@ -111,10 +111,14 @@ export default function FamilyIndividual() {
             <h1>{family.familyName}</h1>
           </div>
           <div className="family-individual-nav">
-            <a href="#">Add Member</a>
-            <a href="#">Edit</a>
-            <a href="#">Send Message</a>
-            <a href="#">Proposed Changes</a>
+            <button onClick={()=>{
+              navigate('/add-member',{
+                state:location.state,
+              })
+            }}>Add Member</button>
+            <button >Edit</button>
+            <button >Send Message</button>
+            <button >Proposed Changes</button>
           </div>
           <div className="search-div">
             <input type="text" name="search-name" placeholder="Search" />
@@ -164,7 +168,10 @@ export default function FamilyIndividual() {
               />
             </div>
             <div className="photo-container">
-              <img src={`http://localhost:5000/img/family/${photoLink}`} alt='family-photo'/>
+              <img
+                src={`http://localhost:5000/img/family/${photoLink}`}
+                alt="family-photo"
+              />
             </div>
           </div>
         </div>

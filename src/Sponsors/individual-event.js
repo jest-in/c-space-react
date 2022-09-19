@@ -22,6 +22,26 @@ export default function IndividualEvent() {
   // Sponsors
   const [sponsors,setSponsors]=useState([]);
 
+  // download csv
+  function downloadCsv(){
+    axios
+      .get(`http://localhost:5000/api/v1/offerings/generate-csv/${eventId}`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          axios
+            .get(`http://localhost:5000/sponsors.csv`, {
+              withCredentials: true,
+            });
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }
+
   useEffect(() => {
     axios
       .get(`http://localhost:5000/api/v1/offerings/${eventId}`, {
@@ -114,7 +134,7 @@ export default function IndividualEvent() {
           <h1>Sponsors</h1>
         </div>
         <div className="search-div">
-          <button class="sponsors-download-list" >Download List</button>
+          <button class="sponsors-download-list" onClick={()=>downloadCsv()}>Download CSV</button>
         </div>
       </div>
       <hr className={sponsors.length?'':'hidden'} />
