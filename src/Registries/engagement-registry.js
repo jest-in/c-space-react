@@ -1,9 +1,9 @@
-import React, { useState } from 'react'
-import { useEffect } from 'react';
-import Icon_Menu from '../Assets/Icon_Menu'
-import IconUpload from '../Assets/Icon_Upload'
-import Navigation from '../navigation'
-import { personIdFromPerson} from "../person";
+import React, { useState } from "react";
+import { useEffect } from "react";
+import Icon_Menu from "../Assets/Icon_Menu";
+import IconUpload from "../Assets/Icon_Upload";
+import Navigation from "../navigation";
+import { personIdFromPerson } from "../person";
 import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 
@@ -13,17 +13,17 @@ export default function EngagementRegistry() {
   console.log("Imported object from family using navigate:", location);
   const navigate = useNavigate();
   // Name of person
-  const [name,setName]=useState('Loading');
+  const [name, setName] = useState("Loading");
 
   // Showing details
-  const [showDetails,setShowDetails]=useState('hidden');
+  const [showDetails, setShowDetails] = useState("hidden");
 
   // Engagement data
-  const [groomData,setGroomData]=useState({});
+  const [groomData, setGroomData] = useState({});
   const [brideData, setBrideData] = useState({});
-  const [otherDetails,setOtherDetails]=useState({});
+  const [otherDetails, setOtherDetails] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     axios
       .get(
         `http://localhost:5000/api/v1/registry/engagement-registry/${location.state.id}`,
@@ -51,7 +51,7 @@ export default function EngagementRegistry() {
         // Error
         alert(`${err.response.data.message}`);
       });
-  },[])
+  }, []);
 
   return (
     <div className="container-family">
@@ -71,7 +71,7 @@ export default function EngagementRegistry() {
         </div> */}
       </div>
       <hr />
-      <div className={`members-entries-div ${showDetails}`}>  
+      <div className={`members-entries-div ${showDetails}`}>
         <div className="registry-div">
           <div className="registry-details-heading-div">
             <div className="bridegroom-head">Bridegroom</div>
@@ -194,14 +194,6 @@ export default function EngagementRegistry() {
               </div>
             </div>
           </div>
-        </div>
-        <div className="registry-photo-div">
-          <IconUpload />
-          <img
-            className="marriage-photo"
-            src={require("../Assets/marriage.png")}
-            alt="marriage pic"
-          />
         </div>
       </div>
       <div className={`desc-div ${showDetails}`}>

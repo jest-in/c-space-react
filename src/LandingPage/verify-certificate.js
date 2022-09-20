@@ -5,7 +5,7 @@ import axios from "axios";
 
 export default function VerifyCertificate() {
   // input
-  const [inputToken,setInputToken]=useState({});
+  const [inputToken,setInputToken]=useState('');
   const [response,setResponse]=useState('');
 
   const {verified,setVerified}=useState('hidden');
@@ -15,14 +15,18 @@ export default function VerifyCertificate() {
   function proceedButton(){
     setResponse('');
     console.log('Input token:',inputToken);
-    if(inputToken.sign){
+    if(inputToken){
       axios
-        .post(`http://localhost:5000/api/v1/verify-sign`, inputToken, {
+        .post(`http://localhost:5000/api/v1/verify-sign`, {
+          sign:inputToken,
+        }, {
           withCredentials: true,
         })
         .then((res) => {
           if (res.data.status === "success") {
             // if token is verified successfully
+            setResponse(res.data.data)
+            alert('This certificate is valid')
           }
         })
         .catch((err) => {
@@ -49,25 +53,19 @@ export default function VerifyCertificate() {
     <div className="otp-div verify-token-entry">
       <div className="otp-forms">
         <label htmlFor="uid">Enter Signature</label>
-        <textarea name="token" id="token" cols={60} rows={10} className="certificate-token" defaultValue={""} />
-        <input type="button" defaultValue="Proceed" id="otp-btn-proceed" />
+        <textarea name="token" id="token" cols={60} rows={10} className="certificate-token" value={inputToken} onChange={(event)=>setInputToken(event.target.value)} />
+        <input onClick={()=>proceedButton()} type="button" defaultValue="Proceed" id="otp-btn-proceed" />
       </div>
     </div>
     <div className="otp-div verify-token-entry">
       <div className="otp-forms">
         <label htmlFor="uid">Description</label>
         <p className="certificate-verify-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Error obcaecati odit magnam earum, fugit sequi
-          cum veritatis fuga magni quia soluta minima sed
-          illum optio cupiditate hic nulla fugiat natus.
+          {response.message?response.message:''}
         </p>
-        <label htmlFor="uid" className="certificate-note">Note</label>
+        <label htmlFor="uid" className={`certificate-note ${response.note?'':'hidden'}`}>Note</label>
         <p className="certificate-verify-desc">
-          Lorem ipsum dolor sit amet consectetur adipisicing
-          elit. Error obcaecati odit magnam earum, fugit sequi
-          cum veritatis fuga magni quia soluta minima sed
-          illum optio cupiditate hic nulla fugiat natus.
+          {response.note?response.note:''}
         </p>
       </div>
     </div>

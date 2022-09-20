@@ -1,12 +1,12 @@
-import React from 'react'
-import Navigation from '../navigation'
-import IconMenu from '../Assets/Icon_Menu'
-import Icon_Upload from '../Assets/Icon_Upload'
-import { personIdFromPerson } from '../person'
-import { personIdFromDeathAll } from './death-registry-all'
-import { useEffect } from 'react'
+import React from "react";
+import Navigation from "../navigation";
+import IconMenu from "../Assets/Icon_Menu";
+import Icon_Upload from "../Assets/Icon_Upload";
+import { personIdFromPerson } from "../person";
+import { personIdFromDeathAll } from "./death-registry-all";
+import { useEffect } from "react";
 import axios from "axios";
-import { useState } from 'react'
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 export default function DeathRegistry() {
@@ -14,12 +14,12 @@ export default function DeathRegistry() {
   // Imported data
   console.log("Imported object from family using navigate:", location);
   // Death details
-  const [person,setPerson]=useState({});
+  const [person, setPerson] = useState({});
 
   // sacrament details
   const [sacraments, setSacraments] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     // add location.state to get request url
     axios
       .get(
@@ -40,7 +40,7 @@ export default function DeathRegistry() {
         // Error
         alert(`${err.response.data.message}`);
       });
-  },[])
+  }, []);
 
   return (
     <div className="container-family">
@@ -107,7 +107,7 @@ export default function DeathRegistry() {
             <div className="death-person-ward-div">
               <div className="heading-ward">Ward</div>
               <div className="person-death-ward">
-                {person.ward ? `${person.ward} ` : "-"}
+                {person.wardNo ? `${person.wardNo} ` : "-"}
               </div>
             </div>
             {/* <div className="death-person-address-div">
@@ -169,20 +169,12 @@ export default function DeathRegistry() {
             </div>
           </div>
         </div>
-        <div className="registry-photo-div">
-          <Icon_Upload />
-          <img
-            className="marriage-photo"
-            src={require("../Assets/marriage.png")}
-            alt="marriage pic"
-          />
-        </div>
       </div>
       <div className="desc-div">
         <div className="desc-heading">Description/Remarks</div>
         <div className="desc-content">
           <span className="blank-space" />
-          {person.remarks?person.remarks:'-'}
+          {person.remarks ? person.remarks : "-"}
         </div>
       </div>
     </div>

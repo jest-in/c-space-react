@@ -555,7 +555,21 @@ const Person = () => {
             >
               Send Mail
             </button>
-            <button>Enable Privacy</button>
+            <button onClick={()=>{
+              axios
+                .get("http://localhost:5000/api/v1/users/enable-privacy", {
+                  withCredentials: true,
+                })
+                .then((res) => {
+                  if (res.data.status === "success") {
+                    alert(res.data.message);
+                  }
+                })
+                .catch((err) => {
+                  // Error
+                  alert(`${err.response.data.message}`);
+                });
+            }}>Enable Privacy</button>
           </div>
         </div>
         <div className="desc-div">

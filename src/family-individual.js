@@ -116,9 +116,6 @@ export default function FamilyIndividual() {
                 state:location.state,
               })
             }}>Add Member</button>
-            <button >Edit</button>
-            <button >Send Message</button>
-            <button >Proposed Changes</button>
           </div>
           {/* <div className="search-div">
             <input type="text" name="search-name" placeholder="Search" />
@@ -219,12 +216,6 @@ export default function FamilyIndividual() {
               </div>
             );
           })}
-          <div className="description-div">
-            <div className="desc-heading">Description/Remarks</div>
-            <div className="desc-content">
-              <span className="blank-space" />-
-            </div>
-          </div>
           <div className="donation-div">
             <div className="donation-heading">Donations / offerings</div>
             <div className="donation-content">

@@ -669,14 +669,6 @@ export default function BaptismRegistryadd() {
             </div>
           </div>
         </div>
-        <div className="registry-photo-div">
-          <IconUpload />
-          <img
-            className="marriage-photo"
-            src={require("../Assets/marriage.png")}
-            alt="marriage pic"
-          />
-        </div>
       </div>
       <div className="desc-div">
         <div className="desc-heading">Description/Remarks</div>

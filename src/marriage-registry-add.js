@@ -310,14 +310,6 @@ export default function MarriageRegistryAdd() {
           </div>
         </div>
 
-        <div className="registry-photo-div">
-          <Icon_Upload />
-          <img
-            className="marriage-photo"
-            src={require("./Assets/marriage.png")}
-            alt="image/marriage"
-          />
-        </div>
       </div>
 
       <div className={`desc-div ${showDetails}`}>

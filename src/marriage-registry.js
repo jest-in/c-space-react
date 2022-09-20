@@ -207,14 +207,6 @@ function MarriageRegistry() {
           </div>
         </div>
 
-        <div className="registry-photo-div">
-          <UploadIcon />
-          <img
-            className="marriage-photo"
-            src={require("./Assets/marriage.png")}
-            alt="marriage pic"
-          />
-        </div>
       </div>
 
       <div className={`desc-div ${showDetails}`}>

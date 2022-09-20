@@ -58,6 +58,13 @@ export default function AddFamily() {
 
   // Post family details to server
   function postFamilyDetails() {
+    if (data.pin.length !== 6 || isNaN(data.pin)){
+      alert("Enter valid pincode");
+      return
+    }if (isNaN(data.houseNum)) {
+      alert("Enter valid house number");
+      return;
+    }
     // Show create family button if data consists the required fields
     if (data) {
       const { familyName, houseNum, address, wardNum, pin } = data;
@@ -129,7 +136,15 @@ export default function AddFamily() {
     // if the name and index are same then the input is from gender selection(M/F)
     list[index][name === index.toString()?'gender':name] = value;
     setMembers(list);
-
+    console.log(list);
+    if (name === "gender"){
+      setMembersError((prev) => {
+        let list = [...prev];
+        if (value) list[index]["genderError"] = "hidden";
+        else list[index]["genderError"] = "";
+        return list;
+      });
+    }
     if (name === "name") {
       setMembersError((prev) => {
         let list = [...prev];
@@ -137,40 +152,49 @@ export default function AddFamily() {
         else list[index]["nameError"] = "";
         return list;
       });
-    } else if (name === "baptismName")
+    } else if (name === "baptismName"){
       setMembersError((prev) => {
         let list = [...prev];
         if (value) list[index]["baptismNameError"] = "hidden";
         else list[index]["baptismNameError"] = "";
         return list;
       });
-    else if (name === "phoneNumber")
+    }
+    else if (name === "phoneNumber"){
       setMembersError((prev) => {
         let list = [...prev];
         if (value) list[index]["phoneNumError"] = "hidden";
         else list[index]["phoneNumError"] = "";
         return list;
       });
-    else if (name === "email")
+    }
+    else if (name === "email"){
       setMembersError((prev) => {
         let list = [...prev];
         if (value) list[index]["emailError"] = "hidden";
         else list[index]["emailError"] = "";
         return list;
       });
-    else if (name === "gender")
+    }
+    else if (name === "gender"){
       setMembersError((prev) => {
         let list = [...prev];
         if (value) list[index]["genderError"] = "hidden";
         else list[index]["genderError"] = "";
         return list;
       });
+    }
   }
 
   // Handling submit button
   function submitButton() {
     let error = false;
     for (let i = 0; i < members.length; i++) {
+      if( isNaN(members[i]['phoneNumber'])||members[i]['phoneNumber'].length!==10){
+        alert("Enter valid phone number");
+        error = true;
+        break;
+      }
       if (Object.keys(members[i]).length !== 5) {
         alert('check whether you have entered all details');
         error = true;
@@ -444,7 +468,7 @@ export default function AddFamily() {
                   </div>
                   <label
                     className={`add-family-error ${
-                      membersError[index].genderError ? "hidden" : ""
+                      members[index].gender ? "hidden" : ""
                     }`}
                     htmlFor="error"
                   >

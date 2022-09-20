@@ -34,7 +34,7 @@ export default function BaptismRegistryAll() {
 
   return (
     <div className="container-family">
-      <div className="baptism-filter-popup-bg">
+      {/* <div className="baptism-filter-popup-bg">
   <div className="baptism-filter-popup-content">
     <div className="filter-close-icon-div">
       <Icon_Close/>
@@ -88,23 +88,20 @@ export default function BaptismRegistryAll() {
       <button className="filter-apply-button">Apply</button>
     </div>
   </div>
-</div>
+</div> */}
 
       <Navigation />
       <div className="title-div">
-        <div className="family-master">
+        <div className="family-master regestries-person-head">
           <h1>Baptism Registry</h1>
         </div>
         <div className="search-div">
           <input type="text" name="search-name" placeholder="Search" />
           <Icon_Search />
         </div>
-        <div className="filter-div">
-          <Icon_Filter />
-        </div>
       </div>
       <hr />
-      <div className={`famili-members-div transactions ${''}`}>
+      <div className={`famili-members-div transactions ${""}`}>
         <div className="heading-div">
           <div className="mar-slno">S.No</div>
           <div className="mar-groom-name">Baptism Name</div>
@@ -113,22 +110,24 @@ export default function BaptismRegistryAll() {
           <div className="mar-date">Date</div>
         </div>
         {baptismRegistry.map((person, index) => {
-          const { baptismName, father, mother, doBaptism ,userId} = person;
+          const { baptismName, father, mother, doBaptism, userId } = person;
           return (
-            <div className="member-details-div" key={index} onClick={()=>{
-              userIdFromAllBaptism=userId;
-              navigate("/baptism-registry", {
-                state: userId,
-              });
-            }}>
+            <div
+              className="member-details-div"
+              key={index}
+              onClick={() => {
+                userIdFromAllBaptism = userId;
+                navigate("/baptism-registry", {
+                  state: userId,
+                });
+              }}
+            >
               <div className="mar-slno">{index + 1}</div>
-              <div className="mar-groom-name">{baptismName ? baptismName : "-"}</div>
-              <div className="mar-bride-name">
-                {father ? father : "-"}
+              <div className="mar-groom-name">
+                {baptismName ? baptismName : "-"}
               </div>
-              <div className="mar-celebrant">
-                {mother ? mother : "-"}
-              </div>
+              <div className="mar-bride-name">{father ? father : "-"}</div>
+              <div className="mar-celebrant">{mother ? mother : "-"}</div>
               <div className="mar-date">
                 {doBaptism ? doBaptism.split("T")[0] : "-"}
               </div>
