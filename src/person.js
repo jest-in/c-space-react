@@ -205,6 +205,10 @@ const Person = () => {
       alert("This person is under aged");
       return;
     }
+    if (personDetails.dod) {
+      alert("This person is already dead");
+      return;
+    }
     if (personDetails.husband || personDetails.wife) {
       partnerIdFromPerson = personDetails.husband
         ? personDetails.husband
@@ -543,10 +547,10 @@ const Person = () => {
             </div>
           </div>
           <div className="person-photo-div">
-            {/* <img
+            <img
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
-            /> */}
+            />
             <button onClick={() => setShowSignUp("")}>Sign up</button>
             <button onClick={() => setSmsBox("")}>Send Message</button>
             <button
@@ -555,21 +559,25 @@ const Person = () => {
             >
               Send Mail
             </button>
-            <button onClick={()=>{
-              axios
-                .get("http://localhost:5000/api/v1/users/enable-privacy", {
-                  withCredentials: true,
-                })
-                .then((res) => {
-                  if (res.data.status === "success") {
-                    alert(res.data.message);
-                  }
-                })
-                .catch((err) => {
-                  // Error
-                  alert(`${err.response.data.message}`);
-                });
-            }}>Enable Privacy</button>
+            <button
+              onClick={() => {
+                axios
+                  .get("http://localhost:5000/api/v1/users/enable-privacy", {
+                    withCredentials: true,
+                  })
+                  .then((res) => {
+                    if (res.data.status === "success") {
+                      alert(res.data.message);
+                    }
+                  })
+                  .catch((err) => {
+                    // Error
+                    alert(`${err.response.data.message}`);
+                  });
+              }}
+            >
+              Enable Privacy
+            </button>
           </div>
         </div>
         <div className="desc-div">
