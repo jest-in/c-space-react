@@ -5,7 +5,7 @@ import Icon_Search from "../Assets/Icon_Search";
 import Navigation from "../navigation";
 import { useEffect } from "react";
 import axios from "axios";
-import { useNavigate,useLocation } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import {
   personIdFromPerson,
   gender,
@@ -422,7 +422,7 @@ export default function EngagementRegistryAdd() {
         <div className="person-head">
           <h1>Engagement Registry</h1>
         </div>
-        <div className={`registries-nav-div ${showDetails}`}>
+        {/* <div className={`registries-nav-div ${showDetails}`}>
           <a href="#">Baptism Registry</a>
           <a href="#">Engagement Registry</a>
           <a href="#">Marriage Registry</a>
@@ -430,7 +430,7 @@ export default function EngagementRegistryAdd() {
         </div>
         <div className={`menu-div ${showDetails}`}>
           <Icon_Menu />
-        </div>
+        </div> */}
       </div>
       <hr />
       <div className={`members-entries-div ${showDetails}`}>
