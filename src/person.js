@@ -107,7 +107,7 @@ const Person = () => {
   function smsSend() {
     axios
       .post(
-        "http://localhost:5000/api/v1/send-mail",
+        "http://localhost:5000/api/v1/send-sms",
         {
           to: "person",
           id: location.state,
