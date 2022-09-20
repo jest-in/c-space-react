@@ -44,7 +44,7 @@ export default function MarriageCertificate() {
   },[])
 
   return (
-    <div className={`main-body ${certificate}`} onClick={()=>window.print()}>
+    <div className={`main-body ${certificate}`} onClick={() => window.print()}>
       <div className="main-page">
         <div className="sub-page">
           <div className="sub-page-head-div">
@@ -58,13 +58,22 @@ export default function MarriageCertificate() {
           <div className="certificate-content-div">
             <p>
               Certified that the marriage between <span>Mr. </span>
-              <span>{details.groomName?details.groomName:'-'}</span> S/o <span>{groomData.father?groomData.father:'-'}</span> of the Parish of{" "}
-              <span>St. Thomas Church Kanjal</span> and <span>{details.brideName?details.brideName:'-'}</span>{" "}
-              D/o <span>{brideData.father?brideData.father:'-'}</span> of the Parish of{" "}
-              <span>St. Thomas Church Kankanady</span> was blessed by{" "}
-              <span>{details.celebrant?details.celebrant:'-'}</span> on <span>{details.marriageDate?details.marriageDate.split("T")[0]:'-'}</span> according to the
-              Rites of the Catholic Church. This is the true extract of the
-              Records kept here.
+              <span>
+                {details.groomName ? details.groomName : "-"}
+              </span> S/o{" "}
+              <span>{groomData.father ? groomData.father : "-"}</span> of the
+              Parish of <span>St. Thomas Church Kanjal</span> and{" "}
+              <span>{details.brideName ? details.brideName : "-"}</span> D/o{" "}
+              <span>{brideData.father ? brideData.father : "-"}</span> of the
+              Parish of <span>St. Thomas Church Kankanady</span> was blessed by{" "}
+              <span>{details.celebrant ? details.celebrant : "-"}</span> on{" "}
+              <span>
+                {details.marriageDate
+                  ? details.marriageDate.split("T")[0]
+                  : "-"}
+              </span>{" "}
+              according to the Rites of the Catholic Church. This is the true
+              extract of the Records kept here.
             </p>
           </div>
           <div className="credentials-div">
@@ -81,7 +90,7 @@ export default function MarriageCertificate() {
                   <span className="name-head">Place</span>
                   <span className="name-colon">:</span>
                 </h1>
-                <h2 className="place-name">Kanjal</h2>
+                <h2 className="place-name">Gandibagilu</h2>
               </div>
             </div>
             <div className="seal-div">
@@ -96,9 +105,7 @@ export default function MarriageCertificate() {
           </div>
           <div className="digital-signature-div">
             <h1>This certificate is digitally signed</h1>
-            <p className="digital-signature-content">
-              {details.signature}
-            </p>
+            <p className="digital-signature-content">{details.signature}</p>
           </div>
         </div>
       </div>

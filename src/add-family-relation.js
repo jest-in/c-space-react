@@ -375,6 +375,7 @@ export default function AddFamilyRelation() {
           return (
             <div className="relatives-entry-div" key={index}>
               <h1>{relative.baptismName}</h1>
+              {/*<h1>{relative.name}</h1>  */}
               {/* <select
                 defaultValue={defaultValue}
                 name="relation"

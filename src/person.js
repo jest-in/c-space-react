@@ -70,7 +70,7 @@ const Person = () => {
           `http://localhost:5000/api/v1/users/signup`,
           {
             userId: location.state,
-            role: "User",
+            role: role,
           },
           {
             withCredentials: true,
@@ -283,8 +283,8 @@ const Person = () => {
               id="under-group"
             >
               <option className={emptyOption} value=""></option>
-              <option value="user">User</option>
-              <option value="accountant">Accountant</option>
+              <option value="User">User</option>
+              <option value="Accountant">Accountant</option>
             </select>
             <div className="filter-apply-div">
               <button className="filter-apply-button" onClick={() => signUp()}>
@@ -547,10 +547,10 @@ const Person = () => {
             </div>
           </div>
           <div className="person-photo-div">
-            <img
+            {/* <img
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
-            />
+            /> */}
             <button onClick={() => setShowSignUp("")}>Sign up</button>
             <button onClick={() => setSmsBox("")}>Send Message</button>
             <button
