@@ -282,6 +282,7 @@ export default function AddMember() {
         if (res.data.status === "success") {
           // If all members relation are added
           console.log("success");
+          navigate(-1);
         }
       })
       .catch((err) => {
