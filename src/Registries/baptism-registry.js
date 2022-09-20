@@ -49,7 +49,7 @@ export default function BaptismRegistry() {
           </h1>
         </div>
         <div className="baptism-registry-edit-btn-div">
-          <button className="baptism-edit-btn">Edit Registry</button>
+          {/* <button className="baptism-edit-btn">Edit Registry</button> */}
           <button className="baptism-edit-btn" onClick={()=>navigate('/baptism-certificate',{
             state:baptismDetails.userId,
           })}>Download Cerfificate</button>
