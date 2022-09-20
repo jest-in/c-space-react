@@ -543,10 +543,10 @@ const Person = () => {
             </div>
           </div>
           <div className="person-photo-div">
-            <img
+            {/* <img
               src={require("./Assets/person-photo.png")}
               alt="personal pic"
-            />
+            /> */}
             <button onClick={() => setShowSignUp("")}>Sign up</button>
             <button onClick={() => setSmsBox("")}>Send Message</button>
             <button
