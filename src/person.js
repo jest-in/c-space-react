@@ -328,8 +328,8 @@ const Person = () => {
           </div>
           <div className="message-send-button ">
             <button onClick={() => smsSend()}>Send</button>
-            <h1 className={smsError}>Sent Successfully</h1>
-            <h2 className={`message-wrong ${smsSuccess}`}>
+            <h1 className={smsSuccess}>Sent Successfully</h1>
+            <h2 className={`message-wrong ${smsError}`}>
               Something went wrong! Try again.
             </h2>
           </div>
