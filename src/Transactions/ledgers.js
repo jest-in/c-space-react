@@ -146,6 +146,13 @@ export default function Ledgers() {
           >
             Create Ledger
           </button>
+
+          <button
+            className="create-led-btn"
+            onClick={() =>onCreateLedger()}
+          >
+            Download Statement
+          </button>
         </div>
       </div>
       <hr />
