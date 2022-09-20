@@ -2,79 +2,75 @@ import React from 'react'
 import Icon_Menu from '../Assets/Icon_Menu';
 import Logo from "../Assets/logo";
 import Navigation from '../navigation';
-
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from 'react';
+import axios from "axios";
+import { useState } from 'react';
+    
 export default function LedgerIndividual() {
-        function clickListener() {
-          console.log("clicked");
-        }
+          const location = useLocation();
+          const navigate = useNavigate();
+          // Imported data
+          console.log("Imported object from family using navigate:", location);
+
+          const [ledgerDetails,setLedgerDetails]=useState([]);
+
+          useEffect(()=>{
+            axios
+              .get(`http://localhost:5000/api/v1/accounts/vouchers/${location.state}`, {
+                withCredentials: true,
+              })
+              .then((res) => {
+                setLedgerDetails(res.data.data);
+              })
+              .catch((err) => {
+                // Error
+                alert(`${err.response.data.message}`);
+              });
+          },[])
   return (
     <>
-        <div className="container-family">
-        <Navigation/>
+      <div className="container-family">
+        <Navigation />
         <div className="title-div">
-            <div className="family-master">
-               <h1>Electricity Bill</h1> 
-            </div>
-            <div className="registries-nav-div">
-                <a href="#">Ledgers</a>
-                <a href="#">Groups</a>
-                <a href="#">Vouchers</a>
-                <a href="#">Reports</a>
-            </div>
-            <div className="menu-div">
-                <Icon_Menu/>
-            </div>   
+          <div className="family-master regestries-person-head">
+            <h1>Electricity Bill</h1>
+          </div>
         </div>
-        <hr/>
+        <hr />
         <div className="famili-members-div transactions">
-            <div className="heading-div">
-                <div className="led-indi-slno">S.No</div>
-                <div className="led-indi-date">Date</div>
-                <div className="led-indi-narration">Narration</div>
-                <div className="led-indi-vno">Voucher No</div>
-                <div className="led-indi-amt">Amount</div>
-                <div className="led-indi-mode">Mode</div>
-            </div>
-            <div className="member-details-div" onClick={()=>clickListener()}>
-                <div className="led-indi-slno">1</div>
-                <div className="led-indi-date">1-4-2023</div>
-                <div className="led-indi-narration">Being Electricity Bill Paid. Bill NO: 12345</div>
-                <div className="led-indi-vno">5</div>
-                <div className="led-indi-amt">-5520</div>
-                <div className="led-indi-mode">Bank</div>
-            </div>
-
-            <div className="member-details-div" onClick={()=>clickListener()}>
-                <div className="led-indi-slno">2</div>
-                <div className="led-indi-date">10-5-2023</div>
-                <div className="led-indi-narration">Being Electricity Bill Paid. Bill NO: 99885</div>
-                <div className="led-indi-vno">18</div>
-                <div className="led-indi-amt">-6008</div>
-                <div className="led-indi-mode">Cash</div>
-            </div>
-
-            <div className="member-details-div" onClick={()=>clickListener()}>
-                <div className="led-indi-slno">3</div>
-                <div className="led-indi-date">23-5-2023</div>
-                <div className="led-indi-narration">Being Electricity Bill Paid. Bill NO: 8899656</div>
-                <div className="led-indi-vno">29</div>
-                <div className="led-indi-amt">-3898</div>
-                <div className="led-indi-mode">Cash</div>
-            </div>
-
-            <div className="member-details-div" onClick={()=>clickListener()}>
-                <div className="led-indi-slno">4</div>
-                <div className="led-indi-date">11-6-2023</div>
-                <div className="led-indi-narration">Being Electricity Bill Paid. Bill NO: 82569314</div>
-                <div className="led-indi-vno">54</div>
-                <div className="led-indi-amt">-4896</div>
-                <div className="led-indi-mode">Bank</div>
-            </div>
+          <div className="heading-div">
+            <div className="led-indi-slno">S.No</div>
+            <div className="led-indi-date">Date</div>
+            <div className="led-indi-narration">Narration</div>
+            <div className="led-indi-vno">Voucher No</div>
+            <div className="led-indi-amt">Amount</div>
+            <div className="led-indi-mode">Mode</div>
+          </div>
+          {ledgerDetails.map((ledger, index) => {
+            return (
+              <div className="member-details-div">
+                <div className="led-indi-slno">{index + 1}</div>
+                <div className="led-indi-date">
+                  {ledger.date ? ledger.date.split("T")[0] : "-"}
+                </div>
+                <div className="led-indi-narration">{ledger.narration}</div>
+                <div className="led-indi-vno"> {ledger.voucherNum}</div>
+                <div className="led-indi-amt"> {ledger.amount}</div>
+                <div className="led-indi-mode"> {ledger.account}</div>
+              </div>
+            );
+          })}
         </div>
         <div className="create-led-btn-div">
-            <a href="" className="create-led-btn"><h1>Add Voucher</h1></a>
+          <button
+            className="create-led-btn"
+            onClick={() => navigate("/add-voucher")}
+          >
+            <h1>Add Voucher</h1>
+          </button>
         </div>
-    </div>
+      </div>
     </>
-  )
+  );
 }

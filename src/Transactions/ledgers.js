@@ -5,8 +5,12 @@ import Logo from '../Assets/logo'
 import Navigation from '../navigation';
 import axios from "axios";
 import { useEffect,useState } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
+
+const fileDownload = require("js-file-download"); 
 
 export default function Ledgers() {
+  const navigate=useNavigate();
   // inputs
   const [ledgerName, setLedgerName] = useState("");
   // const [under, setUnder] = useState("");
@@ -41,6 +45,29 @@ export default function Ledgers() {
     console.log("Inputs:", id);
   }
 
+  // CSV
+  function downloadCSV() {
+    axios
+      .get(`http://localhost:5000/api/v1/accounts/vouchers/generate-csv`, {
+        withCredentials: true,
+      })
+      .then((res) => {
+        if (res.data.status === "success") {
+          axios
+            .get(`http://localhost:5000/statement.csv`, {
+              withCredentials: true,
+              responseType: "blob",
+            })
+            .then((res) => {
+              fileDownload(res.data, "statement.csv");
+            });
+        }
+      })
+      .catch((err) => {
+        // Error
+        alert(`${err.response.data.message}`);
+      });
+  }
   // create ledger button
   function onCreateLedger(){
     axios
@@ -149,7 +176,7 @@ export default function Ledgers() {
 
           <button
             className="create-led-btn"
-            onClick={() =>onCreateLedger()}
+            onClick={() =>downloadCSV()}
           >
             Download Statement
           </button>
@@ -165,7 +192,9 @@ export default function Ledgers() {
         </div>
         {ledgerDetails.map((ledger, index) => {
           return (
-            <div className="member-details-div" key={index}>
+            <div className="member-details-div" key={index} onClick={()=>navigate('/ledger-individual',{
+              state:ledger._id,
+            })}>
               <div className="led-slno">{index + 1}</div>
               <div className="led-name">{ledger.name}</div>
               <div className="led-under">{ledger.groupName}</div>
