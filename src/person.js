@@ -580,7 +580,7 @@ const Person = () => {
             </button>
           </div>
         </div>
-        <div className="desc-div">
+        {/* <div className="desc-div">
           <div className="desc-heading person-desc-heading">
             Description/Remarks
           </div>
@@ -595,7 +595,7 @@ const Person = () => {
             discovered the undoubtable source. Lorem Ipsum comes from sections
             1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum".{" "}
           </div>
-        </div>
+        </div> */}
       </main>
     </div>
   );
