@@ -41,7 +41,11 @@ const navigate=useNavigate();
         })
         .then((res) => {
           console.log(res.data);
-          if (res.data.status === "success") navigate("/family");
+          if (res.data.status === "success") {
+            if(res.data.data.user.role=== 'Super-Admin'){
+            navigate("/new-admin")}else navigate("/family");
+          }
+          
         })
         .catch((err) => {
           // Error
